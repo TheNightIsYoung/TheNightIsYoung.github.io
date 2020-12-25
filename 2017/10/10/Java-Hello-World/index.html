@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Java Hello World - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="相信这里你已经对 Java 有了基本的了解，并且你已经完成了 Java 开发环境的基本搭建。你可能会很疑惑上面我们配置的开发环境是否真的可以运行 Java 应用程序？而不是通过简单的 java –version  来判断。看完本篇博文你会了解一个完整 Java 应用程序的基本开发过程。"><meta property="og:type" content="blog"><meta property="og:title" content="Java Hello World"><meta property="og:url" content="https://www.orangeshare.cn/2017/10/10/Java-Hello-World/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="相信这里你已经对 Java 有了基本的了解，并且你已经完成了 Java 开发环境的基本搭建。你可能会很疑惑上面我们配置的开发环境是否真的可以运行 Java 应用程序？而不是通过简单的 java –version  来判断。看完本篇博文你会了解一个完整 Java 应用程序的基本开发过程。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/Java_HelloWorld.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/java_exe_pic.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/java_jvm_work.png"><meta property="article:published_time" content="2017-10-10T12:18:58.000Z"><meta property="article:modified_time" content="2020-12-24T18:08:14.245Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Java"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/Java_HelloWorld.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2017/10/10/Java-Hello-World/"},"headline":"When Art Meets Tech","image":["https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/Java_HelloWorld.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/java_exe_pic.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/java_jvm_work.png"],"datePublished":"2017-10-10T12:18:58.000Z","dateModified":"2020-12-24T18:08:14.245Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"相信这里你已经对 Java 有了基本的了解，并且你已经完成了 Java 开发环境的基本搭建。你可能会很疑惑上面我们配置的开发环境是否真的可以运行 Java 应用程序？而不是通过简单的 java –version  来判断。看完本篇博文你会了解一个完整 Java 应用程序的基本开发过程。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2017/10/10/Java-Hello-World/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2017-10-10T12:18:58.000Z" title="2017-10-10T12:18:58.000Z">2017-10-10</time></span><span class="level-item">Updated&nbsp;<time dateTime="2020-12-24T18:08:14.245Z" title="2020-12-24T18:08:14.245Z">2020-12-25</time></span><span class="level-item"><a class="link-muted" href="/categories/Java/">Java</a></span><span class="level-item">12 minutes read (About 1806 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">Java Hello World</h1><div class="content"><p>相信这里你已经对 Java 有了基本的了解，并且你已经完成了 Java 开发环境的基本搭建。你可能会很疑惑上面我们配置的开发环境是否真的可以运行 Java 应用程序？而不是通过简单的 <strong>java –version</strong>  来判断。看完本篇博文你会了解一个完整 Java 应用程序的基本开发过程。</p>
+<a id="more"></a>
+
+<h2 id="Hello-Java-World"><a href="#Hello-Java-World" class="headerlink" title="Hello Java World"></a>Hello Java World</h2><p>在开始后续的学习之前，我们先给出一个经典的 Java 程序 Demo（HelloWorld）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * My First Java Code</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloJava</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		System.out.println(<span class="string">&quot;Hello, Java World!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先来看一下，上诉的 Java 程序有什么样的含义，具体 Java 语句的用法会在后续的学习中深入了解，这里不用深究。</p>
+<p>上述代码的含义是，我们运行上述 Java 程序后，会在屏幕打印一行文字：<strong>Hello, Java World!</strong></p>
+<hr>
+<h3 id="编写-Java-源程序"><a href="#编写-Java-源程序" class="headerlink" title="编写 Java 源程序"></a>编写 Java 源程序</h3><p>Java 源程序可以使用任何一个文本编辑器（记事本、Sublime、Notepad++…）来编写，这里以 Windows 下的记事本为例：</p>
+<p>1）新建一个空白记事本，然后如实地将我们上面给出的 Java 程序内容编写进去。</p>
+<p>2）将写完代码后的文件另存为 <strong>HelloJava.java</strong>，保存类型选择“所有文件”，接着单击“保存”按钮，保存文件到任一文件夹中。</p>
+<p>重新打开选用记事本打开编写好的 Java 源程序文件，如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/Java_HelloWorld.png"></p>
+<blockquote>
+<p>提示：保存的 Java 源程序文件名中不能出现空格，类似 <strong>“Hello Java.java”</strong> 的文件名在编译时会出现找不到文件的错误。</p>
+</blockquote>
+<hr>
+<h3 id="编译源程序"><a href="#编译源程序" class="headerlink" title="编译源程序"></a>编译源程序</h3><p>将 Java 源程序编写并保存到文件之后，还需要进行编译才能运行。编译 Java 源程序使用的是 JDK 中的 <strong>javac</strong> 编译器。你需要在 DOS 下执行：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac HelloJava.java</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>此时如果没有任何其他信息，表示该源程序通过了编译；反之便说明程序中存在错误，必须在记事本中打开 HelloJava.java 文件进行修改，再次保存此文件后回到命令提示符窗口重新编译（可能要反复几次），直到编译通过为止。</p>
+<p>实在通过不了，你可以复制我上面给出的代码。</p>
+</blockquote>
+<p><strong>javac HelloJava.java</strong> 命令的作用是让 Java 编译器获取 Java 应用程序 HelloJava.java 的源代码，把它编译成符合 Java 虚拟机规范的字节码文件。</p>
+<p>这时，你会发现在 HelloJava.java 同目录下生成一个新文件 <strong>HelloJava.class</strong>，此文件便是我们所说的字节码文件，它也是 JVM 上的可执行文件。</p>
+<hr>
+<h3 id="运行字节码文件"><a href="#运行字节码文件" class="headerlink" title="运行字节码文件"></a>运行字节码文件</h3><p>编译完成后，我们就可以使用 Java 解释器（java）运行 Java 源程序所对应的字节码文件（.class）了，命令如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java HelloJava</span><br></pre></td></tr></table></figure>
+
+<p>你会发现，DOS 下输出如下：</p>
+<blockquote>
+<p>Hello, Java World!</p>
+</blockquote>
+<p>到这里，你已经成功运行了你写好的 Java 源程序了！</p>
+<blockquote>
+<p>注意，运行字节码文件时，无需使用 .class 全名。</p>
+</blockquote>
+<hr>
+<h2 id="Hello-World-执行详解"><a href="#Hello-World-执行详解" class="headerlink" title="Hello World 执行详解"></a>Hello World 执行详解</h2><p>从上面的过程中，你肯定不难归纳出 Java 程序的运行必须经过的 <strong>3 个步骤</strong>：</p>
+<ol>
+<li>编写：使用文本编辑器编写，最终形成后缀名为 <strong>.java</strong> 的 Java 源文件。</li>
+<li>编译：是指使用 Java 编译器对源文件进行错误排査的过程，编译后将生成后缀名为 <strong>.class</strong> 的字节码文件，而不是不像 C 语言那样的可执行文件。</li>
+<li>运行：是指使用 Java 解释器将字节码文件翻译成机器代码，执行并显示结果。</li>
+</ol>
+<p>Java 程序运行流程示意图如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/java_exe_pic.png"></p>
+<p>详细说明：</p>
+<p>1.字节码文件，是一种二进制文件，是一种和任何具体机器环境及操作系统环境无关的中间代码，这就意味着<font color=red>任何安装了 JDK 的平台编译后生成的字节码文件是相同的。</font></p>
+<p>2.编程人员和计算机都无法直接读懂字节码文件。</p>
+<p>3.Java 解释器负责将字节码文件翻译成具体硬件环境和操作系统平台下的机器代码，以便执行。也就是说，Java解释器依托的 JVM 是平台相关的，<font color=red>不同平台下的 JVM 是不同的，相同的字节码文件会被翻译成不同的机器代码。</font></p>
+<blockquote>
+<p>Java 虚拟机（JVM）是运行 Java 程序的软件环境，Java 解释器是 Java 虚拟机的一部分。</p>
+</blockquote>
+<p>4.JVM 把不同软、硬件平台的具体差别隐藏起来，从而实现了真正的二进制代码级的跨平台移植。</p>
+<p>Java 的这种运行机制如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/java_jvm_work.png"></p>
+<hr>
+<h2 id="Java-IDE"><a href="#Java-IDE" class="headerlink" title="Java IDE"></a>Java IDE</h2><p>事实上，我们在实际开发 Java 程序时，会使用 Java IDE（Java Integrated Development Environment，Java 集成开发环境）。</p>
+<p>即我们会选择一款合适的 IDE 工具来完成 Java 程序的编写 &amp; 编译 &amp; 运行。</p>
+<p>Java IDE 可以为我们提供如下功能：</p>
+<ul>
+<li>提供代码编辑功能；</li>
+<li>快捷方式调用：javac，java…..</li>
+<li>可视化界面；</li>
+<li>文档自动编写</li>
+<li>… </li>
+</ul>
+<p>IDE 帮助我们把 Java 程序开发过程中的编写、分析、编译、调试、文档生成、字节码混淆、打包压缩、发布部署一系列任务等集成到一个可视化界面，极大的方便了开发人员的工作，提升了编程效率。</p>
+<p>Java IDE 推荐：<a target="_blank" rel="noopener" href="https://www.eclipse.org/downloads/">Eclipse</a> / <a target="_blank" rel="noopener" href="https://www.jetbrains.com/idea/">Intellij IDEA</a></p>
+<hr>
+<h3 id="关于反编译"><a href="#关于反编译" class="headerlink" title="关于反编译"></a>关于反编译</h3><p>在 JDK 安装与配置博文中，JDK 安装目录详解时，我们提到过 <strong>javap 反编译器</strong>，不知道你是否还记得？？？</p>
+<p>Java 程序经过编译后生成的 .class 文件中，包含有大量的源程序信息，很容易被反编译，拿到我们源程序信息。</p>
+<p>例如，我们使用 <strong>javap</strong> 对上面我们的 Hello Java World Demo 进行反编译：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> javap HelloJava</span></span><br><span class="line">Compiled from &quot;HelloJava.java&quot;</span><br><span class="line">public class HelloJava &#123;</span><br><span class="line">  public HelloJava();</span><br><span class="line">  public static void main(java.lang.String[]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="关于字节码混淆"><a href="#关于字节码混淆" class="headerlink" title="关于字节码混淆"></a>关于字节码混淆</h3><p>怎么办？事实上，我们可以使用 Java 代码混淆器来进行字节码混淆。</p>
+<p>IDE 集成的字节码混淆功能，能够对字节码文件进行代码混淆，防止源程序不被解读。</p>
+<p>代码混淆一般原理：</p>
+<p>对 .class 文件或 .jar 文件中的字节码进行修改，使其不能被很好的反编译，或者反编译不容易阅读。</p>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Java Hello World</p><p><a href="https://www.orangeshare.cn/2017/10/10/Java-Hello-World/">https://www.orangeshare.cn/2017/10/10/Java-Hello-World/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2017-10-10</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2020-12-25</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Java/">Java</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/10/11/Eclipse-2020-Shortcut-Key/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Eclipse 2020 Shortcut Key</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/10/09/Java-JDK-%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/"><span class="level-item">Java JDK 下载与安装教程</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p><p class="is-size-6 is-block">Web, AI Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Galactic System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">17</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">7</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/TheNightIsYoung" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="DockerHub" href="https://hub.docker.com/"><i class="fab fa-docker"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/explore"><i class="fab fa-gofore"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="MDEditor" href="http://www.mdeditor.com/"><i class="fab fa-canadian-maple-leaf"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="WangYiYun" href="https://music.163.com/"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Hello-Java-World"><span class="level-left"><span class="level-item">1</span><span class="level-item">Hello Java World</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#编写-Java-源程序"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">编写 Java 源程序</span></span></a></li><li><a class="level is-mobile" href="#编译源程序"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">编译源程序</span></span></a></li><li><a class="level is-mobile" href="#运行字节码文件"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">运行字节码文件</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Hello-World-执行详解"><span class="level-left"><span class="level-item">2</span><span class="level-item">Hello World 执行详解</span></span></a></li><li><a class="level is-mobile" href="#Java-IDE"><span class="level-left"><span class="level-item">3</span><span class="level-item">Java IDE</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#关于反编译"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">关于反编译</span></span></a></li><li><a class="level is-mobile" href="#关于字节码混淆"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">关于字节码混淆</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2020 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

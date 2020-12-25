@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Java程序设计基础 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="要想编写规范、可读性高的 Java 程序，就必须熟练账务 Java 基本语法。基本语法是所有编程语言都必须掌握的基础知识，也是整个程序代码不可缺少的重要部分。随后的章节开始学习 Java 的基础语法部分，主要分为 4 部分内容：数据类型，变量，运算符，以及控制流程语句，这也是构成 Java 程序最基础的 4 个部分，敲黑板！"><meta property="og:type" content="blog"><meta property="og:title" content="Java程序设计基础"><meta property="og:url" content="https://www.orangeshare.cn/2017/10/12/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="要想编写规范、可读性高的 Java 程序，就必须熟练账务 Java 基本语法。基本语法是所有编程语言都必须掌握的基础知识，也是整个程序代码不可缺少的重要部分。随后的章节开始学习 Java 的基础语法部分，主要分为 4 部分内容：数据类型，变量，运算符，以及控制流程语句，这也是构成 Java 程序最基础的 4 个部分，敲黑板！"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://www.orangeshare.cn/img/og_image.png"><meta property="article:published_time" content="2017-10-12T09:54:58.000Z"><meta property="article:modified_time" content="2020-12-25T08:53:21.625Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Eclipse"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2017/10/12/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/"},"headline":"When Art Meets Tech","image":["https://www.orangeshare.cn/img/og_image.png"],"datePublished":"2017-10-12T09:54:58.000Z","dateModified":"2020-12-25T08:53:21.625Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"要想编写规范、可读性高的 Java 程序，就必须熟练账务 Java 基本语法。基本语法是所有编程语言都必须掌握的基础知识，也是整个程序代码不可缺少的重要部分。随后的章节开始学习 Java 的基础语法部分，主要分为 4 部分内容：数据类型，变量，运算符，以及控制流程语句，这也是构成 Java 程序最基础的 4 个部分，敲黑板！"}</script><link rel="canonical" href="https://www.orangeshare.cn/2017/10/12/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2017-10-12T09:54:58.000Z" title="2017-10-12T09:54:58.000Z">2017-10-12</time></span><span class="level-item">Updated&nbsp;<time dateTime="2020-12-25T08:53:21.625Z" title="2020-12-25T08:53:21.625Z">2020-12-25</time></span><span class="level-item"><a class="link-muted" href="/categories/Java/">Java</a></span><span class="level-item">14 minutes read (About 2079 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">Java程序设计基础</h1><div class="content"><p>要想编写规范、可读性高的 Java 程序，就必须熟练账务 Java 基本语法。基本语法是所有编程语言都必须掌握的基础知识，也是整个程序代码不可缺少的重要部分。随后的章节开始学习 Java 的基础语法部分，主要分为 4 部分内容：数据类型，变量，运算符，以及控制流程语句，这也是构成 Java 程序最基础的 4 个部分，敲黑板！</p>
+<a id="more"></a>
+
+<p>其中，数据类型和运算符不仅定义了语言的规范，还决定了可以执行什么样的操作；变量是用来存储指定类型的数据；而控制流程根据用户的输入决定程序要进入什么流程，即要做什么？如何做？</p>
+<hr>
+<p>在开始正式的学习之前，我们需要先了解一些 Java 基本语法最最基本的定义：</p>
+<h2 id="Java-标识符-amp-关键字"><a href="#Java-标识符-amp-关键字" class="headerlink" title="Java 标识符 &amp; 关键字"></a>Java 标识符 &amp; 关键字</h2><p>任何一种计算机语言都离不开标识符和关键字，本小节将详细介绍 Java 的标识符、关键字（保留字）。</p>
+<h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>所有编程语言中的 <strong>标识符</strong>，都是为 <strong>变量、方法、类、对象以及文件、工程</strong> 等进行命名的，可以有一个或多个字符。</p>
+<h4 id="标识符构成规则"><a href="#标识符构成规则" class="headerlink" title="标识符构成规则"></a>标识符构成规则</h4><p>Java 语言规定的，标识符的构成规则如下：</p>
+<ol>
+<li>标识符可以由任意多的 <strong>字母</strong>（A<del>Z 和 a</del>z），<strong>数字</strong>（0~9），<strong>下划线</strong>（_），<strong>dollar 符</strong>（$），<strong>Unicode 字符集中符号</strong>（大于 0xC0 ）的所有符号组合构成。注意不包含空格！！！</li>
+<li>必须以字母，dollar 符以及下划线开头，不可以是数字。</li>
+<li>运算符，关键字（保留字）以及标准方法名不可以作为标识符。</li>
+</ol>
+<blockquote>
+<p>注意：标识符中可以包含 关键字 &amp; 标准方法名。</p>
+</blockquote>
+<hr>
+<h4 id="标识符命名规范"><a href="#标识符命名规范" class="headerlink" title="标识符命名规范"></a>标识符命名规范</h4><p>一个良好的编程习惯要求命名标识符时，应赋予它 ”意义“（非强制）。</p>
+<ol>
+<li>见名知义：代码命名神奇 –&gt; <a target="_blank" rel="noopener" href="https://unbug.github.io/codelf">CodeIF</a>；</li>
+<li>包名全部小写；</li>
+<li>类名各单词首字母大写（大驼峰命名法）</li>
+<li>变量名，方法，类的实例：第一个单词字母小写，其它单词首字母大写（小驼峰命名法）；</li>
+<li>常量名全部大写；</li>
+<li>参数的名尽量使用一个单词的情况下，命名明确；</li>
+<li>数组命名使用：”类型[] 数组名” 的形式。</li>
+</ol>
+<blockquote>
+<p>驼峰命名法：</p>
+<p>小驼峰式（little camel-case）–&gt; 第一个单词首字母小写，后面其他单词首字母大写。</p>
+<p>大驼峰式（big camel-case）–&gt; 每个单词的第一个字母都大写;</p>
+</blockquote>
+<hr>
+<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>关键字（或者保留字）是语言中已经被赋予了特殊含义的专有单词，Java 编译器有特殊的意义，不能在程序中做其他目的使用。</p>
+<blockquote>
+<p>保留字是为 Java 预留的关键字，它们虽然现在没有作为关键字，但在以后的升级版本中有可能作为关键字。</p>
+</blockquote>
+<p>Java 语言目前定义了 51 个关键字，这些关键字不能作为标识符使用：</p>
+<ol>
+<li>数据类型：boolean、int、long、short、byte、float、double、char、class、interface。</li>
+<li>流程控制：if、else、do、while、for、switch、case、default、break、continue、return、try、catch、finally。</li>
+<li>修饰符：public、protected、private、final、void、static、strict、abstract、transient、synchronized、volatile、native。</li>
+<li>动作：package、import、throw、throws、extends、implements、this、supper、instanceof、new。</li>
+<li>保留字：true、false、null、goto、const。</li>
+</ol>
+<hr>
+<h2 id="Java-注释"><a href="#Java-注释" class="headerlink" title="Java 注释"></a>Java 注释</h2><p>注释不是编程语句，编译时会被编译器忽略。</p>
+<p>Java 支持以下三种注释方式：</p>
+<h4 id="单行注释"><a href="#单行注释" class="headerlink" title="单行注释"></a>单行注释</h4><p>以双斜杠 <strong>“//”</strong> 标识，只能注释一行内容：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloJava</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 这是一个单行注释</span></span><br><span class="line">		System.out.println(<span class="string">&quot;Hello, Java World!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="多行注释"><a href="#多行注释" class="headerlink" title="多行注释"></a>多行注释</h4><p>包含在 <strong>“/*”</strong> 和 “*/” 之间，能注释很多行的内容，也成为 <strong>块注释</strong>。</p>
+<p>为了可读性（美观）比较好，一般首行和尾行不写注释信息:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloJava</span> </span>&#123;</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 这是一个多行注释</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		System.out.println(<span class="string">&quot;Hello, Java World!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：多行注释可以嵌套单行注释，但是<strong>不能嵌套多行注释和文档注释</strong>。</p>
+</blockquote>
+<hr>
+<h4 id="文档注释"><a href="#文档注释" class="headerlink" title="文档注释"></a>文档注释</h4><p>包含在 <strong>“/**”</strong> 和 <strong>“*/”</strong> 之间，也能注释多行内容，只在类、接口、方法、<strong>成员变量</strong>上面，用来描述其作用。</p>
+<blockquote>
+<p>注释后，鼠标放在类和方法上面会自动显示出我们注释的内容</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Project Name: HelloJava</span></span><br><span class="line"><span class="comment"> * Class Name: HelloJava</span></span><br><span class="line"><span class="comment"> * Created By: xxxxxx</span></span><br><span class="line"><span class="comment"> * Created At: xxxx年xx月xx日 上午3:31:44</span></span><br><span class="line"><span class="comment"> * E-Mail: </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Version</span></span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloJava</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		System.out.println(<span class="string">&quot;Hello, Java World!&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：文档注释能嵌套单行注释，但是<strong>不能嵌套多行注释和文档注释</strong></p>
+</blockquote>
+<p>Java 平台提供了 <strong>javadoc</strong> 工具，使用 Java 源代码中的文档注释，来生成 API 说明文档。</p>
+<hr>
+<h2 id="Java-编码规范："><a href="#Java-编码规范：" class="headerlink" title="Java 编码规范："></a>Java 编码规范：</h2><ol>
+<li>程序最开始编写导入包和类语句，即 import 语句，import 语句可以有多行，编写完 import 语句后空一行;</li>
+<li>定义 public 类，顶格书写。类的主体左括号 <strong>“{”</strong> 不换行书写，右括号 <strong>“}”</strong> 顶格书写；</li>
+<li>定义 public 类中的变量，缩进书写；</li>
+<li>定义方法用缩进书写，方法的左括号 <strong>“{”</strong> 不换行书写，右括号 <strong>“}”</strong> 和方法首行第一个字符对齐；方法体要再次缩进书写，最后一个变量定义和第一个方法定义之间、方法和方法之间最好空一行；</li>
+<li>方法名和紧跟在其后的左括号 <strong>“(”</strong> 无空格，该左括号和其后的标识符之间无空格。多个参数之间的逗号和前一个参数紧靠，与后一个参数空一格。</li>
+</ol>
+<p>关于编码规范，可以以权威公司（Google 等）编码规范为参考。</p>
+<hr>
+<h2 id="Java-包名-Package-命名规范"><a href="#Java-包名-Package-命名规范" class="headerlink" title="Java 包名(Package)命名规范"></a>Java 包名(Package)命名规范</h2><p>每个 Java 开发人员都可以开发自己的 Java 项目，Coder 可以为 Java 项目中的包定义各种各样满足命名规范定义的名字。</p>
+<p>但是，我们需要尽可能保障每个 Java Package 命名的唯一性，尤其是在你上传编写好的 Java 库到第三方平台供他人使用时，这尤为重要（第三方平台一般会进行唯一性检验，成功后才允许你上传，否则认为包名冲突了）。</p>
+<p>这就要求我们，尽可能的在 Package 命名时：</p>
+<p><font color=red>为自己定义的包名前加上唯一的前缀</font></p>
+<p><strong>1 –&gt; 公司项目命名</strong></p>
+<p>一般公司项目中，包名的命名规则可定义为如下：</p>
+<blockquote>
+<p>com.公司名.项目名.模块名</p>
+</blockquote>
+<p><strong>2 –&gt; 团队项目</strong></p>
+<p>一般公司项目中，包名的命名规则可定义为如下：</p>
+<blockquote>
+<p>team.公司名.项目名.模块名</p>
+</blockquote>
+<p><strong>3 –&gt; 个人项目命名</strong></p>
+<p>那么，我们的个人项目又怎么命名呢？</p>
+<p><strong>indi</strong>（individual）–&gt;</p>
+<p>个人发起，但非自己独自完成的项目（可公开或私有项目），但 Copyright 主要属于发起者。</p>
+<p>命名规则如下:</p>
+<blockquote>
+<p><strong>indi</strong>.发起者名.项目名.模块名</p>
+</blockquote>
+<p><strong>pers</strong>（personal）–&gt;</p>
+<p>个人发起，独自完成，可分享的项目，Copyright 属于个人。</p>
+<p>命名规则如下:</p>
+<blockquote>
+<p><strong>pers</strong>.个人名.项目名.模块名</p>
+</blockquote>
+<p>人发起，独自完成，非公开的私人使用的项目，Copyright 属于个人。</p>
+<p>命名规则如下:</p>
+<blockquote>
+<p><strong>priv</strong>.个人名.项目名.模块名</p>
+</blockquote>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Java程序设计基础</p><p><a href="https://www.orangeshare.cn/2017/10/12/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/">https://www.orangeshare.cn/2017/10/12/Java%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2017-10-12</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2020-12-25</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Eclipse/">Eclipse</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/10/11/Eclipse-2020-Shortcut-Key/"><span class="level-item">Eclipse 2020 Shortcut Key</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p><p class="is-size-6 is-block">Web, AI Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Galactic System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">17</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">7</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/TheNightIsYoung" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="DockerHub" href="https://hub.docker.com/"><i class="fab fa-docker"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/explore"><i class="fab fa-gofore"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="MDEditor" href="http://www.mdeditor.com/"><i class="fab fa-canadian-maple-leaf"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="WangYiYun" href="https://music.163.com/"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Java-标识符-amp-关键字"><span class="level-left"><span class="level-item">1</span><span class="level-item">Java 标识符 &amp; 关键字</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#标识符"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">标识符</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#标识符构成规则"><span class="level-left"><span class="level-item">1.1.1</span><span class="level-item">标识符构成规则</span></span></a></li><li><a class="level is-mobile" href="#标识符命名规范"><span class="level-left"><span class="level-item">1.1.2</span><span class="level-item">标识符命名规范</span></span></a></li></ul></li><li><a class="level is-mobile" href="#关键字"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">关键字</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Java-注释"><span class="level-left"><span class="level-item">2</span><span class="level-item">Java 注释</span></span></a><ul class="menu-list"><ul class="menu-list"><li><a class="level is-mobile" href="#单行注释"><span class="level-left"><span class="level-item">2.1.1</span><span class="level-item">单行注释</span></span></a></li><li><a class="level is-mobile" href="#多行注释"><span class="level-left"><span class="level-item">2.1.2</span><span class="level-item">多行注释</span></span></a></li><li><a class="level is-mobile" href="#文档注释"><span class="level-left"><span class="level-item">2.1.3</span><span class="level-item">文档注释</span></span></a></li></ul></ul></li><li><a class="level is-mobile" href="#Java-编码规范："><span class="level-left"><span class="level-item">3</span><span class="level-item">Java 编码规范：</span></span></a></li><li><a class="level is-mobile" href="#Java-包名-Package-命名规范"><span class="level-left"><span class="level-item">4</span><span class="level-item">Java 包名(Package)命名规范</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2020 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
