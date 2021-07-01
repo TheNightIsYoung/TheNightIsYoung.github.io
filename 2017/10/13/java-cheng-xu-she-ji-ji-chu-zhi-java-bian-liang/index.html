@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Java 程序设计基础之 Java 变量 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="变(常)量——Java 程序中最基础的元素。我们在前面提到过，Java 字面值是 Java 数据具体、直观的表现，就是一个具体的值。事实上， Java 中字面值的主要功能就是来给变量、常量进行赋值用的。程序设计语言中变量的引入是至关重要的，有了变量后续的一切才是有意义的。"><meta property="og:type" content="blog"><meta property="og:title" content="Java 程序设计基础之 Java 变量"><meta property="og:url" content="https://www.orangeshare.cn/2017/10/13/java-cheng-xu-she-ji-ji-chu-zhi-java-bian-liang/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="变(常)量——Java 程序中最基础的元素。我们在前面提到过，Java 字面值是 Java 数据具体、直观的表现，就是一个具体的值。事实上， Java 中字面值的主要功能就是来给变量、常量进行赋值用的。程序设计语言中变量的引入是至关重要的，有了变量后续的一切才是有意义的。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://www.orangeshare.cn/img/og_image.png"><meta property="article:published_time" content="2017-10-13T01:54:58.000Z"><meta property="article:modified_time" content="2021-01-04T14:32:44.215Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Java Modifier"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2017/10/13/java-cheng-xu-she-ji-ji-chu-zhi-java-bian-liang/"},"headline":"When Art Meets Tech","image":["https://www.orangeshare.cn/img/og_image.png"],"datePublished":"2017-10-13T01:54:58.000Z","dateModified":"2021-01-04T14:32:44.215Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"变(常)量——Java 程序中最基础的元素。我们在前面提到过，Java 字面值是 Java 数据具体、直观的表现，就是一个具体的值。事实上， Java 中字面值的主要功能就是来给变量、常量进行赋值用的。程序设计语言中变量的引入是至关重要的，有了变量后续的一切才是有意义的。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2017/10/13/java-cheng-xu-she-ji-ji-chu-zhi-java-bian-liang/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>Java 程序设计基础之 Java 变量</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2017-10-13</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2021-01-04</time></span><span class="level-item"><a class="link-muted" href="/categories/Java/">Java</a></span><span class="level-item">15 minutes read (About 2198 words)</span></div></div><div class="content"><hr>
+<p>变(常)量——Java 程序中最基础的元素。我们在前面提到过，Java 字面值是 Java 数据具体、直观的表现，就是一个具体的值。事实上， Java 中字面值的主要功能就是来给变量、常量进行赋值用的。程序设计语言中变量的引入是至关重要的，有了变量后续的一切才是有意义的。</p>
+<a id="more"></a>
+
+<h2 id="Java-变量"><a href="#Java-变量" class="headerlink" title="Java 变量"></a>Java 变量</h2><h3 id="什么是变量"><a href="#什么是变量" class="headerlink" title="什么是变量"></a>什么是变量</h3><p>变量你可以将其看成是一个个带有名字的小盒子，用来存放我们的数据（字面值），方便后续在程序中引用（使用），这是有意义的。</p>
+<p><strong>严格来说，</strong></p>
+<p>在 Java 中，变量是指向计算机内存中的某一存储区域的引用，该区域有自己的名称（变量名）和数据类型（变量类型）。</p>
+<blockquote>
+<p>事实上，变量的类型是，变量所指向的存储区域中所存储数据的类型。</p>
+</blockquote>
+<p>该区域的数据可以在同一类型范围内不断的变化~</p>
+<hr>
+<h3 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h3><p>Java 语言是强类型（Strongly Typed）语言，强类型包含以下两方面的含义：</p>
+<ul>
+<li>所有的变量必须先定义（声明）、后使用</li>
+<li>指定数据类型的变量只能接受类型与之匹配的值</li>
+</ul>
+<p>定义（声明）变量，就是要告诉编译器这个变量的数据类型，和变量的名称，编译器才知道它能存放什么样的数据，需要分配多少空间给它，以及如何找到它。</p>
+<p><strong>1 –&gt; 声明变量</strong></p>
+<p>在 java 中用户可以通过指定数据类型和标识符来声明变量，其基本语法如下所示：</p>
+<blockquote>
+<p>DataType identifier;</p>
+</blockquote>
+<p>或者：</p>
+<blockquote>
+<p>DataType identifier=value;</p>
+</blockquote>
+<p>注意：<strong>同一代码块范围内不允许有多个相同命名的变量。</strong></p>
+<hr>
+<p><strong>2 –&gt; 初始化变量</strong></p>
+<p>初始化变量是指为变量指定一个明确的初始值，<strong>变量声明后并不会分配内存空间，只有赋值之后才会分配内存。</strong></p>
+<p>初始化变量有两种方式：</p>
+<ul>
+<li>声明时直接赋值</li>
+<li>先声明、后赋值。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明时直接赋值</span></span><br><span class="line"><span class="keyword">char</span> usersex=<span class="string">&#x27;female&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 先声明、后赋值</span></span><br><span class="line">String username;</span><br><span class="line">username = <span class="string">&quot;Wangyi&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>多个同类型的变量可以同时定义或者初始化，但是多个变量中间要使用逗号分隔，声明结束时用分号分隔。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Java 编码规范中不推荐使用</span><br><span class="line">String username,address,phone,tel;    <span class="comment">// 声明多个变量</span></span><br><span class="line"><span class="keyword">int</span> num1=<span class="number">12</span>,num2=<span class="number">23</span>,result=<span class="number">35</span>;    <span class="comment">// 声明并初始化多个变量</span></span><br></pre></td></tr></table></figure>
+
+<p>Java 中初始化变量时需要注意以下事项：</p>
+<ol>
+<li>变量是类或者结构中的字段（属性），如果没有显式地初始化，默认状态下会创建变量并初始化为【默认值】，默认值见：【数据类型默认值对照表】。</li>
+<li>方法中的变量必须显式地初始化，否则在 <strong>使用该变量时</strong> 就会出错</li>
+</ol>
+<hr>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>常量，一种特殊的变量！</p>
+<p>当使用 <strong>final</strong> 关键字来修饰一个变量时，就成为一个 <strong>常量，也称为 final 变量</strong>。Java 语言使用 final 关键字来定义一个常量，其语法如下所示：</p>
+<blockquote>
+<p>final dataType variableName = value</p>
+</blockquote>
+<p>常量有很多种说法，比如不能改变等等。但更为准确的描述是：</p>
+<p>当一个变量被 final 修饰的时候，该变量 <strong>只有一次赋值的机会</strong>！！！</p>
+<p>==========================================</p>
+<p>You Need Know More:</p>
+<ul>
+<li>final 关键字不仅可以用来修饰基本数据类型的常量（或引用类型的变量），还可以用来修饰类、和方法。</li>
+<li>当定义的 final 变量为成员变量（类或结构中的属性）时，必须在定义时就设定它的初始值（没有显式初始化，会被隐式初始化为0），如果再次对其进行赋值将会提示编译错误</li>
+<li>当定义的 final 变量为方法中的局部变量时，则需要开发者在声明后，第一次使用该变量之前，显式的赋初始值，实例化该变量</li>
+</ul>
+<p>Java 中 final 修饰符的用法详细见：<a href="https://www.orangeshare.cn/2017/10/13/Java-%E4%B8%AD%E7%9A%84-final-%E4%BF%AE%E9%A5%B0%E7%AC%A6/">Java 中的 final 修饰符</a>，你可以看到 final 修饰类，方法的使用场景。</p>
+<hr>
+<h2 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h2><p>变量的作用域，也称为：<strong>变量的有效范围</strong>。</p>
+<p>变量的有效范围是指：<strong>程序代码中能够访问该变量的区域，若超出该区域进行访问，则在编译时会出现错误。</strong></p>
+<p>在程序中，一般会根据变量的有效范围将变量划分为：</p>
+<ul>
+<li>成员变量</li>
+<li>局部变量</li>
+</ul>
+<hr>
+<h3 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h3><p>成员变量是指：定义在类下面，不属于任何一个方法的变量。</p>
+<p>别名：字段，属性，Field</p>
+<p>作用域是：从变量声明的位置开始，整个类都可以访问得到</p>
+<p>类中的成员变量，根据是否有无 <strong>static</strong> 修饰符修饰，可以分为：</p>
+<p><strong>1 –&gt; 实例变量</strong></p>
+<p>无 static 修饰符修饰；访问方式：<strong>对象名.变量名</strong>；生命周期：只要对象被当作引用，实例变量就将存在。</p>
+<p><strong>2 –&gt; 类变量（静态变量）</strong></p>
+<p>有 static 修饰符修饰；访问方式：<strong>类名.变量名（推荐，编码规范），或对象名.变量名</strong>；生命周期：其生命周期取决于类的生命周期，类被垃圾回收机制彻底回收时才会被销毁。</p>
+<blockquote>
+<p><strong>注意：Java 中 static 关键字只作用于成员变量，局部变量无法使用 static 修饰。</strong></p>
+</blockquote>
+<p>示例代码如下：</p>
+<p>变量声明代码如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataTest</span> </span>&#123;</span><br><span class="line">	String name;</span><br><span class="line">	<span class="keyword">int</span> age;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">final</span> String website = <span class="string">&quot;orangeshare.cn&quot;</span>;</span><br><span class="line">	<span class="keyword">static</span> String url = <span class="string">&quot;https://www.orangeshare.cn&quot;</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试类代码如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloJava</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		DataTest dataTest = <span class="keyword">new</span> DataTest(); <span class="comment">// 创建类的对象</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 实例变量调用方法（对象名.变量名）：</span></span><br><span class="line">		System.out.println(dataTest.name);</span><br><span class="line">		System.out.println(dataTest.age);</span><br><span class="line">		</span><br><span class="line">        <span class="comment">// 类变量调用方法（类.变量名）：</span></span><br><span class="line">		System.out.println(DataTest.website);</span><br><span class="line">		System.out.println(DataTest.url);</span><br><span class="line">		<span class="comment">// 类变量调用方法（对象名.变量名）：</span></span><br><span class="line">		System.out.println(dataTest.website);</span><br><span class="line">		System.out.println(dataTest.url);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面，name 和 age 显示系统默认初始化的值，website 和 URL 显示初始化的值。且用 static final 修饰的变量必须赋予初始值。</p>
+<p>关于 static 修饰符的用法详细见：<a href="">Java 中的 static 修饰符</a>。</p>
+<hr>
+<h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><p>局部变量是指：在方法或者方法代码块中定义的变量。</p>
+<p>别名：参数</p>
+<p>根据其所处的位置可以分为三种：</p>
+<p><strong>1 –&gt; 方法局部变量（方法内定义）</strong></p>
+<p>作用域是：从定义这个变量开始到方法结束这一段时间内有效。</p>
+<p><strong>2 –&gt; 方法参数变量（形参）</strong></p>
+<p>作用域是：整个方法内均有效。局部变量在使用前必须主动初始化值。</p>
+<p><strong>3 –&gt; 代码块局部变量（代码块内定义）</strong></p>
+<p>作用域是：从定义这个变量开始到代码块结束这一段时间内有效。</p>
+<p>观察下面程序是否可正常运行：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloJava</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		System.out.println(<span class="string">&quot;Hello, Java World!&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		System.out.println(i); <span class="comment">// 无效作用域</span></span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="重名问题"><a href="#重名问题" class="headerlink" title="重名问题"></a>重名问题</h3><p>想象一种场景：如果局部变量和成员变量重名，那么在方法中调用打印标识符时，显示的是局部变量的值，还是成员变量的值？</p>
+<blockquote>
+<p>java 采用局部优先的思想。局部变量可以和成员变量相同，使用标识符调用时，优先使用局部变量。想调用成员变量怎么办？如果该变量是实例变量，可使用 <strong>this.变量名</strong>，否者可使用 <strong>类.变量名</strong>。</p>
+</blockquote>
+<hr>
+<h2 id="数据类型默认值对照表"><a href="#数据类型默认值对照表" class="headerlink" title="数据类型默认值对照表"></a>数据类型默认值对照表</h2><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>初始值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>char</td>
+<td>‘/uoooo’(null)</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>(byte)0</td>
+</tr>
+<tr>
+<td>short</td>
+<td>(short)0</td>
+</tr>
+<tr>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>0L</td>
+</tr>
+<tr>
+<td>float</td>
+<td>0.0f</td>
+</tr>
+<tr>
+<td>double</td>
+<td>0.0d</td>
+</tr>
+<tr>
+<td>引用型（String等）</td>
+<td>null</td>
+</tr>
+</tbody></table>
+<p>注：引用型数据类型包括：类(class)、接口（interface）、数组（Array）、字符串（String），默认值都为 null。</p>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Java 程序设计基础之 Java 变量</p><p><a href="https://www.orangeshare.cn/2017/10/13/java-cheng-xu-she-ji-ji-chu-zhi-java-bian-liang/">https://www.orangeshare.cn/2017/10/13/java-cheng-xu-she-ji-ji-chu-zhi-java-bian-liang/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2017-10-13</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-01-04</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Java-Modifier/">Java Modifier</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/10/13/java-zhong-de-final-xiu-shi-fu/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Java 中的 final 修饰符</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/10/12/java-cheng-xu-she-ji-ji-chu-zhi-zi-mian-zhi/"><span class="level-item">Java 程序设计基础之字面值</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p><p class="is-size-6 is-block">Web, AI Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Galactic System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">27</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">17</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/TheNightIsYoung" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="DockerHub" href="https://hub.docker.com/"><i class="fab fa-docker"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/explore"><i class="fab fa-gofore"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="MDEditor" href="http://www.mdeditor.com/"><i class="fab fa-canadian-maple-leaf"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="WangYiYun" href="https://music.163.com/"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Java-变量"><span class="level-left"><span class="level-item">1</span><span class="level-item">Java 变量</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#什么是变量"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">什么是变量</span></span></a></li><li><a class="level is-mobile" href="#变量定义"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">变量定义</span></span></a></li><li><a class="level is-mobile" href="#常量"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">常量</span></span></a></li></ul></li><li><a class="level is-mobile" href="#变量的作用域"><span class="level-left"><span class="level-item">2</span><span class="level-item">变量的作用域</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#成员变量"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">成员变量</span></span></a></li><li><a class="level is-mobile" href="#局部变量"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">局部变量</span></span></a></li><li><a class="level is-mobile" href="#重名问题"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">重名问题</span></span></a></li></ul></li><li><a class="level is-mobile" href="#数据类型默认值对照表"><span class="level-left"><span class="level-item">3</span><span class="level-item">数据类型默认值对照表</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2021 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

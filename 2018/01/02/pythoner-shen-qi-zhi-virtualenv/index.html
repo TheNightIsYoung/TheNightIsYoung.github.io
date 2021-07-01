@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Pythoner 神器之 virtualenv - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="Foreword 实际 Python 学习、开发过程中，往往由于各种原因，多 Python 版本解释器环境 &amp;amp;&amp;amp; 多版本的 Python 库（模块）需求是我们必然要面对的问题，这使得很多人在 Python 的环境管理上产生极大的混乱。甚至，不同的项目，或同一项目的不同阶段需要不同的 Python 解释器和依赖库。 那么，为每个 Python 项目，甚至每个脚本各自建立一套 “独立、"><meta property="og:type" content="blog"><meta property="og:title" content="Pythoner 神器之 virtualenv"><meta property="og:url" content="https://www.orangeshare.cn/2018/01/02/pythoner-shen-qi-zhi-virtualenv/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="Foreword 实际 Python 学习、开发过程中，往往由于各种原因，多 Python 版本解释器环境 &amp;amp;&amp;amp; 多版本的 Python 库（模块）需求是我们必然要面对的问题，这使得很多人在 Python 的环境管理上产生极大的混乱。甚至，不同的项目，或同一项目的不同阶段需要不同的 Python 解释器和依赖库。 那么，为每个 Python 项目，甚至每个脚本各自建立一套 “独立、"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/virtualenv_def_pic.jpg"><meta property="article:published_time" content="2018-01-02T10:33:32.000Z"><meta property="article:modified_time" content="2021-05-23T12:07:31.040Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Vers-Management"><meta property="article:tag" content="virtualenv"><meta property="article:tag" content="conda"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/virtualenv_def_pic.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2018/01/02/pythoner-shen-qi-zhi-virtualenv/"},"headline":"When Art Meets Tech","image":["https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/virtualenv_def_pic.jpg"],"datePublished":"2018-01-02T10:33:32.000Z","dateModified":"2021-05-23T12:07:31.040Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"Foreword 实际 Python 学习、开发过程中，往往由于各种原因，多 Python 版本解释器环境 &amp;&amp; 多版本的 Python 库（模块）需求是我们必然要面对的问题，这使得很多人在 Python 的环境管理上产生极大的混乱。甚至，不同的项目，或同一项目的不同阶段需要不同的 Python 解释器和依赖库。 那么，为每个 Python 项目，甚至每个脚本各自建立一套 “独立、"}</script><link rel="canonical" href="https://www.orangeshare.cn/2018/01/02/pythoner-shen-qi-zhi-virtualenv/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>Pythoner 神器之 virtualenv</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2018-01-02</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2021-05-23</time></span><span class="level-item"><a class="link-muted" href="/categories/Python/">Python</a></span><span class="level-item">25 minutes read (About 3739 words)</span></div></div><div class="content"><p><strong>Foreword</strong></p>
+<p>实际 Python 学习、开发过程中，往往由于各种原因，多 Python 版本解释器环境 &amp;&amp; 多版本的 Python 库（模块）需求是我们必然要面对的问题，这使得很多人在 Python 的环境管理上产生极大的混乱。甚至，不同的项目，或同一项目的不同阶段需要不同的 Python 解释器和依赖库。</p>
+<p>那么，为每个 Python 项目，甚至每个脚本各自建立一套 <strong>“独立、隔离” 的 Python 环境（环境中可以自定义特定的 Python 版本以及特定的依赖库）</strong> 是必要的。</p>
+<a id="more"></a>
+
+<hr>
+<h2 id="virtualenv"><a href="#virtualenv" class="headerlink" title="virtualenv"></a>virtualenv</h2><p>virtualenv 就是用来给每个 Python 项目，甚至每个脚本各自建立一套 **“独立、隔离” 的 Python 运行环境的工具。</p>
+<p>用 virtualenv 来保持一个干净、无污染的 Python 运行环境是非常有用的。</p>
+<p>和主流的虚拟隔离环境工具类似，virtualenv 可以帮助你：</p>
+<ul>
+<li>可以创建任意多个虚拟环境（可以看作成一个个容器），使用时指定到（切换到）某一虚拟环境之后 Pip 安装的包、库就只会在这个环境（容器）下；并且各虚拟环境（容器）之间，以及虚拟环境和系统原生环境之间是隔离的（一个个相互独立、隔离的容器）。</li>
+<li>假设某一个虚拟环境预计不再使用，可以直接删除掉相应虚拟环境，由于虚拟环境的独立、隔离性，不用关注文件残留、关联问题。</li>
+</ul>
+<hr>
+<h3 id="虚拟机制"><a href="#虚拟机制" class="headerlink" title="虚拟机制"></a>虚拟机制</h3><p>virtualenv 管理的多版本 Python 运行环境示意图如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/virtualenv_def_pic.jpg"></p>
+<p>图解：</p>
+<ul>
+<li>每个 Python 解释器都有一个特定的指向自己的 pip 工具，两者一一对应；</li>
+<li>一个操作系统中，可以同时安装有多个不同版本的 Python 解释器（注意保证无冲突共存），你可以将其看作是 “操作系统级别” 的 Python 解释器；</li>
+<li>virtualenv 可以将上述任一 “操作系统级别” 的 Python 解释器，虚拟成为一个 “虚拟级别” 的 Python 解释器，Python 版本取决于虚拟式所使用 “操作系统级别” 的 Python 解释器 版本；</li>
+<li>每个 “虚拟级别” 的 Python 解释器都拥有自己独立的 pip 工具和 site-package。</li>
+</ul>
+<hr>
+<h3 id="Setup"><a href="#Setup" class="headerlink" title="Setup"></a>Setup</h3><p>这一小节来看 virtualenv 在 Windows &amp;&amp; Linux 平台下的安装方法。但前提是：</p>
+<p>你的操作系统中必须已安装有一个 Python 环境。这是重要的，因为 virtualenv 的安装需要依赖于 Python 的包管理器——pip。</p>
+<p><strong>1 –&gt; Begin to setup</strong></p>
+<p>Python 多版本共存环境下，建议直接使用操作系统下环境变量中指定的 Python 版本所绑定的 pip，安装命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install virtualenv</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>当然，你也可以选择操作系统中其它的 Python 版本所指向的 pip 进行安装，上面只是为了方便命令调用和管理。</p>
+</blockquote>
+<p>看到如下安装信息，表示 virtualenv 成功安装：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">Successfully installed virtualenv-20.4.4 appdirs-1.4.4 distlib-0.3.1 filelock-3.0.12 importlib-resources-3.2.1</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>你可以看到，除了安装 virtualenv 外，pip 还为我们安装了一些必须的依赖包。</p>
+</blockquote>
+<p><strong>2 –&gt; Setup Test</strong></p>
+<p>安装成功之后，我们还可以进行 virtualenv 版本安装测试。成功安装的话，可以查看到版本信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Windows Info</span></span><br><span class="line">XXX Guo@LAPTOP-SNOSCKOB MINGW64 ~/Desktop</span><br><span class="line"><span class="meta">$</span><span class="bash"> pip -V</span></span><br><span class="line">pip 9.0.3 from f:\python\python36\lib\site-packages (python 3.6)</span><br><span class="line"></span><br><span class="line">XXX Guo@LAPTOP-SNOSCKOB MINGW64 ~/Desktop</span><br><span class="line"><span class="meta">$</span><span class="bash"> virtualenv --version</span></span><br><span class="line">virtualenv 20.4.4 from f:\python\python36\lib\site-packages\virtualenv\__init__.py</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Linux Info</span></span><br><span class="line">root@iZ2zeazcdax8nlsrpzpd83Z:~# pip -V</span><br><span class="line">pip 20.3.4 from /usr/local/lib/python3.5/dist-packages/pip (python 3.5)</span><br><span class="line">root@iZ2zeazcdax8nlsrpzpd83Z:~# virtualenv --version</span><br><span class="line">virtualenv 20.4.4 from /usr/local/lib/python3.5/dist-packages/virtualenv/__init__.py</span><br></pre></td></tr></table></figure>
+
+<p>可以看到， 不管是 Windows 平台使用的是 python3.6，还是 Linux 平台下使用的 python3.5，virtualenv 均被成功安装到 <strong>操作系统下环境变量中指定的有效 Python 版本库（site-package/dist-package）中。</strong></p>
+<p>===================================================</p>
+<p>你或许有疑惑？设想若 Windows 下还存在一个 Python2.7，那我要虚拟 Python2.7 的版本怎么办？在 2.7 下也装一个 virtualenv？</p>
+<p>不需要的！virtualenv 可以指定虚拟的 Python 解释器版本，只要你本地操作系统的任一 Python 版本安装了 virtualenv 即可！</p>
+<blockquote>
+<p>关于 virtualenv 可以指定创建虚拟环境的 Python 解释器版本，可见下文中使用，这里有这个概念即可。</p>
+</blockquote>
+<hr>
+<h3 id="Envs-Management"><a href="#Envs-Management" class="headerlink" title="Envs Management"></a>Envs Management</h3><p>这一小节来看，如何使用 virtualenv 进行虚拟隔离环境管理。</p>
+<h4 id="如何创建虚拟环境"><a href="#如何创建虚拟环境" class="headerlink" title="如何创建虚拟环境"></a>如何创建虚拟环境</h4><p>这里将以 Windows 为例来看如何使用 virtualenv 来创建虚拟环境，Linux 平台下与 Windows 操作无异。</p>
+<p>使用 virtualenv 来管理所有的虚拟隔离环境，通常会建立一个单独的目录(<code>virtualenvs_py</code>)，用来放置 virtualenv 中管理的所有虚拟环境：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir E:\virtualenvs_py</span><br></pre></td></tr></table></figure>
+
+<p>然后，先来为深度学习项目创建一个名为 <code>for_tensorflow</code> 的 Python 运行环境，执行如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtualenv -p F:\\Python\\Python36\\python.exe E:\\virtualenvs_py\\for_tensorflow</span><br></pre></td></tr></table></figure>
+
+<p>命令参数说明如下：</p>
+<ul>
+<li><strong>-p</strong>：指定你要虚拟的 “操作系统级别” 的 Python 解释器版本，这里选择了系统中的 Python3.6.5；</li>
+<li><strong>E:\virtualenvs_py\for_tensorflow</strong>：表示在 <code>virtualenvs_py</code> 目录下，建立一个名为 <code>for_tensorflow</code> 的虚拟环境，专门用于进行深度学习使用。</li>
+</ul>
+<p>运行情况如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> virtualenv -p F:\\Python\\Python36\\python.exe E:\\virtualenvs_py\\for_tensorflow</span>    </span><br><span class="line">created virtual environment CPython3.6.5.final.0-64 in 2759ms</span><br><span class="line">  creator CPython3Windows(dest=E:\virtualenvs_py\for_tensorflow, clear=False, no_vcs_ignore=False, global=False)</span><br><span class="line">  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=C:\Users\XXX Guo\AppData\Local\pypa\virtualenv)</span><br><span class="line">    added seed packages: pip==21.0.1, setuptools==56.0.0, wheel==0.36.2</span><br><span class="line">  activators BashActivator,BatchActivator,FishActivator,PowerShellActivator,PythonActivator,XonshActivator</span><br></pre></td></tr></table></figure>
+
+<p>找到 <code>for_tensorflow</code> 虚拟环境目录，你可以发现 virtualenv 帮助你创建了一个非常 “干净” 的 Python 运行环境！</p>
+<p>|&gt;&gt;================== <strong>“干净”何解？</strong> ==================</p>
+<p>virtualenv 的最新版本，以 20.0.0+ 为例，取消了 <strong>–-no-site-packages</strong> 参数，默认已经使用了 <strong>–-no-site-packages</strong> 模式，表示 <strong>“虚拟级别” 的 Python 运行环境，不可以访问源 “操作系统级别”  Python 解释器的第三方库</strong>。</p>
+<p>与之相对的，还有另外一个参数 <strong>–system-site-packages</strong>，表示 <strong>可以访问源 “操作系统级别”  Python 解释器的第三方库</strong>。一般推荐直接使用默认模式。</p>
+<p>最终命令格式如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtualenv -p python_xxx envs_destination</span><br></pre></td></tr></table></figure>
+
+<p>表示：使用 “操作系统级别”  Python 解释器（python_xxx），来虚拟一个名为 “envs_destination” 的虚拟环境。并且，虚拟环境中不包含任何来源于 “python_xxx” 的第三方库（纯净）。 </p>
+<p>==============================================&lt;&lt;|</p>
+<p>几种常见的创建虚拟环境的命令格式以及其含义：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 1. 使用系统默认指定的 Python 解释器来创建 “env_py36”（不使用 <span class="string">&quot;-p&quot;</span> 选项）</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> virtualenv env_py36</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2. 多版本 Python 共存环境，创建指定 Python 版本的解释器虚拟环境</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> virtualenv -p F:\\Python\\Python27\\python.exe env_py27 <span class="comment"># 解释器为 python2.7（Linux）</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> virtualenv -p python3.5 env_py35 <span class="comment"># 解释器为 python3.5</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 3. 创建继承系统第三方库的虚拟环境</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> virtualenv --system-site-packages env_py34</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="如何激活虚拟环境"><a href="#如何激活虚拟环境" class="headerlink" title="如何激活虚拟环境"></a>如何激活虚拟环境</h4><p>虚拟环境创建成功之后，不能立即使用！使用某一虚拟环境之前，你需要启动（激活）特定的虚拟环境之后，才可以使用。</p>
+<p><strong>1 –&gt; For Windows</strong></p>
+<p>以 “for_tensorflow” 虚拟环境为例：</p>
+<p>命令行下，进入你要使用的虚拟环境的目录下的 <code>Script</code> 文件夹，运行 <code>activate</code> 命令，或者使用绝对路径的方式调用该命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">E:\virtualenvs_py\for_tensorflow\Scripts&gt;dir</span><br><span class="line">E:\virtualenvs_py\for_tensorflow\Scripts 的目录</span><br><span class="line"></span><br><span class="line">2021/04/30  21:16    &lt;DIR&gt;          .</span><br><span class="line">2021/04/30  21:16    &lt;DIR&gt;          ..</span><br><span class="line">2021/04/30  21:16             2,152 activate  # 环境激活命令</span><br><span class="line">2021/04/30  21:16             1,025 activate.bat</span><br><span class="line">2021/04/30  21:16             3,075 activate.fish</span><br><span class="line">2021/04/30  21:16             1,755 activate.ps1</span><br><span class="line">2021/04/30  21:16             1,166 activate.xsh</span><br><span class="line">2021/04/30  21:16             1,193 activate_this.py</span><br><span class="line">2021/04/30  21:16               510 deactivate.bat</span><br><span class="line">2021/04/30  21:16           106,362 pip-3.6.exe</span><br><span class="line">2021/04/30  21:16           106,362 pip.exe</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动（激活）for_tensorflow 环境</span></span><br><span class="line">E:\virtualenvs_py\for_tensorflow\Scripts&gt;activate</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者使用绝对路径：</span></span><br><span class="line"></span><br><span class="line">(for_tensorflow) E:\virtualenvs_py\for_tensorflow\Scripts&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意命令提示符（<strong>for_tensorflow</strong>），它表示你当前在 <code>for_tensorflow</code> 这个虚拟环境内，你认为你当前处于一个纯净的、可以正常使用的 Python 环境。</p>
+<blockquote>
+<p>当前环境下，1. 运行 Python 命令；2. 使用 pip 工具安装第三方库。这些操作都会被限制、绑定到 for_tensorflow 这个虚拟环境，不会对操作系统原生的 Python 环境和其它虚拟环境产生任何影响。</p>
+</blockquote>
+<hr>
+<p><strong>2 –&gt; For Linux</strong></p>
+<p>对于 Linux 平台下，由于虚拟环境中的文件路径（activate）和脚本调用的方式（source）不同，激活虚拟环境和 Windows 有略微不同。</p>
+<p>以 “env27” 虚拟环境为例：</p>
+<p>Linux 中 <code>activate</code> 脚本位于 <code>&lt;env27\bin&gt;</code> 目录中，所以启动虚拟环境命令为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> env27/bin/activate</span></span><br></pre></td></tr></table></figure>
+
+<p>这个命令会修改系统路径 $PATH，把 env27/bin 的路径至于系统路径之前。</p>
+<hr>
+<h4 id="如何退出虚拟环境"><a href="#如何退出虚拟环境" class="headerlink" title="如何退出虚拟环境"></a>如何退出虚拟环境</h4><p>Windows &amp;&amp; Linux 下，退出当前虚拟环境只需要执行如下命令，即可回退到系统原生的 Python 运行环境：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> deactivate</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="如何删除虚拟环境"><a href="#如何删除虚拟环境" class="headerlink" title="如何删除虚拟环境"></a>如何删除虚拟环境</h4><p>当某一虚拟环境不再使用时，你可以将其删除释放系统资源。</p>
+<p>Windows &amp;&amp; Linux 下，删除虚拟环境（for_test）时，你只需要将 <code>virtualenvs_py</code> 目录下，准备弃用的 <code>for_test</code> 虚拟环境目录删除掉即可！</p>
+<hr>
+<h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><p>这里给出一个 <code>virtualenvs</code> 虚拟环境管理器配合 <code>pip</code> 包管理工具，确保开发环境一致性的应用实例：</p>
+<p>假设：在本地开发环境，已经准备好了 “项目 + 依赖包” 环境；现在需要将项目上传至服务器，上线发布；那么，保证本地和服务器 Python 运行环境的一致性至关重要！</p>
+<p><strong>解决方案 –&gt;</strong></p>
+<p><strong>1 –&gt; pip list</strong></p>
+<p>首先，我们需要使用 <code>pip list</code> 命令，来查看当前 Python 运行环境中项目依赖包的安装情况：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">(for_test1) E:\virtualenvs_py\for_test1&gt;pip list</span><br><span class="line">Package             Version</span><br><span class="line">------------------- ---------</span><br><span class="line">appdirs             1.4.4</span><br><span class="line">certifi             2020.12.5</span><br><span class="line">chardet             4.0.0</span><br><span class="line">distlib             0.3.1</span><br><span class="line">filelock            3.0.12</span><br><span class="line">idna                2.10</span><br><span class="line">importlib-metadata  4.0.1</span><br><span class="line">importlib-resources 5.1.2</span><br><span class="line">numpy               1.19.5</span><br><span class="line">pip                 21.0.1</span><br><span class="line">requests            2.25.1</span><br><span class="line">setuptools          56.0.0</span><br><span class="line">six                 1.15.0</span><br><span class="line">typing-extensions   3.7.4.3</span><br><span class="line">urllib3             1.26.4</span><br><span class="line">virtualenv          20.4.4</span><br><span class="line">wheel               0.36.2</span><br><span class="line">zipp                3.4.1</span><br><span class="line">WARNING: The repository located at mirrors.aliyun.com is not a trusted or secure host and is being ignored. If this repository is available via HTTPS we recommend you use HTTPS instead, otherwise you may silence this warning and allow it anyway with &#x27;--trusted-host mirrors.aliyun.com&#x27;.</span><br></pre></td></tr></table></figure>
+
+<p><strong>2 –&gt; pip freeze</strong></p>
+<p>virtualenv 虚拟环境，配合 pip 的 freeze 功能，可以将当前虚拟环境中所有的依赖包以及其版本信息以列表的形式存放到文件中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip freeze &gt; requirements.txt</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3 –&gt; pip install xxx</strong></p>
+<p>对应的，我们可以将上述生成的文件上传至服务器项目发布目录，然后在服务器下创建 virtualenv，即可使用下面的命令在 venv 中重新安装项目所需的模块依赖： </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install -r requirements.txt</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="virtualenvwrapper"><a href="#virtualenvwrapper" class="headerlink" title="virtualenvwrapper"></a>virtualenvwrapper</h2><p>virtualenvwrapper 是一个基于 virtualenv 的扩展应用，相较于 virtualenv，virtualenvwrapper 更容易对所有的虚拟环境进行统一管理。</p>
+<h3 id="Why-virtualenvwrapper"><a href="#Why-virtualenvwrapper" class="headerlink" title="Why virtualenvwrapper"></a>Why virtualenvwrapper</h3><p>参考上文，你可以发现 virtualenv 存在的一个最大缺点就是：</p>
+<p>使用 virtualenv 创建虚拟环境时，如果你没有特别的，有意识的去统一管理虚拟环境目录，很容易导致虚拟环境放的到处都是。</p>
+<p>然而，每次开启虚拟环境之前要去虚拟环境所在目录下的 bin（Scripts） 目录下 activate，这就需要我们记住每个虚拟环境所在的目录。并且还有可能你忘记了虚拟环境放在哪……</p>
+<p>而使用 virtualenvwrapper 默认会将所有的虚拟环境都统一管理在一个目录下，你可以很方便、快捷的找到所有的虚拟环境。</p>
+<hr>
+<h3 id="Setup-1"><a href="#Setup-1" class="headerlink" title="Setup"></a>Setup</h3><p>我们同样需要使用 pip 工具来进行 virtualenvwrapper 的安装，并且 Windows &amp;&amp; Liunx 平台下的安装、配置过程稍有不同：</p>
+<h4 id="For-Linux"><a href="#For-Linux" class="headerlink" title="For Linux"></a>For Linux</h4><p><strong>1 –&gt; Setup virtualenvwrapper</strong></p>
+<p>命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip install virtualenvwrapper</span></span><br></pre></td></tr></table></figure>
+
+<p>Linux 中 virtualenvwrapper 默认将所有的虚拟环境放在 <code>～/.virtualenvs</code> 目录下管理，另外可以通过修改环境变量 <strong>WORKON_HOME</strong> 来指定虚拟环境的保存目录。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 为了保持和后文 Windows 保持一致，可以设置为统一目录：Envs</span></span><br><span class="line">export WORKON_HOME=~/Envs</span><br></pre></td></tr></table></figure>
+
+<p><strong>2 –&gt; Config virtualenvwrapper</strong></p>
+<p>Linxu 中，每次打开一个 Shell 想要使用 virtualenvwrapper 工具之前，都必须先激活 virtualenvwrapper 服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@iZ2zeazcdax8nlsrpzpd83Z:~# find / -name virtualenvwrapper.sh</span><br><span class="line">/usr/local/bin/virtualenvwrapper.sh</span><br><span class="line">root@iZ2zeazcdax8nlsrpzpd83Z:~# source /usr/local/bin/virtualenvwrapper.sh</span><br></pre></td></tr></table></figure>
+
+<p>这是麻烦的，可以将上述命令添加到：<code>.bashrc</code> || <code>.profie</code> 等 shell 启动文件中。以便 shell 登陆后可直接使用 virtualenvwrapper。</p>
+<p>例如，在 <code>.bashrc</code> 中添加如下内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export WORKON_HOME=~/Envs  # 设置 virtualenv 的统一管理目录</span><br><span class="line">source /usr/local/bin/virtualenvwrapper.sh  # 激活 virtualenvwrapper 工具</span><br></pre></td></tr></table></figure>
+
+<p>读取文件，使得配置生效：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="For-Windows"><a href="#For-Windows" class="headerlink" title="For Windows"></a>For Windows</h4><p>Windows 安装命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install virtualenvwrapper-win</span><br></pre></td></tr></table></figure>
+
+<p>默认创建的虚拟环境管理目录位于 <code>C:\Users\username\Envs</code>，可以通过环境变量 <strong>WORKON_HOME</strong> 来定制：</p>
+<blockquote>
+<p>通过计算机–&gt;属性–&gt;高级系统设置–&gt;环境变量–&gt;在系统变量中新建“变量名”：WORKON_HOME,变量值：“你自定义的路径”。</p>
+</blockquote>
+<hr>
+<h3 id="Envs-Management-1"><a href="#Envs-Management-1" class="headerlink" title="Envs Management"></a>Envs Management</h3><p>这一小节，我们来看：相较于 <code>virtualenv</code> 工具<strong>virtualenvwrapper</strong> 是如何进行虚拟环境的统一管理。</p>
+<blockquote>
+<p>Windows &amp;&amp; Linux 下 virtualenvwrapper 虚拟环境管理命令是一致的！</p>
+</blockquote>
+<h4 id="如何创建虚拟环境-1"><a href="#如何创建虚拟环境-1" class="headerlink" title="如何创建虚拟环境"></a>如何创建虚拟环境</h4><p>使用下列命令可以在 <code>~/Envs</code> 目录创建 <code>for_tensorflow</code> 虚拟环境目录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkvirtualenv for_tensorflow</span></span><br></pre></td></tr></table></figure>
+
+<p>创建后，自动进入到相应虚拟环境中。</p>
+<hr>
+<h4 id="如何激活-amp-退出虚拟环境"><a href="#如何激活-amp-退出虚拟环境" class="headerlink" title="如何激活&amp;退出虚拟环境"></a>如何激活&amp;退出虚拟环境</h4><p>使用下列命令可以激活 <code>for_tensorflow</code> 虚拟环境：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> workon for_tensorflow</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>workon env_name：可以实现在虚拟环境中来回切换。</p>
+</blockquote>
+<p>使用下列命令可以退出 <code>for_tensorflow</code> 虚拟环境：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> deactivate</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="如何删除虚拟环境-1"><a href="#如何删除虚拟环境-1" class="headerlink" title="如何删除虚拟环境"></a>如何删除虚拟环境</h4><p>使用下列命令可以删除 <code>for_tensorflow</code> 虚拟环境：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> rmvirtualenv for_tensorflow</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="其它常用其他命令"><a href="#其它常用其他命令" class="headerlink" title="其它常用其他命令"></a>其它常用其他命令</h4><blockquote>
+<p><strong>lsvirtualenv</strong><br>列举所有的环境（可以直接使用 workon + Enter 代替）。<br><strong>cdvirtualenv</strong><br>导航到当前激活的虚拟环境的目录中。<br><strong>cdsitepackages</strong><br>导航到当前激活的虚拟环境的目录中的 site-packages 目录中。<br><strong>lssitepackages</strong><br>显示 site-packages 目录中的内容。</p>
+</blockquote>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Pythoner 神器之 virtualenv</p><p><a href="https://www.orangeshare.cn/2018/01/02/pythoner-shen-qi-zhi-virtualenv/">https://www.orangeshare.cn/2018/01/02/pythoner-shen-qi-zhi-virtualenv/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-01-02</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-05-23</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Vers-Management/">Vers-Management</a><a class="link-muted mr-2" rel="tag" href="/tags/virtualenv/">virtualenv</a><a class="link-muted mr-2" rel="tag" href="/tags/conda/">conda</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/01/05/yi-wen-liao-jie-shu-ju-ke-xue-shen-qi-anaconda/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">一文了解数据科学神器 Anaconda</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/01/02/python-vers-management/"><span class="level-item">Python-Vers Management</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p><p class="is-size-6 is-block">Web, AI Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Galactic System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">27</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">17</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/TheNightIsYoung" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="DockerHub" href="https://hub.docker.com/"><i class="fab fa-docker"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/explore"><i class="fab fa-gofore"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="MDEditor" href="http://www.mdeditor.com/"><i class="fab fa-canadian-maple-leaf"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="WangYiYun" href="https://music.163.com/"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#virtualenv"><span class="level-left"><span class="level-item">1</span><span class="level-item">virtualenv</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#虚拟机制"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">虚拟机制</span></span></a></li><li><a class="level is-mobile" href="#Setup"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">Setup</span></span></a></li><li><a class="level is-mobile" href="#Envs-Management"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">Envs Management</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#如何创建虚拟环境"><span class="level-left"><span class="level-item">1.3.1</span><span class="level-item">如何创建虚拟环境</span></span></a></li><li><a class="level is-mobile" href="#如何激活虚拟环境"><span class="level-left"><span class="level-item">1.3.2</span><span class="level-item">如何激活虚拟环境</span></span></a></li><li><a class="level is-mobile" href="#如何退出虚拟环境"><span class="level-left"><span class="level-item">1.3.3</span><span class="level-item">如何退出虚拟环境</span></span></a></li><li><a class="level is-mobile" href="#如何删除虚拟环境"><span class="level-left"><span class="level-item">1.3.4</span><span class="level-item">如何删除虚拟环境</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Application"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">Application</span></span></a></li></ul></li><li><a class="level is-mobile" href="#virtualenvwrapper"><span class="level-left"><span class="level-item">2</span><span class="level-item">virtualenvwrapper</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Why-virtualenvwrapper"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">Why virtualenvwrapper</span></span></a></li><li><a class="level is-mobile" href="#Setup-1"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">Setup</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#For-Linux"><span class="level-left"><span class="level-item">2.2.1</span><span class="level-item">For Linux</span></span></a></li><li><a class="level is-mobile" href="#For-Windows"><span class="level-left"><span class="level-item">2.2.2</span><span class="level-item">For Windows</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Envs-Management-1"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">Envs Management</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#如何创建虚拟环境-1"><span class="level-left"><span class="level-item">2.3.1</span><span class="level-item">如何创建虚拟环境</span></span></a></li><li><a class="level is-mobile" href="#如何激活-amp-退出虚拟环境"><span class="level-left"><span class="level-item">2.3.2</span><span class="level-item">如何激活&amp;退出虚拟环境</span></span></a></li><li><a class="level is-mobile" href="#如何删除虚拟环境-1"><span class="level-left"><span class="level-item">2.3.3</span><span class="level-item">如何删除虚拟环境</span></span></a></li><li><a class="level is-mobile" href="#其它常用其他命令"><span class="level-left"><span class="level-item">2.3.4</span><span class="level-item">其它常用其他命令</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2021 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

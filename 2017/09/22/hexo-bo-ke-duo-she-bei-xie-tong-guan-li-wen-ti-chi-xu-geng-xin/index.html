@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Hexo 博客多设备协同管理问题【持续更新】 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="优秀的 Hexo 博客多环境、多设备协同管理方案。"><meta property="og:type" content="blog"><meta property="og:title" content="Hexo 博客多设备协同管理问题【持续更新】"><meta property="og:url" content="https://www.orangeshare.cn/2017/09/22/hexo-bo-ke-duo-she-bei-xie-tong-guan-li-wen-ti-chi-xu-geng-xin/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="优秀的 Hexo 博客多环境、多设备协同管理方案。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://www.orangeshare.cn/img/og_image.png"><meta property="article:published_time" content="2017-09-22T05:18:00.000Z"><meta property="article:modified_time" content="2020-12-23T06:16:54.918Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Blog"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2017/09/22/hexo-bo-ke-duo-she-bei-xie-tong-guan-li-wen-ti-chi-xu-geng-xin/"},"headline":"When Art Meets Tech","image":["https://www.orangeshare.cn/img/og_image.png"],"datePublished":"2017-09-22T05:18:00.000Z","dateModified":"2020-12-23T06:16:54.918Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"优秀的 Hexo 博客多环境、多设备协同管理方案。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2017/09/22/hexo-bo-ke-duo-she-bei-xie-tong-guan-li-wen-ti-chi-xu-geng-xin/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>Hexo 博客多设备协同管理问题【持续更新】</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2017-09-22</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2020-12-23</time></span><span class="level-item"><a class="link-muted" href="/categories/Hexo/">Hexo</a></span><span class="level-item">40 minutes read (About 5952 words)</span></div></div><div class="content"><p>优秀的 Hexo 博客多环境、多设备协同管理方案。</p>
+<a id="more"></a>
+
+<p>前面我们已经成功搭建了基于 <strong>Hexo + Github·Page + Coding·Page + Domain + VSCode + TinyPNG + PicGo + Image Host</strong> 的个人博客环境。系列博文中给出了 Hexo 新手小白如何快速搭建基于 Hexo 的个人博客进行产出。</p>
+<p>更多 Hexo 博客框架内容，请关注博主 Hexo 博文系列：</p>
+<p><a href="https://www.orangeshare.cn/2017/09/20/%E4%B8%80%E6%96%87%E5%AD%A6%E4%BC%9A-Hexo-%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%90%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E3%80%91/">一文学会 Hexo 轻量级框架的博客搭建【持续更新】</a></p>
+<p><a href="https://www.orangeshare.cn/2017/09/20/Hexo-%E9%A2%84%E5%AE%89%E8%A3%85%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2%E4%B9%8B-Node-js/">Hexo 预安装环境部署之 Node.js</a></p>
+<p><a href="https://www.orangeshare.cn/2017/10/01/Git-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E4%B9%8B%E5%88%9D%E8%AF%86/">Git 使用指南之初识</a></p>
+<p><a href="https://www.orangeshare.cn/2017/09/20/%E6%89%93%E9%80%A0%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%86%99%E4%BD%9C%E4%BD%93%E9%AA%8C%EF%BC%8C%E4%BD%A0%E9%9C%80%E8%A6%81%E8%AF%95%E8%AF%95-Markdown-Editor/">打造沉浸式写作体验，你需要试试-Markdown-Editor</a></p>
+<p><a href="https://www.orangeshare.cn/2017/09/21/%E5%9F%BA%E4%BA%8E%E5%9B%BE%E5%BA%8A%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%9B%BE%E7%89%87%E5%AD%98%E5%82%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">基于图床的博客图片存储解决方案</a></p>
+<p><a href="https://www.orangeshare.cn/2017/09/21/%E7%A8%B3%E5%AE%9A%E5%BF%AB%E9%80%9F%E3%80%81%E9%AB%98%E6%95%88%E5%85%8D%E8%B4%B9%E7%9A%84%E5%9B%BE%E5%BA%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-Github-jsDelivr-PicGo/">稳定快速、高效免费的图床方案-Github-jsDelivr-PicGo</a></p>
+<p><a href="https://www.orangeshare.cn/2017/09/22/Hexo-%E5%8D%9A%E5%AE%A2%E5%A4%9A%E8%AE%BE%E5%A4%87%E5%8D%8F%E5%90%8C%E7%AE%A1%E7%90%86%E9%97%AE%E9%A2%98%E3%80%90%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E3%80%91/">Hexo 博客多设备协同管理问题【持续更新】</a></p>
+<p>前面我们提到过，<strong>hexo d 仅仅是将 Hexo 博文静态页面推送到了远程仓库</strong>（Github·Page 或 Coding·Page）上以实现公共访问，而 <strong>Hexo 个人博客框架相关配置信息都存放在本地终端</strong>。如果未进行其它备份或同步处理，一旦存放 Hexo 配置信息的本地终端出现问题（如系统崩溃），那么我们便无法再维护我们的的博客了，Game Over…</p>
+<p>所有当我们更换工作环境（公司、个人）或者原来用于搭建 Hexo 博客环境的设备需要重新更换系统，出于安全性以及灵活性考虑，我们不得不面对的一个问题就是：</p>
+<p><font color=blue>如何将本地终端中的 Hexo 博客相关配置信息完美移植到新环境是至关重要的。</font></p>
+<h2 id="使用-Git-解决-Hexo-个人博客多平台同步管理"><a href="#使用-Git-解决-Hexo-个人博客多平台同步管理" class="headerlink" title="使用 Git 解决 Hexo 个人博客多平台同步管理"></a>使用 Git 解决 Hexo 个人博客多平台同步管理</h2><p>关于 Hexo 博客多平台（多设备）协同管理以及更新教程网络上有很多，但对于刚刚接触 Hexo 、Git 的小白们不太友好，配置过程中容易出现各种问题，本文提到的所有配置方案均通过实际测试给出。</p>
+<p>本文所作的主要目的：一方面作为学习记录回顾使用；另一方面适用于类似我这样的 Git 新手以供参考分享，可以快速对应以及解决问题。所以文中有些地方可能表达有误，欢迎各位大佬指正。</p>
+<hr>
+<h3 id="模拟场景"><a href="#模拟场景" class="headerlink" title="模拟场景"></a>模拟场景</h3><p>公司和家里两台 PC：</p>
+<ul>
+<li>公司 PC_A：最初用于搭建 Hexo 个人博客的终端；</li>
+<li>个人 PC_B：移植 Hexo 个人博客项目的终端。</li>
+</ul>
+<p>为了可以随时随地创作更新个人 Blog，两台 PC 中都必须搭建有相同的 Hexo 博客环境，并这必然要求我们的 Hexo 博客本地配置项目要保持同步（即实现版本控制）。</p>
+<p>对于 <strong>同步</strong> 问题：</p>
+<p>由于除了<strong>静态页面</strong> 以外，其它全部文件都在本地生成，所以如果在公司终端上推送了 <strong>articleA</strong> 文章后回家又写了篇 <strong>articleB</strong> 文章，在家里推送后我们会发现只有 articleB 文章而 articleA  文章没了（因为家里的 PC 上没有 articleA  文章的 md 文件），故及时同步两台 PC 终端中的 Hexo 博客项目相当重要。</p>
+<p>也就是说，对我们的 Hexo 个人博客本地项目实现版本控制是必要的。</p>
+<p><strong>— important split line —</strong></p>
+<p>这里，我们首先给出解决 Hexo 个人博客多平台同步管理的通用步骤：</p>
+<ol>
+<li>搭建 Hexo 个人博客环境，包括： Node.js、Git  以及 hexo 的安装，具体安装方式可见前面提到的搭建教程。</li>
+<li>对 Hexo 个人博客本地配置信息项目实现同步，也就是版本控制。</li>
+</ol>
+<hr>
+<h3 id="实施方案分析"><a href="#实施方案分析" class="headerlink" title="实施方案分析"></a>实施方案分析</h3><p>介于模拟场景提到的解决方法，搭建 Hexo 个人博客环境本文不在做细致说明，参考前面教程即可。针对同步（备份），这里我们给出三种具体的版本控制（同步、备份）的实施方案分析：</p>
+<h4 id="存储设备备份"><a href="#存储设备备份" class="headerlink" title="存储设备备份"></a>存储设备备份</h4><p>使用存储设备备份，是指我们使用存储设备对 Hexo 个人博客项目本地文档进行备份。例如，我们可以直接对  PC_A 中最新的本地 Hexo 博客目录进行打包存储到硬盘、U盘或者云盘（大多数使用）中，然后将其移植 PC_B 中进行直接使用。</p>
+<p>下面我们来分析其优略：</p>
+<p><strong>1）优点：</strong></p>
+<p>免费且操作简单快捷。</p>
+<p>在某些场景下可以很快完成移植，而不需要进行额外的同步设置。例如，当我们的电脑需要重装系统时，我们可以直接将最新的 Hexo 博客项目进行打包，新系统中搭建好 Hexo 个人博客环境后，直接解压几乎就可以使用了。</p>
+<p><strong>2）缺点：</strong></p>
+<ol>
+<li>对于硬盘、U盘等设备，备份后的同步十分麻烦，每次其它终端都需要手动下载备份最新的 Hexo 博客文件夹，进行手动覆盖。</li>
+<li>目前大多数云盘，可以开启云端自动备份功能，写完 Blog 后可以自动备份（同步）到云端。但是很容易产生一些云盘内部文件，影响 Hexo 解析产生一些不可预期的错误。</li>
+</ol>
+<p>因此，使用存储设备备份使用的很少。</p>
+<hr>
+<h4 id="第三方代码仓库备份"><a href="#第三方代码仓库备份" class="headerlink" title="第三方代码仓库备份"></a>第三方代码仓库备份</h4><p>鉴于之前我们将 Hexo 个人博客产生的静态页面托管到了一些第三方 Git 服务平台，以实现远程访问。同样，类似于代码托管，我们可以将我们的 Hexo 个人博客项目本地配置信息文档托管到远程仓库进行版本控制，以实现多设备的同步管理。这是 <strong>目前最合理，并且使用最多</strong> 的解决方案。</p>
+<p>使用第三方代码仓库进行备份是目前普遍使用的对 Hexo 个人博客进行备份同步的方法。</p>
+<p>国内外现在知名的 Git 服务提供商主要有：</p>
+<p>Github、Coding 以及 Gitee（码云）等等，使用上没有比较大的差异，但国内站点访问较快。</p>
+<p>下面我们来分析其优略：</p>
+<p><strong>1）优点：</strong></p>
+<p>部署完成后同步非常方便，Hexo 更新完后只需要再更新（push）全站到 Git 远程仓库即可。</p>
+<p><strong>2）缺点：</strong></p>
+<p>部署过程相对比较麻烦，对 Git 新手不友好，但这仅仅是 Git 使用上的问题，不是难点。</p>
+<p>对于使用第三方代码仓库（以 Github 为例）进行备份的方法，目前主流的有两种方法：</p>
+<ol>
+<li>分支备份法：我们知道，<code>Hexo</code>生成的静态博客文件都是上传到 <code>GitHub</code> 上的, 且默认放在 <code>master</code> 分支上。分支备份法是将本地的 Hexo 相关环境配置文件都推送到对应仓库新创建的分支上（如 <code>hexo</code> 分支），以实现备份。</li>
+<li>将本地整个 Hexo Blog 项目进行备份：创建一个新的仓库用来对本地环境配置文件进行版本管理以及备份。</li>
+</ol>
+<hr>
+<h3 id="实施方案细则"><a href="#实施方案细则" class="headerlink" title="实施方案细则"></a>实施方案细则</h3><p>下面我们将以前面提到的实施方案给出其具体的操作指南，你可以根据需要选择不同的实施方案：</p>
+<h4 id="方案一：Hexo-Envs-Cloud"><a href="#方案一：Hexo-Envs-Cloud" class="headerlink" title="方案一：Hexo Envs + Cloud"></a>方案一：Hexo Envs + Cloud</h4><h5 id="–-gt-步骤一：Hexo-envs"><a href="#–-gt-步骤一：Hexo-envs" class="headerlink" title="–&gt; 步骤一：Hexo envs"></a>–&gt; 步骤一：Hexo envs</h5><p>PC_A 中我们已经成功搭建和使用 Hexo 博客了，所以不需要重复安装。而关于 PC_B 中 Hexo 个人博客环境的搭建，参考：<a href="https://www.orangeshare.cn/2017/09/20/%E4%B8%80%E6%96%87%E5%AD%A6%E4%BC%9A-Hexo-%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%90%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E3%80%91/">基于 Hexo 轻量级框架的博客搭建</a> 。步骤如下：</p>
+<ul>
+<li>安装 Node.js</li>
+<li>安装 Git</li>
+<li>安装 Hexo</li>
+</ul>
+<h5 id="–-gt-步骤二：yunpan"><a href="#–-gt-步骤二：yunpan" class="headerlink" title="–&gt; 步骤二：yunpan"></a>–&gt; 步骤二：yunpan</h5><p>1）将 PC_A 终端中 Hexo 个人博客项目目录进行打包（打包格式任选，在 PC_B 中可以实现快速解压即可），备份到云盘。</p>
+<p>2）然后在 PC_B 中从云盘下载已经上传好的 Hexo 个人博客项目压缩文件，然后进行解压。</p>
+<p>3）PC_B 中开启 Hexo 服务，然后打开浏览器，通过访问 <code>localhost:4000</code> 进行 Hexo 博客本地测试，发现已经可以成功访问到我们的 Hexo 本地博客页面。</p>
+<p>4）Hexo 个人博客本地测试通过后，由于更换设备，我们需要为Hexo Github·Page（Coding·Page）仓库配置新设备的 SSH Key。此时只需要将新设备（PC_B ）的 SSH Key 添加到 Github（Coding）中即可。如果不进行设置，当使用 <code>hexo d</code> 进行推送时无法成功，原因在于 Hexo 无法连接到 Github·Page（Coding·Page）。</p>
+<p>关于新设备创建 SSH Key 方法以及为 Github 配置 SSH Key 可参加：<a href="">Git 使用指南之远程仓库</a>（待续…）。</p>
+<p>除了上述添加方式外，还有一种更简单的方式，我们可以<font color=blue>将 PC_A 生成的 <code>.ssh</code> 文件直接放到 PC_B 设备当前用户目录下即可。</font></p>
+<p>自此，设置完成。这种方法缺点很明显，对于同步很不友好！！！</p>
+<hr>
+<h4 id="方案二：Hexo-envs-hexo-备份"><a href="#方案二：Hexo-envs-hexo-备份" class="headerlink" title="方案二：Hexo envs + hexo 备份"></a>方案二：Hexo envs + hexo 备份</h4><p>这一小节，我们来看如何将本地整个 Hexo Blog 项目进行备份。即创建一个新的仓库用来对本地环境配置文件进行版本管理以及备份。</p>
+<p>关于 Git 远程仓库的选择，Github or Coding or Gitee 三选其一即可，这里以 Github 为例，推荐使用 Coding or Gitee。这也就意味着：</p>
+<blockquote>
+<p>Hexo 博客静态页面托管到一个仓库，Hexo 博客配置托管到另一个远程仓库。</p>
+</blockquote>
+<h5 id="–-gt-步骤一：Hexo-envs-1"><a href="#–-gt-步骤一：Hexo-envs-1" class="headerlink" title="–&gt; 步骤一：Hexo envs"></a>–&gt; 步骤一：Hexo envs</h5><p>PC_A 中我们已经成功搭建和使用 Hexo 博客了，所以不需要重复安装。而关于 PC_B 中 Hexo 个人博客环境的搭建，参考：<a href="https://www.orangeshare.cn/2017/09/20/%E4%B8%80%E6%96%87%E5%AD%A6%E4%BC%9A-Hexo-%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%90%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E3%80%91/">基于 Hexo 轻量级框架的博客搭建</a> 。步骤如下：</p>
+<ul>
+<li>安装 Node.js</li>
+<li>安装 Git</li>
+<li>安装 Hexo</li>
+</ul>
+<p>步骤一和方案一种中完全一样，实现 PC_B  上 Hexo 环境的部署。</p>
+<h5 id="–-gt-步骤二：hexo-项目备份"><a href="#–-gt-步骤二：hexo-项目备份" class="headerlink" title="–&gt; 步骤二：hexo 项目备份"></a>–&gt; 步骤二：hexo 项目备份</h5><p>注意，这一部分操作全部在 <strong>PC_A</strong>（保存了 Hexo Blog 最新进度）上进行，用于将本地整个 Hexo Blog 项目托管到 Github 上的一个全新仓库（以创建 <code>HexoBackups</code> 为例）。</p>
+<p>首先，添加设备 SSH Key 到 Github 以提供访问权限（在搭建 Hexo 环境时已经添加过），并且在 Github 中创建 <strong>HexoBackups</strong> 仓库（操作方法可见：<a href="">Git 使用指南之远程仓库</a>（待续…））。</p>
+<p><strong>1）删除 Hexo 站点目录主题路径（<code>Hexo站点目录\themes</code>）下原有的 <code>.git*</code> 缓存文件夹，并编辑站点目录中的 <code>.gitignore</code> 文件。</strong></p>
+<ul>
+<li><p>有些插件或者主题是从 Github 上 clone 过来安装的，每个文件夹下都会有对应的 <code>.git</code> 文件夹，记得先删掉，否则会和 Blog 仓库冲突。（<code>.git</code> 默认是隐藏文件夹，需要先开启显示隐藏文件夹。<code>.git</code> 文件夹被删除后整个文件对应的 Git 仓库状态也会被清空，避免冲突）</p>
+</li>
+<li><p>编辑 <code>.gitignore</code> 文件的作用是声明不被 Git 记录的非必要文件（我们希望将必要的 Hexo 配置文件进行版本控制，而不是所有文件）。Blog 站点目录下的 <code>.gitignore</code> 是 Hexo 初始化时生成的，可以先删除或者直接编辑，对 Hexo 不会有影响。我的 Hexo 默认 <code>.gitignore</code> 文件内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules&#x2F;</span><br><span class="line">public&#x2F;</span><br><span class="line">.deploy*&#x2F;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><code>.deploy_git </code> 是 Hexo 默认的 .git 配置文件夹，不需要同步；</li>
+<li><code>public</code> 内文件是根据 <code>source</code> 文件夹内容自动生成，不需要备份，不然版本仓库每次修改内容太多；</li>
+<li><code>node_modules</code> 目录中存放了 Hexo 个人博客所需的所有插件，太大，使用时通过 <code>npm install</code> 安装即可。</li>
+<li><code>.DS_Store</code>、<code>Thumbs.db</code>、<code>*.log</code> 、<code>db.json</code> 等均属于非必要文件。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<p><strong>2）初始化本地仓库</strong></p>
+<p>Hexo Blog 站点目录下执行以下代码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> &lt;server&gt; 是指远程备份仓库的地址（HexoBackups）；origin 是本地分支；remote add 操作会将本地仓库映射到云端</span> </span><br><span class="line">git init</span><br><span class="line">git remote add origin &quot;Repository Addr&quot;</span><br></pre></td></tr></table></figure>
+
+<p>“Repository Addr” 即上面创建的用于备份的仓库：<strong>HexoBackups</strong> 的仓库地址。</p>
+<p><strong>3）添加本地文件到本地仓库并同步到远程 Github 上</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 添加 Hexo Blog 站点目录下所有文件（.gitignore 声明过的文件不包含在内)</span></span><br><span class="line">git add .</span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加更新操作说明</span></span><br><span class="line">git commit -m &quot;Hexo Blog Backups&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 推送更新到云端服务器</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<p>在执行这步之前一定要注意检查下 <code>.gitignore </code>文件的内容，看看是否正确的把一些文件夹忽略掉了。如果加错了的话可以用：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm -r --cached .</span><br></pre></td></tr></table></figure>
+
+<p>自此，我们已经成功将本地 Hexo 博客配置文件推送到了 Github 远程仓库 <code>HexoBackups</code>  中实现版本控制。</p>
+<h5 id="–-gt-步骤三：其它设备终端克隆测试"><a href="#–-gt-步骤三：其它设备终端克隆测试" class="headerlink" title="–&gt; 步骤三：其它设备终端克隆测试"></a>–&gt; 步骤三：其它设备终端克隆测试</h5><p><strong>1）添加 SSH Key 到 GitHub</strong></p>
+<p>首先，我们需要将设备 PC_B 的 SSH Key 添加到 GitHub 以提供访问权限。</p>
+<p><strong>2）将 Hexo Github 仓库内容同步到本地</strong></p>
+<p>之前我们已经成功将 PC_A 电脑里的 Hexo 配置信息备份到 Github <code>HexoBackups</code> 仓库了。</p>
+<p>现在在 PC_B 电脑准备通过为本地仓库配远程 Hexo Github 版本仓库以实现 Hexo 配置信息同步。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建本地博客目录</span></span><br><span class="line">mkdir HexoBlogProject</span><br><span class="line">cd HexoBlogProject</span><br><span class="line"></span><br><span class="line">git init</span><br><span class="line"><span class="meta">#</span><span class="bash"> 将本地文件和云端仓库映射起来。这步不可以跳过</span></span><br><span class="line">git remote add origin &quot;Repository Addr&quot;</span><br><span class="line">git fetch --all</span><br><span class="line">git reset --hard origin/master</span><br></pre></td></tr></table></figure>
+
+<p>当然我们还可以直接 <code>git clone</code> 将 <code>HexoBackups</code> 仓库中的 Hexo 博客配置文件拉取下来：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone &quot;Repository Addr&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3）安装依赖插件</strong></p>
+<p>同步后需要安装相应的 Hexo 插件（这是由于我们之前备份时未备份 <code>node_modules</code> 插件目录），否则无法正常使用 Hexo：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p><strong>4）localhost 测试</strong></p>
+<p>PC_B 中打开浏览器，通过访问 <code>localhost:4000</code> 进行 Hexo 博客本地测试，发现已经可以成功访问到我们的 Hexo 本地博客页面。</p>
+<hr>
+<h4 id="方案三：Hexo-envs-hexo-分支备份"><a href="#方案三：Hexo-envs-hexo-分支备份" class="headerlink" title="方案三：Hexo envs + hexo 分支备份"></a>方案三：Hexo envs + hexo 分支备份</h4><p>和<strong>方案二</strong>中备份整个 Hexo 本地配置信息文件到一个新仓库不同的是，分支备份是在原 Hexo 静态页面托管仓库（<code>username.github.io</code>）重新创建一个分支（以 hexo 分支为例）来备份 Hexo 本地配置信息文件。</p>
+<p>最终，<code>username.github.io</code> 仓库的 <code>master</code> 分支和 <code>hexo</code> 分支各自保存着一个版本：</p>
+<p><strong>master</strong> 分支用于保存 Hexo 博客静态资源，提供博客页面以供人访问；<strong>hexo</strong> 分支用于备份博客部署文件，供自己维护更新，两者在一个 <code>username.github.io</code> 仓库内也不会有任何冲突。</p>
+<h5 id="gt-步骤一：Hexo-envs"><a href="#gt-步骤一：Hexo-envs" class="headerlink" title="-&gt; 步骤一：Hexo envs"></a>-&gt; 步骤一：Hexo envs</h5><p>PC_A 中我们已经成功搭建和使用 Hexo 博客了，所以不需要重复安装。而关于 PC_B 中 Hexo 个人博客环境的搭建，参考：<a href="https://www.orangeshare.cn/2017/09/20/%E4%B8%80%E6%96%87%E5%AD%A6%E4%BC%9A-Hexo-%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A1%86%E6%9E%B6%E7%9A%84%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%90%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%E3%80%91/">基于 Hexo 轻量级框架的博客搭建</a> 。步骤如下：</p>
+<ul>
+<li>安装 Node.js</li>
+<li>安装 Git</li>
+<li>安装 Hexo</li>
+</ul>
+<p>步骤一和方案一种中完全一样，实现 PC_B  上 Hexo 环境的部署。</p>
+<h5 id="–-gt-步骤二：hexo-分支备份"><a href="#–-gt-步骤二：hexo-分支备份" class="headerlink" title="–&gt; 步骤二：hexo 分支备份"></a>–&gt; 步骤二：hexo 分支备份</h5><p>注意，这一部分操作全部在 <strong>PC_A</strong>（保存了 Hexo Blog 最新进度）上进行。</p>
+<p>和 <strong>方案二</strong> 中备份过程类似，这一部分给出 Hexo 分支备份通用流程，关于操作解读可对应 <strong>方案二</strong> 中的步骤二。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 消除 Git 仓库冲突</span></span><br><span class="line">rm -rf Hexo站点目录\themes\主题目录、.git*</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 即 Hexo 博客根目录</span></span><br><span class="line">cd Hexo站点目录</span><br><span class="line"><span class="meta">#</span><span class="bash"> 初始化本地仓库</span></span><br><span class="line">git init</span><br><span class="line"><span class="meta">#</span><span class="bash"> 将本地与 Github 远程仓库进行对接</span></span><br><span class="line">git remote add origin git@github.com:user/user.github.io.git</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加 Hexo Blog 站点目录下所有文件（.gitignore 声明过的文件不包含在内)</span></span><br><span class="line">git add .</span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加更新操作说明</span></span><br><span class="line">git commit -m &quot;Hexo Blog Backups&quot;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建名为 hexo 的分支</span></span><br><span class="line">git checkout -b hexo</span><br><span class="line"><span class="meta">#</span><span class="bash"> 推送分支到 GitHub</span></span><br><span class="line">git push origin hexo</span><br></pre></td></tr></table></figure>
+
+<h5 id="–-gt-步骤三：其它终端克隆测试"><a href="#–-gt-步骤三：其它终端克隆测试" class="headerlink" title="–&gt; 步骤三：其它终端克隆测试"></a>–&gt; 步骤三：其它终端克隆测试</h5><p><strong>1）添加 SSH Key 到 GitHub</strong></p>
+<p>首先，我们需要将设备 PC_B 的 SSH Key 添加到 GitHub 以提供访问权限。</p>
+<p><strong>2）克隆 Hexo 博客环境</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 将 Github 中 hexo 分支 <span class="built_in">clone</span> 到本地</span></span><br><span class="line">git clone -b hexo git@github.com:username/username.github.io.git</span><br><span class="line">cd user.github.io</span><br></pre></td></tr></table></figure>
+
+<p><strong>3）安装依赖插件</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装 Hexo 博客中使用到的插件</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p><strong>4）localhost 测试</strong></p>
+<p>PC_B 中打开浏览器，通过访问 <code>localhost:4000</code> 进行 Hexo 博客本地测试，发现已经可以成功访问到我们的 Hexo 本地博客页面。</p>
+<hr>
+<h4 id="Git-Hexo-管理博文"><a href="#Git-Hexo-管理博文" class="headerlink" title="Git + Hexo 管理博文"></a>Git + Hexo 管理博文</h4><p>这一部分我们来看加入版本控制后，如何进行 Hexo Blog 的多平台协同创作 （Git + Hexo）？</p>
+<p><strong>–&gt; 步骤一：发布静态页面</strong></p>
+<p>假设在 PC_B 电脑上写完了文章，然后进行发布：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo d -g</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>–&gt; 步骤一：同步 Hexo 最新配置</strong></p>
+<p>接下来，我们还需要将新文章的 <code>.md</code> 文件推送到备份仓库。（其实就是提交更新给 Hexo Github 备份仓库）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git add .</span></span><br></pre></td></tr></table></figure>
+
+<p>这时候可以用 <code>git status </code> 查看状态，一般会显示刚刚更改过的文件状态。如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage)</span><br><span class="line"></span><br><span class="line">        modified:   db.json</span><br><span class="line">        new file:   source/_posts/test.md</span><br></pre></td></tr></table></figure>
+
+<p>上面的输出状态即说明 <code>db.json</code> 文件做了更改，<code>source/_posts</code> 目录下新增了 <code>test.md</code> 文件。</p>
+<p>然后对更改添加说明并推送到远程仓库：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">&#x27;更新信息&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 推送</span></span><br><span class="line">git push</span><br><span class="line"><span class="comment"># 或者（取决于整体备份还是分支备份）</span></span><br><span class="line">git push origin hexo</span><br></pre></td></tr></table></figure>
+
+<p>当显示类似如下提示的时候，即表示备份成功：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">To git@git.oschina.net:xxxx/HexoBackups.git</span><br><span class="line"> + 2c77e1e...5616bc6 master -&gt; master (forced update)</span><br></pre></td></tr></table></figure>
+
+<p>再回到到 PC_A  电脑上的时候，我们需要拉取最新的 Hexo 配置信息到本地以实现本地仓库和远程仓库一致：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 拉取最新版本</span></span><br><span class="line">git pull</span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者（取决于整体备份还是分支备份）</span></span><br><span class="line">git pull origin hexo</span><br></pre></td></tr></table></figure>
+
+<p>即可实现 Hexo 博客同步更新以及协同管理。</p>
+<p>自此，基于 <strong>Hexo + Github·Page + Coding·Page + Domain + VSCode + MarkDown + TinyPNG + PicGo + Image Host + Git</strong> 框架的 Hexo 个人博客创作生态已经建立。</p>
+<hr>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="hexo-init-卡死"><a href="#hexo-init-卡死" class="headerlink" title="hexo init 卡死"></a>hexo init 卡死</h4><p>Hexo 搭建个人博客时，调用 <strong>hexo init</strong> 命令一直卡住不动：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo init</span></span><br><span class="line">INFO Cloning hexo-starter https://github.com/hexojs/hexo-starter.git</span><br></pre></td></tr></table></figure>
+
+<p>这就很困惑了，npm 已经使用了淘宝源，node.js &amp;&amp; npm 版本也比较新，就是 <strong><em>hexo init</em></strong> 不成功….</p>
+<p>此时查看 Hexo 站点路径，发现目录已经出现clone的文件目录结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.git</span><br><span class="line">scaffolds</span><br><span class="line">source</span><br><span class="line">themes</span><br><span class="line">.gitignore</span><br><span class="line">_config.yml</span><br><span class="line">db.json</span><br><span class="line">package.json</span><br></pre></td></tr></table></figure>
+
+<p>网上查找原因，应该是 Hexo 主题未能成功下载（子模块未能成功下载），可以在 <strong>.gitmodules</strong> 查看相关信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">submodule &quot;themes&#x2F;landscape&quot;</span><br><span class="line">		path &#x3D; themes&#x2F;landscape</span><br><span class="line">		url &#x3D; https:&#x2F;&#x2F;github.com&#x2F;hexojs&#x2F;hexo-starter.git</span><br></pre></td></tr></table></figure>
+
+<p>通过查看站点目录下的 <strong>themes</strong> 目录，发现确实没有相应主题。</p>
+<p><strong>–&gt; 解决方法：</strong></p>
+<p>为 Git 配置代理：</p>
+<blockquote>
+<p>git config –global http.proxy <a target="_blank" rel="noopener" href="http://proxyuser:proxypwd@proxy.server.com/">http://proxyuser:proxypwd@proxy.server.com</a>:port</p>
+</blockquote>
+<p>当然，你也可以等待网络流畅时重新进行 <strong><em>hexo init</em></strong>，说不定下一次执行就成功了。</p>
+<hr>
+<h4 id="npm-install-很慢很慢"><a href="#npm-install-很慢很慢" class="headerlink" title="npm install 很慢很慢"></a>npm install 很慢很慢</h4><p>安装 Hexo 博客相关依赖插件时，我们需要使用 <code>npm install</code> 下载进行安装。但是执行指令后一直没反应，这是由于 <code>npm</code> 官方资源被墙，我们可以为其更换一个国内源：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+
+<p>当然，当我们的 Hexo 个人博客使用较多的插件时，<code>npm install</code> 可能看起来很慢（好像卡在某一个安装语句不再执行），此时我们可以通过 Hexo 站点目录下的 <code>node_modules</code> 目录更新时间来判断。</p>
+<p>如果 <code>node_modules</code> 目录下各种插件文件更新时间长时间不发生变化，就意外着安装已停止，<code>Ctrl + c</code> 即可。</p>
+<hr>
+<h4 id="Git-监测不到空文件夹"><a href="#Git-监测不到空文件夹" class="headerlink" title="Git 监测不到空文件夹"></a>Git 监测不到空文件夹</h4><p>Git 无法监测到空文件夹，也就意外着无法将空文件夹 <code>git add</code>、<code>git commit -m &quot;&quot;</code>、<code>git push</code> 推送到远程仓库，这会导致 Hexo 博客项目中丢失一些空的功能文件夹。这应该算是 Git 的设计失误。</p>
+<p>解决方法：</p>
+<p>需要在空文件夹中添加一个占位文件。主流做法是在空文件夹里放置一个 <code>.gitkeep</code> 文件。加个 <code>.gitconfig</code> 文件在里面比较实用，也不会觉得突兀，虽然绝大多数时候这个文件作用。</p>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Hexo 博客多设备协同管理问题【持续更新】</p><p><a href="https://www.orangeshare.cn/2017/09/22/hexo-bo-ke-duo-she-bei-xie-tong-guan-li-wen-ti-chi-xu-geng-xin/">https://www.orangeshare.cn/2017/09/22/hexo-bo-ke-duo-she-bei-xie-tong-guan-li-wen-ti-chi-xu-geng-xin/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2017-09-22</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2020-12-23</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Blog/">Blog</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/09/23/hello-hexo-matery-world/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Hello, Hexo Matery World</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/09/21/wen-ding-kuai-su-gao-xiao-mian-fei-de-tu-chuang-jie-jue-fang-an-github-jsdelivr-picgo/"><span class="level-item">稳定快速、高效免费的图床解决方案-Github-jsDelivr-PicGo</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p><p class="is-size-6 is-block">Web, AI Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Galactic System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">27</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">17</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/TheNightIsYoung" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="DockerHub" href="https://hub.docker.com/"><i class="fab fa-docker"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/explore"><i class="fab fa-gofore"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="MDEditor" href="http://www.mdeditor.com/"><i class="fab fa-canadian-maple-leaf"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="WangYiYun" href="https://music.163.com/"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#使用-Git-解决-Hexo-个人博客多平台同步管理"><span class="level-left"><span class="level-item">1</span><span class="level-item">使用 Git 解决 Hexo 个人博客多平台同步管理</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#模拟场景"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">模拟场景</span></span></a></li><li><a class="level is-mobile" href="#实施方案分析"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">实施方案分析</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#存储设备备份"><span class="level-left"><span class="level-item">1.2.1</span><span class="level-item">存储设备备份</span></span></a></li><li><a class="level is-mobile" href="#第三方代码仓库备份"><span class="level-left"><span class="level-item">1.2.2</span><span class="level-item">第三方代码仓库备份</span></span></a></li></ul></li><li><a class="level is-mobile" href="#实施方案细则"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">实施方案细则</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#方案一：Hexo-Envs-Cloud"><span class="level-left"><span class="level-item">1.3.1</span><span class="level-item">方案一：Hexo Envs + Cloud</span></span></a></li><li><a class="level is-mobile" href="#方案二：Hexo-envs-hexo-备份"><span class="level-left"><span class="level-item">1.3.2</span><span class="level-item">方案二：Hexo envs + hexo 备份</span></span></a></li><li><a class="level is-mobile" href="#方案三：Hexo-envs-hexo-分支备份"><span class="level-left"><span class="level-item">1.3.3</span><span class="level-item">方案三：Hexo envs + hexo 分支备份</span></span></a></li><li><a class="level is-mobile" href="#Git-Hexo-管理博文"><span class="level-left"><span class="level-item">1.3.4</span><span class="level-item">Git + Hexo 管理博文</span></span></a></li></ul></li><li><a class="level is-mobile" href="#常见问题"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">常见问题</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#hexo-init-卡死"><span class="level-left"><span class="level-item">1.4.1</span><span class="level-item">hexo init 卡死</span></span></a></li><li><a class="level is-mobile" href="#npm-install-很慢很慢"><span class="level-left"><span class="level-item">1.4.2</span><span class="level-item">npm install 很慢很慢</span></span></a></li><li><a class="level is-mobile" href="#Git-监测不到空文件夹"><span class="level-left"><span class="level-item">1.4.3</span><span class="level-item">Git 监测不到空文件夹</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2021 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

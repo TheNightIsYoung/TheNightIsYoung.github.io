@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Python 简介与开发环境搭建 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="Foreword 不管是由于工作需要必须掌握 Python，或是抱着极其浓厚的兴趣想要学习 Python 程序设计语言，亦或是不甘落于人后（身边越来越多的人开始使用 Python）…… 不要困惑，我们已经站在 Python 花园秘境的入口，即将一睹大门背后绮丽的风景。 那句话怎么说来着？人生苦短，快来使用 Python 吧 ……"><meta property="og:type" content="blog"><meta property="og:title" content="Python 简介与开发环境搭建"><meta property="og:url" content="https://www.orangeshare.cn/2018/01/01/python-jian-jie-yu-kai-fa-huan-jing-da-jian/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="Foreword 不管是由于工作需要必须掌握 Python，或是抱着极其浓厚的兴趣想要学习 Python 程序设计语言，亦或是不甘落于人后（身边越来越多的人开始使用 Python）…… 不要困惑，我们已经站在 Python 花园秘境的入口，即将一睹大门背后绮丽的风景。 那句话怎么说来着？人生苦短，快来使用 Python 吧 ……"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_versions_download.jpg"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python2_windows_addr.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_windows_MSI_download.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_windows_exc.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_windows_py3.5.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_pycharm_use.png"><meta property="article:published_time" content="2018-01-01T01:33:32.000Z"><meta property="article:modified_time" content="2021-04-30T10:34:11.012Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Python"><meta property="article:tag" content="prefix"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_versions_download.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2018/01/01/python-jian-jie-yu-kai-fa-huan-jing-da-jian/"},"headline":"When Art Meets Tech","image":["https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_versions_download.jpg","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python2_windows_addr.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_windows_MSI_download.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_windows_exc.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_windows_py3.5.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_pycharm_use.png"],"datePublished":"2018-01-01T01:33:32.000Z","dateModified":"2021-04-30T10:34:11.012Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"Foreword 不管是由于工作需要必须掌握 Python，或是抱着极其浓厚的兴趣想要学习 Python 程序设计语言，亦或是不甘落于人后（身边越来越多的人开始使用 Python）…… 不要困惑，我们已经站在 Python 花园秘境的入口，即将一睹大门背后绮丽的风景。 那句话怎么说来着？人生苦短，快来使用 Python 吧 ……"}</script><link rel="canonical" href="https://www.orangeshare.cn/2018/01/01/python-jian-jie-yu-kai-fa-huan-jing-da-jian/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>Python 简介与开发环境搭建</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2018-01-01</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2021-04-30</time></span><span class="level-item"><a class="link-muted" href="/categories/Python/">Python</a></span><span class="level-item">an hour read (About 6911 words)</span></div></div><div class="content"><p><strong>Foreword</strong></p>
+<p>不管是由于工作需要必须掌握 Python，或是抱着极其浓厚的兴趣想要学习 Python 程序设计语言，亦或是不甘落于人后（身边越来越多的人开始使用 Python）…… 不要困惑，我们已经站在 Python 花园秘境的入口，即将一睹大门背后绮丽的风景。</p>
+<p>那句话怎么说来着？人生苦短，快来使用 Python 吧 ……</p>
+<a id="more"></a>
+
+<p>这一章节我们通过对以下两部分内容的解读，正式开启 Python 的学习之旅的第一站（叩门）：</p>
+<ol>
+<li>Python Introduction</li>
+<li>Python Development Envs Setup</li>
+</ol>
+<hr>
+<h2 id="Python-Introduction"><a href="#Python-Introduction" class="headerlink" title="Python Introduction"></a>Python Introduction</h2><p>这一小节我们来简要介绍 Python 的背景知识，你可以将其作为 Python 学习入门需知。</p>
+<blockquote>
+<p>注意，相关介绍没必要深究，在后续正式进入 Python 学习生态环境之后，你会越来越深入理解相关的内容。</p>
+</blockquote>
+<h3 id="Python-发展历史"><a href="#Python-发展历史" class="headerlink" title="Python 发展历史"></a>Python 发展历史</h3><p>Python 的创始人为荷兰人 Guido van Rossum（吉多·范罗苏姆）。1989年圣诞节期间，吉多·范罗苏姆为了在阿姆斯特丹打发时间， 决心开发一个新的脚本解释程序。之所以选中 Python（蟒蛇）作为程序的名字，是因为他是一个叫 Monty Python 戏剧团的忠实粉丝。</p>
+<p>大佬不愧为大佬啊…..</p>
+<p>Python 源代码同样遵循 GPL（GNU General Public License）协议。</p>
+<p>1991年，第一个 Python 解释器诞生，它是用 C 语言实现的，并能够调用 C 语言的库文件。</p>
+<p>Python 2.0 于 2000 年 10 月发布，增加了完整的垃圾回收，并且支持 Unicode。</p>
+<p>Python 3.0 于 2008 年 12 月发布，此版不完全兼容之前的 Python 源代码。不过，很多新特性也被移植到旧版本。</p>
+<p>2019 年 12 月份世界编程语言排行榜中，Python 排名第三，成为了仅次于 Java 和 C 语言的黑马。</p>
+<hr>
+<h3 id="Python-能干什么？"><a href="#Python-能干什么？" class="headerlink" title="Python 能干什么？"></a>Python 能干什么？</h3><ul>
+<li>基础编程开发</li>
+<li>Web 开发</li>
+<li>网络爬虫</li>
+<li>自动化运维 / 运维开发</li>
+<li>自动化测试 / 测试开发</li>
+<li>游戏开发</li>
+<li>科学计算</li>
+<li>大数据 / 数据分析 / 数据挖掘</li>
+<li>机器学习 / 人工智能 &amp; 深度学习</li>
+<li>……</li>
+</ul>
+<p>看到这里是不是了解了为什么 <strong>Python</strong> 经常被和 <strong>大数据</strong>、<strong>人工智能</strong> 捆绑到一起作为 <strong>AI</strong> 关键词的原因了。</p>
+<p>事实上，像 Google，Facebook，Yahoo，YouTube 以及著名的开源云计算平台 openstack，还有国内的豆瓣都是用 Python 写的 !!!</p>
+<hr>
+<h3 id="Python-究竟是什么？"><a href="#Python-究竟是什么？" class="headerlink" title="Python 究竟是什么？"></a>Python 究竟是什么？</h3><p>相较于其它高级编程语言，Python 是一个高层次的 <strong>解释型的面向对象的交互式脚本语言。</strong></p>
+<ul>
+<li>Python 是一种解释型语言： 这意味着开发过程中没有了编译这个环节，类似于 PHP 和 Perl 语言。</li>
+<li>Python 是一种交互式语言：这意味着，你可以在一个 Python 提示符（Shell），直接互动执行你编写的程序。</li>
+<li>Python 是一种面向对象语言：这意味着 Python 支持面向对象的风格或代码封装于对象的编程技术。</li>
+<li>Python 是一种初学者的语言：Python 对初级程序员而言，作为学习编程的入门语言再合适不过。它支持广泛的应用程序开发，从简单的文字处理到 WWW 浏览器再到游戏。</li>
+</ul>
+<hr>
+<h3 id="Python-特点"><a href="#Python-特点" class="headerlink" title="Python 特点"></a>Python 特点</h3><p>相较于其它高级程序设计语言，Python 有如下特点：</p>
+<ol>
+<li><strong>易于阅读、学习</strong>：Python有相对较少的关键字，和明确定义的语法，代码结构清晰易读，学习起来更加简单。</li>
+<li><strong>互动模式</strong>：互动模式的支持，你可以从终端输入执行代码并获得结果的语言，互动的测试和调试代码片断。</li>
+<li><strong>跨平台</strong>：作为开源、免费的解释型语言，Python 已经被移植（跨平台）到许多平台。</li>
+<li><strong>广泛的类库支持</strong>：Python 的最大的优势之一是丰富的类库支持，在 UNIX，Windows 和Macintosh 兼容很好。</li>
+<li><strong>可扩展</strong>：如果你需要一段运行很快的关键代码，或者是想要编写一些不愿开放的算法，你可以使用 C 或 C++ 完成那部分程序，然后从你的 Python 程序中调用。</li>
+<li><strong>可嵌入</strong>: 你可以将 Python 嵌入到C/C++程序，让你的程序的用户获得”脚本化”的能力。</li>
+<li><strong>数据库</strong>：Python 提供所有主要的商业数据库的接口。</li>
+<li><strong>GUI 编程</strong>：Python 支持 GUI 可以创建和移植到许多系统调用。</li>
+</ol>
+<hr>
+<h3 id="Python-有缺点么-？？？"><a href="#Python-有缺点么-？？？" class="headerlink" title="Python 有缺点么 ？？？"></a>Python 有缺点么 ？？？</h3><p>一味鼓吹 Python 没有缺陷是伪命题，任何编程语言都有缺点，Python 也不例外。</p>
+<p><strong>第一个缺点：</strong>运行速度慢</p>
+<p>和 C 程序相比非常慢，因为 Python 是解释型语言，代码在被执行时会一行一行地翻译成 CPU 能理解的机器码，这个翻译过程非常耗时，所以很慢。而 C 程序是运行前直接被编译成 CPU 能执行的机器码，所以非常快。</p>
+<p>但是大量的应用程序不需要这么快的运行速度，因为用户根本感觉不出来。例如开发一个网络应用程序，C 程序的运行时间需要 0.001 秒，而 Python 程序的运行时间需要 0.1 秒，慢了 100 倍，但由于网络更慢，需要等待 1 秒，你想，用户能感觉到 1.001 秒和 1.1 秒的区别吗？这就好比 F1 赛车和普通的出租车在北京三环路上行驶的道理一样，虽然 F1 赛车理论时速高达 400 公里，但由于三环路堵车的时速只有 20 公里，因此，作为乘客，你感觉的时速永远是 20 公里。</p>
+<p>甚至我们可以将需要快速执行的 Python 代码段转成 C 内置于 Python 中以提升性能。</p>
+<p><strong>第二个缺点：</strong>代码不能加密</p>
+<p>由于 Python 的开源、免费特性，如果要发布你的 Python 程序，实际上就是发布源代码，这一点跟 C 语言不同，C语言不用发布源代码，只需要把编译后的机器码（也就是你在 Windows 上常见的 xxx.exe 文件）发布出去。要从机器码反推出 C 代码是不可能的，所以，凡是编译型的语言，都没有这个问题，而解释型的语言，则必须把源码发布出去。</p>
+<p>当然，想要加密 Python 代码，也并非无解，网络上也给出了一些 Python 加密方法用以提高其源码保密性。</p>
+<p>然而，开源是软件产业的大趋势，传统程序员需要转变观念。</p>
+<hr>
+<h3 id="Python-彩蛋"><a href="#Python-彩蛋" class="headerlink" title="Python 彩蛋"></a>Python 彩蛋</h3><p>最后一部分，我们给出一个 Python 彩蛋：“Python 之歌”，它概要地解读了 Python 语言设计的特点。在后续我们介绍完 Python 开发环境搭建，你可以执行 Python 指令之后，重新返回到这一部分“敲开”彩蛋：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Python 解释器执行如下命令：</span></span><br><span class="line"><span class="keyword">import</span> this</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取到如下信息：</span></span><br><span class="line"></span><br><span class="line">The Zen of Python, by Tim Peters</span><br><span class="line"></span><br><span class="line">Beautiful <span class="keyword">is</span> better than ugly.</span><br><span class="line">Explicit <span class="keyword">is</span> better than implicit.</span><br><span class="line">Simple <span class="keyword">is</span> better than <span class="built_in">complex</span>.</span><br><span class="line">Complex <span class="keyword">is</span> better than complicated.</span><br><span class="line">Flat <span class="keyword">is</span> better than nested.</span><br><span class="line">Sparse <span class="keyword">is</span> better than dense.</span><br><span class="line">Readability counts.</span><br><span class="line">Special cases aren<span class="string">&#x27;t special enough to break the rules.</span></span><br><span class="line"><span class="string">Although practicality beats purity.</span></span><br><span class="line"><span class="string">Errors should never pass silently.</span></span><br><span class="line"><span class="string">Unless explicitly silenced.</span></span><br><span class="line"><span class="string">In the face of ambiguity, refuse the temptation to guess.</span></span><br><span class="line"><span class="string">There should be one-- and preferably only one --obvious way to do it.</span></span><br><span class="line"><span class="string">Although that way may not be obvious at first unless you&#x27;</span>re Dutch.</span><br><span class="line">Now <span class="keyword">is</span> better than never.</span><br><span class="line">Although never <span class="keyword">is</span> often better than *right* now.</span><br><span class="line">If the implementation <span class="keyword">is</span> hard to explain, it<span class="string">&#x27;s a bad idea.</span></span><br><span class="line"><span class="string">If the implementation is easy to explain, it may be a good idea.</span></span><br><span class="line"><span class="string">Namespaces are one honking great idea -- let&#x27;</span>s do more of those!</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="Python-Development-Envs-Setup"><a href="#Python-Development-Envs-Setup" class="headerlink" title="Python Development Envs Setup"></a>Python Development Envs Setup</h2><p>工欲善其事，必先利其器。这一小节将向大家介绍如何搭建本地 Python 语言学习、开发环境。</p>
+<p>前面我已经提到过 Python 具有良好的移植性，可应用于多平台包括：Windows、Linux 和 Mac OS X 等等，<a target="_blank" rel="noopener" href="https://www.python.org/">Python 官网</a> 确实也提供了不同平台的 Python 安装包以提供下载安装。</p>
+<blockquote>
+<p>关于 Python 安装版本选择，个人建议选择 <strong>Python3.x</strong>（越来越多的开发者转战到 Python3，已成为主流使用版本）。</p>
+</blockquote>
+<p>安装后，你会得到 <strong>Python 解释器</strong>（负责解释运行 Python 程序），一个 <strong>命令行交互环境</strong>，还有一个简单的 <strong>集成开发环境（IDLE）</strong>。</p>
+<hr>
+<p>下面我们来开始本地 Python 语言开发环境的搭建 –&gt;</p>
+<h3 id="环境检查"><a href="#环境检查" class="headerlink" title="环境检查"></a>环境检查</h3><p>在开始正式安装之前，你可以通过在 <strong>终端窗口（Terminal）</strong>输入 <strong>“python -V”</strong> 命令来查看本地是否已经安装 Python 以及 Python 的安装版本。</p>
+<p>如果输出如下信息表示当前系统中已安装有 Python，你已经可以直接跳过安装环节开始 Python 语言的学习了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Python 3.5.0 (default, Dec  1 2018, 17:15:02) </span><br><span class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里一定要注意 Python 的版本信息，如上，当前系统中已安装 Python 版本为：3.5.0</p>
+</blockquote>
+<p>如果当前系统中的 Python 版本不符合你的期望，或者系统中没有找到 Python 信息，接下文 –&gt;</p>
+<hr>
+<h3 id="Python-Download"><a href="#Python-Download" class="headerlink" title="Python Download"></a>Python Download</h3><p>Python 最新源码，二进制文档，相关新闻资讯等可以在 Python 的官网查看到：</p>
+<p>Python 官网：<a target="_blank" rel="noopener" href="https://www.python.org/">https://www.python.org/</a> ，以下给出各个平台 Python 安装包的下载地址：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_versions_download.jpg"></p>
+<p>并且，你可以在以下链接中下载 Python 的文档，你可以下载 HTML、PDF 和 PostScript 等多种格式的文档。</p>
+<p>Python 文档下载地址：<a target="_blank" rel="noopener" href="https://www.python.org/doc/">https://www.python.org/doc/</a></p>
+<hr>
+<h3 id="Python-Setup"><a href="#Python-Setup" class="headerlink" title="Python Setup"></a>Python Setup</h3><p>我们知道 Python 已经被移植在许多平台上（使它能够工作在不同平台上），类似于 Java，“一次编写，多次运行”。而 <strong>不同平台的安装步骤视使用的操作系统和安装方式而异。</strong></p>
+<p>安装 Python 的 <strong>两种主流方式</strong>：我们既可以从 <strong>源码</strong> 安装，同时也可以下载使用已经编译并且打包好的 <strong>二进制版本</strong> 安装包进行安装。</p>
+<blockquote>
+<p>如果你选择的平台（例如：Unix/Linux）的二进制代码不可用，你可以使用手动编译源代码进行安装。编译的源代码，功能上有更多的选择性， 为 Python 安装提供了更多的灵活性。</p>
+</blockquote>
+<p>以下给出不同平台（Unix/Linux、Windows）上安装 Python 的方法：</p>
+<ol>
+<li>Source Code For Unix &amp; Linux Platform</li>
+<li>Binary Package For Windows Platform</li>
+</ol>
+<hr>
+<h4 id="For-Unix-amp-Linux-Platform"><a href="#For-Unix-amp-Linux-Platform" class="headerlink" title="For Unix &amp; Linux Platform"></a>For Unix &amp; Linux Platform</h4><p>由于 Unix &amp; Linux 平台一般自带相应版本的 Python（Python2/Python3），如果你选择在 Unix &amp; Linux 平台学习 Python，那么你可以直接跳过后续教程（你已经可以开始使用 Python 了！）。</p>
+<p>当然，有些同学就是想尝试一下 Python 的编译过程（或者 <strong>系统原生 Python 版本不是你学习使用所需要版本</strong>），下面给出在 Unix &amp; Linux 平台上安装 Python 的通用步骤:</p>
+<blockquote>
+<p>注意多个 Python 版本是可以共存的！！！前提是你需要注意新安装的 Python 环境对原有环境的影响，严格遵循下文安装过程不会对系统原生环境产生影响，你可以放心安装。<br>这也就意味着：你可以使用下面的方法在系统中安装多个 Python 版本而不影响系统原生环境。</p>
+</blockquote>
+<p><strong>源码编译安装 –&gt;</strong></p>
+<ul>
+<li>打开 WEB 浏览器访问：<a target="_blank" rel="noopener" href="https://www.python.org/downloads/source/">https://www.python.org/downloads/source/</a></li>
+<li>选择适用于 Unix/Linux 的源码压缩包。</li>
+<li>cd 到安装目录：/usr/local，下载及解压压缩包。</li>
+<li>如果你需要自定义一些选项，可以修改 Modules/Setup</li>
+<li>执行 ./configure （配置）</li>
+<li>make</li>
+<li>make install</li>
+</ul>
+<p>执行以上操作后，Python 相关的可执行文件默认会被存放到：<code>/usr/local/bin</code> 中，库文件默认会被安装到：<code>/usr/local/lib/pythonXX</code>，XX 为你使用的 Python 的版本号。</p>
+<p>这样显得有点杂乱… 来认识一下：<strong>“linux, configure –prefix=/”的作用是 –&gt; 编译的时候用来指定程序存放路径。</strong></p>
+<p>|&gt;&gt;&gt;=============== prefix 选项用于配置安装的路 ================|</p>
+<ol>
+<li><p>如果不配置该选项，安装后可执行文件默认放在 /usr/local/bin，库文件默认放在 /usr/local/lib，配置文件默认放在 /usr/local/etc，其它的资源文件放在 /usr/local/share</p>
+</li>
+<li><p>如果配置 prefix，如：”./configure –prefix=/usr/local/test”，可以把所有资源文件放在 /usr/local/test 的路径</p>
+</li>
+</ol>
+<p>|=======================================================&lt;&lt;&lt;|</p>
+<hr>
+<p><font color=blue>Begin to Setup –&gt;</font></p>
+<p>以 <strong>“Python-3.5.0 安装”</strong> 为样例演示上述安装过程：</p>
+<p>1 –&gt; 准备编译环境（系统环境中可能缺失编译环境，导致遇到各种问题，比如：wget 无法下载 https 链接文件，缺少了zlib的解压缩类库等）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Centos</span></span><br><span class="line">[root@node1 ~]# yum install wget zlib-devel bzip2-devel  openssl-devel ncurses-devel</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Ubuntu</span></span><br><span class="line">[root@node1 ~]# apt-get install zlib*</span><br></pre></td></tr></table></figure>
+
+<p>2 –&gt; 下载及解压 Python3.5.0 源代码包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@node1 ~]# cd /usr/local/</span><br><span class="line"></span><br><span class="line">[root@node1 ~]# wget  https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tar.xz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下载完成后进行减压：</span></span><br><span class="line">[root@node1 ~]# tar Jxvf  Python-3.5.0.tar.xz</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 减压后进入到相应目录，可以看到一个 README 文档。说明了如何进行安装：</span></span><br><span class="line">[root@node1 ~]# cd Python-3.5.0</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看安装方法：</span></span><br><span class="line">[root@node1 Python-3.5.0]# cat README</span><br></pre></td></tr></table></figure>
+
+<p>3 –&gt; 编译安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 编译后你会在目录 [/usr/<span class="built_in">local</span>] 下发现新产生的：[python3.5] 目录</span></span><br><span class="line">[root@node1 Python-3.5.0]# ./configure --prefix=/usr/local/python3.5</span><br><span class="line">[root@node1 Python-3.5.0]# make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">## 日志信息如下：</span></span></span><br><span class="line">Ignoring indexes: https://pypi.python.org/simple</span><br><span class="line">Collecting setuptools</span><br><span class="line">Collecting pip</span><br><span class="line">Installing collected packages: setuptools, pip</span><br><span class="line">Successfully installed pip-7.1.2 setuptools-18.2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 同时提示成功安装 pip-7.12 与 setuptools！之后你就可以使用 pip 包管理器进行安装 Python 扩展包。&#123;关于 pip，当前你知道它是用来解决 Python 库包依赖（一个扩展包的安装需要其它扩展包的安装支持）的工具即可。&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>至此 Unix &amp; Linux 平台下 Python 的安装已完成！请跳转至【Python 环境变量配置】章节完成最后的配置即可开始 Unix &amp; Linux 平台下 Python 的学习之旅。</p>
+<hr>
+<h4 id="For-Windows-Platform"><a href="#For-Windows-Platform" class="headerlink" title="For Windows Platform"></a>For Windows Platform</h4><p>以下为在 Windows 平台上安装 Python 的简单步骤：</p>
+<p><strong>二进制包安装</strong></p>
+<p>1）<strong>Python 2.X</strong> 版本安装：</p>
+<p>以最新的 “Python 2.7 版本安装” 为样例：</p>
+<ul>
+<li>打开 WEB 浏览器访问 <a target="_blank" rel="noopener" href="https://www.python.org/downloads/windows/">https://www.python.org/downloads/windows/</a></li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python2_windows_addr.png"></p>
+<ul>
+<li>在下载列表中选择 Windows 平台安装包，包格式为：【python-XYZ.msi】 文件 ， XYZ 为你要安装的版本号。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_windows_MSI_download.png"></p>
+<ul>
+<li><p>要使用安装程序 【python-XYZ.msi】, Windows 系统必须支持 Microsoft Installer 2.0 搭配使用。需要看看你的机器是否支持 MSI，Windows XP 和更高版本已经有 MSI，很多老机器也可以安装 MSI。</p>
+</li>
+<li><p>只要保存安装文件到本地计算机，然后运行它即可（安装时，根据提示 Next 即可）。注意！！！为防止对系统原生环境的影响，不要勾选有关自动添加环境变量的选项（默认不勾选），随后我们会手动设置 Python 环境变量。</p>
+</li>
+</ul>
+<hr>
+<p>2）<strong>Python 3.X</strong> 版本安装：</p>
+<p>以 “Python 3.5.1 版本安装” 为样例：</p>
+<ul>
+<li>打开 WEB 浏览器访问 https:////<a target="_blank" rel="noopener" href="http://www.python.org/">www.python.org/</a> ，点击 Downloads，进入选择下载界面：</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_windows_exc.png"></p>
+<ul>
+<li>这里我选择的是：python3.5.1，会看到如下界面：</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_windows_py3.5.png"></p>
+<p>这里，我们需要安装的是 Windows 下的 Python 版本，所以在 Operating System 中可以选择对应的 Windows 版本。另外需要注意的是要根据系统位数选择相应位数（64-bit 或 32-bit） Python 安装二进制版本，现在主流的都是 64-bit的。</p>
+<p>其中，executable 表示可执行版，需要安装后使用，embeddable 表示嵌入版，就是解压以后就可以使用的版本（免安装版本）。 </p>
+<p><font color=blue>Begin to Setup –&gt;</font></p>
+<p><strong>1 –&gt; executable setup</strong></p>
+<p>这里，我们选择安装可执行版本（executable），可执行版安装比较简单，step by step，then ok。注意！！！为防止对系统原生环境的影响，不要勾选有关自动添加环境变量的选项（默认不勾选），随后我们会手动设置 Python 环境变量。</p>
+<p><strong>2 –&gt; embeddable setup</strong></p>
+<p>embeddable 版本 Python 安装好后一定需要配置环境变量。</p>
+<hr>
+<h3 id="Python-环境变量配置"><a href="#Python-环境变量配置" class="headerlink" title="Python 环境变量配置"></a>Python 环境变量配置</h3><p>Python 默认安装完成后并不可以直接使用，即通过终端窗口输入 “python” 命令无法查看到 Python 版本信息（系统无法访问到安装好的 Python 可执行程序）如下，说明我们还需要为其配置系统环境变量。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\guoxx&gt;python</span><br><span class="line">&#x27;python&#x27; 不是内部或外部命令，也不是可运行的程序</span><br><span class="line">或批处理文件。</span><br></pre></td></tr></table></figure>
+
+<h4 id="为什么需要配置环境变量？"><a href="#为什么需要配置环境变量？" class="headerlink" title="为什么需要配置环境变量？"></a>为什么需要配置环境变量？</h4><p>我们想要运行的程序或可执行文件（python.exe）可能位于系统中的许多目录，而这些路径很可能 <strong>不在操作系统提供可执行文件的搜索路径中</strong>。故，不可以直接执行这些程序或可执行文件。</p>
+<p>而路径（PATH）可以存储到系统环境变量中，这是由操作系统维护的一个命名的字符串。这些变量包含系统中可用的命令行解释器（Python 解释器）和其他程序的位置信息。想要操作系统能够搜索到程序或可执行文件，我们需要将其相应的路径添加到系统环境变量中（注意在添加时，要加上环境变量中原有的路径 :<code>$PATH</code>，否则会覆盖原始路径，导致系统出错）。</p>
+<p>因此，我们需要将 Python 相关的可执行文件或程序路径添加到系统环境变量 <code>$PATH</code> 中。</p>
+<hr>
+<p>下面我们来看不同平台如何配置其环境变量：</p>
+<h4 id="For-Unix-Linux-Platform"><a href="#For-Unix-Linux-Platform" class="headerlink" title="For Unix/Linux Platform"></a>For Unix/Linux Platform</h4><p>1）export PATH 方法</p>
+<ul>
+<li><p>在 csh shell: 输入 </p>
+<p>setenv PATH “$PATH:/usr/local/python”</p>
+</li>
+<li><p>在 bash shell (Linux): 输入 </p>
+<p>export PATH=”$PATH:/usr/local/python” </p>
+</li>
+<li><p>在 sh 或者 ksh shell: 输入 </p>
+<p>PATH=”$PATH:/usr/local/python” </p>
+</li>
+</ul>
+<p><strong>注意:</strong> 【/usr/local/python】 是 Python 的安装目录。</p>
+<p>2）构建 Python 使用软链接（推荐）</p>
+<p>以上面 “Python-3.5.0 安装 样例为示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 产生软连接时要注意系统中已存在的 Python 软链接，防止原生 Python 调用被覆盖掉：</span><br><span class="line"># 覆盖掉后只能访问最新版本 python。</span><br><span class="line">[root@node1 Python-3.5.0]# ln -s &#x2F;usr&#x2F;local&#x2F;python3.5&#x2F;bin&#x2F;python3.5 &#x2F;usr&#x2F;local&#x2F;bin&#x2F;python3.5</span><br></pre></td></tr></table></figure>
+
+<p>这里由于【/usr/local/bin/】 路径已在 PATH 中，故可以将 Python 解释器路径放于 <code>/usr/local/bin</code> 下。</p>
+<hr>
+<h4 id="For-Windows-Platform-1"><a href="#For-Windows-Platform-1" class="headerlink" title="For Windows Platform"></a>For Windows Platform</h4><p>在环境变量中添加 Python 目录：</p>
+<p>1）cmd 方法</p>
+<p>在命令提示框中(cmd) : 输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path&#x3D;%path%;C:\Python;C:\Python\Scripts;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>: <code>C:\Python</code> 是 Python 的实际安装目录。</p>
+<ol start="2">
+<li>GUI 方法</li>
+</ol>
+<ul>
+<li>右键点击”计算机”，然后点击”属性”</li>
+<li>然后点击”高级系统设置”</li>
+<li>选择 <strong>“系统变量”</strong> 窗口下面的 <strong>“Path”</strong>,双击即可！</li>
+<li>然后在 <strong>“Path”</strong> 行，添加 python 安装路径即可(C:\Python)，所以在后面，添加该路径即可。 ps：记住，路径直接用分号 <strong>“；”</strong> 隔开！</li>
+</ul>
+<hr>
+<h4 id="检测是否配置成功？"><a href="#检测是否配置成功？" class="headerlink" title="检测是否配置成功？"></a>检测是否配置成功？</h4><p>在 <strong>命令行（终端）</strong> 中输入：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python 或 python -V</span><br></pre></td></tr></table></figure>
+
+<p>如果配置成功的话，会有 Python 版本信息输出，并进入 Python 交互式环境（可执行 Python 语句）。如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Python 3.5.0 (default, Dec  1 2018, 17:15:02) </span><br><span class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span>	</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>至此，我们已经完成了 Python 本地环境的安装以及配置，下面我们给出一个 “Python Hello World” 来验证本地环境已经搭建成功：</p>
+<h4 id="Python-Hello-World"><a href="#Python-Hello-World" class="headerlink" title="Python Hello World"></a>Python Hello World</h4><p>首先，在 <strong>命令行终端</strong> 中输入：<strong>“python”</strong>，会进入 Python 交互式解释器环境：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@node1 ~]# python</span><br><span class="line">Python 3.5.0 (default, Dec  1 2018, 17:15:02) </span><br><span class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;</span>	</span><br></pre></td></tr></table></figure>
+
+<p>然后在命令提示符 <strong>&gt;&gt;&gt;</strong> 之后输入命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> python 3 输入:</span></span><br><span class="line">print (&quot;Welcome to Python World&quot;)</span><br><span class="line"><span class="meta">#</span><span class="bash"> python 2 输入:</span></span><br><span class="line">print &quot;Welcome to Python World&quot;</span><br></pre></td></tr></table></figure>
+
+<p>语句执行成功后会输出以下语句，表示 Python 本地环境搭建成功：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Welcome to Python World</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Python-运行方式"><a href="#Python-运行方式" class="headerlink" title="Python 运行方式"></a>Python 运行方式</h3><p>Python 本地环境搭建成功之后，我们来看如何使用搭建好的 Python 环境编写、运行 Python 程序。通常有三种方式：</p>
+<h4 id="交互式解释器"><a href="#交互式解释器" class="headerlink" title="交互式解释器"></a>交互式解释器</h4><p>你可以通过命令行窗口（Command Terminal）进入 Python 交互式解释器中开始编写 Python 代码。你可以在 Unix，DOS 或任何其他提供了命令行或者 shell 的系统进行 python 编码工作。如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Unix/Linux &amp; Windows/DOS：</span></span><br><span class="line">Python 3.5.0 (default, Dec  1 2018, 17:15:02) </span><br><span class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;<span class="built_in">print</span> (<span class="string">&quot;Hello Python World&quot;</span>)</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Python 交互模式的代码是输入一行，解释执行一行。</p>
+</blockquote>
+<p>退出交互式环境：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Unix/Linux &amp; Windows/DOS：</span></span><br><span class="line">Python 3.5.0 (default, Dec  1 2018, 17:15:02) </span><br><span class="line">[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt;<span class="built_in">exit</span>()</span></span><br></pre></td></tr></table></figure>
+
+<p>可见，Python 交互模式主要是为了调试 Python 代码用的，也便于初学者学习，它不是正式运行 Python 代码的环境！</p>
+<hr>
+<h4 id="命令行脚本"><a href="#命令行脚本" class="headerlink" title="命令行脚本"></a>命令行脚本</h4><p>在你的应用程序中通过 <strong>引入解释器</strong> 可以在命令行中执行 Python 脚本 【 HelloWorld.py 】，如下所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Unix/Linux：</span></span><br><span class="line">[root@node1 ~]# python HelloWorld.py </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Windows/DOS</span></span><br><span class="line">C:&gt; python HelloWorld.py</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：在执行脚本时，系统会检查脚本是否有可执行权限。命令行模式下直接运行<code>.py</code>文件是一次性执行该文件内的所有代码。</p>
+</blockquote>
+<hr>
+<h4 id="集成开发环境（IDE：Integrated-Development-Environment）"><a href="#集成开发环境（IDE：Integrated-Development-Environment）" class="headerlink" title="集成开发环境（IDE：Integrated Development Environment）"></a>集成开发环境（IDE：Integrated Development Environment）</h4><p>和大多数程序设计语言一样，一个体验良好的集成开发环境对于 Python 程序开发是必不可缺的。这里推荐使用 PyCharm（大多数 Python 开发人员的首选）。</p>
+<p>以 “<strong>PyCharm IDE</strong>” 为例：</p>
+<p>PyCharm 是由 JetBrains 打造的一款 Python IDE，支持 macOS、 Windows、 Linux 系统。</p>
+<p>PyCharm 功能 : 支持调试、语法高亮、Project管理、代码跳转、智能提示、自动完成、单元测试、版本控制……</p>
+<p>PyCharm 下载地址 : <a target="_blank" rel="noopener" href="https://www.jetbrains.com/pycharm/download/">https://www.jetbrains.com/pycharm/download/</a></p>
+<p>以下展示的是 PyCharm 工作界面样例图（是不看起来相当美观）：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/python_pycharm_use.png"></p>
+<p>=================================================================</p>
+<p>至此，这一章节的主要内容已经解读完成，基于上述内容的介绍你已经可以对照 Python 参考书开始 Python 语言的学习了。但我强烈建议你阅读下面的内容，它可以帮助你快速在 Python 学习中走的更远……</p>
+<hr>
+<h2 id="You-Need-Know-More"><a href="#You-Need-Know-More" class="headerlink" title="You Need Know More"></a>You Need Know More</h2><h3 id="Python-解释器详解"><a href="#Python-解释器详解" class="headerlink" title="Python 解释器详解"></a>Python 解释器详解</h3><p>前面我们一直提到 Python 解释器，当我们编写 Python 代码时，我们得到的是一个包含 Python 代码的以<code>.py</code>为扩展名的文本文件。要运行代码，就需要 Python 解释器去执行<code>.py</code>文件。</p>
+<p>由于整个 Python 语言从规范到解释器都是开源的，所以理论上，只要水平够高，任何人都可以编写 Python 解释器来执行 Python 代码（当然难度很大）。事实上，确实存在多种 Python 解释器。</p>
+<p><strong>1 –&gt; CPython</strong></p>
+<p>当我们从 Python 官方网站下载并安装好 Python 3.x 后，我们就直接获得了一个官方版本的解释器：CPython。这个解释器是用 C 语言开发的，所以叫 CPython。在命令行下运行 <code>python</code> 就是启动 CPython 解释器。所以 CPython 是使用最广的 Python 解释器。</p>
+<p><strong>2 –&gt; IPython</strong></p>
+<p> IPython 是基于 CPython 之上的一个交互式解释器，也就是说，IPython 只是在交互方式上有所增强，但是执行Python 代码的功能和 CPython 是完全一样的。好比很多国产浏览器虽然外观不同，但内核其实都是调用了 IE。</p>
+<p>CPython 用 <code>&gt;&gt;&gt; </code>作为提示符，而 IPython 用 <code>In [序号]:</code> 作为提示符。</p>
+<p><strong>3 –&gt; Jython</strong></p>
+<p>Jython 是运行在 Java 平台上的 Python 解释器，可以直接把 Python 代码编译成 Java 字节码执行。</p>
+<p><strong>4 –&gt; PyPy</strong></p>
+<p>PyPy 是另一个 Python 解释器，它的目标是执行速度。PyPy 采用 JIT 技术，对 Python 代码进行动态编译（注意不是解释），所以可以显著提高 Python 代码的执行速度。</p>
+<p>绝大部分 Python 代码都可以在 PyPy 下运行，但是 PyPy 和 CPython 有一些是不同的，这就导致相同的 Python 代码在两种解释器下执行可能会有不同的结果。</p>
+<p><strong>5 –&gt; IronPython</strong></p>
+<p> IronPython 和 Jython 类似，只不过 IronPython 是运行在微软 .Net 平台上的 Python 解释器，可以直接把 Python 代码编译成 .Net 的字节码。</p>
+<blockquote>
+<p>注意：Python 的解释器很多，这里我们简单介绍了常见的几种，但使用最广泛的还是 CPython。如果要和 Java 或 .Net 平台交互，最好的办法不是用 Jython 或 IronPython，而是 <strong>通过网络调用来交互，确保各程序之间的独立性。</strong></p>
+</blockquote>
+<hr>
+<p>这一小节内容你可以先跳过，等后续对 Python 有了较深的了解之后再来学习当前内容，这可以帮助你更深入、灵活地掌握 Python 环境的使用。</p>
+<h3 id="Python-Versions-Management"><a href="#Python-Versions-Management" class="headerlink" title="Python Versions Management"></a>Python Versions Management</h3><p><strong>设想这样的情景 –&gt;</strong></p>
+<blockquote>
+<p>场景一：A 项目是一个爬虫项目，需要用到 requests、pyspider、scrapy 等包或框架；B 项目是一个 GUI 界面项目，需要用到 GUI 相关的包或库；这需要把所有用到的包安装到原生 Python 环境中，开发环境越来越臃肿。</p>
+</blockquote>
+<blockquote>
+<p>场景二：C 项目是一个 Python2.x 项目；D 项目是一个 Python3.x；两项目要求的 Python 版本不兼容。怎么办？！！</p>
+</blockquote>
+<p><strong>解决思路 –&gt;</strong></p>
+<p>前面提到过一个系统中是可以同时存在多个 Python 版本，但是你需要注意新添加的 Python 环境对系统既有环境的影响，这就涉及到系统中多个 <strong>Python 版本的管理</strong> 问题。</p>
+<p>篇幅原因，方案的详细说明请见同系列博文：<a href="https://www.orangeshare.cn/2018/01/01/python-vers-management/">Python-Vers Management</a> 。</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Python 简介与开发环境搭建</p><p><a href="https://www.orangeshare.cn/2018/01/01/python-jian-jie-yu-kai-fa-huan-jing-da-jian/">https://www.orangeshare.cn/2018/01/01/python-jian-jie-yu-kai-fa-huan-jing-da-jian/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-01-01</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2021-04-30</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Python/">Python</a><a class="link-muted mr-2" rel="tag" href="/tags/prefix/">prefix</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/01/02/python-vers-management/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Python-Vers Management</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/10/16/java-cheng-xu-she-ji-ji-chu-zhi-liu-cheng-kong-zhi/"><span class="level-item">Java 程序设计基础之流程控制</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p><p class="is-size-6 is-block">Web, AI Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Galactic System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">27</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">17</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/TheNightIsYoung" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="DockerHub" href="https://hub.docker.com/"><i class="fab fa-docker"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/explore"><i class="fab fa-gofore"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="MDEditor" href="http://www.mdeditor.com/"><i class="fab fa-canadian-maple-leaf"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="WangYiYun" href="https://music.163.com/"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Python-Introduction"><span class="level-left"><span class="level-item">1</span><span class="level-item">Python Introduction</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Python-发展历史"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">Python 发展历史</span></span></a></li><li><a class="level is-mobile" href="#Python-能干什么？"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">Python 能干什么？</span></span></a></li><li><a class="level is-mobile" href="#Python-究竟是什么？"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">Python 究竟是什么？</span></span></a></li><li><a class="level is-mobile" href="#Python-特点"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">Python 特点</span></span></a></li><li><a class="level is-mobile" href="#Python-有缺点么-？？？"><span class="level-left"><span class="level-item">1.5</span><span class="level-item">Python 有缺点么 ？？？</span></span></a></li><li><a class="level is-mobile" href="#Python-彩蛋"><span class="level-left"><span class="level-item">1.6</span><span class="level-item">Python 彩蛋</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Python-Development-Envs-Setup"><span class="level-left"><span class="level-item">2</span><span class="level-item">Python Development Envs Setup</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#环境检查"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">环境检查</span></span></a></li><li><a class="level is-mobile" href="#Python-Download"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">Python Download</span></span></a></li><li><a class="level is-mobile" href="#Python-Setup"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">Python Setup</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#For-Unix-amp-Linux-Platform"><span class="level-left"><span class="level-item">2.3.1</span><span class="level-item">For Unix &amp; Linux Platform</span></span></a></li><li><a class="level is-mobile" href="#For-Windows-Platform"><span class="level-left"><span class="level-item">2.3.2</span><span class="level-item">For Windows Platform</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Python-环境变量配置"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">Python 环境变量配置</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#为什么需要配置环境变量？"><span class="level-left"><span class="level-item">2.4.1</span><span class="level-item">为什么需要配置环境变量？</span></span></a></li><li><a class="level is-mobile" href="#For-Unix-Linux-Platform"><span class="level-left"><span class="level-item">2.4.2</span><span class="level-item">For Unix/Linux Platform</span></span></a></li><li><a class="level is-mobile" href="#For-Windows-Platform-1"><span class="level-left"><span class="level-item">2.4.3</span><span class="level-item">For Windows Platform</span></span></a></li><li><a class="level is-mobile" href="#检测是否配置成功？"><span class="level-left"><span class="level-item">2.4.4</span><span class="level-item">检测是否配置成功？</span></span></a></li><li><a class="level is-mobile" href="#Python-Hello-World"><span class="level-left"><span class="level-item">2.4.5</span><span class="level-item">Python Hello World</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Python-运行方式"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">Python 运行方式</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#交互式解释器"><span class="level-left"><span class="level-item">2.5.1</span><span class="level-item">交互式解释器</span></span></a></li><li><a class="level is-mobile" href="#命令行脚本"><span class="level-left"><span class="level-item">2.5.2</span><span class="level-item">命令行脚本</span></span></a></li><li><a class="level is-mobile" href="#集成开发环境（IDE：Integrated-Development-Environment）"><span class="level-left"><span class="level-item">2.5.3</span><span class="level-item">集成开发环境（IDE：Integrated Development Environment）</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#You-Need-Know-More"><span class="level-left"><span class="level-item">3</span><span class="level-item">You Need Know More</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Python-解释器详解"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">Python 解释器详解</span></span></a></li><li><a class="level is-mobile" href="#Python-Versions-Management"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">Python Versions Management</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2021 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
