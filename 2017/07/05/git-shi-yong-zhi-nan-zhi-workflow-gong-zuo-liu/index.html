@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Git 使用指南之 WorkFlow (工作流) - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="Git 多人协作必须有一个规范的工作流程，让大家有效地合作，使得项目井井有条地发展下去，这个流程叫做  WorkFlow（工作流），也称为 Git 分支管理策略。工作流不涉及任何命令，因为它就是一个规则，完全由开发者自定义，并且自我遵守。"><meta property="og:type" content="blog"><meta property="og:title" content="Git 使用指南之 WorkFlow (工作流)"><meta property="og:url" content="https://www.orangeshare.cn/2017/07/05/git-shi-yong-zhi-nan-zhi-workflow-gong-zuo-liu/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="Git 多人协作必须有一个规范的工作流程，让大家有效地合作，使得项目井井有条地发展下去，这个流程叫做  WorkFlow（工作流），也称为 Git 分支管理策略。工作流不涉及任何命令，因为它就是一个规则，完全由开发者自定义，并且自我遵守。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_mainBran.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_feature.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_hotfix.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_release.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_log.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_nofastforward.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_all.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/github_flow_diagram.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/gitlab_flow_versionAf.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/gitlab_flow_envsBranch.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/gitlab_flow_releaseBranch.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/forking_flow_fork.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/forking_flow_fork1.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_tag_remote.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_tag_remote_delete.png"><meta property="article:published_time" content="2017-07-05T08:18:00.000Z"><meta property="article:modified_time" content="2022-03-05T06:25:32.371Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Git"><meta property="article:tag" content="Github"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_mainBran.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2017/07/05/git-shi-yong-zhi-nan-zhi-workflow-gong-zuo-liu/"},"headline":"When Art Meets Tech","image":["https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_mainBran.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_feature.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_hotfix.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_release.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_log.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_nofastforward.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_all.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/github_flow_diagram.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/gitlab_flow_versionAf.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/gitlab_flow_envsBranch.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/gitlab_flow_releaseBranch.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/forking_flow_fork.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/forking_flow_fork1.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_tag_remote.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_tag_remote_delete.png"],"datePublished":"2017-07-05T08:18:00.000Z","dateModified":"2022-03-05T06:25:32.371Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"Git 多人协作必须有一个规范的工作流程，让大家有效地合作，使得项目井井有条地发展下去，这个流程叫做  WorkFlow（工作流），也称为 Git 分支管理策略。工作流不涉及任何命令，因为它就是一个规则，完全由开发者自定义，并且自我遵守。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2017/07/05/git-shi-yong-zhi-nan-zhi-workflow-gong-zuo-liu/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>Git 使用指南之 WorkFlow (工作流)</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2017-07-05</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2022-03-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Git/">Git</a></span><span class="level-item">an hour read (About 7961 words)</span></div></div><div class="content"><p>Git 多人协作必须有一个规范的工作流程，让大家有效地合作，使得项目井井有条地发展下去，这个流程叫做  <strong>WorkFlow（工作流）</strong>，也称为 <strong>Git 分支管理策略</strong>。工作流不涉及任何命令，因为它就是一个规则，完全由开发者自定义，并且自我遵守。</p>
+<a id="more"></a>
+
+<blockquote>
+<p><strong>版权说明：</strong> 本文思路以及内容主要来自廖雪峰老师的 <a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Git 教程</a> （强烈推荐膜拜原文），并结合个人使用所作，只作为学习记录使用。如内容有侵权请联系删除，禁止转载！</p>
+</blockquote>
+<p>更多 Git 相关内容，请关注博主 Git 博文系列：</p>
+<p><a href="https://www.orangeshare.cn/2017/07/01/git-shi-yong-zhi-nan-zhi-chu-shi/">之一 &gt;&gt;&gt; Git 使用指南之初识</a></p>
+<p><a href="https://www.orangeshare.cn/2017/07/02/git-shi-yong-zhi-nan-zhi-shi-guang-chuan-suo-ji/">之二 &gt;&gt;&gt; Git 使用指南之时光穿梭机</a></p>
+<p><a href="https://www.orangeshare.cn/2017/07/03/git-shi-yong-zhi-nan-zhi-yuan-cheng-cang-ku/">之三 &gt;&gt;&gt; Git 使用指南之远程仓库</a></p>
+<p><a href="https://www.orangeshare.cn/2017/07/04/git-shi-yong-zhi-nan-zhi-fen-zhi-guan-li/">之四 &gt;&gt;&gt; Git 使用指南之分支管理</a></p>
+<p><a href="https://www.orangeshare.cn/2017/07/05/git-shi-yong-zhi-nan-zhi-workflow-gong-zuo-liu/">之五 &gt;&gt;&gt; Git 使用指南之 WorkFlow (工作流)</a></p>
+<p><a href="https://www.orangeshare.cn/2017/07/06/git-shi-yong-zhi-nan-zhi-head-zhi-zhen/">之六 &gt;&gt;&gt; Git 使用指南之 HEAD 指针</a></p>
+<p><a href="https://www.orangeshare.cn/2017/07/07/git-shi-yong-zhi-nan-zhi-git-zhong-de-hei-mo-fa/">之七 &gt;&gt;&gt; Git 使用指南之 Git 中的黑魔法</a></p>
+<hr>
+<h2 id="何为-Git-工作流？"><a href="#何为-Git-工作流？" class="headerlink" title="何为 Git 工作流？"></a>何为 Git 工作流？</h2><p>WorkFlow 的字面意思，工作流，即工作流程。Git 中因为有分支的存在，才构成了多工作流的特色。</p>
+<p>事实的确如此，因为项目开发中，多人协作，分支很多，虽然各自在分支上互不干扰，但是我们总归需要把分支合并到一起，而且真实项目中涉及到很多问题，例如版本迭代，版本发布，bug 修复等，为了更好的管理代码，需要制定一个约束的工作流程。</p>
+<blockquote>
+<p>简言之，Git 工作流指的是多人协作过程中的 git 的使用流程，不涉及技术细节，是一种项目管理、开发约定的方式。</p>
+</blockquote>
+<p><strong>工作流最受欢迎榜</strong></p>
+<p>目前使用度最高的工作流前三名（排名不分先后）分别是以下三种：</p>
+<ol>
+<li><strong>Git Flow</strong></li>
+<li><strong>GitHub Flow</strong></li>
+<li><strong>GitLab Flow</strong></li>
+</ol>
+<p>其中 Git Flow 出现的最早；GitHub Flow 是在 Git Flow 的基础上，做了一些优化，适用于持续版本的发布；而 GitLab Flow 是综合前面两种工作流的优点，制定而成的一个工作流。</p>
+<hr>
+<h2 id="PopCharts-Introduction"><a href="#PopCharts-Introduction" class="headerlink" title="PopCharts Introduction"></a>PopCharts Introduction</h2><p>你可以根据这里关于上述三种工作流的特性描述，为自己的项目构筑适配的工作流，毕竟适合自己的才是最好的~~~</p>
+<h3 id="Git-Flow"><a href="#Git-Flow" class="headerlink" title="Git Flow"></a>Git Flow</h3><p>Git Flow 工作流，是 Vincent Driessen 2010 年发布出来的他自己的分支管理策略，一经发布就广为留下，目前位置使用度非常高，也是我们日常项目的常用工作流。</p>
+<p>Git Flow 的分支结构很特别，按功能来说，可以分支为 5 种分支。从分支生命周期来看，可以分别归类为:长期分支 &amp;&amp; 短期分支，或者更贴切描述为，<strong>主要分支</strong> &amp;&amp; <strong>协助分支</strong>。</p>
+<h4 id="主要分支"><a href="#主要分支" class="headerlink" title="主要分支"></a>主要分支</h4><p>Git Flow 分支管理策略项目中，代码的中央仓库会一直存在以下两个 <strong>长期分支</strong>：</p>
+<ol>
+<li>master</li>
+<li>develop</li>
+</ol>
+<p>其中，<code>origin/master</code> 分支上的最新提交永远是提供给用户使用的正式发布版本（任何时候 master 分支上拿到的，都是稳定的分布版）。<code>origin/develop</code> 分支用于日常开发，存放最新的开发进度。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_mainBran.png"></p>
+<p>当 develop 上的代码达到一个稳定的状态，可以发布版本的时候，develop 上的修改可以以某种特别方式（–no-ff，有时也需要借助后面将要提到的协助分支 {非必须} 等）被合并到 master 分支上，然后标记上对应的版本标签（tag），为以后项目排查定位提供便利。</p>
+<hr>
+<p>事实上，常设分支只需要这两条主要分支就够了，不需要其他了~~~</p>
+<h4 id="协助分支"><a href="#协助分支" class="headerlink" title="协助分支"></a>协助分支</h4><p>然而，除了常设分支以外，Git Flow 的开发模式还需要一系列的协助分支，来帮助更好的功能的并行开发，简化功能开发和问题修复。</p>
+<p>协助分支是暂时分支，它们非常无私奉献，在需要它们的时候，迫切地创建，用完它们的时候，又挥挥衣袖地彻底消失。</p>
+<p>协助分支分为以下三类：</p>
+<ol>
+<li><strong>Feature Branch（功能分支）</strong></li>
+<li><strong>Release Branch（预发布分支）</strong></li>
+<li><strong>Hotfix Branch（热修复分支）</strong></li>
+</ol>
+<p><strong>1 –&gt; Feature Branch</strong></p>
+<p>Feature 功能分支，是为了开发某种特定功能，从 develop 分支上面分出来的。Feature Branch 命名可以采用：<code>feature-xxx</code> 的方式。</p>
+<p>待功能模块开发完成之后，会将其重新合并到 develop 分支上，然后删除 Feature Branch。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_feature.png"></p>
+<p>如图，有两个功能模块在开发，其中一个已经完成，重新合并到 develop 分支；另一个仍处于开发状态。</p>
+<p><strong>2 –&gt; Hotfix Branch</strong></p>
+<p>Hotfix 热修复分支，是用来做线上的紧急 Bug 修复的，建议命名为 <code>hotfix-xxx</code>。</p>
+<p>当线上（master）某个版本出现了问题，将检出对应版本的代码，创建 Hotfix 分支，问题修复后，合并回 master 和 develop ，然后删除 Hotfix Branch。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_hotfix.png"></p>
+<p>这里注意，合并到 master 的时候，也要打上修复后的版本标签。</p>
+<p><strong>3 –&gt; Release Branch</strong></p>
+<p>Release 预发布分支，是指发布正式版本之前（即 develop 分支合并到 Master 分支之前），我们可能需要从 develop 分支上分出来一个预发布的版本分支进行测试，预发布（测试）结束以后，必须将其合并进 develop 和 master 分支，然后删除 Release Branch。Release Branch 命名可以采用：<code>reature-xxx</code> 的方式。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_release.png"></p>
+<p>例如，在软件 1.0.0 版本的功能全部开发完成提交后，从 develop 检出 release-1.0.0 进行测试，测试中出现的小问题，在 release 分支进行修改提交，测试完毕准备发布的时候，代码会合并到 master 和 develop，master 分支合并后会打上对应版本标签 v1.0.0, 合并完成后删除 release-1.0.0。</p>
+<p>这样做的好处是：在 <strong>测试的时候，不影响下一个版本功能并行开发。</strong></p>
+<p>最后我们来看发布之后的目前的日志记录情况，这里将没有用的分支 hotfix、release、feature 均删除了，可以看出常驻分支只有 master/dev，最下面的 feature 表示仍在开发中。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_log.png"></p>
+<hr>
+<h4 id="No-Fast-Forward"><a href="#No-Fast-Forward" class="headerlink" title="No Fast Forward"></a>No Fast Forward</h4><p>需要说明的是，Git Flow 的作者 Vincent Driessen 非常建议，合并分支的时候，加上 no-ff 参数，采取禁用快速合并模式，使用递归策略合并模式。</p>
+<div align=center><img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_nofastforward.png'></div>
+
+<p><strong>好处</strong>：保证一个非常清晰的提交历史，防止丢失分支信息。</p>
+<hr>
+<h4 id="Git-Flow-Diagram"><a href="#Git-Flow-Diagram" class="headerlink" title="Git Flow Diagram"></a>Git Flow Diagram</h4><p>这里给出 Git Flow 整体工作流程的图解，可以看出，Git Flow 的五种分支，master，develop，feature branchs ,release branchs , hoxfixes。</p>
+<p>其中，master 和 develop 字体被加粗代表主要分支。master 分支每合并一个分支，无论是 hotfix 还是 release ,都会打一个版本标签。通过箭头可以清楚的看到分支的开始和结束走向，例如 feature 分支从 develop 开始，最终合并回 develop ，hoxfixes 从 master 检出创建，最后合并回 develop 和 master，master 也打上了标签。</p>
+<div align=center><img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_workflow_all.png'></div>
+
+<hr>
+<h4 id="Git-Flow-Evaluation"><a href="#Git-Flow-Evaluation" class="headerlink" title="Git Flow Evaluation"></a>Git Flow Evaluation</h4><p>Git Flow 综合考虑了开发、测试、新功能开发、临时需求、热修复，理想很丰满，现实很骨干，这一套运行起来实在是太复杂了/(ㄒoㄒ)/~~</p>
+<p>Git Flow 的优点是清晰可控，缺点除了：1.频繁在两个长期分支（master &amp;&amp; develop）之间切换；2.没有 GUI 图形页面，只能命令行操作；</p>
+<p>更大的问题在于 &gt;&gt;&gt;&gt;&gt;</p>
+<p><strong>Git Flow 是基于 “版本发布” 的，目标是一段时间以后产出一个新版本。但很多网站项目是”持续发布”（快速迭代），代码一有变动，就部署一次。这时，master 分支和 develop 分支的差别不大，没必要维护两个长期分支。</strong></p>
+<hr>
+<h3 id="GitHub-Flow"><a href="#GitHub-Flow" class="headerlink" title="GitHub Flow"></a>GitHub Flow</h3><p>Github flow 是 Git flow 的简化版，专门配合 ”<strong>持续发布</strong>”，它是 Github.com 使用的工作流程。</p>
+<p>Github flow 只有一个长期分支，就是 <code>master</code>，因此用起来非常简单。</p>
+<h4 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h4><p>官方推荐的流程如下：</p>
+<div align=center><img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/github_flow_diagram.png'></div>
+
+<p>GitHub Flow 模型简单说明:</p>
+<blockquote>
+<p>第一步：根据需求，只有一个长期分支 master ,而且 master 分支上的代码，永远是可发布状态。并且 master 分支会设置 <code>protected</code> 分支保护，只有有权限的人才能推送代码到 master 分支。</p>
+<p>第二步：根据需求，从 master 拉出新分支，不区分功能分支或热修复分支等。</p>
+<p>第三步：新分支开发完成后，或者需要讨论的时候，就向 master 发起一个 <code>pull request</code>（简称 PR）。</p>
+<p>第四步：Pull Request 既是一个通知，让别人注意到你的请求;又是一种对话机制，大家一起评审和讨论你的代码。对话过程中，你还可以不断提交代码。</p>
+<p>第四步：你的 Pull Request 被接受，合并进 master，重新部署后，原来你拉出来的那个分支就被删除。</p>
+</blockquote>
+<hr>
+<h4 id="特色之-Pull-Request"><a href="#特色之-Pull-Request" class="headerlink" title="特色之 Pull Request"></a>特色之 Pull Request</h4><p>GitHub Flow 最大的特色就是 Pull Request 的提出，这是一个伟大的发明，它的用处并不仅仅是合并分支，还有以下功能：</p>
+<ol>
+<li>可以很好控制分支合并权限：分支不是你想合并就合并，需要对方同意</li>
+<li>问题讨论 或者 寻求其他小伙伴们的帮助:和拉个讨论组差不多，可以选择相关的人参与，而且参与的人还可以向你的分支提交代码，非常适合代码交流</li>
+<li>代码 Review：如果代码写的很烂，有了 pull request 提供的评论功能支持，准备好接受来自 review 的实时吐槽吧。</li>
+</ol>
+<p>Github Flow 这种方式，要保证高质量，对于贡献者的素质要求很高，换句话说，如果代码贡献者素质不那么高，安安心心小板凳做好膜拜大佬就好了~~~</p>
+<hr>
+<h4 id="特色之-issue-tracking"><a href="#特色之-issue-tracking" class="headerlink" title="特色之 issue tracking"></a>特色之 issue tracking</h4><p>日常开发中，会用到很多第三方库，然后使用过程中，出现了问题，是不是第一个反应是去这个第三方库的 GitHub 仓库去搜索一下 issue ，看没有人遇到过，项目维护者修复了没有？？？一般未解决的 issue 是 open 状态，已解决的会被标记为 closed，这就是 <strong>issue tracking（问题追踪）</strong>。</p>
+<p>如果你是一个项目维护者，除了标记 issue 的开启和关闭，还可以给它标记上不同的标签，来优化项目。当提交的时候，如果提交信息中有 fix #1 等字段，可以自动关闭对应编号的 issue。</p>
+<p>issue tracking 非常适合开源项目。</p>
+<hr>
+<h3 id="GitLab-Flow"><a href="#GitLab-Flow" class="headerlink" title="GitLab Flow"></a>GitLab Flow</h3><p>Gitlab Flow 集百家之长，补百家之短。</p>
+<p>Gitlab Flow 是 Git Flow 与 Github Flow 的综合。它吸取了两者的优点，既有适应不同开发环境的弹性，又有单一主分支的简单和便利。它是 Gitlab.com 推荐的做法。</p>
+<p>GitLab 既支持 Git Flow 的分支策略，也有 GitHub Flow 的 Pull Request（ Merge Request ） 和 issue tracking。</p>
+<h4 id="Git-amp-GitHub-Flow-的瑕疵"><a href="#Git-amp-GitHub-Flow-的瑕疵" class="headerlink" title="Git &amp; GitHub Flow 的瑕疵"></a>Git &amp; GitHub Flow 的瑕疵</h4><p>当 <strong>Git Flow</strong> 出现后，它解决了之前项目管理的很让人头疼的分支管理，但是实际使用过程中，也暴露了很多问题：</p>
+<ol>
+<li>默认工作分支是 develop，但是大部分版本管理工具默认分支都是 master，开始的时候总是需要切换很麻烦。</li>
+<li>Hotfix 和 Release 分支在需要版本快速迭代的项目中，几乎用不到，因为刚开发完就直接合并到 master 发版，出现问题 develop 就直接修复发布下个版本了。</li>
+<li>Hotfix 和 Release 分支，一个从 master 创建，一个从 develop 创建，使用完毕，需要合并回 develop 和 master。而且在实际项目管理中，很多开发者会忘记合并回 develop 或者 master。</li>
+</ol>
+<p>随着，<strong>GitHub Flow</strong> 的出现，极大程度上简化了 Git Flow ，因为只有一个长期分支 master，并且提供 GUI 操作工具，一定程度上避免了上述的几个问题，然而在一些实际问题面前，仅仅使用 master 分支显然有点力不从心，例如：</p>
+<ol>
+<li>版本的延迟发布（例如开发 iOS 应用审核过程中（等待审核上架），可能也要在 master 上推送代码，导致线上版本落后 master 分支）</li>
+<li>不同环境的部署 （例如：测试环境，预发环境，正式环境）</li>
+<li>不同版本发布与修复 （只有一个 master 分支真心不够用）</li>
+</ol>
+<hr>
+<h4 id="GitLab-Flow-解决方案"><a href="#GitLab-Flow-解决方案" class="headerlink" title="GitLab Flow 解决方案"></a>GitLab Flow 解决方案</h4><p>在给出解决方案之前，需要明确 GitLab Flow 中的一个最大原则：<strong>”上游优先”（upsteam first）</strong>。</p>
+<blockquote>
+<p>”上游优先”原则：即只存在一个主分支master，它是所有其他分支的”上游”。只有上游分支采纳的代码变化，才能应用到其他分支。只有紧急情况，才允许跳过上游，直接合并到下游分支。</p>
+</blockquote>
+<p>关于”上游优先”原则的具体应用，请参看下文 &gt;&gt;&gt;&gt;</p>
+<p>为了解决 Git Flow &amp; GitHub Flow 中那些毛茸茸的小问题，GitLab Flow 给出了以下的解决方案：</p>
+<p><strong>1 –&gt; 版本的延迟发布</strong></p>
+<blockquote>
+<blockquote>
+<p>解决思路：<strong>Prodution Branch &amp; Upsteam First</strong></p>
+</blockquote>
+</blockquote>
+<p>master 分支不够，于是添加了一个 prodution 分支，专门用来发布版本。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/gitlab_flow_versionAf.png"></p>
+<p>但要注意需要遵循 ”上游优先”（upsteam first），代码的变化，必须由”上游”向”下游”发展。比如，生产环境出现了 bug，这时就要新建一个功能分支，先把它合并到 master，确认没有问题，再 <code>cherry-pick</code> 到 <code>production</code>。</p>
+<hr>
+<p><strong>2 –&gt; 不同环境的部署</strong></p>
+<blockquote>
+<blockquote>
+<p>应对”持续发布”的项目，解决思路：<strong>Environment Branches &amp; Upstream First</strong></p>
+</blockquote>
+</blockquote>
+<p>每个环境，都对应一个分支，例如下图中的 pre-production 和 prodution 分支都对应不同的环境，GitLab Flow 模型比较适用服务端，测试环境、预发环境、正式环境，一个环境建一个分支。</p>
+<p>比如，”开发环境”的分支是 master，”预发环境”的分支是 pre-production，”生产环境”的分支是 production。</p>
+<div align=center><img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/gitlab_flow_envsBranch.png'></div>
+
+<p>开发分支是预发分支的”上游”，预发分支又是生产分支的”上游”。代码的变化，必须由”上游”向”下游”发展。比如，生产环境出现了 bug，这时就要新建一个功能分支，先把它合并到master，确认没有问题，再 cherry-pick 到 pre-production，这一步也没有问题，才进入 production。</p>
+<p>只有紧急情况，才允许跳过上游，直接合并到下游分支。</p>
+<hr>
+<p><strong>3 –&gt; 版本发布分支</strong></p>
+<blockquote>
+<blockquote>
+<p>应对”版本发布”的项目，解决思路：<strong>Release Branches &amp; Upstream First</strong></p>
+</blockquote>
+</blockquote>
+<p>只有当对外发布软件的时候，才需要创建 release 分支。作为一个移动端开发来说，对外发布版本的记录是非常重要的，如果线上出现了一个问题，需要拿到问题出现对应版本的代码，才能准确定位问题。</p>
+<p>GitLab Flow 中建议的做法是：每一个稳定版本，都要从 master 分支拉出一个分支，比如 2-3-stable、 2-4-stable 等等。发现问题，就从对应版本分支创建修复分支，完成之后，先合并到 master，才能再合并到 release 分支，遵循 “上游优先” 原则，并且记得要更新小版本号。</p>
+<div align=center><img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/gitlab_flow_releaseBranch.png'></div>
+
+<hr>
+<h3 id="Useful-Tips"><a href="#Useful-Tips" class="headerlink" title="Useful Tips"></a>Useful Tips</h3><h4 id="Pull-Request"><a href="#Pull-Request" class="headerlink" title="Pull Request"></a>Pull Request</h4><p>GitHub Flow 中的 Pull Request 见上文相关部分，GitLab Flow 中也支持 Pull Request，只是叫法改为 Merge Request！！！</p>
+<h4 id="Protected-branch"><a href="#Protected-branch" class="headerlink" title="Protected branch"></a>Protected branch</h4><p>master 分支应该受到保护，不是每个人都可以修改这个分支，以及拥有审批 Pull Request 的权限。</p>
+<p>Github 和 Gitlab 都提供”保护分支”（Protected branch）这个功能。</p>
+<h4 id="Issue-tracking"><a href="#Issue-tracking" class="headerlink" title="Issue tracking"></a>Issue tracking</h4><p>Issue 用于 Bug追踪和需求管理。建议先新建 Issue，再新建对应的功能分支。功能分支总是为了解决一个或多个 Issue。</p>
+<p>功能分支的名称，可以与issue的名字保持一致，并且以 issue 的编号起首，比如：”15-require-a-password-to-change-it”。</p>
+<p>开发完成后，在提交说明里面，可以写上 “fixes #14” 或者 “closes #67”。Github 规定，只要 commit message 里面有下面这些 “动词 + 编号”，就会关闭对应的 issue。</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">close</span><br><span class="line">closes</span><br><span class="line">closed</span><br><span class="line">fix</span><br><span class="line">fixes</span><br><span class="line">fixed</span><br><span class="line">resolve</span><br><span class="line">resolves</span><br><span class="line">resolved</span><br></pre></td></tr></table></figure>
+
+<h4 id="Merge-With-NO-FF"><a href="#Merge-With-NO-FF" class="headerlink" title="Merge With NO-FF"></a>Merge With NO-FF</h4><p>需要说明的是，合并分支的时候，加上 no-ff 参数，采取禁用快速合并模式，使用递归策略合并模式。</p>
+<p>这样可以保证一个非常清晰的提交历史，防止丢失分支信息。</p>
+<h4 id="Squash-commits"><a href="#Squash-commits" class="headerlink" title="Squash commits"></a>Squash commits</h4><p>为了便于他人阅读你的提交，也便于 cherry-pick 或撤销代码变化，在发起 Pull Request 之前，应该把多个 commit 合并成一个（前提是，该分支只有你一个人开发，且没有跟 master 合并过）。</p>
+<p>这可以采用 rebase 命令附带的 squash 操作</p>
+<p>=====================================================</p>
+<p>至此，Git 中的分支管理策略就也就介绍完了。事实上，Git 的使用真的很灵活自由，你完全可以采取搭配式的工作流模式，比如：GitLab + Git Flow，一定要把思路打开。</p>
+<p>这里再扩展一种工作流：<strong>Forking Flow</strong></p>
+<h3 id="Forking-Flow"><a href="#Forking-Flow" class="headerlink" title="Forking Flow"></a>Forking Flow</h3><p>开源项目常用的工作流 ——Forking 工作流，介绍之前首先需要了解什么是 fork 操作，见下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/forking_flow_fork.png"></p>
+<p>fork 操作是在个人远程仓库新建一份目标远程仓库的拷贝，操作很简单，比如 github 上在项目的主页点击 fork 按钮即可。</p>
+<p>明白了 fork 操作之后，我们来看下 forking 工作流的流程，如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/forking_flow_fork1.png"></p>
+<p>首先开发者 A 拥有一个远端仓库 &gt;&gt;&gt;</p>
+<p>这时候有一个开发者 C 也想参与 A 的这个项目的开发工作，那他就可以 fork 一份 A 的这个仓库，之后在 C 的个人仓库里就有了这份代码库，后续开发者 C 就可以在自己的这个项目里进行开发工作，C 在完成了某个功能的实现之后，可以给 A 的仓库发一个 PR 请求，这时候会通知到开发者 A 有新的 PR，A 如果有问题可以直接在这个 PR 里提，开发者 C 可以进行进一步的修改，最后 A 通过了 C 的这份 PR 请求，就会将 C 的代码合并进 A 的仓库，这样就完成了 A / 代码库新特性的开发。同时如果有其他开发者对 A 的项目有兴趣也会进行相同的操作。</p>
+<p>这里注意到 开发者 B/C 并不是 A 代码库的开发人员，而是第三方开发者，所以这种工作流主要用于开源项目！</p>
+<hr>
+<h2 id="Tag-Management"><a href="#Tag-Management" class="headerlink" title="Tag Management"></a>Tag Management</h2><p>在开发过程中, Git 支持使用 <strong>标签（Tag）</strong> 给仓库历史中的某一个提交打上标签，以示重要。 例如版本发布, 有重大修改, 升级的时候，开发人员会使用标签来标记发布（修改、升级）结点：v1.0 、 v2.0 等等，这可以为以后项目排查、定位提供极大便利。</p>
+<p>将来无论什么时候，可以通过之前打好的标签（v1.0 、 v2.0），拿到那个时刻的历史快照，相当于版本库某个特殊时刻的快照。Git 标签虽然是 <strong>版本库的快照</strong>，但本质上它是 <strong>指向某个 commit 的指针</strong>（是不是跟分支很像？？？），所以创建和删除标签也都是瞬间完成的。</p>
+<blockquote>
+<p>注意和分支指针不同的是：标签是指向 commit 的死指针，分支是指向 commit 的活指针！！！事实上，你可以将标签简单理解为 某个 Commit 的别名。</p>
+</blockquote>
+<h3 id="为何引入-Git-Tag"><a href="#为何引入-Git-Tag" class="headerlink" title="为何引入 Git Tag"></a>为何引入 Git Tag</h3><p>思考一下：为什么 Git 有 commit，为什么还要引入 tag ？？？</p>
+<p>你：“请把上周一的那个版本打包发布，commit 号是 6a5819e..”</p>
+<p>同事：“一串乱七八糟的数字不好找！”</p>
+<p>如果换一个办法：</p>
+<p>你：“请把上周一的那个版本打包发布，版本号是v1.2”</p>
+<p>同事：“好的，按照 tag v1.2 查找 commit id 就行！”</p>
+<p>所以，tag 就是一个让人 <strong>容易记住的有意义的名字，它跟某个 commit 绑在一起（别名）</strong>。</p>
+<hr>
+<h3 id="查看标签"><a href="#查看标签" class="headerlink" title="查看标签"></a>查看标签</h3><p>在开始标签操作说明之前，需要先介绍一下 Git 中的标签查看命令，后续标签操作需要查看命令的配合。</p>
+<p><strong>1 –-&gt; git tag：列出标签</strong></p>
+<p>在 Git 中列出已有的标签非常简单，只需要输入 <code>git tag</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果仓库中已创建了标签：v1.0，v2.0，可以使用命令进行查看</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git tag</span></span><br><span class="line">v1.0</span><br><span class="line">v2.0</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>git tag 列出的标签，会以字母顺序列出，但是它们显示的顺序并不重要。</p>
+</blockquote>
+<p>这时会有一个问题：当项目经过长时间维护，仓库中包含的标签数量较多时，以上命令会全部进行显示，不方便精确查找到目标。</p>
+<p>这时，你可以通过通配符的方式，使用 <code>git tag -l &quot;tag version*&quot;</code>进行精确查找，例如只对 1.8.5 系列感兴趣，可以运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git tag -l <span class="string">&quot;v1.8.5*&quot;</span></span></span><br><span class="line">v1.8.5</span><br><span class="line">v1.8.5-rc0</span><br><span class="line">v1.8.5-rc1</span><br><span class="line">v1.8.5-rc2</span><br><span class="line">v1.8.5-rc3</span><br><span class="line">v1.8.5.1</span><br><span class="line">v1.8.5.2</span><br><span class="line">v1.8.5.3</span><br><span class="line">v1.8.5.4</span><br><span class="line">v1.8.5.5</span><br></pre></td></tr></table></figure>
+
+<p><strong>2 –&gt; git show：查看标签信息</strong></p>
+<p><code>git show</code> 命令可以用来查看某个标签对应的提交的信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">	$</span><span class="bash"> git show v0.8</span></span><br><span class="line">commit fb508357fe0e488ac6720874941ecd6bbd3aacf2 (HEAD -&gt; master, tag: v0.8, origin/master)</span><br><span class="line">Merge: 7d23fef c07648e</span><br><span class="line">Author: TheNightIsYoung &lt;guojie0213_iit@163.com&gt;</span><br><span class="line">Date:   Mon Feb 28 19:52:38 2022 +0800</span><br><span class="line"></span><br><span class="line">    Dealing Merge Conflict</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>Git WorkFlow 学习之后，你应该知道标签（Tag）正式情况下更多运用在 master 分支上（生产线上）。</p>
+<h3 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h3><p>Git 中支持两种类型的标签：</p>
+<ol>
+<li>轻量标签（Lightweight）</li>
+<li>附注标签（Annotated）</li>
+</ol>
+<p>轻量标签，轻量级的标签，它只是某个特定提交的引用。</p>
+<p>而附注标签见名知义，除了引用作用之外，还包含了丰富的信息：打标签者的名字、电子邮件地址、日期时间等。</p>
+<blockquote>
+<p>通常，<strong>推荐创建附注标签</strong>，这样你可以拥有以上所有信息。但是如果你只是想用一个临时的标签， 或者因为某些原因不想要保存这些信息，那么也可以用轻量标签。</p>
+</blockquote>
+<h4 id="轻量标签"><a href="#轻量标签" class="headerlink" title="轻量标签"></a>轻量标签</h4><p>创建轻量标签非常简单，没有保存任何其他信息，故创建时只需要提供标签名字即可：</p>
+<p><strong>命令格式 –&gt;&gt;&gt; git tag &lt;name&gt;</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 1.首先，切换到需要打标签的分支上(master)：</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch</span></span><br><span class="line">* dev</span><br><span class="line">  master</span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout master</span></span><br><span class="line">Switched to branch &#x27;master&#x27;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2.创建 v0.8 版本标签：</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git tag v0.8</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 3. 查看当前版本库已有标签</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git tag</span></span><br><span class="line">v0.8</span><br><span class="line"><span class="meta">#</span><span class="bash"> 可以看到，已经成功创建标签</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="附注标签"><a href="#附注标签" class="headerlink" title="附注标签"></a>附注标签</h4><p>在 Git 中创建附注标签也十分简单，可以配合 <code>-a</code> &amp;&amp; <code>-m</code> 参数一起使用，例如创建名为 v1.0 的附注标签：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git tag -a v1.0 -m <span class="string">&quot;Version 1.4: User Authorization&quot;</span></span></span><br><span class="line">(master) GitTestProject $ git tag</span><br><span class="line">v0.8</span><br><span class="line">v1.0</span><br></pre></td></tr></table></figure>
+
+<p>参数 <code>-m</code>，你可以理解为提交时的提交信息。如果没有为附注标签指定一条信息，Git 会启动编辑器要求你输入信息。</p>
+<p>通过使用 <code>git show</code> 命令查看标签信息和与之对应的提交信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git show v1.0</span></span><br><span class="line">tag v1.0</span><br><span class="line">Tagger: TheNightIsYoung &lt;guojie0213_iit@163.com&gt;</span><br><span class="line">Date:   Sat Mar 5 11:19:29 2022 +0800</span><br><span class="line"></span><br><span class="line">Version 1.4: User Authorization</span><br><span class="line"></span><br><span class="line">commit 6a9789d4f788a797aa75283c15b521dd6b028be4 (HEAD -&gt; master, tag: v1.0)</span><br><span class="line">Author: TheNightIsYoung &lt;guojie0213_iit@163.com&gt;</span><br><span class="line">Date:   Sat Mar 5 11:18:58 2022 +0800</span><br><span class="line"></span><br><span class="line">    Tag Test</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，输出显示了打标签者的信息、打标签的日期时间、附注信息，然后显示具体的提交信息。</p>
+<h4 id="后期打标签"><a href="#后期打标签" class="headerlink" title="后期打标签"></a>后期打标签</h4><p>默认标签是打在最新提交的 commit 上的。有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？</p>
+<p>方法是你可以对历史提交的 commit id 打标签。 语法规则：<strong>git tag -a &lt;tag name&gt; &lt;commit id&gt;</strong></p>
+<p>假设当前提交历史是这样的：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"> $</span><span class="bash"> git <span class="built_in">log</span> --pretty=oneline --abbrev-commit      6a9789d (HEAD -&gt; master, tag: v1.0) Tag Test</span></span><br><span class="line">fb50835 (tag: v0.8, origin/master) Dealing Merge Conflict</span><br><span class="line">c07648e (FeatureA) Merge conflic test in FeatureA</span><br><span class="line">7d23fef Merge conflic test in master</span><br><span class="line">28157d9 Merge with no-ff</span><br><span class="line">02636d0 Func-Add Permission(no-ff)</span><br><span class="line">b324182 Func-Add User(no-ff)</span><br><span class="line">8a39810 Func-Add Permission</span><br><span class="line">3d6d64d Func-Add User</span><br><span class="line">5f264b1 Merge branch &#x27;featureB&#x27;</span><br><span class="line">4528426 (featureB) Add BTest File For featureB</span><br><span class="line">fc2702b Add ATest File For</span><br><span class="line">79c3a2c Add git_rm_test.txt</span><br><span class="line">fe3235b git tracks changes</span><br><span class="line">d6ddc31 Git local data management test</span><br><span class="line">0f5a696 understand how stage works</span><br><span class="line">ebba382 Add test code</span><br><span class="line">da1fadc Add help info</span><br><span class="line">65586b3 ADD Project Base</span><br></pre></td></tr></table></figure>
+
+<p>现在，假设在 v1.2 时你忘记给项目打标签，也就是在 “Merge branch ‘featureB’” 提交。你可以在之后补上标签:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git tag -a v1.2 5f264b1</span></span><br></pre></td></tr></table></figure>
+
+<p>这时，Git 会启动编辑器要求你输入标签信息（类似于 git commit）。</p>
+<p>可以看到你已经在那次提交上打上标签了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git tag</span></span><br><span class="line">v0.8</span><br><span class="line">v1.0</span><br><span class="line">v1.2</span><br><span class="line"></span><br><span class="line">(master) GitTestProject $ git show v1.2</span><br><span class="line">tag v1.2</span><br><span class="line">Tagger: TheNightIsYoung &lt;guojie0213_iit@163.com&gt;</span><br><span class="line">Date:   Sat Mar 5 11:41:30 2022 +0800</span><br><span class="line"></span><br><span class="line">Version 1.2: Add Function-B</span><br><span class="line"></span><br><span class="line">commit 5f264b1aecadb5082627d33d431ee52ce37dcd23 (tag: v1.2)</span><br><span class="line">Merge: fc2702b 4528426</span><br><span class="line">Author: TheNightIsYoung &lt;guojie0213_iit@163.com&gt;</span><br><span class="line">Date:   Mon Feb 28 13:17:29 2022 +0800</span><br><span class="line"></span><br><span class="line">	Merge branch &#x27;featureB&#x27;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：标签总是和某个 commit 挂钩。如果这个 commit 既出现在 master 分支，又出现在 dev 分支，那么在这两个分支上都可以看到这个标签。</p>
+</blockquote>
+<hr>
+<h4 id="共享标签"><a href="#共享标签" class="headerlink" title="共享标签"></a>共享标签</h4><p>默认情况下，创建的标签都只存储在本地，<code>git push</code> 命令并不会自动推送标签到远程仓库服务器上。</p>
+<p>想要将本地创建的标签同步到远程仓库中，在创建完标签后你必须显式地推送标签到远程仓库上。这个过程就像共享远程分支一样——你可以通过 <code>git push origin &lt;tagname&gt;</code> 实现：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git push origin v1.2</span></span><br><span class="line">Enumerating objects: 1, done.</span><br><span class="line">Counting objects: 100% (1/1), done.</span><br><span class="line">Writing objects: 100% (1/1), 186 bytes | 186.00 KiB/s, done.</span><br><span class="line">Total 1 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">To github.com:TheNightIsYoung/GitTestProject.git</span><br><span class="line">* [new tag]         v1.2 -&gt; v1.2</span><br></pre></td></tr></table></figure>
+
+<p>如果想要一次性推送很多标签，也可以使用带有 <code>--tags</code> 选项的 <code>git push</code> 命令。 这将会把所有不在远程仓库上的标签全部传送到那里:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git push origin --tags</span></span><br><span class="line">Enumerating objects: 1, done.</span><br><span class="line">Counting objects: 100% (1/1), done.</span><br><span class="line">Writing objects: 100% (1/1), 187 bytes | 187.00 KiB/s, done.</span><br><span class="line">Total 1 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">To github.com:TheNightIsYoung/GitTestProject.git</span><br><span class="line">* [new tag]         v0.8 -&gt; v0.8</span><br><span class="line">* [new tag]         v1.0 -&gt; v1.0</span><br></pre></td></tr></table></figure>
+
+<p>从远程仓库已经可以看到推送上来的所有标签了：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_tag_remote.png"></p>
+<hr>
+<h4 id="删除标签"><a href="#删除标签" class="headerlink" title="删除标签"></a>删除标签</h4><p><strong>1 –&gt; 本地标签删除</strong></p>
+<p>要删除掉你本地仓库上的标签，可以使用命令: <code>git tag -d &lt;tagname&gt;</code>。 例如，可以使用以下命令删除一个标签：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git tag</span></span><br><span class="line">v0.8</span><br><span class="line">v1.0</span><br><span class="line">v1.2</span><br><span class="line">(master) GitTestProject $ git tag -d v0.8</span><br><span class="line">Deleted tag &#x27;v0.8&#x27; (was fb50835)</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> git tag</span></span><br><span class="line">v1.0</span><br><span class="line">v1.2</span><br></pre></td></tr></table></figure>
+
+<p>注意上述命令并不会从任何远程仓库中移除这个标签，你必须用下面命令更新你的远程仓库：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git push &lt;remote&gt; :refs/tags/&lt;tagname&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>实测如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git push origin :refs/tags/v0.8</span></span><br><span class="line">To github.com:TheNightIsYoung/GitTestProject.git</span><br><span class="line">- [deleted]         v0.8</span><br></pre></td></tr></table></figure>
+
+<p>登陆 GitHub 查看，发现远程仓库标签已经被删除：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/git_tag_remote_delete.png"></p>
+<hr>
+<h4 id="检出标签"><a href="#检出标签" class="headerlink" title="检出标签"></a>检出标签</h4><p>如果你想查看某个标签所指向的文件版本，可以使用分支介绍中我们提到过的 <code>git checkout</code> 命令，但这会使我们仓库处于 “头指针游离（detached HEAD）” 的状态：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git checkout v1.2</span></span><br><span class="line">Note: switching to &#x27;v1.2&#x27;.</span><br><span class="line"></span><br><span class="line">You are in &#x27;detached HEAD&#x27; state. You can look around, make experimental</span><br><span class="line">changes and commit them, and you can discard any commits you make in this</span><br><span class="line">state without impacting any branches by switching back to a branch.</span><br><span class="line"></span><br><span class="line">If you want to create a new branch to retain commits you create, you may</span><br><span class="line">do so (now or later) by using -c with the switch command. Example:</span><br><span class="line"></span><br><span class="line">git switch -c &lt;new-branch-name&gt;</span><br><span class="line"></span><br><span class="line">Or undo this operation with:</span><br><span class="line"></span><br><span class="line">git switch -</span><br><span class="line"></span><br><span class="line">Turn off this advice by setting config variable advice.detachedHead to false</span><br><span class="line"></span><br><span class="line">HEAD is now at 5f264b1 Merge branch &#x27;featureB&#x27;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 可以看到，HEAD 指针已经切换到 v1.2 了：</span></span><br><span class="line">((v1.2)) GitTestProject $</span><br></pre></td></tr></table></figure>
+
+<p>为什么会进入游离态？前面介绍 HEAD 指针时说过：<strong>HEAD 不指向 branch，而是指向分支上的某一个 commit 时就会进入游离态</strong>，再结合命令 <code>git checkout</code> 移动 HEAD 指针来实现切换分支，这里移动 HEAD 指针指向被打了标签的某一个特定提交，所以游离是显而易见的。</p>
+<p>HEAD 处于 “游离态” 会产生不好的副作用，如果你做了某些更改然后提交它们，标签不会发生变化， 但你的新提交将不属于任何分支，并且将无法访问。如果你需要进行更改，比如你要修复旧版本中的错误（修复 Bug），那么通常需要创建一个新分支，然后在新分支上进行提交，这时新分支上的内容和 v1.2 就不一样了。</p>
+<blockquote>
+<p>更多关于 HEAD 游离态的说明可以参看博文：<a href="">Git 使用指南之 HEAD 指针</a>。</p>
+</blockquote>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Git 使用指南之 WorkFlow (工作流)</p><p><a href="https://www.orangeshare.cn/2017/07/05/git-shi-yong-zhi-nan-zhi-workflow-gong-zuo-liu/">https://www.orangeshare.cn/2017/07/05/git-shi-yong-zhi-nan-zhi-workflow-gong-zuo-liu/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2017-07-05</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-03-05</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Git/">Git</a><a class="link-muted mr-2" rel="tag" href="/tags/Github/">Github</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/07/06/git-shi-yong-zhi-nan-zhi-head-zhi-zhen/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Git 使用指南之 HEAD 指针</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/07/04/git-shi-yong-zhi-nan-zhi-fen-zhi-guan-li/"><span class="level-item">Git 使用指南之分支管理</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p><p class="is-size-6 is-block">Web, AI Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Galactic System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">33</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">17</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/TheNightIsYoung" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="DockerHub" href="https://hub.docker.com/"><i class="fab fa-docker"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/explore"><i class="fab fa-gofore"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="MDEditor" href="http://www.mdeditor.com/"><i class="fab fa-canadian-maple-leaf"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="WangYiYun" href="https://music.163.com/"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#何为-Git-工作流？"><span class="level-left"><span class="level-item">1</span><span class="level-item">何为 Git 工作流？</span></span></a></li><li><a class="level is-mobile" href="#PopCharts-Introduction"><span class="level-left"><span class="level-item">2</span><span class="level-item">PopCharts Introduction</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Git-Flow"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">Git Flow</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#主要分支"><span class="level-left"><span class="level-item">2.1.1</span><span class="level-item">主要分支</span></span></a></li><li><a class="level is-mobile" href="#协助分支"><span class="level-left"><span class="level-item">2.1.2</span><span class="level-item">协助分支</span></span></a></li><li><a class="level is-mobile" href="#No-Fast-Forward"><span class="level-left"><span class="level-item">2.1.3</span><span class="level-item">No Fast Forward</span></span></a></li><li><a class="level is-mobile" href="#Git-Flow-Diagram"><span class="level-left"><span class="level-item">2.1.4</span><span class="level-item">Git Flow Diagram</span></span></a></li><li><a class="level is-mobile" href="#Git-Flow-Evaluation"><span class="level-left"><span class="level-item">2.1.5</span><span class="level-item">Git Flow Evaluation</span></span></a></li></ul></li><li><a class="level is-mobile" href="#GitHub-Flow"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">GitHub Flow</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Introduction"><span class="level-left"><span class="level-item">2.2.1</span><span class="level-item">Introduction</span></span></a></li><li><a class="level is-mobile" href="#特色之-Pull-Request"><span class="level-left"><span class="level-item">2.2.2</span><span class="level-item">特色之 Pull Request</span></span></a></li><li><a class="level is-mobile" href="#特色之-issue-tracking"><span class="level-left"><span class="level-item">2.2.3</span><span class="level-item">特色之 issue tracking</span></span></a></li></ul></li><li><a class="level is-mobile" href="#GitLab-Flow"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">GitLab Flow</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Git-amp-GitHub-Flow-的瑕疵"><span class="level-left"><span class="level-item">2.3.1</span><span class="level-item">Git &amp; GitHub Flow 的瑕疵</span></span></a></li><li><a class="level is-mobile" href="#GitLab-Flow-解决方案"><span class="level-left"><span class="level-item">2.3.2</span><span class="level-item">GitLab Flow 解决方案</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Useful-Tips"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">Useful Tips</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Pull-Request"><span class="level-left"><span class="level-item">2.4.1</span><span class="level-item">Pull Request</span></span></a></li><li><a class="level is-mobile" href="#Protected-branch"><span class="level-left"><span class="level-item">2.4.2</span><span class="level-item">Protected branch</span></span></a></li><li><a class="level is-mobile" href="#Issue-tracking"><span class="level-left"><span class="level-item">2.4.3</span><span class="level-item">Issue tracking</span></span></a></li><li><a class="level is-mobile" href="#Merge-With-NO-FF"><span class="level-left"><span class="level-item">2.4.4</span><span class="level-item">Merge With NO-FF</span></span></a></li><li><a class="level is-mobile" href="#Squash-commits"><span class="level-left"><span class="level-item">2.4.5</span><span class="level-item">Squash commits</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Forking-Flow"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">Forking Flow</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Tag-Management"><span class="level-left"><span class="level-item">3</span><span class="level-item">Tag Management</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#为何引入-Git-Tag"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">为何引入 Git Tag</span></span></a></li><li><a class="level is-mobile" href="#查看标签"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">查看标签</span></span></a></li><li><a class="level is-mobile" href="#创建标签"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">创建标签</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#轻量标签"><span class="level-left"><span class="level-item">3.3.1</span><span class="level-item">轻量标签</span></span></a></li><li><a class="level is-mobile" href="#附注标签"><span class="level-left"><span class="level-item">3.3.2</span><span class="level-item">附注标签</span></span></a></li><li><a class="level is-mobile" href="#后期打标签"><span class="level-left"><span class="level-item">3.3.3</span><span class="level-item">后期打标签</span></span></a></li><li><a class="level is-mobile" href="#共享标签"><span class="level-left"><span class="level-item">3.3.4</span><span class="level-item">共享标签</span></span></a></li><li><a class="level is-mobile" href="#删除标签"><span class="level-left"><span class="level-item">3.3.5</span><span class="level-item">删除标签</span></span></a></li><li><a class="level is-mobile" href="#检出标签"><span class="level-left"><span class="level-item">3.3.6</span><span class="level-item">检出标签</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2022 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
