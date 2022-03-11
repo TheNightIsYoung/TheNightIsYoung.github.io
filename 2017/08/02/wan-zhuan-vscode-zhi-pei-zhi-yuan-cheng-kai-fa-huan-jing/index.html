@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>玩转 VSCode 之配置远程开发环境 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="微软在 PyCon 2019 大会上发布了 VS Code Remote，开启了远程开发的新时代！这次发布包含了三款核心的全新插件，它们可以帮助开发者在容器，物理或虚拟机，以及 Windows Subsystem for Linux (WSL) 中实现无缝的远程开发。VSCode Remote 的提出彻底引发了一场 “谁才是新一代最强编辑器？” 的争论。"><meta property="og:type" content="blog"><meta property="og:title" content="玩转 VSCode 之配置远程开发环境"><meta property="og:url" content="https://www.orangeshare.cn/2017/08/02/wan-zhuan-vscode-zhi-pei-zhi-yuan-cheng-kai-fa-huan-jing/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="微软在 PyCon 2019 大会上发布了 VS Code Remote，开启了远程开发的新时代！这次发布包含了三款核心的全新插件，它们可以帮助开发者在容器，物理或虚拟机，以及 Windows Subsystem for Linux (WSL) 中实现无缝的远程开发。VSCode Remote 的提出彻底引发了一场 “谁才是新一代最强编辑器？” 的争论。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_development.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_explore.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_wakeupcmd.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remotessh_principle.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_sshtargets_add.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_sshtargets_config.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_visuallinuxfile.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_extens.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_terminal.png"><meta property="article:published_time" content="2017-08-02T10:16:18.000Z"><meta property="article:modified_time" content="2022-03-11T11:08:15.216Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="IDE"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_development.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2017/08/02/wan-zhuan-vscode-zhi-pei-zhi-yuan-cheng-kai-fa-huan-jing/"},"headline":"When Art Meets Tech","image":["https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_development.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_explore.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_wakeupcmd.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remotessh_principle.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_sshtargets_add.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_sshtargets_config.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_visuallinuxfile.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_extens.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_terminal.png"],"datePublished":"2017-08-02T10:16:18.000Z","dateModified":"2022-03-11T11:08:15.216Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"微软在 PyCon 2019 大会上发布了 VS Code Remote，开启了远程开发的新时代！这次发布包含了三款核心的全新插件，它们可以帮助开发者在容器，物理或虚拟机，以及 Windows Subsystem for Linux (WSL) 中实现无缝的远程开发。VSCode Remote 的提出彻底引发了一场 “谁才是新一代最强编辑器？” 的争论。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2017/08/02/wan-zhuan-vscode-zhi-pei-zhi-yuan-cheng-kai-fa-huan-jing/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>玩转 VSCode 之配置远程开发环境</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2017-08-02</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2022-03-11</time></span><span class="level-item"><a class="link-muted" href="/categories/VSCode/">VSCode</a></span><span class="level-item">39 minutes read (About 5810 words)</span></div></div><div class="content"><p>微软在 PyCon 2019 大会上发布了 <strong>VS Code Remote</strong>，开启了远程开发的新时代！这次发布包含了三款核心的全新插件，它们可以帮助开发者在容器，物理或虚拟机，以及 Windows Subsystem for Linux (WSL) 中实现无缝的远程开发。VSCode Remote 的提出彻底引发了一场 <strong>“谁才是新一代最强编辑器？”</strong> 的争论。</p>
+<a id="more"></a>
+
+<p>由于在安装配置使用过程中查阅了网络上很多的相关博文，也遇到过很多问题，为了感谢过程中各位大佬的帮助以及分享给更多的新手使用，以作此文。文中如有表述不正确的地方，望各位大佬指正~~~</p>
+<p>更多 VS Code 相关内容，请关注博主 Visual Studio Code 博文系列：</p>
+<p><a href="https://www.orangeshare.cn/2017/08/01/visual-studio-code-vs-code-ni-men-du-zai-yong-ma/">之一 &gt;&gt;&gt; Visual Studio Code (VS Code) 你们都在用吗 ?</a></p>
+<p><a href="https://www.orangeshare.cn/2017/08/02/wan-zhuan-vscode-zhi-pei-zhi-yuan-cheng-kai-fa-huan-jing/">之二 &gt;&gt;&gt; 玩转 VSCode 之配置远程开发环境</a></p>
+<hr>
+<h2 id="Why-Configure-Remote-Development-Envs"><a href="#Why-Configure-Remote-Development-Envs" class="headerlink" title="Why Configure Remote Development-Envs"></a>Why Configure Remote Development-Envs</h2><p>先来思考一下，为什么需要配置远程开发环境？？？</p>
+<p>日常学习或者工作中，你可能正在面临这样的问题：</p>
+<ul>
+<li>每当更换电脑就要轻（ying）轻（zhe）松（tou）松（pi）从新搭建一遍开发环境；</li>
+<li>每当拉取完最新代码程序在本地跑不起来的时候，就要重新检查服务器和开发电脑的环境；</li>
+<li>每当本地开发完代码需要部署到服务器上测试时发现 Bug 就想如果可以调试服务器代码多好啊。</li>
+</ul>
+<p>尤其在项目开发过程中，通常大多数的 <strong>编辑和开发环境都是系统隔离的。</strong></p>
+<h3 id="编辑IDE和开发环境的系统隔离"><a href="#编辑IDE和开发环境的系统隔离" class="headerlink" title="编辑IDE和开发环境的系统隔离"></a>编辑IDE和开发环境的系统隔离</h3><p>比如后台服务器开发工作，远端的服务器 Linux 系统一般是没有图像用户界面的，也就没有 IDE 界面，IDE 部署在个人的本地 Windows 电脑。服务端的程序一般都是跑在 <code>Linux</code> 服务器上面，传统的开发流程是在 Window 或 Mac 的 IDE（假设目前在用 VS Code）环境编写代码，然后使用 SSH 客户端软件（XShell、PuTTY…）实现 <code>SSH</code> 远程登录 Linux 服务器上传代码，这时候你的编辑 IDE 和开发环境（代码编译、运行）就是隔离的。</p>
+<p>这种隔离性表现在你在代码编辑不会实时刷新到开发环境进行后续的编译 &amp; 测试 &amp; 验证。</p>
+<hr>
+<h3 id="如何打通系统隔离"><a href="#如何打通系统隔离" class="headerlink" title="如何打通系统隔离"></a>如何打通系统隔离</h3><p>事实上，打通系统隔离的方法有挺多的：</p>
+<ol>
+<li>SSH 远程登录（XShell、XFtp、PuTTY…）；</li>
+<li>共享服务器（Samba、Ftp…）；</li>
+<li>版本管理工具（Git、SVN），编辑这边提交更改，开发环境那边 pull 下来。</li>
+</ol>
+<p><strong>传统的远程开发流程</strong> &gt;&gt;&gt;&gt; 在本地 Windows 和 Linux 开发服务器之间开启一个同步程序（Samba），本地编辑代码，实时后台同步到 Linux 远端服务器，然后用 XShell 登录开发机编译、调试。</p>
+<p>现在来看（有了 VS Code Remote），这个过程有点不够优雅：需要了解 【Samba 同步 &amp;&amp; XShell】 的使用，并且还需要熟悉 Linux 命令行操作，这给开发者带来了工作效率的困扰。</p>
+<p>除此之外，上述方法是有使用条件的，比如远程开发机在外网 ip，或者企业内部做了机器隔离，或者只开通了 SSH 接口登录，怎么办？？！</p>
+<p>这时需要 –&gt; <strong>配置基于 SSH 通信连接的远程开发环境。</strong></p>
+<p>配置之后你可以干啥 &gt;&gt;&gt;&gt;</p>
+<ol>
+<li>把开发环境作为沙箱，以避免影响本地计算机配置；</li>
+<li>让新手轻松上手，让每个人都保持一致的开发环境；</li>
+<li>从多台不同的计算机访问现有的开发环境；</li>
+<li>….</li>
+</ol>
+<p>并且，配置之后，使用 VS Code 也可以实现 SSH 远程登录，而且使用 VS Code 进行登录后，可以向操作本地文件（夹）一样来操作远程主机上的文件（夹），而且在进行代码编写时，也可以复用 VS Code 支持的代码高亮、提示等功能….</p>
+<p>快来让你的工作效率飞起来吧~~~</p>
+<hr>
+<p>下面我们来看如何进行配置，本人的 Local OS 是 Windows10 , Remote OS 是 Linux 远程服务器。</p>
+<h2 id="Pre-Preparation-Before-Envs-Configuration（SSH）"><a href="#Pre-Preparation-Before-Envs-Configuration（SSH）" class="headerlink" title="Pre-Preparation Before Envs-Configuration（SSH）"></a>Pre-Preparation Before Envs-Configuration（SSH）</h2><p>VS Code 的安装比较简单，你可以参看博文系列中 【<a href="https://www.orangeshare.cn/2017/08/01/visual-studio-code-vs-code-ni-men-du-zai-yong-ma/">Visual Studio Code (VS Code) 你们都在用吗 ?</a>】，此处默认本地 Windows 上已经安装好 VS Code。</p>
+<h3 id="远程开发插件安装（Remote-SSH）"><a href="#远程开发插件安装（Remote-SSH）" class="headerlink" title="远程开发插件安装（Remote-SSH）"></a>远程开发插件安装（Remote-SSH）</h3><p>要能连上远程主机，首先我们需要下载 VS Code 远程开发插件 –&gt; <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack#review-details">Remote Development</a>。</p>
+<p>点击 VS Code 插件按钮，或者使用快捷键 <code>Ctrl + Shift + X</code>，直接进入插件应用商店搜索：<code>remote development</code>（先不要安装）：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_development.png"></p>
+<p>事实上，<strong>Remote Development</strong> 插件是个插件包，包括了三个安装套件：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">Remote - SSH</a> –&gt; 可以通过使用 SSH 链接虚拟或者实体 Linux 主机;</li>
+<li><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers">Remote - Containers</a> –&gt; 连接 Docker 开发容器;</li>
+<li><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl">Remote - WSL</a> –&gt; 连接 Windows Subsystem for Linux （Linux子系统）。</li>
+</ol>
+<p>打开软件的扩展界面，搜索 <code>Remote</code> 开头的插件，也能看到这三个不同的远程开发插件。这里，我们连接的是远程 Linux 服务器，所以实际只需要安装 <code>Remote - SSH</code> 插件即可（当然你可以选择直接安装 Remote Development 插件包体验其它远程连接功能）。</p>
+<h4 id="Remote-SSH"><a href="#Remote-SSH" class="headerlink" title="Remote - SSH"></a>Remote - SSH</h4><p>这里我只选择安装 <code>Remote - SSH</code> 插件，安装成功后，你会发现同时自动安装了一个名为 <code>Remote - SSH: Editing Configuration Files</code> 的插件，插件官方解释是用来 <code>Edit SSH configuration files</code>，不用深究，后续你会用到。</p>
+<p>并且，你可以看到 VS Code UI 左侧多出来一个名为 <strong>Remote Explorer</strong> 的按钮（远程资源管理器），用于在当前菜单区域组织和管理远程资源：</p>
+<div align=center> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_explore.png'> </div>
+
+<p>同时，VS Code UI 最下方状态栏出现了一个通过点击可 <strong>唤醒远程命令弹窗</strong> 的图标：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_wakeupcmd.png"></p>
+<blockquote>
+<p>远程命令弹窗中，可查看以及运行当前 VS Code 中支持的远程命令，包括连接服务器，查看远程配置文件等等。</p>
+</blockquote>
+<hr>
+<h4 id="Remote-SSH-工作原理"><a href="#Remote-SSH-工作原理" class="headerlink" title="Remote-SSH 工作原理"></a>Remote-SSH 工作原理</h4><p>下面是官方给出的 Remote-SSH 的工作原理解析图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remotessh_principle.png"></p>
+<p>简单来说，就是在远程机器上运行 VSCode Server，本机的 VSCode 只负责编辑、展示等，两者通过 <code>SSH-Tunnel</code> 通信。</p>
+<p>这种模式的优点是客户端基本没有压力（降低了客户端设备的配置要求），编译、运行、Debug 等处理操作全部在目标机器完成。开启 SSH 模式后插件全是安装在 Remote 端，只有部分 UI 相关的插件会装在 Local 端。</p>
+<p>Remote-SSH 最终搭建起了一套 【远程终端 + 定制化插件（如代码高亮等） + 远程调试开发 + 可视化 linux 文件目录…..】 的远程开发环境。</p>
+<p>直呼 NB 就完事~~~</p>
+<hr>
+<h3 id="SSH-Setup-amp-Configuration"><a href="#SSH-Setup-amp-Configuration" class="headerlink" title="SSH Setup &amp; Configuration"></a>SSH Setup &amp; Configuration</h3><p>本地 VS Code 采用 SSH 协议与远程服务端通信，所以要先安装和配置 SSH 环境。</p>
+<p>最新版本的 Win10 中已经自带了 <code>openSSL</code>（支持 SSH 通信），但我们推荐使用 Git 中自带的 SSH 客户端程序，如果你还没装 Git 的话，这里要先安装 Git，参见 –&gt; <a href="https://www.orangeshare.cn/2017/07/01/git-shi-yong-zhi-nan-zhi-chu-shi/">Git 使用指南之初识</a>。并且你需要配置 Git 的 <code>bin</code> 目录到环境变量的 <code>PATH</code> 变量下，这样 VS Code 连接的时候就能找到 SSH 了。</p>
+<p>Win10 中由于自带有 <code>openSSL</code> 比较特殊，系统和 VS Code 可能会优先加载到 openSSL 中的 SSH 程序，这会导致后续 VS Code Remote 连接错误。你可以在 DOS 窗口下通过如下命令查看一下当前系统调用的 SSH 程序位置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"><span class="built_in">where</span> ssh</span></span><br><span class="line">C:\Users\xxx Guo\ssh</span><br><span class="line">C:\Windows\System32\OpenSSH\ssh.exe</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，当前我的系统默认中找到的是系统自带的 OpenSSH 中的 <code>ssh.exe</code>。</p>
+<p>因此，此时需要你确保 VS Code 中 <code>remote.SSH.path</code> 设置项使用的是 Git 中的 <code>ssh.exe</code>，如果设置项为空的话，请显式设置 <code>Git/bin</code> 下的 <code>ssh</code>，例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;remote.SSH.path&quot;: &quot;E:\\Git\\usr\\bin\\ssh.exe&quot;</span><br></pre></td></tr></table></figure>
+
+<p>安装好 SSH 之后，你就可以正常使用 VS Code 连接远程服务器了~~~</p>
+<hr>
+<h2 id="Remote-Connection"><a href="#Remote-Connection" class="headerlink" title="Remote Connection"></a>Remote Connection</h2><p>这里来看，如何使用 VS Code 安装好的插件 –&gt; <strong>Remote Development</strong>，以及 <strong>SSH 工具</strong> 进行远程服务器的连接：</p>
+<h3 id="Add-Remote-Host"><a href="#Add-Remote-Host" class="headerlink" title="Add Remote Host"></a>Add Remote Host</h3><p>首先，在 VS Code 远程资源管理器（Remote Explore）中添加远程主机：</p>
+<p>1 –&gt; 切换到 <code>Remote Explore</code>。</p>
+<p>2 –&gt; 在 <code>SSH TARGETS</code> 处点击 <code>+</code>，而后会弹出如下图界面：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_sshtargets_add.png"></p>
+<p>在 <code>ssh hello@microsoft.com -A</code> 处输入你的远程主机信息，其中：</p>
+<ul>
+<li><strong>hello</strong> 位置填写你在远程主机处的用户名（注意字母大小写）；</li>
+<li><strong>microsoft.com</strong> 位置填写远程主机的 <code>IP</code> 地址；</li>
+<li><strong>-A</strong> 位置可不写。</li>
+</ul>
+<p>例如：<code>ssh ubuntu@81.xx.xxx.36</code> 。</p>
+<p>3 –&gt; 按照上述格式填写信息后，然后 【Enter】，然后会询问你远程服务器连接配置文件存放位置：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_sshtargets_config.png"></p>
+<p>选项一（<code>...\\.ssh\config</code>）是保存到当前用户下，选项二（<code>...\ssh\ssh_config</code>）是保存到所有用户下；选择默认选项一即可，然后 【Enter】，右下角会出现提示：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Host added !</span><br></pre></td></tr></table></figure>
+
+<p>添加成功了，你可以查看一下 SSH TARGETS 区域，已经可以看到成功添加的服务器了~~~</p>
+<hr>
+<p>最后查看一下 <code>...\user\your-user-name\.ssh\config（当前用户目录下的 .ssh 目录）</code> 中的服务器配置信息：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host 81.xx.xxx.36</span><br><span class="line">  HostName 81.xx.xxx.36</span><br><span class="line">  User ubuntu</span><br><span class="line">  Port 22</span><br></pre></td></tr></table></figure>
+
+<p>除了上述配置项，更完整的格式以及释义：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host &lt;远程主机名称&gt;					==&gt; 远程主机别名，便于记忆</span><br><span class="line">  HostName &lt;远程主机IP&gt;					==&gt; 远程主机 IP</span><br><span class="line">  User &lt;用户名&gt;						==&gt; 用于登录远程主机的用户名</span><br><span class="line">  Port &lt;ssh端口，默认22&gt;					==&gt; SSH 通信协议端口	</span><br><span class="line">  IdentityFile &lt;本机SSH私钥路径&gt;				==&gt; 采用密钥方式登录时，需指定私钥的路径</span><br></pre></td></tr></table></figure>
+
+<p>=============================== <strong>另一种添加 Remote Host 方法</strong> ===============================</p>
+<p>通过 「远程资源管理器」 之后的 「设置按钮」，可以直接生成且打开远程服务器连接配置文件，然后你可以按照上面的服务器配置格式以及参数进行配置，配置后自动添加服务器。</p>
+<p>如连接多个远程服务器，可参考如上内容，配置多个即可；</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Host &lt;远程主机名称1&gt;</span><br><span class="line">  HostName &lt;远程主机1 IP&gt;</span><br><span class="line">  User &lt;用户名1&gt;</span><br><span class="line">  Port &lt;ssh端口，默认22&gt;</span><br><span class="line">  IdentityFile &lt;本机SSH私钥路径&gt;</span><br><span class="line">Host &lt;远程主机名称2&gt;</span><br><span class="line">  HostName &lt;远程主机2 IP&gt;</span><br><span class="line">  User &lt;用户名2&gt;</span><br><span class="line">  Port &lt;ssh端口，默认22&gt;</span><br><span class="line">  IdentityFile &lt;本机SSH私钥路径&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Login-Remote-Host"><a href="#Login-Remote-Host" class="headerlink" title="Login Remote Host"></a>Login Remote Host</h3><p>这里针对远程服务器的两种登录方式，VS Code Remote 提供两种相应的登录方法：</p>
+<ol>
+<li>用户密码登录;</li>
+<li>密钥（公私钥）登录。</li>
+</ol>
+<h4 id="用户密码登录"><a href="#用户密码登录" class="headerlink" title="用户密码登录"></a>用户密码登录</h4><p>在 SSH TARGETS 区域选中你要登入的服务器，右键选择新窗口中连接还是在当前窗口连接（服务器后方 ＋ 号表示直接在新窗口连接）。</p>
+<p>这里选择 【当前窗口连接】，然后会重新加载弹出 <code>Enter password for ubuntu@81.xx.xxx.36</code> 让你输入 <code>ubuntu</code> 用户的密码，输入后 【Enter】 确认。</p>
+<p>等待一会儿即可连接成功，VS Code 状态栏中用于唤醒远程命令弹窗的按钮可以看到已连接到的服务器名称~~~</p>
+<blockquote>
+<p>遗留问题：每次连接远程服务器都需要输入密码，太麻烦了，随后配置一下免密码登录。参加 【Reffs: Configuration  –&gt; 配置免密登录】。</p>
+</blockquote>
+<hr>
+<h4 id="密钥登录"><a href="#密钥登录" class="headerlink" title="密钥登录"></a>密钥登录</h4><p>密码登录机制是不安全的，很容易被网络上的其它人攻击，植入一些挖矿程序。而密钥登录替代密码的方式的连接特性，可以使得远程登录非常安全。<strong>公私钥的登录原理</strong> 是利用密钥生成器（ssh-kengen）制作一对密钥 –&gt; 一只公钥 &amp;&amp; 一只私钥。将公钥添加到服务器的某个账户上，然后在客户端持有私钥即可完成认证并登录。</p>
+<p>这样一来，没有私钥，任何人都无法通过 SSH 暴力破解你的密码来远程登录到系统。此外，如果将公钥复制到其他账户甚至主机上，任何一个持有私钥的客户端就可以登录（保存好你的私钥！！！）。按照当前实际搭建情况如下图所示：</p>
+<p>img img img</p>
+<p>Go Start &gt;&gt;&gt;&gt;</p>
+<p><strong>1 –&gt; 密钥生成</strong></p>
+<p>密钥对的生成可以是本地的 Win10，也可以通过服务器生成，只要遵循上图中密钥登录架构原理图即可。</p>
+<p>这里，尝试选择在 Linux 服务器上生成密钥对：</p>
+<p>1）通过 XShell 或者 Putty 工具连接 Linux 服务器。</p>
+<p>2）服务器终端中输入如下指令（密钥生成器）建立密钥对（先不要执行，先看注意事项！！！）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意事项</strong>：如果之前你已经生成过密钥（Git），此操作可能会使用新的密钥文件覆盖你之前生成的密钥文件，这说有风险的！但你也可以使用之前已经生成的密钥对（Git）进行配置，这是允许的。如果使用已有密钥对的话，你可以跳至下一小节（这里就不生成了，直接白嫖~）。</p>
+</blockquote>
+<p>如果你第一次使用 SSH 可以放心生成密钥对，执行 <code>ssh-keygen</code>，继续往下看</p>
+<p>3）需要你确定密钥文件存储路径（这里你可以自定义安装路径），默认 【Enter】 即可：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter file in which to save the key (/home/xx_usr/.ssh/id_rsa):</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>一路 【Enter】，即可自动生成公钥和私钥，下面是公私钥默认下存储路径：</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">your identification has been saved in /home/xx_usr/.ssh/id_rsa. ==&gt; 私钥</span><br><span class="line">your public key has been saved in /home/xx_usr/.ssh/id_rsa_pub. ==&gt; 公钥</span><br></pre></td></tr></table></figure>
+
+<p>生成公私钥之后，就可以开始进行服务器端和客户端设置了：</p>
+<hr>
+<p><strong>2 –&gt; 服务器上安装公钥</strong></p>
+<p>1）添加公钥到服务器授权名单：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cat ~/.ssh/id_rsa_pub &gt;&gt; ~/.ssh/authorized_keys</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看确保成功添加公钥</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat ~/.ssh/authorized_keys</span></span><br></pre></td></tr></table></figure>
+
+<p>2）为了确保连接成功，请保证以下文件权限正确：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo chmod 600 ~/.ssh/zutorized_keys</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo chmod 700 ~/.ssh</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>3 –&gt; 配置密钥登录</strong></p>
+<p>1）打开 SSH 配置文件，查看确认以下两项配置（默认不需要修改）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RSAAuthentication yes</span><br><span class="line">PublicAuthentication yes</span><br></pre></td></tr></table></figure>
+
+<p>2）禁用密码登录</p>
+<p>你可以在 <strong>设置密钥登录成功之后</strong> 修改以下配置项为 <code>no</code>，来禁止密码登录提示访问安全性：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 一定要确保设置密钥登录成功之后再关闭，否则你将无法登录服务器了</span></span><br><span class="line">PasswordAuthentication no</span><br></pre></td></tr></table></figure>
+
+<p>3）配置完成后需要重启服务器 SSH 服务才可生效</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo service sshd restart</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>4 –&gt; 服务器私钥复制到客户端</strong></p>
+<p>前面生成的密钥是通过服务器生成的，因此需要把生成的私钥复制本地 Win10 上面，简单点你可以直接使用 XShell 文件传输组件（XFTP）直接拷贝到 Win10 下即可（推荐拷贝到：<code>~/.ssh/</code> 下，重命名为 <code>id_rsa_remote_ssh</code> ，方便日后管理）。</p>
+<p>下载私钥到本地 Win10 之后，修改 VS Code 中服务器配置信息：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Host 81.xx.xxx.36</span><br><span class="line">  HostName 81.xx.xxx.36</span><br><span class="line">  User ubuntu</span><br><span class="line">  Port 22</span><br><span class="line">  IdentityFile ~/.ssh/id_rsa_remote_ssh</span><br></pre></td></tr></table></figure>
+
+<p>重新尝试连接，应该就可以成功了~~~~</p>
+<hr>
+<p><strong>关于云服务器（阿里，腾讯…）中的密钥登录问题 &gt;&gt;&gt;&gt;</strong></p>
+<p>有些远程服务器设置为只可以使用密钥登录，例如阿里云创建实例后要求只能使用密钥进行登录，这时云平台会给你下发一个私钥文件，你的客户端持有改私钥文件，才可以访问云服务器。怎么配置远程登录？？？</p>
+<p>此时，公钥默认已安装到服务器上，你只需要直接在 VS Code Remote 配置文件中配置私钥路径即可，就可以尝试进行登录了。</p>
+<p><strong>关于 Windows 下已存在公私钥的问题 &gt;&gt;&gt;&gt;</strong></p>
+<p>前面我们是基于在服务器上创建密钥对，然后进行密钥登录配置的。并且也提到过，只要遵循密钥登录原理，密钥对的生成可以是本地的 Win10，也可以通过服务器生成。</p>
+<p>既然，本地 Windows 端已经有了密钥对了（之前配置 Git 远程库时创建的），那自然是可以直接用的，作为远程密钥登录方式的密钥对，这是合理的。 </p>
+<hr>
+<p>可以成功登录服务器之后，你就可以尝试 VS Code Remote 连接服务器后的操作了：</p>
+<h3 id="Remote-Host-Use"><a href="#Remote-Host-Use" class="headerlink" title="Remote Host Use"></a>Remote Host Use</h3><p>登录成功，即可像操作本地环境一样，在 VS Code 客户端操作远程服务器了。</p>
+<h4 id="可视化-Linux-目录"><a href="#可视化-Linux-目录" class="headerlink" title="可视化 Linux 目录"></a>可视化 Linux 目录</h4><p>点击 Explorer 或者直接使用快捷键 Ctrl + Shift + E，点击 Open Folder 后可以在下述位置处，选择想要进入（<code>cd</code>）的远程主机位置：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_visuallinuxfile.png"></p>
+<p>选择好相应文件夹后，即可在 Explorer 资源管理区域看到可视化后的 Linux 目录，操作上面的文件和操作本地环境里的一样。</p>
+<hr>
+<h4 id="Remote-Host-Extensions"><a href="#Remote-Host-Extensions" class="headerlink" title="Remote Host Extensions"></a>Remote Host Extensions</h4><p>同时，可以给远程 VS Code 安装需要的插件，安装的插件是在云服务器的 VS Code（VSCode-server）上，对本机的 VS Code 没有影响，插件在远端提供功能，比如代码审查、自动补齐等等，而这所有的一切就像在本地操作一样。</p>
+<p>细心的你可以发现，之前我们本地安装的插件大部分都处于 <code>disabled</code> 状态，此时 VS Code 提示：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This extension is disabled in this workspace because it is defined to run in the Remote Extension Host. Please install the extension in &#x27;SSH: TC-DeepCoding&#x27; to enable.</span><br></pre></td></tr></table></figure>
+
+<p>简言之，就是说你当前处于远程服务器状态，本地插件在当前状态下不生效，如果你想使用的话，请将其安装在服务器端。之后，我们的插件资源管理器就变成这样的了：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_extens.png"></p>
+<p>但请 <strong>注意：</strong>连接到一个新服务器时，插件是需要重新安装的，这是合理的。并且有些插件是不适合远程开发模式的，插件资源管理器中支持你 <code>install</code> 的才可以安装。</p>
+<hr>
+<h4 id="Remote-Terminal"><a href="#Remote-Terminal" class="headerlink" title="Remote Terminal"></a>Remote Terminal</h4><p>终端调试时，打开的是远端服务器的终端，直接在终端操作编译或者查看云/服务器信息等，这和在远端服务器上使用是一样的。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/vscode_remote_terminal.png"></p>
+<hr>
+<h2 id="Reffs-Configuration"><a href="#Reffs-Configuration" class="headerlink" title="Reffs: Configuration"></a>Reffs: Configuration</h2><h3 id="配置免密登录"><a href="#配置免密登录" class="headerlink" title="配置免密登录"></a>配置免密登录</h3><p>前面在使用账号密码进行 VS Code 登录远程主机时，你会发现每次登录都需要输入密码，太麻烦了/(ㄒoㄒ)/~~这时可以设置免密登录远程服务器，什么是免密登录？？！</p>
+<p>将本机添加到远程服务器连接白名单，让服务器知道是已认证的电脑在连接。过程类似于 GitHub 网站添加本地电脑的 SSH 公钥。</p>
+<p>那么，如何设置？？！</p>
+<h4 id="生成公私钥"><a href="#生成公私钥" class="headerlink" title="生成公私钥"></a>生成公私钥</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 方法一</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 方法二，参考使用 Git 生成密钥</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen -t rsa -C <span class="string">&quot;youremail@example.com&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="拷贝公钥文件至远程主机"><a href="#拷贝公钥文件至远程主机" class="headerlink" title="拷贝公钥文件至远程主机"></a>拷贝公钥文件至远程主机</h4><p>拷贝 <code>id_rsa.pub</code> 至远程 Linux 上的 ~/.ssh 下的 <code>authorized_keys</code> 文件中。</p>
+<p>也可以使用命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Local M:</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> scp -P 22 id_rsa.pub user@ip-of-your-remote-host:/home/user/.ssh/id_rsa.pub</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Remote Host</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat ~/.ssh/id_rsa.pub &gt; ~/.ssh/authorized_keys</span></span><br></pre></td></tr></table></figure>
+
+<p>免密登录已经配置完成了~~~你可以尝试登录时是否需要输入密码了。</p>
+<hr>
+<p><strong>免密登录 == 密钥登录方式</strong></p>
+<p>应该有眼尖的看官老爷们会发现，这里为账号密码登录配置免密登录的方式，和前面给出的 Windows 下创建密钥对进行密钥登陆的方式很相似啊！</p>
+<p>这里，配置免密登录只是把想要登录远程服务器的客户端公钥放到了服务器的“信任名单（authorized_keys）”，当远程服务器请求登录密码时，发现当前请求的客户端是信任设备，会直接采用上面密钥登录（跳过提供密码的环节）的访问方式，只要客户端中持有相应私钥，就可以直接访问远程服务器。</p>
+<p>但要注意的是，这里的私钥一定要和配置免密登录中的公钥是一对。例如 ssh-keygen 默认情况下生成的公私钥：<code>id_rsa --&gt; id_rsa.pub</code>，如果免密登录中你拷贝至远程服务器中的是 <code>vs_remote_id_rsa_pub</code>，那么你必须在 VS Code Remote 配置文件（config）中显式的配置 <code>IdentityFile</code> 选项为 <code>vs_remote_id_rsa</code>。默认情况下，会自动使用私钥 <code>id_rsa</code>。</p>
+<hr>
+<p>完结，撒花~~~</p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>玩转 VSCode 之配置远程开发环境</p><p><a href="https://www.orangeshare.cn/2017/08/02/wan-zhuan-vscode-zhi-pei-zhi-yuan-cheng-kai-fa-huan-jing/">https://www.orangeshare.cn/2017/08/02/wan-zhuan-vscode-zhi-pei-zhi-yuan-cheng-kai-fa-huan-jing/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2017-08-02</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-03-11</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/IDE/">IDE</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/09/20/yi-wen-xue-hui-hexo-qing-liang-ji-kuang-jia-de-bo-ke-da-jian-chi-xu-geng-xin/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">一文学会 Hexo 轻量级框架的博客搭建【持续更新】</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/08/01/visual-studio-code-vs-code-ni-men-du-zai-yong-ma/"><span class="level-item">Visual Studio Code (VS Code) 你们都在用吗 ?</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p><p class="is-size-6 is-block">Web, AI Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Galactic System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">36</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">7</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">18</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/TheNightIsYoung" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="DockerHub" href="https://hub.docker.com/"><i class="fab fa-docker"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/explore"><i class="fab fa-gofore"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="MDEditor" href="http://www.mdeditor.com/"><i class="fab fa-canadian-maple-leaf"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="WangYiYun" href="https://music.163.com/"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Why-Configure-Remote-Development-Envs"><span class="level-left"><span class="level-item">1</span><span class="level-item">Why Configure Remote Development-Envs</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#编辑IDE和开发环境的系统隔离"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">编辑IDE和开发环境的系统隔离</span></span></a></li><li><a class="level is-mobile" href="#如何打通系统隔离"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">如何打通系统隔离</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Pre-Preparation-Before-Envs-Configuration（SSH）"><span class="level-left"><span class="level-item">2</span><span class="level-item">Pre-Preparation Before Envs-Configuration（SSH）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#远程开发插件安装（Remote-SSH）"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">远程开发插件安装（Remote-SSH）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Remote-SSH"><span class="level-left"><span class="level-item">2.1.1</span><span class="level-item">Remote - SSH</span></span></a></li><li><a class="level is-mobile" href="#Remote-SSH-工作原理"><span class="level-left"><span class="level-item">2.1.2</span><span class="level-item">Remote-SSH 工作原理</span></span></a></li></ul></li><li><a class="level is-mobile" href="#SSH-Setup-amp-Configuration"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">SSH Setup &amp; Configuration</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Remote-Connection"><span class="level-left"><span class="level-item">3</span><span class="level-item">Remote Connection</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Add-Remote-Host"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">Add Remote Host</span></span></a></li><li><a class="level is-mobile" href="#Login-Remote-Host"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">Login Remote Host</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#用户密码登录"><span class="level-left"><span class="level-item">3.2.1</span><span class="level-item">用户密码登录</span></span></a></li><li><a class="level is-mobile" href="#密钥登录"><span class="level-left"><span class="level-item">3.2.2</span><span class="level-item">密钥登录</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Remote-Host-Use"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">Remote Host Use</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#可视化-Linux-目录"><span class="level-left"><span class="level-item">3.3.1</span><span class="level-item">可视化 Linux 目录</span></span></a></li><li><a class="level is-mobile" href="#Remote-Host-Extensions"><span class="level-left"><span class="level-item">3.3.2</span><span class="level-item">Remote Host Extensions</span></span></a></li><li><a class="level is-mobile" href="#Remote-Terminal"><span class="level-left"><span class="level-item">3.3.3</span><span class="level-item">Remote Terminal</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#Reffs-Configuration"><span class="level-left"><span class="level-item">4</span><span class="level-item">Reffs: Configuration</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#配置免密登录"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">配置免密登录</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#生成公私钥"><span class="level-left"><span class="level-item">4.1.1</span><span class="level-item">生成公私钥</span></span></a></li><li><a class="level is-mobile" href="#拷贝公钥文件至远程主机"><span class="level-left"><span class="level-item">4.1.2</span><span class="level-item">拷贝公钥文件至远程主机</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2022 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
