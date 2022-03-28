@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>面向对象的编程概述 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="相信很多程序猿，特别是新手，对面向对象都用过而且可能用的还很熟，却没有去深入理解过，别人一问才发现，入门便是不熟。 说起 面向对象，不得不提的就是面向过程。大家应该都清楚，面向过程是具体化的，流程化的，解决一个问题，你需要一步一步的分析（变量），一步一步的实现（方法），这就是面向过程的设计。那什么是面向对象？其实，面向对象是模型化的，你只需抽象出一个类，这是一个封闭的盒子，在这里你拥有数据也拥有解"><meta property="og:type" content="blog"><meta property="og:title" content="面向对象的编程概述"><meta property="og:url" content="https://www.orangeshare.cn/2017/10/07/mian-xiang-dui-xiang-de-bian-cheng-gai-shu/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="相信很多程序猿，特别是新手，对面向对象都用过而且可能用的还很熟，却没有去深入理解过，别人一问才发现，入门便是不熟。 说起 面向对象，不得不提的就是面向过程。大家应该都清楚，面向过程是具体化的，流程化的，解决一个问题，你需要一步一步的分析（变量），一步一步的实现（方法），这就是面向过程的设计。那什么是面向对象？其实，面向对象是模型化的，你只需抽象出一个类，这是一个封闭的盒子，在这里你拥有数据也拥有解"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://www.orangeshare.cn/img/og_image.png"><meta property="article:published_time" content="2017-10-07T02:40:29.000Z"><meta property="article:modified_time" content="2022-03-20T13:32:00.005Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Java"><meta property="article:tag" content="Python"><meta property="article:tag" content="C++"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2017/10/07/mian-xiang-dui-xiang-de-bian-cheng-gai-shu/"},"headline":"When Art Meets Tech","image":["https://www.orangeshare.cn/img/og_image.png"],"datePublished":"2017-10-07T02:40:29.000Z","dateModified":"2022-03-20T13:32:00.005Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"相信很多程序猿，特别是新手，对面向对象都用过而且可能用的还很熟，却没有去深入理解过，别人一问才发现，入门便是不熟。 说起 面向对象，不得不提的就是面向过程。大家应该都清楚，面向过程是具体化的，流程化的，解决一个问题，你需要一步一步的分析（变量），一步一步的实现（方法），这就是面向过程的设计。那什么是面向对象？其实，面向对象是模型化的，你只需抽象出一个类，这是一个封闭的盒子，在这里你拥有数据也拥有解"}</script><link rel="canonical" href="https://www.orangeshare.cn/2017/10/07/mian-xiang-dui-xiang-de-bian-cheng-gai-shu/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>面向对象的编程概述</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2017-10-07</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2022-03-20</time></span><span class="level-item"><a class="link-muted" href="/categories/OOP/">OOP</a></span><span class="level-item">14 minutes read (About 2102 words)</span></div></div><div class="content"><p>相信很多程序猿，特别是新手，对面向对象都用过而且可能用的还很熟，却没有去深入理解过，别人一问才发现，入门便是不熟。</p>
+<p>说起 <strong>面向对象</strong>，不得不提的就是面向过程。大家应该都清楚，面向过程是具体化的，流程化的，解决一个问题，你需要一步一步的分析（变量），一步一步的实现（方法），这就是面向过程的设计。那什么是面向对象？其实，面向对象是模型化的，你只需抽象出一个类，这是一个封闭的盒子，在这里你拥有数据也拥有解决问题的方法。</p>
+<a id="more"></a>
+
+<p>话不多说，本文让我们来看看究竟什么是面向对象？？？</p>
+<h2 id="什么是面向对象的语言"><a href="#什么是面向对象的语言" class="headerlink" title="什么是面向对象的语言"></a>什么是面向对象的语言</h2><p>面向对象语言（Object-Oriented Language）是一类以对象作为程序结构基本单位的程序设计语言，用于描述的设计是以对象为核心，并且对象是程序运行时刻的基本成分。</p>
+<p>而面向对象的程序设计把计算机程序视为一组对象的集合，而每个对象都可以接收其他对象发过来的消息，并处理这些消息，计算机程序的执行就是一系列消息在各个对象之间传递。</p>
+<p>面向对象语言很多，如一直高居世界编程语言排行榜的 Java、Python、C++、C#、PHP 等等。</p>
+<hr>
+<h3 id="面向对象的理解"><a href="#面向对象的理解" class="headerlink" title="面向对象的理解"></a>面向对象的理解</h3><p>什么是对象？记住！一切皆是类，一切皆是对象。</p>
+<h4 id="实体、类以及对象"><a href="#实体、类以及对象" class="headerlink" title="实体、类以及对象"></a>实体、类以及对象</h4><p>先来认识一下面向对象中的基本概念：</p>
+<p>–&gt; 什么是对象？</p>
+<p>对象是现实世界中某一具体实体在计算机逻辑中的抽象，具有一组属性（也称为状态及行为）。</p>
+<p>–&gt; 什么是类？</p>
+<p>具有相同特征的对象的集合，是一种抽象数据类型。属于某类的某一个对象，称为类的一次实例化的结果。</p>
+<p>–&gt; 对象属性（状态及行为）的理解</p>
+<p>1）对象的状态：</p>
+<p>对象的状态也称为对象的静态属性，是指对象内部包含的各种信息，也就是变量。</p>
+<p>2）对象的行为：</p>
+<p>对象的行为也称为对象的动态属性，也指方法，用来设置或改变对象的状态（完成一定的功能）。</p>
+<hr>
+<h4 id="给一个实例"><a href="#给一个实例" class="headerlink" title="给一个实例"></a>给一个实例</h4><p>一切都是对象 ~~~~</p>
+<p>一切都是对象。</p>
+<p>举一个例子：</p>
+<p>我们用于设计的描述（实际问题）是房子，可以抽象出一个房子类 【House：Class】，故可以将一栋房子看作是房子类 【House：Class】的一次实例化结果：【HouseA：Object】。</p>
+<p>后面我们将基于这个实例描述面向对象的四大特性：抽象、封装、继承以及多态性。</p>
+<p>不要疑惑，就是四大特性，其实抽象性是面向对象的基本特性，也应该被包含在内。</p>
+<hr>
+<h3 id="面向对象的特性"><a href="#面向对象的特性" class="headerlink" title="面向对象的特性"></a>面向对象的特性</h3><p>这一部分我们来看面向对象的四大特性抽象、封装、继承以及多态性的理解：</p>
+<h4 id="抽象性"><a href="#抽象性" class="headerlink" title="抽象性"></a>抽象性</h4><p>从对象定义来看面向对象的抽象性，对象就是现实某一具体实体在计算机逻辑中的抽象 。</p>
+<p>在上面的实例中，我们从实际问题中抽象出了房子类 【House：Class】 以及具体的房子对象 【HouseA：Object】。</p>
+<hr>
+<h4 id="封装性"><a href="#封装性" class="headerlink" title="封装性"></a>封装性</h4><p>封装就是将各个独立功能设计成一个个独立的单元，尽可能的隐藏内部细节，只保留必要的对外接口，与外部联系。</p>
+<p><strong>高内聚，低耦合。</strong>通过封装可以减小耦合，提高内聚，避免牵一发而动全身，方便对程序的修改。</p>
+<p>–&gt; 实例说明</p>
+<p>对于【HouseA：Object】，房子空间很大，但如果男男女女有十几人住，而且就一间屋子的话，很不方便，并且吃喝拉撒都一个屋，那就成难民营。</p>
+<p>–&gt; 这样，就要想法解决:</p>
+<p>工人们出动了，把房子折腾折腾给分成楼上楼下两层，并说明了，一楼吃喝玩乐、二楼休息； 楼上楼下工人们又分别给隔离出几个房间，分别规划修建厨房、卫生间、卧室、娱乐室等等，这样就把房子这样改造好了。然后男男女女们过来了，大家就可以各自的房间，做爱做的事，而且不会影响到其他了。</p>
+<p>–&gt; 这样一个简单的封装就完成</p>
+<p>【House：Class】 是对部分类 【房子两层：Partialclass】 的封装；而 【房子两层：Partialclass】 是对 【房间：函数/方法-function】 的封装。</p>
+<hr>
+<h4 id="继承性"><a href="#继承性" class="headerlink" title="继承性"></a>继承性</h4><p>继承发生在两个对象之间，是特殊类对象具有一般类对象全部的属性和行为。可以提高软件的开发效率，对软件复用有很大的意义。</p>
+<p>–&gt; 继续来看房子</p>
+<p>工人们已经给分好楼层、并且根据不同的功能做好了房间。这时屋主觉得，不行啊，得有个地下室来放杂物啊。工人一听，好尼玛房子都折腾的差不多了，又要搞一个地下室，不好搞啊。</p>
+<p>屋主发话了，要搞必须搞，不好搞也要搞，而且狠狠的搞。工人们就为难了，难道再去给盖一栋有避难所的房子？</p>
+<p>大家集思广益最终，房子其他都还用着，再给挖个地下室就行了，于是新房子诞生了。</p>
+<p>–&gt; 一个简单的继承就出现了 </p>
+<p>【房子：基类-baseclass】 被 【新房子：扩展类-ExtensionClass】 继承。</p>
+<hr>
+<h4 id="多态性"><a href="#多态性" class="headerlink" title="多态性"></a>多态性</h4><p>多态是同一消息可以根据发送对象的不同产生多种不同的行为方式，可以说是封装的一个实现。实现多态的方法有：方法重写（覆盖）、方法重载以及接口等。</p>
+<p>–&gt; 仍然是房子</p>
+<p>房子已经成型，要对房间进行装修了。工人想法很简单，都按照一种样式来，简单方便快捷。屋主不乐意了，有要在承重墙上开扇窗户的，有要在卫生间装摄像头的、要在厨房里装空调的….工人们安装要求对能实现的就开始开工了，对房子的窗户、地板、墙、楼梯等进行装修。</p>
+<p>–&gt; “一种多态的展现” 就出来了</p>
+<p>【房子：类-class】 通过 【窗户、地板、墙、楼梯等：属性-Property】 体现多态。</p>
+<hr>
+<h2 id="面向对象和面向过程的比较"><a href="#面向对象和面向过程的比较" class="headerlink" title="面向对象和面向过程的比较"></a>面向对象和面向过程的比较</h2><p>事实上，面向对象更符合人类的思维，面向过程则是机器的思想。</p>
+<p>–&gt; 面向过程：</p>
+<p>优点：性能比面向对象好，因为类调用时需要实例化，开销比较大，比较消耗资源。</p>
+<p>缺点：不易维护、不易复用、不易扩展。</p>
+<p>–&gt; 面向对象：</p>
+<p>优点：易维护、易复用、易扩展。由于面向对象有封装、继承、多态性的特性，可以设计出高内聚，低耦合的系统，使系统更加灵活、更加易于维护 。</p>
+<p>缺点：性能比面向过程差</p>
+<hr>
+<h2 id="面向对象的软件开发过程"><a href="#面向对象的软件开发过程" class="headerlink" title="面向对象的软件开发过程"></a>面向对象的软件开发过程</h2><ol>
+<li>面向对象分析（Object Oriented Analysis）：OOA；</li>
+<li>面向对象设计（Object Oriented Design）：OOD；</li>
+<li>面向对象实现（Object Oriented Programming）：OOP，也就是面向对象的编程。</li>
+</ol>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>面向对象的编程概述</p><p><a href="https://www.orangeshare.cn/2017/10/07/mian-xiang-dui-xiang-de-bian-cheng-gai-shu/">https://www.orangeshare.cn/2017/10/07/mian-xiang-dui-xiang-de-bian-cheng-gai-shu/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2017-10-07</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-03-20</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Java/">Java</a><a class="link-muted mr-2" rel="tag" href="/tags/Python/">Python</a><a class="link-muted mr-2" rel="tag" href="/tags/C/">C++</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/10/08/yi-wen-liao-jie-shi-me-shi-java/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">一文了解什么是 Java</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2017/09/23/hello-hexo-matery-world/"><span class="level-item">Hello Hexo Matery World</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p><p class="is-size-6 is-block">Web, AI Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Galactic System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">60</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">32</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/TheNightIsYoung" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="DockerHub" href="https://hub.docker.com/"><i class="fab fa-docker"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/explore"><i class="fab fa-gofore"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="MDEditor" href="http://www.mdeditor.com/"><i class="fab fa-canadian-maple-leaf"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="WangYiYun" href="https://music.163.com/"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#什么是面向对象的语言"><span class="level-left"><span class="level-item">1</span><span class="level-item">什么是面向对象的语言</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#面向对象的理解"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">面向对象的理解</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#实体、类以及对象"><span class="level-left"><span class="level-item">1.1.1</span><span class="level-item">实体、类以及对象</span></span></a></li><li><a class="level is-mobile" href="#给一个实例"><span class="level-left"><span class="level-item">1.1.2</span><span class="level-item">给一个实例</span></span></a></li></ul></li><li><a class="level is-mobile" href="#面向对象的特性"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">面向对象的特性</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#抽象性"><span class="level-left"><span class="level-item">1.2.1</span><span class="level-item">抽象性</span></span></a></li><li><a class="level is-mobile" href="#封装性"><span class="level-left"><span class="level-item">1.2.2</span><span class="level-item">封装性</span></span></a></li><li><a class="level is-mobile" href="#继承性"><span class="level-left"><span class="level-item">1.2.3</span><span class="level-item">继承性</span></span></a></li><li><a class="level is-mobile" href="#多态性"><span class="level-left"><span class="level-item">1.2.4</span><span class="level-item">多态性</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#面向对象和面向过程的比较"><span class="level-left"><span class="level-item">2</span><span class="level-item">面向对象和面向过程的比较</span></span></a></li><li><a class="level is-mobile" href="#面向对象的软件开发过程"><span class="level-left"><span class="level-item">3</span><span class="level-item">面向对象的软件开发过程</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2022 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Python 中的序列详解 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="Python 中的数字类型（Number）、字符串类型（String）之后，后续应该要继续讲元祖（Tuple）、列表（List）之类的。但是元祖和列表都属于序列，掌握序列（Sequence）的相关知识可以帮我们更容易的学习后续内容，所以有必要先了解一下 Python 中的序列是什么？"><meta property="og:type" content="blog"><meta property="og:title" content="Python 中的序列详解"><meta property="og:url" content="https://www.orangeshare.cn/2018/01/06/python-zhong-de-xu-lie-xiang-jie/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="Python 中的数字类型（Number）、字符串类型（String）之后，后续应该要继续讲元祖（Tuple）、列表（List）之类的。但是元祖和列表都属于序列，掌握序列（Sequence）的相关知识可以帮我们更容易的学习后续内容，所以有必要先了解一下 Python 中的序列是什么？"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://www.orangeshare.cn/img/og_image.png"><meta property="article:published_time" content="2018-01-06T13:39:03.000Z"><meta property="article:modified_time" content="2022-03-17T04:53:33.986Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="DataType"><meta property="article:tag" content="Python"><meta property="article:tag" content="Sequence"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2018/01/06/python-zhong-de-xu-lie-xiang-jie/"},"headline":"When Art Meets Tech","image":["https://www.orangeshare.cn/img/og_image.png"],"datePublished":"2018-01-06T13:39:03.000Z","dateModified":"2022-03-17T04:53:33.986Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"Python 中的数字类型（Number）、字符串类型（String）之后，后续应该要继续讲元祖（Tuple）、列表（List）之类的。但是元祖和列表都属于序列，掌握序列（Sequence）的相关知识可以帮我们更容易的学习后续内容，所以有必要先了解一下 Python 中的序列是什么？"}</script><link rel="canonical" href="https://www.orangeshare.cn/2018/01/06/python-zhong-de-xu-lie-xiang-jie/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>Python 中的序列详解</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2018-01-06</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2022-03-17</time></span><span class="level-item"><a class="link-muted" href="/categories/Python/">Python</a></span><span class="level-item">16 minutes read (About 2426 words)</span></div></div><div class="content"><p>Python 中的数字类型（Number）、字符串类型（String）之后，后续应该要继续讲元祖（Tuple）、列表（List）之类的。但是元祖和列表都属于序列，掌握序列（Sequence）的相关知识可以帮我们更容易的学习后续内容，所以有必要先了解一下 <strong>Python 中的序列是什么？</strong></p>
+<a id="more"></a>
+
+<h2 id="Python-中的序列"><a href="#Python-中的序列" class="headerlink" title="Python 中的序列"></a>Python 中的序列</h2><p>序列是一系列数据元素的有序集合，注意是有序的，它是 Python 中最基本的一种数据结构。</p>
+<p>序列中的每个元素都被分配一个 <strong>数字</strong> —- 它的位置，也就是我们说的元素的 <strong>索引</strong>。</p>
+<p>第一个索引是 0，第二个索引是 1，依此类推……每个索引对应了一个 <strong>元素</strong>。</p>
+<p>Python 包含 6 种内建的序列，包括 <strong>字符串（str）</strong>、<strong>元组（tuple）</strong>、<strong>列表（list）</strong>、Unicode 字符串、buffer 对象以及 <strong>range（xrange）</strong> 对象。</p>
+<p>对于序列，都可以使用以下操作：</p>
+<ol>
+<li> 索引</li>
+<li> 切片</li>
+<li> 加（+）</li>
+<li> 乘（*）</li>
+<li> 成员检查</li>
+<li> 计算序列的长度</li>
+<li> 取序列中的最大、最小值</li>
+</ol>
+<hr>
+<h2 id="is-amp-amp-amp-amp-id"><a href="#is-amp-amp-amp-amp-id" class="headerlink" title="is &amp;&amp; == &amp;&amp; id()"></a>is &amp;&amp; == &amp;&amp; id()</h2><p>在开始正式的解读之前，我们先来看几个必要的语法：</p>
+<h3 id="gt-gt-gt-id"><a href="#gt-gt-gt-id" class="headerlink" title="&gt;&gt;&gt; id()"></a>&gt;&gt;&gt; id()</h3><p>Python 中的 <strong>id()</strong> 内置函数，可用于获取对象的内存地址。语法规则如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id(object)</span><br></pre></td></tr></table></figure>
+
+<p>样例如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str1 = <span class="string">&quot;id() function test&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; num = 1.23</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; id(str1)</span></span><br><span class="line">2419096572024</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; id(num)</span></span><br><span class="line">2419065860360</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="gt-gt-gt-is-amp-amp"><a href="#gt-gt-gt-is-amp-amp" class="headerlink" title="&gt;&gt;&gt; is &amp;&amp; =="></a>&gt;&gt;&gt; is &amp;&amp; ==</h3><p>Python 中经常会用到对象之间的比较，可以用 <code>==</code>，也可以用 <code>is</code> 。它们有什么区别？</p>
+<ul>
+<li><strong>is：</strong>比较的是 <strong>两个实例对象是不是完全相同</strong>，<strong>是不是同一个对象（占用的内存地址是否相同）</strong>；</li>
+<li><strong>==：</strong>比较的是 <strong>两个对象的内容是否相等，即内存地址可以不一样，内容一样就可以了</strong>。</li>
+</ul>
+<p>样例如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str1 = <span class="string">&quot;Python&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str2 = str1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str1 is str2</span></span><br><span class="line">True</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; id(str1)</span></span><br><span class="line">2419095062488</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; id(str2)</span></span><br><span class="line">2419095062488</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str1 == str2</span></span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="序列中的索引"><a href="#序列中的索引" class="headerlink" title="序列中的索引"></a>序列中的索引</h2><p>就像上面说的，序列中的每个元素都分配一个 <strong>数字</strong> —- 它的位置，也就是我们说的元素的 <strong>索引</strong>。</p>
+<p><strong>[1] &gt;&gt;&gt;&gt; 两种索引方式：</strong></p>
+<p>正向索引：从前向后标记，第一个索引是 0，第二个索引是 1，依此类推。每个索引对应一个<strong>元素</strong>。</p>
+<p>反向索引：序列中元素的索引也可以从后向前标记，最后一个索引是 -1，倒数第二个索引是 -2，以此类推。</p>
+<p><strong>[2] &gt;&gt;&gt;&gt; 可以通过索引获取序列中元素：</strong></p>
+<p>通过索引和 <code>[]</code> ，我们可以获取到相应索引位置的元素对象:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str_a = <span class="string">&quot;Python&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(<span class="built_in">type</span>(str_a))</span></span><br><span class="line">&lt;class &#x27;str&#x27;&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str_b = str_a[2]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(str_b)</span></span><br><span class="line">t</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">type</span>(str_b)</span></span><br><span class="line">&lt;class &#x27;str&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，字符串序列中通过索引取到的元素类型仍为字符串。</p>
+<hr>
+<p>有个上面的知识储备，这里再重新认识一下序列是什么？！！</p>
+<h2 id="序列到底是什么？"><a href="#序列到底是什么？" class="headerlink" title="序列到底是什么？"></a>序列到底是什么？</h2><p>所谓序列，</p>
+<p><strong>指的是一块可存放多个值的连续内存空间，这些值按一定顺序排列，可以是任何类型的对象元素，可通过值所在位置的编号（称为索引）获取相应的元素对象，并且取到的是元素原对象。</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; list1 = [1]</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 这里，你只需要了解 tup1 = () 可以创建一个元组即可</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; tup1 = (<span class="string">&quot;Python&quot;</span>, 123, list1)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">test</span> = tup1[2]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(<span class="built_in">test</span>, <span class="built_in">type</span>(<span class="built_in">test</span>))</span></span><br><span class="line">[1] &lt;class &#x27;list&#x27;&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(<span class="built_in">test</span> is list1)</span></span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+
+<p>发现确实如此，也就是说，我们可以将序列中的索引看作是一个特殊的变量，<strong>它指向的是相应对象元素的内存空间，或着说，它对应了元素对象的引用。</strong></p>
+<hr>
+<p><strong>字符串作为序列怎么解释？！！ &gt;&gt;&gt;&gt;</strong> </p>
+<p>不知道你发现没有：上面的说法套到字符串中略显变扭，因为字符串也是一个序列，难道字符串索引所对应的元素难道是一个个的字符（长度为一的字符串）对象？？？</p>
+<p>我们先假设字符串是将每个字符（长度为一的字符串）都存储在一个个内存空间中(连续)，字符串变量取得的是整个字符串，而索引则是每个字符的变量（引用）。来看一下假设结果如何：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str_test = <span class="string">&quot;abcdabcd&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(id(str1), id(str_test[0]), id(str_test[4]))</span></span><br><span class="line">139820050579888 139820053906072 139820053906072</span><br></pre></td></tr></table></figure>
+
+<p>我们发现，哎，好像 <strong>感觉</strong> 假设成立啊？</p>
+<p>那这样呢：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str1 = <span class="string">&quot;abcdabcd&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str2 = <span class="string">&#x27;a&#x27;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str3 = <span class="string">&#x27;b&#x27;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str4 = <span class="string">&#x27;b&#x27;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(id(str1[0]), id(str1[4]), id(str2), id(str3), id(str4))</span></span><br><span class="line">2150485782008 2150485782008 2150485782008 2150485780328 2150485780328</span><br></pre></td></tr></table></figure>
+
+<p>看到这里你是不是明白了什么？!! &gt;&gt;&gt;&gt;</p>
+<p>字符串是字符对象的引用的集合，所以我们使用英文的时候是不是最多只有创建 26 个字母，然后字符串只要重复引用就可以了。其他字符也同理。(是不有种常量缓存池的赶脚…)</p>
+<p>关于常量缓存池请参见博文：<a href="https://www.orangeshare.cn/2018/01/05/python-zhong-de-huan-cun-chong-yong-ji-zhi-chang-liang-chi/">Python 中的缓存重用机制（常量池）</a>。</p>
+<p>有了上面的理解，是不对序列的了解就更深一步了？</p>
+<hr>
+<h2 id="序列支持操作"><a href="#序列支持操作" class="headerlink" title="序列支持操作"></a>序列支持操作</h2><p>博文开篇已经说明了序列支持 7 中操作：</p>
+<h3 id="序列中的索引和切片"><a href="#序列中的索引和切片" class="headerlink" title="序列中的索引和切片"></a>序列中的索引和切片</h3><p>索引不用多介绍了，所谓切片就是通过 <strong>[:]</strong> 配合序列索引一次拿出多个对象，而索引一次只能拿出一个对象。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str1 = <span class="string">&quot;abcdabcd&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(str1[0:2])</span></span><br><span class="line">ab</span><br></pre></td></tr></table></figure>
+
+<p><strong>[1] &gt;&gt;&gt;&gt; 切片是前闭后开的：</strong></p>
+<p>上面返回的结果依然是一个字符串，这是要注意一个问题。还有就是 <code>a[2]</code> 明明是 <code>c</code> 才对，但结果我们并没有取到。</p>
+<p>说明 &gt;&gt;&gt;&gt; <strong>切片是不包括后界限的索引的，所以无法取到后界限索引所引用的元素（前闭后开）</strong>。</p>
+<p>切片的其它用法 &gt;&gt;&gt;&gt;</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 获取所有所有元素对象：</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(str1[:])</span></span><br><span class="line">abcdabcd</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(str1[0:])</span></span><br><span class="line">abcdabcd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 注意，反向索引，无法取到后界限索引对象：</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(str1[:-1])</span></span><br><span class="line">abcdabc</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(str1[-3:-1])</span></span><br><span class="line">bc</span><br></pre></td></tr></table></figure>
+
+<p><strong>[2] &gt;&gt;&gt;&gt; 切片小技巧：</strong></p>
+<p>先看一个元组切片的样例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; tup1 = (<span class="string">&quot;Python&quot;</span>, 123, [1,2])</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(tup1[:2], <span class="built_in">type</span>(tup1[:2]))</span></span><br><span class="line">(&#x27;Python&#x27;, 123) &lt;class &#x27;tuple&#x27;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们知道，对序列切片，只是从包含多个元素对象的序列中取出包含部分元素对象的序列。如上面元组切片，切片后仍然得到的是一个元组，可以得到几个元素对象。</p>
+<p>此时，我们可以使用多个变量去接收这些元素，这样我们能得到独立的对象进行其它操作了：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str1, num = tup1[:2]</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(str1, num)</span></span><br><span class="line">Python 123</span><br></pre></td></tr></table></figure>
+
+<p>是不很方便？</p>
+<p><strong>[3] &gt;&gt;&gt;&gt; 切片中的步长概念：</strong></p>
+<p>所谓的切片步长，就是每几个元素对象取一个。如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(tup1[::2])</span></span><br><span class="line">(&#x27;Python&#x27;, [1, 2])</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，对于 <code>tup1 = (&quot;Python&quot;, 123, [1,2])</code> 我们每个 2 步长取一个元素的结果。</p>
+<hr>
+<h3 id="加（-）"><a href="#加（-）" class="headerlink" title="加（+）"></a>加（+）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; tup1 = (<span class="string">&quot;Python&quot;</span>, 123, [1,2])</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(tup1 + tup1)</span></span><br><span class="line">(&#x27;Python&#x27;, 123, [1, 2], &#x27;Python&#x27;, 123, [1, 2])</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str1 = <span class="string">&quot;test&quot;</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(str1 + str1)</span></span><br><span class="line">testtest</span><br></pre></td></tr></table></figure>
+
+<p>我们发现，同类型序列可以进行相加，并没有影响到原序列类型。</p>
+<p>那么不同类型的序列相加呢？ &gt;&gt;&gt;&gt; <strong>不同类型序列不可直接相加！！！</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(tup1 + str1)</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">TypeError: can only concatenate tuple (not &quot;str&quot;) to tuple</span><br></pre></td></tr></table></figure>
+
+<p>果然不行~~~</p>
+<hr>
+<h3 id="乘（-）"><a href="#乘（-）" class="headerlink" title="乘（*）"></a>乘（*）</h3><p>乘法和加法类似，只是几个一样的序列相加而已：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; tup1 = (<span class="string">&quot;Python&quot;</span>, 123, [1,2])</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; str1 = <span class="string">&quot;test&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(tup1 * 2)</span></span><br><span class="line">(&#x27;Python&#x27;, 123, [1, 2], &#x27;Python&#x27;, 123, [1, 2])</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(str1 * 2)</span></span><br><span class="line">testtest</span><br></pre></td></tr></table></figure>
+
+<p>同样不会影响原序列。</p>
+<hr>
+<h3 id="成员检查（in-amp-amp-not-in）"><a href="#成员检查（in-amp-amp-not-in）" class="headerlink" title="成员检查（in &amp;&amp; not in）"></a>成员检查（in &amp;&amp; not in）</h3><p>成员检查就是就是，判断元素对象是否（不）包含在序列中，返回的是布尔型值。如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>tup1 = (<span class="string">&quot;Python&quot;</span>, <span class="number">123</span>, [<span class="number">1</span>,<span class="number">2</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>str1 = <span class="string">&quot;test&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">&quot;te&quot;</span> <span class="keyword">in</span> str1)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">&quot;te&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> str1)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="number">123</span> <span class="keyword">in</span> tup1)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="number">123</span> <span class="keyword">not</span> <span class="keyword">in</span> tup1)</span><br><span class="line"><span class="literal">False</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="序列长度计算"><a href="#序列长度计算" class="headerlink" title="序列长度计算"></a>序列长度计算</h3><p>其实就是 <code>len()</code> 内置函数的调用，该函数会返回序列容器中元素的数量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>tup1 = (<span class="string">&quot;Python&quot;</span>, <span class="number">123</span>, [<span class="number">1</span>,<span class="number">2</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>str1 = <span class="string">&quot;test&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="built_in">len</span>(tup1), <span class="built_in">len</span>(str1))</span><br><span class="line"><span class="number">3</span> <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p>后面，你会发现：不仅仅是序列，集合（Set）和字典（Dict）也可以通过 <code>len()</code> 求元素个数。</p>
+<hr>
+<h3 id="取序列中的最大、最小值"><a href="#取序列中的最大、最小值" class="headerlink" title="取序列中的最大、最小值"></a>取序列中的最大、最小值</h3><p>这里其实是内置函数 <code>max()</code> 和  <code>max()</code> 的使用，其会返回序列中的最大、最小值。</p>
+<p>关于不同序列最大、最小等到具体小节会介绍。</p>
+<hr>
+<h2 id="序列支持的内置函数"><a href="#序列支持的内置函数" class="headerlink" title="序列支持的内置函数"></a>序列支持的内置函数</h2><p>Python提供了几个内置函数，可用于实现与序列相关的一些常用操作:</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>len()</td>
+<td>计算序列的长度，即返回序列中包含多少个元素。</td>
+</tr>
+<tr>
+<td>max()</td>
+<td>找出序列中的最大元素。</td>
+</tr>
+<tr>
+<td>min()</td>
+<td>找出序列中的最小元素。</td>
+</tr>
+<tr>
+<td>list()</td>
+<td>将序列转换为列表。</td>
+</tr>
+<tr>
+<td>str()</td>
+<td>将序列转换为字符串。</td>
+</tr>
+<tr>
+<td>sum()</td>
+<td>计算元素和。注意，对序列使用 sum() 函数时，做加和操作的必须都是数字，不能是字符或字符串，否则该函数将抛出异常，因为解释器无法判定是要做连接操作（+ 运算符可以连接两个序列），还是做加和操作。</td>
+</tr>
+<tr>
+<td>sorted()</td>
+<td>对元素进行排序。</td>
+</tr>
+<tr>
+<td>reversed()</td>
+<td>反向序列中的元素。返回一个逆序序列的迭代器（用于遍历该逆序序列）</td>
+</tr>
+<tr>
+<td>enumerate()</td>
+<td>将序列组合为一个索引序列，多用在 for 循环中。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Python 中的序列详解</p><p><a href="https://www.orangeshare.cn/2018/01/06/python-zhong-de-xu-lie-xiang-jie/">https://www.orangeshare.cn/2018/01/06/python-zhong-de-xu-lie-xiang-jie/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-01-06</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-03-17</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/DataType/">DataType</a><a class="link-muted mr-2" rel="tag" href="/tags/Python/">Python</a><a class="link-muted mr-2" rel="tag" href="/tags/Sequence/">Sequence</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/01/06/python-shu-ju-jie-gou-zhi-list-and-tuple/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Python 数据结构之 List and Tuple</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/01/06/python-zi-fu-chuan-zhi-ge-shi-hua-shu-chu/"><span class="level-item">Python 字符串之格式化输出</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p><p class="is-size-6 is-block">Web, AI Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Galactic System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">60</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">32</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/TheNightIsYoung" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="DockerHub" href="https://hub.docker.com/"><i class="fab fa-docker"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/explore"><i class="fab fa-gofore"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="MDEditor" href="http://www.mdeditor.com/"><i class="fab fa-canadian-maple-leaf"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="WangYiYun" href="https://music.163.com/"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Python-中的序列"><span class="level-left"><span class="level-item">1</span><span class="level-item">Python 中的序列</span></span></a></li><li><a class="level is-mobile" href="#is-amp-amp-amp-amp-id"><span class="level-left"><span class="level-item">2</span><span class="level-item">is &amp;&amp; == &amp;&amp; id()</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#gt-gt-gt-id"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">&gt;&gt;&gt; id()</span></span></a></li><li><a class="level is-mobile" href="#gt-gt-gt-is-amp-amp"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">&gt;&gt;&gt; is &amp;&amp; ==</span></span></a></li></ul></li><li><a class="level is-mobile" href="#序列中的索引"><span class="level-left"><span class="level-item">3</span><span class="level-item">序列中的索引</span></span></a></li><li><a class="level is-mobile" href="#序列到底是什么？"><span class="level-left"><span class="level-item">4</span><span class="level-item">序列到底是什么？</span></span></a></li><li><a class="level is-mobile" href="#序列支持操作"><span class="level-left"><span class="level-item">5</span><span class="level-item">序列支持操作</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#序列中的索引和切片"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">序列中的索引和切片</span></span></a></li><li><a class="level is-mobile" href="#加（-）"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">加（+）</span></span></a></li><li><a class="level is-mobile" href="#乘（-）"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">乘（*）</span></span></a></li><li><a class="level is-mobile" href="#成员检查（in-amp-amp-not-in）"><span class="level-left"><span class="level-item">5.4</span><span class="level-item">成员检查（in &amp;&amp; not in）</span></span></a></li><li><a class="level is-mobile" href="#序列长度计算"><span class="level-left"><span class="level-item">5.5</span><span class="level-item">序列长度计算</span></span></a></li><li><a class="level is-mobile" href="#取序列中的最大、最小值"><span class="level-left"><span class="level-item">5.6</span><span class="level-item">取序列中的最大、最小值</span></span></a></li></ul></li><li><a class="level is-mobile" href="#序列支持的内置函数"><span class="level-left"><span class="level-item">6</span><span class="level-item">序列支持的内置函数</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2022 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

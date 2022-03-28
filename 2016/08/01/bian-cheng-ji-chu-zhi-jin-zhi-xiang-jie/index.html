@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>编程基础之进制详解 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="计算机组成原理中的二进制、八进制、十进制、十六进制以及进制转换。"><meta property="og:type" content="blog"><meta property="og:title" content="编程基础之进制详解"><meta property="og:url" content="https://www.orangeshare.cn/2016/08/01/bian-cheng-ji-chu-zhi-jin-zhi-xiang-jie/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="计算机组成原理中的二进制、八进制、十进制、十六进制以及进制转换。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_calc.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_subcalc.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_addcalc.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_subcalc.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_hexadec_addcalc.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_hexadec_subcalc.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_calc_toDeci.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_calc_toDeci.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_smallcalc_toDeci.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_smallcalc_toDeci.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_toOcto.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_toBin.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_toHexa.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_Hexa_toBin.png"><meta property="article:published_time" content="2016-08-01T07:39:03.000Z"><meta property="article:modified_time" content="2022-03-16T03:18:06.204Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Programming"><meta property="article:tag" content="System Binary"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_calc.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2016/08/01/bian-cheng-ji-chu-zhi-jin-zhi-xiang-jie/"},"headline":"When Art Meets Tech","image":["https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_calc.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_subcalc.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_addcalc.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_subcalc.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_hexadec_addcalc.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_hexadec_subcalc.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_calc_toDeci.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_calc_toDeci.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_smallcalc_toDeci.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_smallcalc_toDeci.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_toOcto.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_toBin.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_toHexa.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_Hexa_toBin.png"],"datePublished":"2016-08-01T07:39:03.000Z","dateModified":"2022-03-16T03:18:06.204Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"计算机组成原理中的二进制、八进制、十进制、十六进制以及进制转换。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2016/08/01/bian-cheng-ji-chu-zhi-jin-zhi-xiang-jie/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>编程基础之进制详解</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2016-08-01</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2022-03-16</time></span><span class="level-item"><a class="link-muted" href="/categories/System/">System</a></span><span class="level-item">22 minutes read (About 3347 words)</span></div></div><div class="content"><p>计算机组成原理中的二进制、八进制、十进制、十六进制以及进制转换。</p>
+<a id="more"></a>
+
+<h2 id="什么是进制？"><a href="#什么是进制？" class="headerlink" title="什么是进制？"></a>什么是进制？</h2><p>在生活中，我们通常都是使用阿拉伯数字计数的，也就是 <strong>10 进制，以 10 为单位，逢十进一（满十进一），借一当十</strong>，也因为只有 <code>0，1，2、3、4、5、6、7、8、9</code> 十个数字组成的，所以叫做十进制（Decimalism）。十进制是在人类社会发展过程中自然形成的，它符合人们的思维习惯，例如人类有十根手指，也有十根脚趾。</p>
+<p>那么什么是进制呢？进制也就是 <strong>进位制</strong> &gt;&gt;&gt;&gt;</p>
+<p>对于任何一种进制（<strong>X 进制</strong>），进行加法运算时都表示某一位置上的数运算时是逢 <code>X</code> 进一位，进行减法运算时都表示某一位置上的数运算时借一当 <code>X</code>，这就是 <strong>X 进制</strong>。这种进位制，包含 <code>X</code> 个数字（<code>0 ~ X-1</code>），基数为 <code>X</code>。</p>
+<p>例如：十进制有 <code>0~9</code> 共 <code>10</code> 个数字，基数为 <code>10</code>，在加减法运算中，逢十进一，借一当十；二进制就是逢二进一（借一当二，<code>0~1</code>），八进制就是逢八进一（借一当八，<code>0~7</code>）， 十六进制是逢十六进一（借一当十六，<code>0~F</code>），以此类推……</p>
+<hr>
+<h2 id="常用进制"><a href="#常用进制" class="headerlink" title="常用进制"></a>常用进制</h2><p>计算机常用进制有：二进制、八进制、十六进制。</p>
+<h3 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h3><p>二进制（Binary）有 <code>0~1</code> 共 <code>2</code> 个数字，基数为 <code>2</code>，在加减法运算中，逢二进一，借一当二。</p>
+<p>例如，数字 <code>0</code>、<code>1</code>、<code>10</code>、<code>111</code>、<code>100、</code>1000001` 都是有效的二进制。</p>
+<p>了解计算机组成原理的看客老爷应该知道，在计算机内部，数据都是以二进制的形式存储的，计算机硬件无法识别除了 <code>0/1</code> 以外的任何数，所以二进制是学习编程必须掌握的基础。</p>
+<p><strong>二进制加减法 &gt;&gt;&gt;&gt;</strong></p>
+<p>二进制加减法和十进制加减法的思想是类似的：</p>
+<ul>
+<li>对于十进制，进行加法运算时逢十进一，进行减法运算时借一当十；</li>
+<li>对于二进制，进行加法运算时逢二进一，进行减法运算时借一当二。</li>
+</ul>
+<p>下面来演示二进制加减法运算的全过程：</p>
+<p><strong>[1] –&gt; 二进制加法</strong>：<code>1+0=1</code>、<code>1+1=10</code>、<code>11+10=101</code>、<code>111+111=1110</code></p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_calc.png'> </div>
+
+<p><strong>[2] –&gt; 二进制减法</strong>：<code>1-0=1</code>、<code>10-1=1</code>、<code>101-11=10</code>、<code>1100-111=101</code></p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_subcalc.png'> </div>
+
+<hr>
+<h3 id="八进制"><a href="#八进制" class="headerlink" title="八进制"></a>八进制</h3><p>除了二进制，计算机程序设计语言中还会使用到八进制。</p>
+<p>八进制（Octonary）有 <code>0~7</code> 共 <code>8</code> 个数字，基数为 <code>8</code>，在加减法运算中，逢八进一，借一当八。</p>
+<p>数字 <code>0</code>、<code>1</code>、<code>5</code>、<code>7</code>、<code>14</code>、<code>733</code>、<code>67001</code>、<code>25430</code> 都是有效的八进制。</p>
+<p>下面来演示八进制加减法运算的全过程：</p>
+<p><strong>[1] –&gt; 八进制加法</strong>：<code>3+4=7</code>、<code>5+6=13</code>、<code>75+42=137</code>、<code>2427+567=3216</code></p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_addcalc.png'> </div>
+
+<p><strong>[2] –&gt; 八进制减法</strong>：<code>6-4=2</code>、<code>52-27=23</code>、<code>307-141=146</code>、<code>7430-1451=5757</code></p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_subcalc.png'> </div>
+
+<hr>
+<h3 id="十六进制"><a href="#十六进制" class="headerlink" title="十六进制"></a>十六进制</h3><p>除了二进制和八进制，计算机程序设计语言中十六进制也经常使用，甚至比八进制还要频繁。</p>
+<p>十六进制（Hexadecimal）中，用 <code>A</code> 来表示 <code>10</code>，<code>B</code> 表示 <code>11</code>，<code>C</code> 表示 <code>12</code>，<code>D</code> 表示 <code>13</code>，<code>E</code> 表示 <code>14</code>，<code>F</code> 表示 <code>15</code>，因此有 <code>0~F</code> 共 <code>16</code> 个数字，基数为 <code>16</code>，在加减法运算中，逢十六进一，借一当十六。</p>
+<blockquote>
+<p>注意，十六进制中的字母不区分大小写，<code>ABCDEF</code> 也可以写作 <code>abcdef</code>。</p>
+</blockquote>
+<p>下面来演示十六进制加减法运算的全过程：</p>
+<p><strong>[1] –&gt; 十六进制加法</strong>：<code>6+7=D</code>、<code>18+BA=D2</code>、<code>595+792=D27</code>、<code>2F87+F8A=3F11</code></p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_hexadec_addcalc.png'> </div>
+
+<p><strong>[2] –&gt; 十六进制减法</strong>：<code>D-3=A</code>、<code>52-2F=23</code>、<code>E07-141=CC6</code>、<code>7CA0-1CB1=5FEF</code></p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_hexadec_subcalc.png'> </div>
+
+<hr>
+<h2 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h2><p>上节我们对二进制、八进制和十六进制进行了说明，这里讲解不同进制之间的转换，这在编程中经常会用到：</p>
+<h3 id="将二进制、八进制、十六进制转换为十进制"><a href="#将二进制、八进制、十六进制转换为十进制" class="headerlink" title="将二进制、八进制、十六进制转换为十进制"></a>将二进制、八进制、十六进制转换为十进制</h3><p>二进制、八进制和十六进制向十进制转换都非常容易，就是 <strong>“按权相加”</strong>。所谓 “权”，也即“位权（权重）”。</p>
+<p>假设当前数字是 <strong>N 进制</strong>，那么：</p>
+<ul>
+<li>对于整数部分，从右往左看，第 <strong>i</strong> 位的权重等于 <strong>N<sup>i-1</strong>；</li>
+<li>对于小数部分，从左往右看，第 <strong>i</strong> 位的权重为 <strong>N<sup>-i</strong>（<code>0</code> 包含在整数部分）。</li>
+</ul>
+<p>更加通俗的理解是，假设一个多位数（由多个数字组成的数）某位上的数字是 Y，那么它所表示的数值大小等于 <code>Y × 权重</code>。 怎么理解？？？看下面实例：</p>
+<p><strong>[1] –&gt; 整数部分</strong></p>
+<p>例如，将八进制数字 <strong>53627</strong> 转换成十进制：</p>
+<blockquote>
+<p>（八进制）53627 = 5×8^4 + 3×8^3 + 6×8^2 + 2×8^1 + 7×8^0 = 22423（十进制）</p>
+</blockquote>
+<p>从右往左看，第 <code>1</code> 位的位权为 <code>8^0=1</code>，第 <code>2</code> 位的位权为 <code>8^1=8</code>，第 <code>3</code> 位的位权为 <code>8^2=64</code>，第 <code>4</code> 位的位权为 <code>8^3=512</code>，第 <code>5</code> 位的位权为 <code>8^4=4096</code> …… 第 <code>n</code> 位的位权就为 <code>8^(n-1)</code>。将各个位的数字乘以位权，然后再相加，就得到了十进制形式。</p>
+<p>再如，将十六进制数字 <strong>9FA8C</strong> 转换成十进制：</p>
+<blockquote>
+<p>（十六进制）9FA8C = 9×16^4 + 15×16^3 + 10×16^2 + 8×16^1 + 12×16^0 = 653964（十进制）</p>
+</blockquote>
+<p>从右往左看，第 <code>1</code> 位的位权为 <code>16^0=1</code>，第 <code>2</code> 位的位权为 <code>16^1=16</code>，第 <code>3</code> 位的位权为 <code>16^2=256</code>，第 <code>4</code> 位的位权为 <code>16^3=4096</code>，第 <code>5</code> 位的位权为 <code>16^4=65536</code> …… 第 <code>n</code> 位的位权就为 <code>16^(n-1)</code>。将各个位的数字乘以位权，然后再相加，就得到了十进制形式。</p>
+<p>将二进制数字 <strong>11010</strong> 转换成十进制也是类似的道理：</p>
+<blockquote>
+<p>（二进制）11010 = 1×2^4 + 1×2^3 + 0×2^2 + 1×2^1 + 0×2^0 = 26（十进制）</p>
+</blockquote>
+<p>从右往左看，第 <code>1</code> 位的位权为 <code>2^0=1</code>，第 <code>2</code> 位的位权为 <code>2^1=2</code>，第 <code>3</code> 位的位权为 <code>2^2=4</code>，第 <code>4</code> 位的位权为 <code>2^3=8</code>，第 <code>5</code> 位的位权为 <code>2^4=16</code> …… 第 <code>n</code> 位的位权就为 <code>2^(n-1)</code>。将各个位的数字乘以位权，然后再相加，就得到了十进制形式。</p>
+<hr>
+<p><strong>[2] –&gt; 小数部分</strong></p>
+<p>例如，将八进制数字 <strong>423.5176</strong> 转换成十进制：</p>
+<blockquote>
+<p>（八进制）423.5176 = 4×8^2 + 2×8^1 + 3×8^0 + 5×8^(-1) + 1×8^(-2) + 7×8^(-3) + 6×8^(-4) = 275.65576171875（十进制）</p>
+</blockquote>
+<p>小数部分和整数部分相反，要从左往右看，第 <code>1</code> 位的位权为 <code>8^(-1)=1/8</code>，第 <code>2</code> 位的位权为 <code>8^(-2)=1/64</code>，第 <code>3</code> 位的位权为 <code>8^(-3)=1/512</code>，第 <code>4</code> 位的位权为 <code>8^(-4)=1/4096</code> …… 第 <code>m</code> 位的位权就为 `8^(-m)。</p>
+<p>再如，将二进制数字 <strong>1010.1101</strong> 转换成十进制：</p>
+<blockquote>
+<p>（二进制）1010.1101 = 1×2^3 + 0×2^2 + 1×2^1 + 0×2^0 + 1×2^(-1) + 1×2^(-2) + 0×2^(-3) + 1×2^(-4) = 10.8125（十进制）</p>
+</blockquote>
+<p>小数部分和整数部分相反，要从左往右看，第 <code>1</code> 位的位权为 <code>2^(-1)=1/2</code>，第 <code>2</code> 位的位权为 <code>2^(-2)=1/4</code>，第 <code>3</code> 位的位权为 <code>2^(-3)=1/8</code>，第 <code>4</code> 位的位权为 <code>2^(-4)=1/16</code> …… 第 <code>m</code> 位的位权就为 <code>2^(-m)</code>。</p>
+<hr>
+<h3 id="将十进制转换为二进制、八进制、十六进制"><a href="#将十进制转换为二进制、八进制、十六进制" class="headerlink" title="将十进制转换为二进制、八进制、十六进制"></a>将十进制转换为二进制、八进制、十六进制</h3><p>将十进制转换为其它进制时比较复杂，整数部分和小数部分的算法不一样，分别讲解:</p>
+<p><strong>[1] –&gt; 整数部分</strong></p>
+<p>十进制整数转换为 <strong>N 进制</strong> 整数采用 “<strong>除 N 取余，逆序排列</strong>”法。具体做法是：</p>
+<ul>
+<li>将 N 作为除数，用十进制整数除以 N，可以得到一个商和余数；</li>
+<li>保留余数，用商继续除以 N，又得到一个新的商和余数；</li>
+<li>仍然保留余数，用商继续除以 N，还会得到一个新的商和余数；</li>
+<li>……</li>
+<li>如此反复进行，每次都保留余数，用商接着除以 N，直到商为 0 时为止。</li>
+</ul>
+<p>演示将十进制数字 <code>36926</code> 转换成八进制的过程 &gt;&gt;&gt;&gt;</p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_calc_toDeci.png'> </div>
+
+
+<p>从图中得知，十进制数字 <code>36926</code> 转换成八进制的结果为 <code>110076</code>。</p>
+<p>演示将十进制数字 <code>42</code> 转换成二进制的过程 &gt;&gt;&gt;&gt;</p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_calc_toDeci.png'> </div>
+
+<p>从图中得知，十进制数字 <code>42</code> 转换成二进制的结果为 <code>101010</code>。</p>
+<hr>
+<p><strong>[2] –&gt; 小数部分</strong></p>
+<p>十进制小数转换成 <strong>N 进制</strong> 小数采用“<strong>乘 N 取整，顺序排列</strong>”法。具体做法是：</p>
+<ul>
+<li>用 N 乘以十进制小数，可以得到一个积，这个积包含了整数部分和小数部分；</li>
+<li>将积的整数部分取出，再用 N 乘以余下的小数部分，又得到一个新的积；</li>
+<li>再将积的整数部分取出，继续用 N 乘以余下的小数部分；</li>
+<li>……</li>
+<li>如此反复进行，每次都取出整数部分，用 N 接着乘以小数部分，直到积中的小数部分为 0，或者达到所要求的精度为止。</li>
+</ul>
+<p>演示将十进制小数 <code>0.930908203125</code> 转换成八进制小数的过程 &gt;&gt;&gt;&gt;</p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_smallcalc_toDeci.png'> </div>
+
+<p>从图中得知，十进制小数 <code>0.930908203125</code> 转换成八进制小数的结果为 <code>0.7345</code>。</p>
+<p>演示将十进制小数 <code>0.6875</code> 转换成二进制小数的过程 &gt;&gt;&gt;&gt;</p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_smallcalc_toDeci.png'> </div>
+
+<p>从图中得知，十进制小数 <code>0.6875</code> 转换成二进制小数的结果为 <code>0.1011</code>。</p>
+<hr>
+<p><strong>[3] –&gt; 整数部分 &amp;&amp; 小数部分</strong></p>
+<p>如果一个数字既包含了整数部分又包含了小数部分，那么将整数部分和小数部分开，分别按照上面的方法完成转换，然后再合并在一起即可。例如：</p>
+<ul>
+<li>十进制数字 <code>36926.930908203125</code> 转换成八进制的结果为 <code>110076.7345</code>；</li>
+<li>十进制数字 <code>42.6875</code> 转换成二进制的结果为 <code>101010.1011</code>。</li>
+</ul>
+<hr>
+<h3 id="将十进制数转化为其它进制数无限问题"><a href="#将十进制数转化为其它进制数无限问题" class="headerlink" title="将十进制数转化为其它进制数无限问题"></a>将十进制数转化为其它进制数无限问题</h3><p>十进制小数转换成其他进制小数时，结果有可能是一个无限位的小数。</p>
+<p>请看下面的例子：</p>
+<ul>
+<li>十进制 <code>0.51</code> 对应的二进制为 <code>0.100000101000111101011100001010001111010111...</code>，是一个循环小数；</li>
+<li>十进制 <code>0.72</code> 对应的二进制为 <code>0.1011100001010001111010111000010100011110...</code>，是一个循环小数；</li>
+<li>十进制 <code>0.625</code> 对应的二进制为 <code>0.101</code>，是一个有限小数。</li>
+</ul>
+<p>但我们知道，计算机内存有限，我们不能用储存所有的小数位数。那么在精度与内存间如何取舍呢？</p>
+<p>答案是：<strong>在某个精度点直接舍弃，代价就是，计算机内部相应数值不是精准的</strong>。</p>
+<p>十进制小数在高级程序设计语言中属于浮点类型数据，既然十进制小数存储到内存中有误差，所以计算机中的浮点型数值的计算是不精确的，这种问题 <strong>对于所有支持浮点数运算的编程语言都是存在的</strong>。</p>
+<p>导致什么问题？？？ &gt;&gt;&gt;&gt; 永远不要直接比较两个浮点的大小！！！ &gt;&gt;&gt; <strong>0.1 + 0.2 不等于 0.3</strong>（传送门 –&gt; <a href="https://www.orangeshare.cn/2016/07/29/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/">为什么 0.1 + 0.2 不等于 0.3？</a>）。</p>
+<p>但我们知道：</p>
+<p><strong>实际应用种，不同行业，要求的精度不是线性的，我们允许（对结果无关紧要的）误差存在。</strong> <code>10.0001</code> 与 <code>10.001</code> 在铁路工程师看来都是合格的。</p>
+<hr>
+<h3 id="二进制和八进制、十六进制的转换"><a href="#二进制和八进制、十六进制的转换" class="headerlink" title="二进制和八进制、十六进制的转换"></a>二进制和八进制、十六进制的转换</h3><p>将二进制转换为八进制和十六进制时非常简洁，反之亦然。</p>
+<p><strong>[1] –&gt; 二进制整数和八进制整数之间的转换</strong></p>
+<p><strong>1）二进制 &gt;&gt;&gt;&gt; 八进制</strong></p>
+<p>二进制整数转换为八进制整数时，每三位二进制数字转换为一位八进制数字，高位不足三位用零补齐，注意从低位向高位依次进行。</p>
+<p>下图演示如何将二进制整数 <code>1110111100</code> 转换为八进制：</p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_toOcto.png'> </div>
+
+<p>从图中可以看出，二进制整数 <code>1110111100</code> 转换为八进制的结果为 <code>1674</code>。</p>
+<p><strong>2）八进制 &gt;&gt;&gt;&gt; 二进制</strong></p>
+<p>八进制整数转换为二进制整数时，思路是相反的，每一位八进制数字转换为三位二进制数字，注意从低位向高位依次进行。</p>
+<p>下图演示了如何将八进制整数 <code>2743</code> 转换为二进制：</p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_octonary_toBin.png'> </div>
+
+<hr>
+<p><strong>[2] –&gt; 二进制整数和十六进制整数之间的转换</strong></p>
+<p><strong>1）二进制 &gt;&gt;&gt;&gt; 十六进制</strong></p>
+<p>二进制整数转换为十六进制整数时，每四位二进制数字转换为一位十六进制数字，高位不足四位用零补齐，注意从低位向高位依次进行。</p>
+<p>下图演示了如何将二进制整数 <code>10 1101 0101 1100</code> 转换为十六进制：</p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_binary_toHexa.png'> </div>
+
+<p>从图中可以看出，二进制整数 <code>10 1101 0101 1100</code> 转换为十六进制的结果为 <code>2D5C</code>。</p>
+<p><strong>2）十六进制 &gt;&gt;&gt;&gt; 二进制</strong></p>
+<p>十六进制整数转换为二进制整数时，思路是相反的，每一位十六进制数字转换为四位二进制数字，注意从低位向高位依次进行。</p>
+<p>下图演示了如何将十六进制整数 <code>A5D6</code> 转换为二进制：</p>
+<div align=left> <img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/system_Hexa_toBin.png'> </div>
+
+<p>从图中可以看出，十六进制整数 <code>A5D6</code> 转换为二进制的结果为 <code>1010 0101 1101 0110</code>。</p>
+<hr>
+<h3 id="八进制和十六进制的转换"><a href="#八进制和十六进制的转换" class="headerlink" title="八进制和十六进制的转换"></a>八进制和十六进制的转换</h3><p>八进制和十六进制之间也极少直接转换。</p>
+<p>而且，八进制和十六进制之间转换: 可先其转换为十进制数，再由在十进制数转换为十六进制或者八进制。</p>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>编程基础之进制详解</p><p><a href="https://www.orangeshare.cn/2016/08/01/bian-cheng-ji-chu-zhi-jin-zhi-xiang-jie/">https://www.orangeshare.cn/2016/08/01/bian-cheng-ji-chu-zhi-jin-zhi-xiang-jie/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2016-08-01</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-03-16</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Programming/">Programming</a><a class="link-muted mr-2" rel="tag" href="/tags/System-Binary/">System Binary</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2016/09/01/bian-cheng-ji-chu-zhi-bian-ma-xiang-jie/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">编程基础之编码详解</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2016/07/29/bian-cheng-ji-chu-zhi-ji-qi-shu-he-suan-zhu-yi-chu/"><span class="level-item">编程基础之机器数和算术溢出</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p><p class="is-size-6 is-block">Web, AI Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Galactic System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">60</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">32</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/TheNightIsYoung" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="DockerHub" href="https://hub.docker.com/"><i class="fab fa-docker"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/explore"><i class="fab fa-gofore"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="MDEditor" href="http://www.mdeditor.com/"><i class="fab fa-canadian-maple-leaf"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="WangYiYun" href="https://music.163.com/"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#什么是进制？"><span class="level-left"><span class="level-item">1</span><span class="level-item">什么是进制？</span></span></a></li><li><a class="level is-mobile" href="#常用进制"><span class="level-left"><span class="level-item">2</span><span class="level-item">常用进制</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#二进制"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">二进制</span></span></a></li><li><a class="level is-mobile" href="#八进制"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">八进制</span></span></a></li><li><a class="level is-mobile" href="#十六进制"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">十六进制</span></span></a></li></ul></li><li><a class="level is-mobile" href="#进制转换"><span class="level-left"><span class="level-item">3</span><span class="level-item">进制转换</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#将二进制、八进制、十六进制转换为十进制"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">将二进制、八进制、十六进制转换为十进制</span></span></a></li><li><a class="level is-mobile" href="#将十进制转换为二进制、八进制、十六进制"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">将十进制转换为二进制、八进制、十六进制</span></span></a></li><li><a class="level is-mobile" href="#将十进制数转化为其它进制数无限问题"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">将十进制数转化为其它进制数无限问题</span></span></a></li><li><a class="level is-mobile" href="#二进制和八进制、十六进制的转换"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">二进制和八进制、十六进制的转换</span></span></a></li><li><a class="level is-mobile" href="#八进制和十六进制的转换"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">八进制和十六进制的转换</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2022 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Python 中的运算符以及流程控制 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="前面已经了解了 Python 中常用的数据结构，本文接着来看 Python 中的运算符以及程序流程控制，这是一个 可执行 Python 程序实现的必要部分。"><meta property="og:type" content="blog"><meta property="og:title" content="Python 中的运算符以及流程控制"><meta property="og:url" content="https://www.orangeshare.cn/2018/01/09/python-zhong-de-yun-suan-fu-yi-ji-liu-cheng-kong-zhi/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="前面已经了解了 Python 中常用的数据结构，本文接着来看 Python 中的运算符以及程序流程控制，这是一个 可执行 Python 程序实现的必要部分。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/control_flow_ifelse.gif"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/control_flow_ifelse1.gif"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/control_flow_ifelseif.gif"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/for.png"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/control_flow_while.gif"><meta property="article:published_time" content="2018-01-09T05:40:29.000Z"><meta property="article:modified_time" content="2022-03-18T13:57:26.156Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Python"><meta property="article:tag" content="Flow Control"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/control_flow_ifelse.gif"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2018/01/09/python-zhong-de-yun-suan-fu-yi-ji-liu-cheng-kong-zhi/"},"headline":"When Art Meets Tech","image":["https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/control_flow_ifelse.gif","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/control_flow_ifelse1.gif","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/control_flow_ifelseif.gif","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/for.png","https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/control_flow_while.gif"],"datePublished":"2018-01-09T05:40:29.000Z","dateModified":"2022-03-18T13:57:26.156Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"前面已经了解了 Python 中常用的数据结构，本文接着来看 Python 中的运算符以及程序流程控制，这是一个 可执行 Python 程序实现的必要部分。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2018/01/09/python-zhong-de-yun-suan-fu-yi-ji-liu-cheng-kong-zhi/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>Python 中的运算符以及流程控制</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2018-01-09</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2022-03-18</time></span><span class="level-item"><a class="link-muted" href="/categories/Python/">Python</a></span><span class="level-item">an hour read (About 8516 words)</span></div></div><div class="content"><p>前面已经了解了 Python 中常用的数据结构，本文接着来看 Python 中的运算符以及程序流程控制，这是一个 可执行 Python 程序实现的必要部分。</p>
+<a id="more"></a>
+
+<p>前面我们已经熟悉并深入了解了 Python 支持的六种基本数据类型，这就意味着我们已经成功突破现实世界和镜像世界数据差异的墙。</p>
+<p>但对于 Python 世界而言，光掌握正确使用 【镜像世界的数据】 还不够，还需要正确的 【沟通逻辑】 才能让Python 准确地执行我们下达的命令，这就需要了解 Python 中的运算符以及流程控制以帮助我们完成更多的功能。</p>
+<hr>
+<h2 id="Python-中的运算符"><a href="#Python-中的运算符" class="headerlink" title="Python 中的运算符"></a>Python 中的运算符</h2><p>开始后续的流程控制学习之前，我们需要系统的认识一下 Python 中的运算符。</p>
+<p>我们先来看个简单的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="number">4</span> + <span class="number">5</span></span><br><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>4</code>，<code>5 </code>被称为操作数，<code>+</code> 被称之为运算符。</p>
+<p>Python 语言支持以下类型的运算符:</p>
+<ul>
+<li>算术运算符</li>
+<li>赋值运算符</li>
+<li>比较（关系）运算符</li>
+<li>逻辑运算符</li>
+<li>位运算符</li>
+<li>成员运算符</li>
+<li>身份运算符</li>
+</ul>
+<p>本文将会针对上述运算符分类，进行分别学习：</p>
+<h3 id="运算符详解"><a href="#运算符详解" class="headerlink" title="运算符详解"></a>运算符详解</h3><h4 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h4><p>在介绍 Number（数字）数据类型时，我们已经接触过算术运算了。这里我们来看如何使用算术运算符进行算术运算：</p>
+<p><strong>[1] &gt;&gt;&gt;&gt; 加法：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>aNumber = <span class="number">21</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bNumber = <span class="number">10</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cNumber = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加法：</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cNumber = aNumber + bNumber</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">&quot;The value of cNumber:&quot;</span>,cNumber)</span><br><span class="line">The value of cNumber: <span class="number">31</span></span><br></pre></td></tr></table></figure>
+
+<p>当 <code>+</code> 用于数字（Number）时表示加法运算（加法运算符）；但是当 <code>+</code> 用于序列时表示连接运算（连接运算符），请参照 Python 中的序列说明。</p>
+<p><strong>[2] &gt;&gt;&gt;&gt; 减法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; cNumber &#x3D; aNumber - bNumber</span><br><span class="line">&gt;&gt;&gt; print(&quot;The value of cNumber:&quot;,cNumber)</span><br><span class="line">The value of cNumber: 11</span><br></pre></td></tr></table></figure>
+
+<p><code>-</code> 除了可以用作减法运算之外，还可以用作求负运算（正数变负数，负数变正数），即取相反数。</p>
+<p><strong>[3] &gt;&gt;&gt;&gt; 乘法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; cNumber &#x3D; aNumber * bNumber</span><br><span class="line">&gt;&gt;&gt; print(&quot;The value of cNumber:&quot;,cNumber)</span><br><span class="line">The value of cNumber: 210</span><br></pre></td></tr></table></figure>
+<p>当 <code>*</code> 用于数字（Number）时表示乘法运算（乘法运算符）；但是当 <code>*</code> 用于序列时表示重复运算（重复运算符），用于将几个同样的序列连接起来，请参照 Python 中的序列说明。</p>
+<p><strong>[4] &gt;&gt;&gt;&gt; 除法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 普通除法(计算结果总是小数，不管是否能除尽，也不管参与运算的是整数还是浮点数)：</span><br><span class="line">&gt;&gt;&gt; aNumber &#x3D; 21</span><br><span class="line">&gt;&gt;&gt; bNumber &#x3D; 10</span><br><span class="line">&gt;&gt;&gt; cNumber &#x3D; 0</span><br><span class="line">&gt;&gt;&gt; cNumber &#x3D; aNumber &#x2F; bNumber</span><br><span class="line">&gt;&gt;&gt; print(&quot;The value of cNumber:&quot;,cNumber)</span><br><span class="line">The value of cNumber: 2.1</span><br><span class="line"></span><br><span class="line"># 整除（直接舍弃小数部分）：</span><br><span class="line">&gt;&gt;&gt; cNumber &#x3D; aNumber &#x2F;&#x2F; bNumber</span><br><span class="line">&gt;&gt;&gt; print(&quot;The value of cNumber:&quot;,cNumber)</span><br><span class="line">The value of cNumber: 2</span><br></pre></td></tr></table></figure>
+
+<p>注意：进行除法运算时，除数始终不能为 <code>0</code>，除以 <code>0</code> 是没有意义的，这将导致 <code>ZeroDivisionError</code> 错误。在某些编程语言中，除以 <code>0</code> 的结果是无穷大（包括正无穷大和负无穷大）。</p>
+<p><strong>[5] &gt;&gt;&gt;&gt; 取模（取余）：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; aNumber &#x3D; 21</span><br><span class="line">&gt;&gt;&gt; bNumber &#x3D; 10</span><br><span class="line">&gt;&gt;&gt; cNumber &#x3D; 0</span><br><span class="line">&gt;&gt;&gt; cNumber &#x3D; aNumber % bNumber</span><br><span class="line">&gt;&gt;&gt; print(&quot;The value of cNumber:&quot;,cNumber)</span><br><span class="line">The value of cNumber: 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>[5] &gt;&gt;&gt;&gt; 幂运算：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; aNumber &#x3D; 21</span><br><span class="line">&gt;&gt;&gt; bNumber &#x3D; 10</span><br><span class="line">&gt;&gt;&gt; cNumber &#x3D; 0</span><br><span class="line">&gt;&gt;&gt; cNumber &#x3D; aNumber ** bNumber</span><br><span class="line">&gt;&gt;&gt; print(&quot;The value of cNumber:&quot;,cNumber)</span><br><span class="line">The value of cNumber: 16679880978201</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h4><table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">描述</th>
+<th align="left">实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">=</td>
+<td align="left">简单的赋值运算符</td>
+<td align="left">c = a + b 将 a + b 的运算结果赋值为 c</td>
+</tr>
+<tr>
+<td align="left">+=</td>
+<td align="left">加法赋值运算符</td>
+<td align="left">c += a 等效于 c = c + a</td>
+</tr>
+<tr>
+<td align="left">-=</td>
+<td align="left">减法赋值运算符</td>
+<td align="left">c -= a 等效于 c = c - a</td>
+</tr>
+<tr>
+<td align="left">*=</td>
+<td align="left">乘法赋值运算符</td>
+<td align="left">c *= a 等效于 c = c * a</td>
+</tr>
+<tr>
+<td align="left">/=</td>
+<td align="left">除法赋值运算符</td>
+<td align="left">c /= a 等效于 c = c / a</td>
+</tr>
+<tr>
+<td align="left">%=</td>
+<td align="left">取模赋值运算符</td>
+<td align="left">c %= a 等效于 c = c % a</td>
+</tr>
+<tr>
+<td align="left">**=</td>
+<td align="left">幂赋值运算符</td>
+<td align="left">c **= a 等效于 c = c ** a</td>
+</tr>
+<tr>
+<td align="left">//=</td>
+<td align="left">取整除赋值运算符</td>
+<td align="left">c //= a 等效于 c = c // a</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>通常情况下，只要能使用扩展后的赋值运算符，都推荐使用这种赋值运算符。</p>
+<p>注意：<code>=</code> 和 <code>==</code> 是两个不同的运算符。<code>=</code> 用来赋值，而 <code>==</code> 用来判断两边的值是否相等，千万不要混淆。</p>
+<hr>
+<h4 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h4><p>位运算符是把数字看作二进制来进行计算的。Python 中的按位运算法则如下：</p>
+<ul>
+<li><code>&amp;</code>：按位与运算符：参与运算的两个值,如果两个相应位都为 1,则该位的结果为1,否则为 0;</li>
+<li><code>|</code>：按位或运算符：只要对应的二个二进位有一个为 1 时，结果位就为 1；</li>
+<li><code>^</code>：按位异或运算符：当两对应的二进位相异时，结果为 1 ；</li>
+<li><code>~</code>：按位取反运算符：对数据的每个二进制位取反,即把 1 变为 0，把 0 变为 1；</li>
+<li><code>&lt;&lt;</code>：左移动运算符：把 “&lt;&lt;” 左边的运算数各二进位全部左移若干位，”&lt;&lt;” 右边的数用来指定移动的位数，高位丢弃，低位补 0；</li>
+<li><code>&gt;&gt;</code>：右移动运算符：把 “&gt;&gt;” 左边的运算数的各二进位全部右移若干位，”&gt;&gt;” 右边的数指定移动的位数。</li>
+</ul>
+<p>代码演示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>aNumber = <span class="number">60</span>            <span class="comment"># 60 = 0011 1100</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bNumber = <span class="number">13</span>            <span class="comment"># 13 = 0000 1101</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cNumber = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cNumber = aNumber &amp; bNumber;        <span class="comment"># 12 = 0000 1100</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span> (<span class="string">&quot;1.cNumber 的值为：&quot;</span>, cNumber)</span><br><span class="line"><span class="number">1.</span>cNumber 的值为： <span class="number">12</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cNumber = aNumber | bNumber;        <span class="comment"># 61 = 0011 1101</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span> (<span class="string">&quot;2.cNumber 的值为：&quot;</span>, cNumber)</span><br><span class="line"><span class="number">2.</span>cNumber 的值为： <span class="number">61</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cNumber = aNumber ^ bNumber;        <span class="comment"># 49 = 0011 0001</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span> (<span class="string">&quot;3.cNumber 的值为：&quot;</span>, cNumber)</span><br><span class="line"><span class="number">3.</span>cNumber 的值为： <span class="number">49</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cNumber = ~aNumber;           <span class="comment"># -61 = 1100 0011</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span> (<span class="string">&quot;4.cNumber 的值为：&quot;</span>, cNumber)</span><br><span class="line"><span class="number">4.</span>cNumber 的值为： -<span class="number">61</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cNumber = aNumber &lt;&lt; <span class="number">2</span>;       <span class="comment"># 240 = 1111 0000</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span> (<span class="string">&quot;5.cNumber 的值为：&quot;</span>, cNumber)</span><br><span class="line"><span class="number">5.</span>cNumber 的值为： <span class="number">240</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>cNumber = aNumber &gt;&gt; <span class="number">2</span>;       <span class="comment"># 15 = 0000 1111</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">print</span> (<span class="string">&quot;6.cNumber 的值为：&quot;</span>, c)</span><br><span class="line"><span class="number">6.</span>cNumber 的值为： <span class="number">15</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="比较（关系）运算符"><a href="#比较（关系）运算符" class="headerlink" title="比较（关系）运算符"></a>比较（关系）运算符</h4><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&gt;</td>
+<td>大于，如果&gt;前面的值大于后面的值，则返回 True，否则返回 False。</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于，如果&lt;前面的值小于后面的值，则返回 True，否则返回 False。</td>
+</tr>
+<tr>
+<td>==</td>
+<td>等于，如果==两边的值相等，则返回 True，否则返回 False。</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于等于（等价于数学中的 ≥），如果&gt;=前面的值大于或者等于后面的值，则返回 True，否则返回 False。</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于（等价于数学中的 ≤），如果&lt;=前面的值小于或者等于后面的值，则返回 True，否则返回 False。</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>等于（等价于数学中的 ≠），如果!=两边的值不相等，则返回 True，否则返回 False。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(<span class="string">&quot;89是否大于100：&quot;</span>, 89 &gt; 100)</span></span><br><span class="line">89是否大于100： False</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(<span class="string">&quot;24*5是否大于等于76：&quot;</span>, 24*5 &gt;= 76)</span></span><br><span class="line">24*5是否大于等于76： True</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(<span class="string">&quot;86.5是否等于86.5：&quot;</span>, 86.5 == 86.5)</span></span><br><span class="line">86.5是否等于86.5： True</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(<span class="string">&quot;34是否等于34.0：&quot;</span>, 34 == 34.0)</span></span><br><span class="line">34是否等于34.0： True</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><p>Python 语言支持的逻辑运算符如下：</p>
+<ul>
+<li><code>a and b</code>：等价于数学中的“且”，a 和 b 两个表达式都真为真，有假即假。；</li>
+<li><code>a or b</code>：等价于数学中的“或”，a 和 b 两个表达式有真即真，都假即假；</li>
+<li><code>not a</code>：等价于数学中的“非”，如果 a 为真，那么 not a 的结果为假；如果 a 为假，那么 not a 的结果为真。相当于对 a 取反。</li>
+</ul>
+<p>故，逻辑运算符一般和关系运算符结合使用，例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; age = int(input(<span class="string">&quot;请输入年龄：&quot;</span>))</span></span><br><span class="line">请输入年龄：23</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; height = int(input(<span class="string">&quot;请输入身高：&quot;</span>))</span></span><br><span class="line">请输入身高：178</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="keyword">if</span> age&gt;=18 and age&lt;=30 and height &gt;=170 and height &lt;= 185 :</span></span><br><span class="line">...     print(&quot;恭喜，你符合报考飞行员的条件&quot;)</span><br><span class="line">... else:</span><br><span class="line">...     print(&quot;抱歉，你不符合报考飞行员的条件&quot;)</span><br><span class="line">...</span><br><span class="line">恭喜，你符合报考飞行员的条件</span><br></pre></td></tr></table></figure>
+
+<p>注意，Python 逻辑运算符可以用来操作任何类型的表达式，不管表达式是不是 bool 类型；同时，逻辑运算的结果也不一定是 bool 类型，它也可以是任意类型。</p>
+<p><strong>逻辑运算符的本质 &gt;&gt;&gt;&gt;</strong></p>
+<p>对于 and 运算符，两边的值都为真时最终结果才为真，但是只要其中有一个值为假，那么最终结果就是假，所以 Python 按照下面的规则执行 and 运算：</p>
+<ul>
+<li>如果左边表达式的值为假，那么就不用计算右边表达式的值了，因为不管右边表达式的值是什么，都不会影响最终结果，最终结果都是假，此时 and 会把左边表达式的值作为最终结果。</li>
+<li>如果左边表达式的值为真，那么最终值是不能确定的，and 会继续计算右边表达式的值，并将右边表达式的值作为最终结果。</li>
+</ul>
+<p>对于 or 运算符，情况是类似的，两边的值都为假时最终结果才为假，只要其中有一个值为真，那么最终结果就是真，所以 Python 按照下面的规则执行 or 运算：</p>
+<ul>
+<li>如果左边表达式的值为真，那么就不用计算右边表达式的值了，因为不管右边表达式的值是什么，都不会影响最终结果，最终结果都是真，此时 or 会把左边表达式的值作为最终结果。</li>
+<li>如果左边表达式的值为假，那么最终值是不能确定的，or 会继续计算右边表达式的值，并将右边表达式的值作为最终结果。</li>
+</ul>
+<p>使用代码验证上面的结论：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Python 中，所有的对象都可以进行真假值的测试，包括字符串、元组、列表、字典、对象</span></span><br><span class="line"><span class="comment"># 条件判断中以下数值会被认为是 False：</span></span><br><span class="line"><span class="comment"># 为零的数：0 or 0.0；</span></span><br><span class="line"><span class="comment"># 空字符串：&#x27;&#x27;，&quot;&quot;；</span></span><br><span class="line"><span class="comment"># 空值：None；</span></span><br><span class="line"><span class="comment"># 空集合：()，[]，&#123;&#125;；</span></span><br><span class="line"><span class="comment"># 其他的值都认为是 True。</span></span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;hello, pretty girl！&quot;</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;----False and xxx-----&quot;</span>)</span><br><span class="line">print( <span class="literal">False</span> <span class="keyword">and</span> print(url) )</span><br><span class="line">print(<span class="string">&quot;----True and xxx-----&quot;</span>)</span><br><span class="line">print( <span class="literal">True</span> <span class="keyword">and</span> print(url) )</span><br><span class="line">print(<span class="string">&quot;----False or xxx-----&quot;</span>)</span><br><span class="line">print( <span class="literal">False</span> <span class="keyword">or</span> print(url) )</span><br><span class="line">print(<span class="string">&quot;----True or xxx-----&quot;</span>)</span><br><span class="line">print( <span class="literal">True</span> <span class="keyword">or</span> print(url) )</span><br></pre></td></tr></table></figure>
+
+<p>运行看一下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">----False and xxx-----</span><br><span class="line">False</span><br><span class="line">----True and xxx-----</span><br><span class="line">hello, pretty girl!</span><br><span class="line">None</span><br><span class="line">----False or xxx-----</span><br><span class="line">hello, pretty girl!</span><br><span class="line">None</span><br><span class="line">----True or xxx-----</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="成员运算符"><a href="#成员运算符" class="headerlink" title="成员运算符"></a>成员运算符</h4><p>除了以上的一些运算符之外，Python 还支持成员运算符。正如我们在字符串（str），列表（list）或元组（tuple）、字典（dict）、集合（set）中进行的成员检查。</p>
+<ul>
+<li><code>in</code>：如果在指定的序列中找到值返回 True，否则返回 False；</li>
+<li><code>not in</code>：如果在指定的序列中没有找到值返回 True，否则返回 False。</li>
+</ul>
+<p>关于成员运算符的使用请参考前面字符串（str），列表（list）或元组（tuple）、字典（dict）、集合（set）部分。</p>
+<hr>
+<h4 id="身份运算符"><a href="#身份运算符" class="headerlink" title="身份运算符"></a>身份运算符</h4><p>身份运算符用于比较两个对象的存储单元：</p>
+<ul>
+<li><code>is</code>：is 判断两个变量所引用的对象是否相同，如果相同则返回 True，否则返回 False。</li>
+<li><code>is not</code>：is not 判断两个变量所引用的对象是否不相同，如果不相同则返回 True，否则返回 False。<br>注意，<code>id([object])</code>函数用于获取对象的内存地址。</li>
+</ul>
+<p>下面我们来看身份运算符如何使用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>aNumber = <span class="number">20</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bNumber = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">if</span> ( aNumber <span class="keyword">is</span> bNumber ):</span><br><span class="line"><span class="meta">... </span>   <span class="built_in">print</span> (<span class="string">&quot;1 - aNumber 和 bNumber 有相同的标识&quot;</span>)</span><br><span class="line"><span class="meta">... </span><span class="keyword">else</span>:</span><br><span class="line"><span class="meta">... </span>   <span class="built_in">print</span> (<span class="string">&quot;1 - aNumber 和 bNumber 没有相同的标识&quot;</span>)</span><br><span class="line">...</span><br><span class="line"><span class="number">1</span> - aNumber 和 bNumber 有相同的标识</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">if</span> ( <span class="built_in">id</span>(aNumber) == <span class="built_in">id</span>(bNumber) ):</span><br><span class="line"><span class="meta">... </span>   <span class="built_in">print</span> (<span class="string">&quot;2 - aNumber 和 bNumber 有相同的标识&quot;</span>)</span><br><span class="line"><span class="meta">... </span><span class="keyword">else</span>:</span><br><span class="line"><span class="meta">... </span>   <span class="built_in">print</span> (<span class="string">&quot;2 - aNumber 和 bNumber 没有相同的标识&quot;</span>)</span><br><span class="line">...</span><br><span class="line"><span class="number">2</span> - aNumber 和 bNumber 有相同的标识</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 修改变量 b 的值</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>bNumber = <span class="number">30</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">if</span> ( aNumber <span class="keyword">is</span> bNumber ):</span><br><span class="line"><span class="meta">... </span>   <span class="built_in">print</span> (<span class="string">&quot;3 - aNumber 和 bNumber 有相同的标识&quot;</span>)</span><br><span class="line"><span class="meta">... </span><span class="keyword">else</span>:</span><br><span class="line"><span class="meta">... </span>   <span class="built_in">print</span> (<span class="string">&quot;3 - aNumber 和 bNumber 没有相同的标识&quot;</span>)</span><br><span class="line">...</span><br><span class="line"><span class="number">3</span> - aNumber 和 bNumber 没有相同的标识</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">if</span> ( aNumber <span class="keyword">is</span> <span class="keyword">not</span> bNumber ):</span><br><span class="line"><span class="meta">... </span>   <span class="built_in">print</span> (<span class="string">&quot;4 - aNumber 和 bNumber 没有相同的标识&quot;</span>)</span><br><span class="line"><span class="meta">... </span><span class="keyword">else</span>:</span><br><span class="line"><span class="meta">... </span>   <span class="built_in">print</span> (<span class="string">&quot;4 - aNumber 和 bNumber 有相同的标识&quot;</span>)</span><br><span class="line">...</span><br><span class="line"><span class="number">4</span> - aNumber 和 bNumber 没有相同的标识</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h3><p>除了上面介绍的基本运算符之外，Python 中还支持使用 <code>if else</code> 实现类似于其它编程语言中三目（三元）运算符 <code>? :</code>，语法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exp1 <span class="keyword">if</span> contion <span class="keyword">else</span> exp2</span><br></pre></td></tr></table></figure>
+
+<p>说明 &gt;&gt;&gt;&gt;</p>
+<p>condition 是判断条件，exp1 和 exp2 是两个表达式。如果 condition 成立（结果为真），就执行 exp1，并把 exp1 的结果作为整个表达式的结果；如果 condition 不成立（结果为假），就执行 exp2，并把 exp2 的结果作为整个表达式的结果。</p>
+<p>看下面的例子：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; a = 3</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; b = 4</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; max = a <span class="keyword">if</span> a&gt;b <span class="keyword">else</span> b</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; <span class="built_in">print</span>(max)</span></span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+
+<p>Python 三目运算符还支持嵌套，如此可以构成更加复杂的表达式。在嵌套时要需要注意 if 和 else 的配对：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a <span class="keyword">if</span> a&gt;b <span class="keyword">else</span> c <span class="keyword">if</span> c&gt;d <span class="keyword">else</span> d</span><br></pre></td></tr></table></figure>
+
+<p>但为了保持代码的可读写，建议不要嵌套太多的三元运算符！</p>
+<hr>
+<h3 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h3><p>以下给出出了从最高到最低优先级的所有运算符：</p>
+<p>【<code>**</code>：指数 (最高优先级)】–&gt; </p>
+<p>【<code>~ + -</code>：按位取反, 一元加号和减号 (表示正负号)】–&gt; </p>
+<p>【<code>* / % //</code>：乘，除，取模和取整除】–&gt; </p>
+<p>【<code>+ -</code>：加法减法】–&gt; </p>
+<p>【<code>&gt;&gt; &lt;&lt;</code>：右移，左移运算符】– &gt; </p>
+<p>【<code>&amp; ^ |</code>：位与，异或，位或】–&gt; </p>
+<p>【<code>&lt;= &lt; &gt; &gt;=</code>：关系】–&gt; </p>
+<p>【<code>== !=</code>：等于运算符】–&gt; </p>
+<p>【<code>= %= /= //= -= += *= **=</code>：赋值运算符】–&gt; </p>
+<p>【<code>is is not</code>：身份运算符】–&gt; </p>
+<p>【<code>in not in</code>：成员运算符】–&gt; </p>
+<p>【<code>and or not</code>：逻辑运算符】。</p>
+<hr>
+<h2 id="Python-中的流程控制结构"><a href="#Python-中的流程控制结构" class="headerlink" title="Python 中的流程控制结构"></a>Python 中的流程控制结构</h2><p>和其它编程语言一样，按照执行流程划分，Python 程序也可分为三大结构，即顺序结构、选择（分支）结构和循环结构：</p>
+<ul>
+<li>顺序结构：让程序按照从头到尾的顺序依次执行每一条 Python 代码，不重复执行任何代码，也不跳过任何代码；</li>
+<li>选择结构：也称分支结构，就是让程序“拐弯”，有选择性的执行代码；换句话说，可以跳过没用的代码，只执行有用的代码；</li>
+<li>循环结构，就是让程序“杀个回马枪”，不断地重复执行同一段代码。</li>
+</ul>
+<h3 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h3><p>Python 中，可以使用 <code>if else</code> 语句对条件进行判断，然后根据不同的结果执行不同的代码，这称为 <strong>选择结构</strong> 或者 <strong>分支结构</strong>。</p>
+<h4 id="分支结构形式"><a href="#分支结构形式" class="headerlink" title="分支结构形式"></a>分支结构形式</h4><p>Python 中的 if else 语句可以细分为三种形式，分别是 <code>if 语句</code>、<code>if else 语句</code> 和 <code>if elif else 语句</code>：</p>
+<p><strong>[1] &gt;&gt;&gt;&gt; 单向判断</strong></p>
+<p>单项判断是最简单的分支结构，表示：”<strong>如果……就……</strong>“，其流程图如下所示：</p>
+<div align=center><img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/control_flow_ifelse.gif'></div>
+
+<p>代码实例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">20</span></span><br><span class="line"><span class="keyword">if</span> age &gt;= <span class="number">18</span>:</span><br><span class="line">    <span class="comment"># 条件满足时，做点什么：</span></span><br><span class="line">    print(<span class="string">&quot;You are a man.&quot;</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;Continue Run&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>[2] &gt;&gt;&gt;&gt; 双向判断</strong></p>
+<p>双向判断可以帮助我们解决更为复杂的判断，表示：<strong>如果……就……，否则的话……</strong>，其流程图如下所示：</p>
+<div align=center><img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/control_flow_ifelse1.gif'></div>
+
+<p>代码实例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">20</span></span><br><span class="line"><span class="keyword">if</span> age &gt;= <span class="number">18</span>:</span><br><span class="line">    <span class="comment"># 条件满足时，做点什么：</span></span><br><span class="line">    print(<span class="string">&#x27;your age is&#x27;</span>, age)</span><br><span class="line">    print(<span class="string">&#x27;adult&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># 当 if 条件不满足时，做的其它什么：</span></span><br><span class="line">    print(<span class="string">&#x27;your age is&#x27;</span>, age)</span><br><span class="line">    print(<span class="string">&#x27;teenager&#x27;</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&quot;Continue Run&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>根据 Python 的缩进规则，如果 <code>if</code> 语句判断是 <code>True</code>，就把 <code>if</code> 缩进下的两行 <code>print</code> 语句执行了。否则执行 <code>else</code> 下的缩进代码块。</p>
+<p><strong>[3] &gt;&gt;&gt;&gt; 多向判断</strong></p>
+<p>事实上，上面的判断是很粗略的，完全可以用 <code>if...elif...else...</code> 实现更复杂判断，其流程图如下所示：</p>
+<div align=center><img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/control_flow_ifelseif.gif'></div>
+
+<p>Python 会从上到下逐个判断表达式是否成立，一旦遇到某个成立的表达式，就执行后面紧跟的语句块，此时，剩下的代码就不再执行了，不管后面的表达式是否成立。如果所有的表达式都不成立，就执行 <code>else</code> 后面的代码块。</p>
+<p>代码结构如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> condition_1:</span><br><span class="line">    statement_block_1</span><br><span class="line"><span class="keyword">elif</span> condition_2:</span><br><span class="line">    statement_block_2</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    statement_block_3</span><br></pre></td></tr></table></figure>
+
+<p>另外注意，Python 中是没有 <code>switch – case</code> 语句的。</p>
+<p>并且当多向判断条件比较多时，可以通过数轴进行包含关系判断，这是很有用的。</p>
+<hr>
+<h4 id="if-语句嵌套"><a href="#if-语句嵌套" class="headerlink" title="if 语句嵌套"></a>if 语句嵌套</h4><p>上面详细介绍了 3 种形式的条件语句，即 if、if else 和 if elif else，这 3 种条件语句之间可以相互嵌套。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> 表达式<span class="number">1</span>:</span><br><span class="line">    语句</span><br><span class="line">    <span class="keyword">if</span> 表达式<span class="number">2</span>:</span><br><span class="line">        语句</span><br><span class="line">    <span class="keyword">elif</span> 表达式<span class="number">3</span>:</span><br><span class="line">        语句</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        语句</span><br><span class="line"><span class="keyword">elif</span> 表达式<span class="number">4</span>:</span><br><span class="line">    语句</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    语句</span><br></pre></td></tr></table></figure>
+
+<p>当然，嵌套使用上很灵活。你还可以；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> 表达式<span class="number">1</span>:</span><br><span class="line">    语句</span><br><span class="line">    <span class="keyword">if</span> 表达式<span class="number">2</span>:</span><br><span class="line">        语句</span><br><span class="line"><span class="keyword">elif</span> 表达式<span class="number">4</span>:</span><br><span class="line">    语句</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    语句</span><br></pre></td></tr></table></figure>
+
+<p>事实上，嵌套的关键在于你要分清楚各判断层的逻辑，由外向内一层层分析，就像剥洋葱一样。</p>
+<hr>
+<h3 id="空语句-pass"><a href="#空语句-pass" class="headerlink" title="空语句 pass"></a>空语句 pass</h3><p>在实际开发中，有时候我们会先搭建起程序的整体逻辑结构，但是暂时不去实现某些细节，而是在这些地方加一些注释，方面以后再添加代码，请看下面的例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="built_in">int</span>( <span class="built_in">input</span>(<span class="string">&quot;请输入你的年龄：&quot;</span>) )</span><br><span class="line"><span class="keyword">if</span> age &lt; <span class="number">12</span> :</span><br><span class="line">    print(<span class="string">&quot;婴幼儿&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span> age &gt;= <span class="number">12</span> <span class="keyword">and</span> age &lt; <span class="number">18</span>:</span><br><span class="line">    print(<span class="string">&quot;青少年&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span> age &gt;= <span class="number">18</span> <span class="keyword">and</span> age &lt; <span class="number">30</span>:</span><br><span class="line">    print(<span class="string">&quot;成年人&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span> age &gt;= <span class="number">30</span> <span class="keyword">and</span> age &lt; <span class="number">50</span>:</span><br><span class="line">    <span class="comment">#<span class="doctag">TODO:</span> 成年人</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">&quot;老年人&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>当年龄大于等于 <code>30</code> 并且小于 <code>50</code> 时，我们没有使用 print() 语句，而是使用了一个注释(#TODO)，希望以后再处理成年人的情况。当 Python 执行到该 <code>elif</code> 分支时，会跳过注释，什么都不执行。</p>
+<p>Python 提供了一种更加专业的做法，就是空语句 <code>pass</code>，用来让解释器跳过此处，什么都不做。</p>
+<p>就像上面的情况，有时候程序需要 <strong>占一个位置，或者放一条语句，但又不希望这条语句做任何事情</strong>，此时就可以通过 pass 语句来实现。使用 pass 语句比使用注释更加优雅。如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyEmptyClass</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">nop</span>():</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> age &gt;= <span class="number">18</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="断言函数-assert"><a href="#断言函数-assert" class="headerlink" title="断言函数 assert"></a>断言函数 assert</h3><p><strong>assert</strong> 语句，又称断言语句，语法结构为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> 表达式</span><br></pre></td></tr></table></figure>
+<p>可以看做是功能缩小版的 if 语句，它用于判断某个表达式的值，如果值为真，则程序可以继续往下执行；反之，Python 解释器会报 <code>AssertionError</code> 错误。</p>
+<p>assert 语句的执行流程可以用 if 判断语句表示，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> 表达式==<span class="literal">True</span>:</span><br><span class="line">    程序继续执行</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    程序报 AssertionError 错误</span><br></pre></td></tr></table></figure>
+
+<p>有读者可能会问，明明 assert 会令程序崩溃，为什么还要使用它呢？这是因为，与其让程序在晚些时候崩溃，不如在错误条件出现时，就直接让程序崩溃，这有利于我们对程序排错，提高程序的健壮性。</p>
+<p>assert 语句通常用于检查用户的输入是否符合规定，或者限定函数参数类型等。如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params"><span class="built_in">input</span></span>):</span></span><br><span class="line">    <span class="keyword">assert</span> <span class="built_in">isinstance</span>(<span class="built_in">input</span>, <span class="built_in">list</span>), <span class="string">&#x27;输入内容必须是列表&#x27;</span></span><br><span class="line">    <span class="comment"># 下面的操作都是基于前提：input 必须是 list</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(<span class="built_in">input</span>) == <span class="number">1</span>:</span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">len</span>(<span class="built_in">input</span>) == <span class="number">2</span>:</span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ...</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h3><p>循环结构应用场景：</p>
+<p>每个人的生活和工作都充满了循环，很多时候，循环意味着重复和枯燥：</p>
+<p>比如你需要下载很多很多张图片，本来你是要手动操作的，而计算机通过【循环】，就可以依照某些规则，帮你一张一张地下载图片，你在一旁歇着就好。再比如作为运营，可能需要去解散很多的用户群，本来要一个一个手动点击，而计算机通过【循环】，就可以依照某些规则，帮人一个一个解散。</p>
+<p>Python 中的【循环语句】，可以让计算机能够重复性地、自动地执行指令。</p>
+<p>Python 中提供了常用的两种循环结构支持：</p>
+<ul>
+<li>for … in（For 循环）</li>
+<li>while …（while 循环）</li>
+</ul>
+<hr>
+<h4 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h4><p><strong>[1] &gt;&gt;&gt;&gt; for … in …</strong></p>
+<p>Python <code>for</code> 循环可以遍历任何序列或者可迭代（Iterable）的数据元素，如 <strong>列表、字符串、元组、字典、集合</strong> 等。其一般格式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> &lt;variable&gt; <span class="keyword">in</span> &lt;sequence/Iterable&gt;:</span><br><span class="line">    &lt;statements&gt;</span><br></pre></td></tr></table></figure>
+
+<p>例如循环访问列表中元素对象的实例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>languages = [<span class="string">&quot;C&quot;</span>, <span class="string">&quot;C++&quot;</span>, <span class="string">&quot;Perl&quot;</span>, <span class="string">&quot;Python&quot;</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> x <span class="keyword">in</span> languages:</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">print</span> (x)</span><br><span class="line">...</span><br><span class="line">C</span><br><span class="line">C++</span><br><span class="line">Perl</span><br><span class="line">Python</span><br></pre></td></tr></table></figure>
+
+<p>一个很形象的 for 循环结构工作流程图 &gt;&gt;&gt;&gt;</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/for.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]:</span><br><span class="line">   print(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 有一群数字在排队办业务，也就是列表[1,2,3,4,5]</span></span><br><span class="line"><span class="comment"># 它们中的每一个被叫到号的时候(for i in)，就轮流进去一个空房间办业务</span></span><br><span class="line"><span class="comment"># 每一个数字进去房间之后，计算机都会说：“编号为 x 的用户正在办理业务”，也就是 print(i)</span></span><br><span class="line"><span class="comment"># 然后计算机忠实的为每一个数字提供服务，并将用户服务编号 1,2,3,4,5 都打印在了屏幕上用以表示正被使用</span></span><br></pre></td></tr></table></figure>
+
+<p>是不很好理解？</p>
+<p>事实上，循环结构就是从一个定义好的元素队列中不断取值，然后完成相应操作，依此类推（循环）的过程。</p>
+<hr>
+<p><strong>[2] &gt;&gt;&gt;&gt; for … in … else …</strong></p>
+<p>除了上述的结构外，<code>for ... in</code> 语句还可以和 <code>else</code> 联合使用（不常见），构成如下循环结构：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>languages = [<span class="string">&quot;C&quot;</span>, <span class="string">&quot;C++&quot;</span>, <span class="string">&quot;Perl&quot;</span>, <span class="string">&quot;Python&quot;</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> x <span class="keyword">in</span> languages:</span><br><span class="line"><span class="meta">... </span>    print(x)</span><br><span class="line"><span class="meta">... </span><span class="keyword">else</span>:</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">&quot;No elements!!!&quot;</span>)</span><br><span class="line">...</span><br><span class="line">C</span><br><span class="line">C++</span><br><span class="line">Perl</span><br><span class="line">Python</span><br><span class="line">No elements!!!</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">&quot;循环完毕&quot;</span>)</span><br><span class="line">循环完毕</span><br></pre></td></tr></table></figure>
+
+<p>如上，for 循环结束后给出结束信息，以标识循环部分结束。</p>
+<hr>
+<p><strong>[3] &gt;&gt;&gt;&gt; for 循环中的 range() 函数的使用</strong></p>
+<p>前面在讲解序列的时候，我们提到过 <strong>range</strong> 也是一种序列结构，事实上，借助它可以生成一个自定义的数字序列。故，如果需要通过 <strong>数字序列</strong> 实现循环时，还可以使用 Python 内置的 <code>range()</code>（） 函数。例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># range(x) 会自动生成一个从 0 到 x-1 的整数序列：</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line"><span class="meta">... </span>    print(index)</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以使用 <strong>range()</strong> 来限定数字序列区间的取值范围，甚至是步长。如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成从 0 到 9，步长为 2 的五个整数组成的序列：</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">10</span>,<span class="number">2</span>):</span><br><span class="line"><span class="meta">... </span>    print(index)</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">8</span></span><br></pre></td></tr></table></figure>
+
+<p>我们再来看看 <code>len()</code> &amp;&amp; <code>range()</code> 的组合用法以通过序列索引遍历序列（常见用法），这是有时是很方便的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>website = [<span class="string">&quot;Google&quot;</span>, <span class="string">&quot;Baidu&quot;</span>, <span class="string">&quot;Opera&quot;</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(website)):</span><br><span class="line"><span class="meta">... </span>    print(index, website[index])</span><br><span class="line">...</span><br><span class="line"><span class="number">0</span> Google</span><br><span class="line"><span class="number">1</span> Baidu</span><br><span class="line"><span class="number">2</span> Opera</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="while-循环"><a href="#while-循环" class="headerlink" title="while 循环"></a>while 循环</h4><p><strong>[1] &gt;&gt;&gt;&gt; while</strong></p>
+<p>先来给出 while 循环的工作流程图：</p>
+<div align=center><img src='https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/control_flow_while.gif'></div>
+
+<p>while 循环表示：满足条件，就按照流程办事。</p>
+<p>Python 中 while 语句的一般形式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> 判断条件：</span><br><span class="line">    语句</span><br></pre></td></tr></table></figure>
+
+<p>循环实例（1~100求和）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>n = <span class="number">100</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>counter = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">while</span> counter &lt;= n:</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">sum</span> += counter</span><br><span class="line"><span class="meta">... </span>    counter += <span class="number">1</span></span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">&quot;The sum is :&quot;</span>,<span class="built_in">sum</span>)</span><br><span class="line">The <span class="built_in">sum</span> <span class="keyword">is</span> : <span class="number">5050</span></span><br></pre></td></tr></table></figure>
+
+<p>可见，对于 【1~100求和】，只要满足条件【counter &lt;= 100】就累加求和。</p>
+<hr>
+<p><strong>[2] &gt;&gt;&gt;&gt; while … else …</strong></p>
+<p>和 <code>for ... in</code> 语句一样，<code>while ... else</code> 也可以和 <code>else</code>，配合使用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>n = <span class="number">100</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>counter = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">while</span> counter &lt;= n:</span><br><span class="line"><span class="meta">... </span>    <span class="built_in">sum</span> += counter</span><br><span class="line"><span class="meta">... </span>    counter += <span class="number">1</span></span><br><span class="line"><span class="meta">... </span><span class="keyword">else</span>:</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">&quot;n &gt; 100&quot;</span>)</span><br><span class="line">...</span><br><span class="line">n &gt; <span class="number">100</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(<span class="string">&quot;The sum is :&quot;</span>,<span class="built_in">sum</span>)</span><br><span class="line">The <span class="built_in">sum</span> <span class="keyword">is</span> : <span class="number">5050</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>[3] &gt;&gt;&gt;&gt; while 死循环</strong></p>
+<p>没有终止条件，就会导致无限循环（死循环）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>：</span><br><span class="line">    learn() <span class="comment"># Python 中没有 learn() 函数，但我们要终生学习</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="for…in-or-while…"><a href="#for…in-or-while…" class="headerlink" title="for…in or while…"></a>for…in or while…</h4><p>考虑一下：这两种循环结构什么场景下都适用么？？！</p>
+<p><strong>for</strong> 循环和 <strong>whlie</strong> 循环选择的最大的区别在于【循环的工作量是否确定】 &gt;&gt;&gt;&gt;</p>
+<p><strong>for</strong> 循环就像空房间依次办理业务，直到把【所有工作做完】才下班。但 <strong>while</strong> 循环就像哨卡放行，【满足条件就一直工作】，直到不满足条件就关闭哨卡。</p>
+<p>所以说，当我们【工作量确定】的时候，我们就可以让 <strong>for</strong> 循环来完成重复性工作。反之，要【工作量不确定时】可以让 <strong>while</strong> 循环来工作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 适合用 for...in... 循环</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">&#x27;HelloWorld&#x27;</span>:</span><br><span class="line">    print(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 适合用 while 循环（不知道第几次可以输入正确）</span></span><br><span class="line">password = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">while</span> password != <span class="string">&#x27;816&#x27;</span>:</span><br><span class="line">    password = <span class="built_in">input</span>(<span class="string">&#x27;请尝试输入密码：&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>注意，类似于分支结构，for…in 和 while… 循环结构也是支持嵌套的！！！</p>
+<hr>
+<h4 id="Break-amp-amp-Continue"><a href="#Break-amp-amp-Continue" class="headerlink" title="Break &amp;&amp; Continue"></a>Break &amp;&amp; Continue</h4><p>当我们在循环任务中，由于达到我们的目的不想再继续循环执行下去时，可以借助 <code>break</code> &amp;&amp; <code>continue</code> 来进行循环的中止：</p>
+<p><strong>[1] &gt;&gt;&gt;&gt; break：跳出当前循环</strong></p>
+<p><code>break</code> 语句可以跳出 <code>for</code> 和 <code>while</code> 的循环体。如果你从 <code>for</code> 或 <code>while</code> 循环中终止，任何对应的循环 <code>else</code> 块将不执行。实例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>Astr = <span class="string">&quot;Google&quot;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>flags = <span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">while</span> flags &gt; <span class="number">0</span>:</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">&quot;Current number:&quot;</span>,flags)</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">for</span> char <span class="keyword">in</span> Astr:</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">if</span> char == <span class="string">&quot;o&quot;</span>:</span><br><span class="line"><span class="meta">... </span>                    <span class="keyword">break</span></span><br><span class="line"><span class="meta">... </span>            print(<span class="string">&quot;Current char:&quot;</span>,char)</span><br><span class="line"><span class="meta">... </span>    flags -= <span class="number">1</span></span><br><span class="line">...</span><br><span class="line">Current number: <span class="number">5</span></span><br><span class="line">Current char: G</span><br><span class="line">Current number: <span class="number">4</span></span><br><span class="line">Current char: G</span><br><span class="line">Current number: <span class="number">3</span></span><br><span class="line">Current char: G</span><br><span class="line">Current number: <span class="number">2</span></span><br><span class="line">Current char: G</span><br><span class="line">Current number: <span class="number">1</span></span><br><span class="line">Current char: G</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，当存在循环嵌套时，break 只能跳出当前循环体，而外部循环仍在进行。</p>
+<p><strong>[2] &gt;&gt;&gt;&gt; continue: 跳过当次循环</strong></p>
+<p><code>continue</code> 语句被用来告诉 Python 解释器跳过当前循环块中的剩余语句，然后继续进行下一轮循环。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>flags = <span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">while</span> flags &gt;= <span class="number">3</span>:</span><br><span class="line"><span class="meta">... </span>    flags -= <span class="number">1</span></span><br><span class="line"><span class="meta">... </span>    <span class="keyword">if</span> flags == <span class="number">3</span>:</span><br><span class="line"><span class="meta">... </span>            <span class="keyword">continue</span></span><br><span class="line"><span class="meta">... </span>    print(flags)</span><br><span class="line">...</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，我们知道循环语句可以有 else 子句，它在穷尽列表（ for 循环）或条件变为 false （while 循环）导致循环终止时被执行，但循环被 <code>break</code> 终止时会跳过 <code>else 语句块</code> 不执行。</p>
+<hr>
+<p>了解了分支结构以及循环结构，来运用一下吧：</p>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>冒泡排序是数据结构中的经典算法，算法的实现思想遵循以下几步：</p>
+<ul>
+<li>比较相邻的元素，如果第一个比第二个大，就交换它们两个；</li>
+<li>从最开始的第一对到结尾的最后一对，对每一对相邻元素做步骤 1 所描述的比较工作，并将最大的元素放在后面。这样，当从最开始的第一对到结尾的最后一对都执行完后，整个序列中的最后一个元素便是最大的数；</li>
+<li>将循环缩短，除去最后一个数（因为最后一个已经是最大的了），再重复步骤 2 的操作，得到倒数第二大的数；</li>
+<li>持续做步骤 3 的操作，每次将循环缩短一位，并得到本次循环中的最大数。直到循环个数缩短为 1，即没有任何一对数字需要比较，此时便得到了一个从小到大排序的序列。</li>
+</ul>
+<p>例如，使用 for 循环实现用冒泡排序算法对 [5,8,4,1] 进行排序：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">data = [<span class="number">5</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">1</span>]</span><br><span class="line"><span class="comment">#实现冒泡排序</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)-<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)-i-<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span>(data[j]&gt;data[j+<span class="number">1</span>]):</span><br><span class="line">            data[j],data[j+<span class="number">1</span>] = data[j+<span class="number">1</span>],data[j]</span><br><span class="line">print(<span class="string">&quot;排序后：&quot;</span>,data)</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">排序后： [1, 4, 5, 8]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Python-中的推导式"><a href="#Python-中的推导式" class="headerlink" title="Python 中的推导式"></a>Python 中的推导式</h2><p>推导式（又称解析器），是 Python 独有的一种特性。</p>
+<p>前面在介绍列表、元组、字典以及集合等数据类型的创建时，都给出过使用推导式的创建方法，但只是简单提了一下。</p>
+<p>事实上，使用推导式可以快速生成符合条件的列表、元组、字典以及集合类型的数据，因此推导式又可细分为 <strong>列表推导式</strong>、<strong>元组推导式</strong>、<strong>字典推导式</strong> 以及 <strong>集合推导式</strong>。</p>
+<p>推导式统一语法格式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#123;( 表达式 <span class="keyword">for</span> 迭代变量 <span class="keyword">in</span> 可迭代对象 [<span class="keyword">if</span> 条件表达式] )&#125;]</span><br></pre></td></tr></table></figure>
+
+<p>此格式中，具体使用那种括号视数据类型而定；且 [if 条件表达式] 不是必须的，用于进行元素过滤。</p>
+<hr>
+<h3 id="列表推导式"><a href="#列表推导式" class="headerlink" title="列表推导式"></a>列表推导式</h3><p>列表推导式可以利用 range 区间、元组、列表、字典和集合等数据类型，快速生成一个满足指定需求的列表。</p>
+<p>列表推导式的语法格式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[表达式 <span class="keyword">for</span> 迭代变量 <span class="keyword">in</span> 可迭代对象 [<span class="keyword">if</span> 条件表达式] ]</span><br></pre></td></tr></table></figure>
+
+<p>初学者可以这样认为，它只是对 for 循环语句的格式做了一下简单的变形，并用 [] 括起来而已，只不过最大的不同之处在于，列表推导式最终会将循环过程中，表达式计算得到的一系列值组成一个列表。</p>
+<p>例如如下代码（程序一）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a_range = <span class="built_in">range</span>(<span class="number">10</span>)</span><br><span class="line"><span class="comment"># 对a_range执行for表达式</span></span><br><span class="line">a_list = [x * x <span class="keyword">for</span> x <span class="keyword">in</span> a_range]</span><br><span class="line"><span class="comment"># a_list集合包含10个元素</span></span><br><span class="line">print(a_list)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：[0 , 1 , 4 , 9 , 16 , 25 , 36 , 49 , 64, 81]</span></span><br></pre></td></tr></table></figure>
+
+<p>还可以在列表推导式中添加 [if 条件语句]，过滤符合条件的元素：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 偶数</span></span><br><span class="line">b_list = [x * x <span class="keyword">for</span> x <span class="keyword">in</span> a_range <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>]</span><br><span class="line"><span class="comment"># a_list集合包含5个元素</span></span><br><span class="line">print(b_list)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：[0 ,4 , 16, 36, 64]</span></span><br></pre></td></tr></table></figure>
+
+<p>另外，以上所看到的列表推导式都只有一个循环，实际上它可使用多个循环，就像嵌套循环一样。例如如下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">src_a = [<span class="number">30</span>, <span class="number">12</span>, <span class="number">66</span>, <span class="number">34</span>, <span class="number">39</span>, <span class="number">78</span>, <span class="number">36</span>, <span class="number">57</span>, <span class="number">121</span>]</span><br><span class="line">src_b = [<span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>]</span><br><span class="line"><span class="comment"># 只要y能整除x，就将它们配对在一起</span></span><br><span class="line">result = [(x, y) <span class="keyword">for</span> x <span class="keyword">in</span> src_b <span class="keyword">for</span> y <span class="keyword">in</span> src_a <span class="keyword">if</span> y % x == <span class="number">0</span>]</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出： [(3, 30), (3, 12), (3, 66), (3, 39), (3, 78), (3, 36), (3, 57), (5, 30), (11, 66), (11, 121)]</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="元组推导式"><a href="#元组推导式" class="headerlink" title="元组推导式"></a>元组推导式</h3><p>元组推导式可以利用 range 区间、元组、列表、字典和集合等数据类型，快速生成一个满足指定需求的元组。</p>
+<p>元组推导式的语法格式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(表达式 <span class="keyword">for</span> 迭代变量 <span class="keyword">in</span> 可迭代对象 [<span class="keyword">if</span> 条件表达式] )</span><br></pre></td></tr></table></figure>
+
+<p>通过和列表推导式做对比，你会发现，除了元组推导式是用 () 圆括号将各部分括起来，而列表推导式用的是 []，其它完全相同。不仅如此，元组推导式和列表推导式的用法也完全相同。</p>
+<p>例如，我们可以使用下面的代码生成一个包含数字 1~9 的元组：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = (x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>))</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;generator object &lt;genexpr&gt; at 0x0000020BAD136620&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看出，使用元组推导式生成的结果并不是一个元组，而是一个生成器对象（后续会介绍），这一点和列表推导式是不同的。</p>
+<p>如果我们想要使用元组推导式获得新元组或新元组中的元素，有以下三种方式：</p>
+<p>1.使用 tuple() 函数，可以直接将生成器对象转换成元组，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = (x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>))</span><br><span class="line">print(<span class="built_in">tuple</span>(a))</span><br><span class="line"><span class="comment"># 运行结果为：(1, 2, 3, 4, 5, 6, 7, 8, 9)</span></span><br></pre></td></tr></table></figure>
+
+<p>2.直接使用 for 循环遍历生成器对象，可以获得各个元素，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = (x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    print(i,end=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">print(<span class="built_in">tuple</span>(a))</span><br><span class="line"><span class="comment"># 运行结果：1 2 3 4 5 6 7 8 9 ()</span></span><br></pre></td></tr></table></figure>
+
+<p>3.使用 <strong>next</strong>() 方法遍历生成器对象，也可以获得各个元素，例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = (x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>))</span><br><span class="line">print(a.__next__())</span><br><span class="line">print(a.__next__())</span><br><span class="line">print(a.__next__())</span><br><span class="line">a = <span class="built_in">tuple</span>(a)</span><br><span class="line">print(<span class="string">&quot;转换后的元组：&quot;</span>,a)</span><br></pre></td></tr></table></figure>
+
+<p>运行结果为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">转换后的元组： ()</span><br></pre></td></tr></table></figure>
+
+<p>无论是使用 for 循环遍历生成器对象，还是使用 <strong>next</strong>() 方法遍历生成器对象，遍历后原生成器对象将不复存在，这就是遍历后转换原生成器对象却得到空元组的原因。</p>
+<hr>
+<h3 id="字典推导式"><a href="#字典推导式" class="headerlink" title="字典推导式"></a>字典推导式</h3><p>字典推导式可以借助列表、元组、字典、集合以及 range 区间，快速生成符合需求的字典。</p>
+<p>字典推导式的语法格式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;表达式 <span class="keyword">for</span> 迭代变量 <span class="keyword">in</span> 可迭代对象 [<span class="keyword">if</span> 条件表达式]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，和其它推导式的语法格式相比，唯一不同在于，字典推导式用的是大括号{}。</p>
+<p>【例 1】</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">listdemo = [<span class="string">&#x27;C语言中文网&#x27;</span>,<span class="string">&#x27;c.biancheng.net&#x27;</span>]</span><br><span class="line"><span class="comment">#将列表中各字符串值为键，各字符串的长度为值，组成键值对</span></span><br><span class="line">newdict = &#123;key:<span class="built_in">len</span>(key) <span class="keyword">for</span> key <span class="keyword">in</span> listdemo&#125;</span><br><span class="line">print(newdict)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output: &#123;&#x27;C语言中文网&#x27;: 6, &#x27;c.biancheng.net&#x27;: 15&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>【例 2】 交换现有字典中各键值对的键和值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">olddict=&#123;<span class="string">&#x27;test&#x27;</span>: <span class="number">6</span>, <span class="string">&#x27;test2&#x27;</span>: <span class="number">15</span>&#125;</span><br><span class="line">newdict = &#123;v: k <span class="keyword">for</span> k, v <span class="keyword">in</span> olddict.items()&#125;</span><br><span class="line">print(newdict)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output: &#123;6: &#x27;test&#x27;, 15: &#x27;test2&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>【例 3】 使用 if 表达式筛选符合条件的键值对</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">olddict=&#123;<span class="string">&#x27;test&#x27;</span>: <span class="number">6</span>, <span class="string">&#x27;test2&#x27;</span>: <span class="number">15</span>&#125;</span><br><span class="line">newdict = &#123;v: k <span class="keyword">for</span> k, v <span class="keyword">in</span> olddict.items() <span class="keyword">if</span> v&gt;<span class="number">10</span>&#125;</span><br><span class="line">print(newdict)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output: &#123;15: &#x27;test2&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="集合推导式"><a href="#集合推导式" class="headerlink" title="集合推导式"></a>集合推导式</h3><p>集合推导式可以借助列表、元组、字典、集合以及 range 区间，快速生成符合需求的集合。</p>
+<p>集合推导式的语法格式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;表达式 <span class="keyword">for</span> 迭代变量 <span class="keyword">in</span> 可迭代对象 [<span class="keyword">if</span> 条件表达式]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>集合推导式和字典推导式的格式完全相同，那么给定一个类似的推导式，如何判断是哪种推导式呢？最简单直接的方式，就是根据表达式进行判断，如果表达式以键值对（key：value）的形式，则证明此推导式是字典推导式；反之，则是集合推导式。</p>
+<p>【例 1】 既然生成的是集合，那么其保存的元素必须是唯一的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tupledemo = (<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">6</span>)</span><br><span class="line">setnew = &#123;x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> tupledemo <span class="keyword">if</span> x%<span class="number">2</span>==<span class="number">0</span>&#125;</span><br><span class="line">print(setnew)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Output: &#123;16, 4, 36&#125;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Python 中的运算符以及流程控制</p><p><a href="https://www.orangeshare.cn/2018/01/09/python-zhong-de-yun-suan-fu-yi-ji-liu-cheng-kong-zhi/">https://www.orangeshare.cn/2018/01/09/python-zhong-de-yun-suan-fu-yi-ji-liu-cheng-kong-zhi/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-01-09</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-03-18</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Python/">Python</a><a class="link-muted mr-2" rel="tag" href="/tags/Flow-Control/">Flow Control</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/01/10/python-zhong-de-han-shu/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Python 中的函数</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/01/08/python-zhong-de-shen-qian-kao-bei-xiang-jie/"><span class="level-item">Python 中的深浅拷贝详解</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p><p class="is-size-6 is-block">Web, AI Engineer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Earth, Galactic System</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">60</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">32</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/TheNightIsYoung" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="DockerHub" href="https://hub.docker.com/"><i class="fab fa-docker"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Gitee" href="https://gitee.com/explore"><i class="fab fa-gofore"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="MDEditor" href="http://www.mdeditor.com/"><i class="fab fa-canadian-maple-leaf"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="WangYiYun" href="https://music.163.com/"><i class="fas fa-headphones-alt"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Python-中的运算符"><span class="level-left"><span class="level-item">1</span><span class="level-item">Python 中的运算符</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#运算符详解"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">运算符详解</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#算术运算符"><span class="level-left"><span class="level-item">1.1.1</span><span class="level-item">算术运算符</span></span></a></li><li><a class="level is-mobile" href="#赋值运算符"><span class="level-left"><span class="level-item">1.1.2</span><span class="level-item">赋值运算符</span></span></a></li><li><a class="level is-mobile" href="#位运算符"><span class="level-left"><span class="level-item">1.1.3</span><span class="level-item">位运算符</span></span></a></li><li><a class="level is-mobile" href="#比较（关系）运算符"><span class="level-left"><span class="level-item">1.1.4</span><span class="level-item">比较（关系）运算符</span></span></a></li><li><a class="level is-mobile" href="#逻辑运算符"><span class="level-left"><span class="level-item">1.1.5</span><span class="level-item">逻辑运算符</span></span></a></li><li><a class="level is-mobile" href="#成员运算符"><span class="level-left"><span class="level-item">1.1.6</span><span class="level-item">成员运算符</span></span></a></li><li><a class="level is-mobile" href="#身份运算符"><span class="level-left"><span class="level-item">1.1.7</span><span class="level-item">身份运算符</span></span></a></li></ul></li><li><a class="level is-mobile" href="#三目运算符"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">三目运算符</span></span></a></li><li><a class="level is-mobile" href="#运算符优先级"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">运算符优先级</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Python-中的流程控制结构"><span class="level-left"><span class="level-item">2</span><span class="level-item">Python 中的流程控制结构</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#分支结构"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">分支结构</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#分支结构形式"><span class="level-left"><span class="level-item">2.1.1</span><span class="level-item">分支结构形式</span></span></a></li><li><a class="level is-mobile" href="#if-语句嵌套"><span class="level-left"><span class="level-item">2.1.2</span><span class="level-item">if 语句嵌套</span></span></a></li></ul></li><li><a class="level is-mobile" href="#空语句-pass"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">空语句 pass</span></span></a></li><li><a class="level is-mobile" href="#断言函数-assert"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">断言函数 assert</span></span></a></li><li><a class="level is-mobile" href="#循环结构"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">循环结构</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#for-循环"><span class="level-left"><span class="level-item">2.4.1</span><span class="level-item">for 循环</span></span></a></li><li><a class="level is-mobile" href="#while-循环"><span class="level-left"><span class="level-item">2.4.2</span><span class="level-item">while 循环</span></span></a></li><li><a class="level is-mobile" href="#for…in-or-while…"><span class="level-left"><span class="level-item">2.4.3</span><span class="level-item">for…in or while…</span></span></a></li><li><a class="level is-mobile" href="#Break-amp-amp-Continue"><span class="level-left"><span class="level-item">2.4.4</span><span class="level-item">Break &amp;&amp; Continue</span></span></a></li></ul></li><li><a class="level is-mobile" href="#冒泡排序"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">冒泡排序</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Python-中的推导式"><span class="level-left"><span class="level-item">3</span><span class="level-item">Python 中的推导式</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#列表推导式"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">列表推导式</span></span></a></li><li><a class="level is-mobile" href="#元组推导式"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">元组推导式</span></span></a></li><li><a class="level is-mobile" href="#字典推导式"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">字典推导式</span></span></a></li><li><a class="level is-mobile" href="#集合推导式"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">集合推导式</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2022 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
