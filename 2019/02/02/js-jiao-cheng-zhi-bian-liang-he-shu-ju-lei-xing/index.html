@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>JS 教程之 JavaScript 变量和数据类型 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="JavaScript 语言基础部分内容，包括：JS 变量、JS 数据类型、JS 数据类型转换、javascript:void(0) 以及 JS 严格模式等等。"><meta property="og:type" content="blog"><meta property="og:title" content="JS 教程之 JavaScript 变量和数据类型"><meta property="og:url" content="https://www.orangeshare.cn/2019/02/02/js-jiao-cheng-zhi-bian-liang-he-shu-ju-lei-xing/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="JavaScript 语言基础部分内容，包括：JS 变量、JS 数据类型、JS 数据类型转换、javascript:void(0) 以及 JS 严格模式等等。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://s2.loli.net/2022/12/27/NoAfiSecqDXmbxd.png"><meta property="og:image" content="https://s2.loli.net/2022/12/27/QpLZI1ftDBFoXAk.png"><meta property="og:image" content="https://s2.loli.net/2022/12/27/qDG2uFXCJdkRVch.png"><meta property="article:published_time" content="2019-02-02T00:46:32.000Z"><meta property="article:modified_time" content="2023-01-16T00:47:07.431Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Front-End Devp"><meta property="article:tag" content="Back-End Devp"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://s2.loli.net/2022/12/27/NoAfiSecqDXmbxd.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2019/02/02/js-jiao-cheng-zhi-bian-liang-he-shu-ju-lei-xing/"},"headline":"When Art Meets Tech","image":["https://s2.loli.net/2022/12/27/NoAfiSecqDXmbxd.png","https://s2.loli.net/2022/12/27/QpLZI1ftDBFoXAk.png","https://s2.loli.net/2022/12/27/qDG2uFXCJdkRVch.png"],"datePublished":"2019-02-02T00:46:32.000Z","dateModified":"2023-01-16T00:47:07.431Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"JavaScript 语言基础部分内容，包括：JS 变量、JS 数据类型、JS 数据类型转换、javascript:void(0) 以及 JS 严格模式等等。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2019/02/02/js-jiao-cheng-zhi-bian-liang-he-shu-ju-lei-xing/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>JS 教程之 JavaScript 变量和数据类型</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2019-02-02</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2023-01-16</time></span><span class="level-item"><a class="link-muted" href="/categories/Web-Site/">Web Site</a></span><span class="level-item">2 hours read (About 13921 words)</span></div></div><div class="content"><p>JavaScript 语言基础部分内容，包括：JS 变量、JS 数据类型、JS 数据类型转换、javascript:void(0) 以及 JS 严格模式等等。</p>
+<a id="more"></a>
+
+<p>在开始学习数据类型之前，我们先来看 JS 中的变量概念：</p>
+<h2 id="JS-变量和常量"><a href="#JS-变量和常量" class="headerlink" title="JS 变量和常量"></a>JS 变量和常量</h2><p><strong>–&gt; 变量是什么？</strong></p>
+<p>变量（variables），你可以将其看成是一个个带有标签（名字）的小盒子，用来存放我们的数据。</p>
+<p>严格来说 &gt;&gt;&gt;</p>
+<p>变量，<font color="red">就是指向一个计算机内存单元的引用，它没有类型</font>。我们所说的 <font color="red">“变量的类型” 是变量指向的内存中数据对象的类型</font>。</p>
+<p><strong>–&gt; 常量又是什么？</strong></p>
+<p>和变量相对应的是 <strong>常量（Constant）</strong>，它们都是用来“盛装”数据的小箱子，不同的是：变量保存的数据可以被多次修改，而常量一旦保存某个数据之后就不能修改了</p>
+<hr>
+<h3 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h3><p>JS 中变量的定义需要使用关键字 <code>var</code> 进行声明（声明时创建），声明后即可使用。语法格式如下：</p>
+<blockquote>
+<p>var varName;</p>
+</blockquote>
+<p>例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str;</span><br><span class="line"><span class="keyword">var</span> age;</span><br><span class="line"><span class="keyword">var</span> prePage;</span><br></pre></td></tr></table></figure>
+
+<p><strong>多变量声明 &gt;&gt;&gt;&gt;</strong></p>
+<p>JS 允许你同时声明多个变量，多个变量之间使用逗号 <code>,</code> 分隔开。例如：</p>
+<blockquote>
+<p>var varName1, varName2, varName3; // 同时声明多个变量</p>
+</blockquote>
+<p>需要注意的是，变量声明后，<font color="red">如果没有为变量赋值，那么其会被赋予一个初始值 &gt;&gt;&gt; undefined（未定义）</font>。</p>
+<hr>
+<h3 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h3><p>数学等号（=）用来给变量赋值。</p>
+<p>赋值运算符（=）左边是一个变量名，右边是存储在变量中的值。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">66</span>; <span class="comment">// 声明一个数值变量</span></span><br><span class="line"><span class="keyword">var</span> carName=<span class="string">&quot;Volvo&quot;</span>; <span class="comment">// 声明一个字符串变量</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[1] 多变量赋值 &gt;&gt;&gt;&gt;</strong></p>
+<p>JS 允许你同时为多个变量赋值，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">66</span>, carName=<span class="string">&quot;Volvo&quot;</span>, job=<span class="string">&quot;teacher&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>为了让代码看起来更工整，变量定义也可横跨多行：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num = <span class="number">66</span>,</span><br><span class="line">    carName=<span class="string">&quot;Volvo&quot;</span>,</span><br><span class="line">    job=<span class="string">&quot;teacher&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>[2] 重新声明问题 &gt;&gt;&gt;&gt;</strong></p>
+<p>需要注意的是，重新声明 JavaScript 变量，变量的值不会丢失！！！</p>
+<p>如下，变量 carname 的值依然是 “Volvo”：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> carName=<span class="string">&quot;Volvo&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> carName;</span><br><span class="line"><span class="built_in">document</span>.write(carName)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p>JavaScript 在预编译期会先预处理声明的变量（即使有赋值也不进行赋值操作），而变量的赋值操作发生在 JavaScript 执行期，而不是预编译期。</p>
+<p>也就是说 &gt;&gt;&gt;</p>
+<p>JavaScript 引擎的解析方式：先解析获取代码中所有被声明的变量，然后再一行一行地顺序运行。 这样，所有声明的变量都会被提升到代码的头部，这个过程就叫做 <strong>变量提升</strong>。</p>
+<p>来看一个示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.write(str); <span class="comment">// 显示: undefined</span></span><br><span class="line">str = <span class="string">&quot;changes&quot;</span>;</span><br><span class="line"><span class="built_in">document</span>.write(str); <span class="comment">// 显示: changes</span></span><br><span class="line"><span class="keyword">var</span> str = <span class="string">&quot;test&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如上，JavaScript 引擎在预编译期会对 所有声明的变量 进行 预解析，但不会进行赋值操作，故第一个输出流写入语句使用变量时不会抛出异常，且返回未初始化的值 undefined。而第二个输出流写入语句是在重新赋值操作之后读取，故显示为：changes。</p>
+<hr>
+<h3 id="强类型语言特性"><a href="#强类型语言特性" class="headerlink" title="强类型语言特性"></a>强类型语言特性</h3><p>JS 中可以把任意数据类型赋值给变量。即 &gt;&gt;&gt; <font color="red">同一个变量可以反复赋值，而且可以是不同类型的值</font>。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> test = <span class="number">66</span>;</span><br><span class="line">test = <span class="string">&quot;changes&quot;</span>;</span><br><span class="line">test = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这种变量本身类型不固定的语言称之为 <strong>动态语言</strong>，也称为 <strong>弱类型语言</strong>。</p>
+<p>与之相对的是 <strong>静态语言（强类型语言）</strong>，静态语言在定义变量时必须指定变量类型，如果赋值的数据类型和定义类型不匹配时，就会报错（例如：强类型语言的代表：Java，C，C++ 等）。</p>
+<hr>
+<h3 id="let-amp-amp-const"><a href="#let-amp-amp-const" class="headerlink" title="let &amp;&amp; const"></a>let &amp;&amp; const</h3><p>ECMAScript6（ES6）之前，JavaScript 只能通过 var 关键字来声明变量，ES6 发布之后，新增了 <strong>let</strong> 和 <strong>const</strong> 两个关键字来声明变量：</p>
+<ul>
+<li>let：其声明的变量 <font color="red"> 只在其所在的代码块中有效</font>（类似于局部变量）；且当前代码块中，同名的变量不能重复声明；</li>
+<li>const：功能和 let 相同，但由 const 定义的变量，一旦定义，就不能修改（常量）；且声明时必须赋值。</li>
+</ul>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&quot;Google&quot;</span>; <span class="comment">// 声明一个变量 str</span></span><br><span class="line"><span class="keyword">let</span> str;            <span class="comment">// 报错：变量 str 不能重复定义</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PI = <span class="string">&quot;3.14&quot;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(PI); <span class="comment">// 控制台打印: PI</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>事实上，在使用关键字 <code>var</code> 定义变量（<code>var varName = &quot;test&quot;;</code>）时，关键词可有可无，即 <code>varName = &quot;test&quot;;</code>，你可以自行尝试一下。并且，<strong>不使用 <code>var</code> 定义的变量是全局的，可跨函数访问</strong>！！！</p>
+</blockquote>
+<p><strong>关于代码块说明 &gt;&gt;&gt;</strong></p>
+<ul>
+<li><code>var</code> 定义变量，没有块的概念，可以跨块访问，不能跨函数访问；</li>
+<li><code>let</code> 定义变量，只能在块作用域（<code>&#123;&#125;</code>，例如 if 块 或 循环体）里访问，也不能跨函数访问；</li>
+<li><code>const</code> 定义变量，也只能在块作用域里访问，也不能跨函数访问；</li>
+</ul>
+<hr>
+<h2 id="JS-数据类型"><a href="#JS-数据类型" class="headerlink" title="JS 数据类型"></a>JS 数据类型</h2><p>JavaScript 中的数据类型可以分为两种类型：</p>
+<ol>
+<li>基本数据类型：数字（Number）、字符串（String）、布尔（Boolean）、空（Null）、未定义（Undefined）、Symbol</li>
+<li>引用数据类型：对象（Object）</li>
+</ol>
+<blockquote>
+<p>Symbol 是 ECMAScript6（ES6）中引入的一种新的数据类型，表示独一无二的值。</p>
+</blockquote>
+<p><strong>typeof 操作符 &gt;&gt;&gt;</strong></p>
+<p>我们知道，变量是动态类型的，所以无法确定 <strong>变量当前到底是哪种类型？</strong>，使用 typeof 可以返回变量中存放数据的类型。</p>
+<p>typeof 操作符有带括号和不带括号两种用法，如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">typeof x;</span><br><span class="line"></span><br><span class="line">或者：</span><br><span class="line"></span><br><span class="line">typeof(x);</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，其返回的是一个字符串（可用于判断某变量是否为某特定数据类型）。</p>
+<hr>
+<h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>基本数据类型，也称为 <strong>值类型</strong>，或 <strong>原始类型（Primitive Type）</strong>，是构成 JS 的基本元素，不能再细分。</p>
+<p>你需要注意的是 &gt;&gt;&gt;&gt;</p>
+<p>基本数据类型和基本数据类型所对应的包装类的区别，可参见 &gt;&gt;&gt;【<a href="">JS 教程之浅析原始数据类型和包装类</a>】。通过该博文的学习，你可以更加深入了解原始类型和引用类型的区别。</p>
+<p>JS 中内置了六大基本数据类型，分别如下：</p>
+<hr>
+<h4 id="String-类型"><a href="#String-类型" class="headerlink" title="String 类型"></a>String 类型</h4><p>字符串是 JS 中最常用的数据类型。</p>
+<p>JS 中的字符串（String）类型是一段以单引号 <code>&#39;&#39;</code> 或双引号 <code>&quot;&quot;</code> 包裹起来的文本序列，同时支持使用反斜杠 <code>\</code> 来转义特殊字符。</p>
+<p>创建字符串很简单，只要为声明的变量分配一个字符串类型的值即可。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str1 = <span class="string">&#x27;abc&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> str2 = <span class="string">&quot;XYZ&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>&#39;&#39;</code> 或 <code>&quot;&quot;</code> 本身只是一种定义方式，不是字符串的一部分，因此，字符串 <code>&#39;abc&#39;</code> 只有 <code>a</code>，<code>b</code>，<code>c</code> 这 3 个字符。</p>
+<p>需要注意的是，不同于 Java，JS <font color="red">不支持单独的字符类型（char 型）</font>，一个字符就是长度为 <code>1</code> 的字符串。</p>
+<p><strong>定义空字符串 &gt;&gt;&gt;</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str1 = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> str2 = <span class="string">&quot;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>[1] &gt;&gt;&gt; 单引号 <code>&#39;</code> 或双引号 <code>&quot;</code> 使用</strong></p>
+<p>如果 <code>&#39;</code> 本身也是字符串中的一个字符，那就可以用 <code>&quot;&quot;</code> 括起来，比如 <code>&quot;I&#39; am OK&quot;</code>。同理，如果 <code>&quot;</code> 也是字符串本身的一个字符的话，外面可以用 <code>&#39;&#39;</code> 括起来，如：<code>&#39;I&quot;m OK&#39;</code>。注意，都一致的话会报错：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str = <span class="string">&quot;I&quot;</span> am OK<span class="string">&quot;;</span></span><br><span class="line"><span class="string">Uncaught SyntaxError: Unexpected identifier &#x27;am&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>并且切记不要混合使用，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&quot;I&#x27;m OK&#x27;;</span></span><br></pre></td></tr></table></figure>
+
+<p>思考一下？&gt;&gt;&gt; 如果字符串内部既包含 <code>&#39;</code> 又包含 <code>&quot;</code> 怎么办？？？</p>
+<p>此时只能使用转义字符 <code>\</code> 来标识，比如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27;I\&#x27;m \&quot;OK\&quot;!&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>表示的字符串内容是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I&#x27;m &quot;OK&quot;!</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>[2] &gt;&gt;&gt; 字符串中的转义字符</strong></p>
+<p>当然了，转义字符 <code>\</code> 也可以转义其它特殊字符。、</p>
+<p>比如，<code>\n</code> 表示换行；<code>\t</code> 表示制表符；<code>\r</code> 表示回车；<code>\b</code> 表示空格；<code>\f</code> 表示换页符；字符 <code>\</code> 本身也要转义，所以 <code>\\</code> 表示的字符就是 <code>\</code>。</p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&#x27;I\&#x27;m learning\nPython.&#x27;</span>)</span><br><span class="line">I<span class="string">&#x27;m learning</span></span><br><span class="line"><span class="string">Python.</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>[3] &gt;&gt;&gt; 字符串折行</strong></p>
+<p>你可以在文本字符串中使用反斜杠 <code>\</code> 对长代码行进行换行。</p>
+<p>例如，要想换行书写一个比较长的字符串，必须在行尾添加反斜杠 <code>\</code>，请看下面的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str1 = <span class="string">&#x27;It took me six months to write this Python tutorial.\</span></span><br><span class="line"><span class="string">Please give me more support.\</span></span><br><span class="line"><span class="string">I will keep it updated.&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面定义的 str1 字符串比较长，所以使用了反斜杠 <code>\</code> 对字符串内容进行了换行，这样就可以把一个长字符串写成多行。</p>
+<hr>
+<p><strong>[4] &gt;&gt;&gt; 字符串序列支持 &gt;&gt;&gt;</strong></p>
+<p>JS 中的字符串是一个不可变的字符序列（Immutable Sequence），支持以下序列操作：</p>
+<p><strong>4.1】 &gt;&gt;&gt; 字符串索引</strong></p>
+<p>JS 中的字符串仅支持一种字符索引方式，即从左往右以 <code>0</code> 开始（正向），以此类推。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;Welcome to JS world.&quot;</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(str1);</span><br><span class="line">Welcome to JS world.</span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">console</span>.log(str1[<span class="number">0</span>]);</span><br><span class="line">W</span><br><span class="line">&gt; <span class="built_in">console</span>.log(str1[<span class="number">2</span>]);</span><br><span class="line">l</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意，其不支持反向索引方式（-1），也不支持通过索引进行切片操作！！！</p>
+</blockquote>
+<p><strong>4.2】 &gt;&gt;&gt; 字符串拼接（加法操作）</strong></p>
+<p>你可以通过加法（<code>+</code>）运算符实现字符串的拼接：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;Welcome to JS world.&quot;</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(str1 + <span class="string">&quot;test&quot;</span>);</span><br><span class="line">Welcome to JS world.test</span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">console</span>.log(str1 + <span class="number">123</span>);</span><br><span class="line">Welcome to JS world<span class="number">.123</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(str1 + [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]);</span><br><span class="line">Welcome to JS world<span class="number">.1</span>,<span class="number">2</span>,<span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>[5] &gt;&gt;&gt; 字符串伪对象</strong></p>
+<p>JS 中的原始字符串类型不是对象，如 <code>&quot;Hello JS&quot;</code>，其没有属性和方法。</p>
+<p>但是，原始字符串可以使用 JS 中的属性和方法，因为 JS 在执行 方法和属性 时可以把原始类型当作对象。</p>
+<p>或者，你可以这么认为：<strong>JS 中原始字符串类型，既是基本类型，也是伪对象，故有相应的属性和方法（同内置 String 对象）</strong>。</p>
+<hr>
+<p><strong>5.1] &gt;&gt;&gt; 常用伪对象属性</strong></p>
+<p>字符串伪对象常用属性支持：</p>
+<p><strong>5.1.1】 &gt;&gt;&gt; length 属性</strong></p>
+<p>字符串的 length 属性可用于获取字符串长度，示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;Hello JS World&quot;</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(str1.length);</span><br><span class="line"><span class="number">14</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> str2 = <span class="string">&quot;&quot;</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(str2.length);</span><br><span class="line"><span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>5.2] &gt;&gt;&gt; 常用伪对象方法</strong></p>
+<p>Python 中的字符串是不可变的，所以所有修改和生成字符串的操作的实现方法，都是在另一个内存片段中生成一个新字符串对象，都不能改变字符串本身的内容。</p>
+<p>字符串伪对象常用方法支持：</p>
+<p><strong>5.2.1】 &gt;&gt;&gt; 字符串大小写转换</strong></p>
+<p><font color="red">1）toLowerCase</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.toLowerCase()</span><br></pre></td></tr></table></figure>
+
+<p>返回一个新的字符串，在其中原始 str 字符串中的所有大写字符全部被转换为了小写字符。注意字符串中的小写字母或中文字符不做任何改变！！！</p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;测试：Hello, JavaScript World.&quot;</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(str1.toLowerCase());</span><br><span class="line">测试：hello, javascript world.</span><br></pre></td></tr></table></figure>
+
+<p><font color="red">2）toUpperCase</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.toUpperCase()</span><br></pre></td></tr></table></figure>
+
+<p>返回一个新的字符串，在其中原始 str 字符串中的所有小写字符全部被转换为了大写字符。注意字符串中的大写字母或中文字符不做任何改变！！！</p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;测试：Hello, JavaScript World.&quot;</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(str1.toUpperCase());</span><br><span class="line">测试：HELLO, JAVASCRIPT WORLD.</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>5.2.2】 &gt;&gt;&gt; 子串搜索与截取</strong></p>
+<p><font color="red">1）indexOf &amp;&amp; lastIndexOf</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str.indexOf(searchvalue, fromindex)</span><br><span class="line">str.lastIndexOf(searchvalue, fromindex)</span><br></pre></td></tr></table></figure>
+
+<p><code>indexOf()</code> 搜索字符串 <code>str</code> 中是否包含子串 <code>searchvalue</code>。如果包含，则返回 <strong>首次出现的 searchvalue 第一个字符的索引位置</strong>，否则返回 <code>-1</code>。开始检索的位置在字符串的 <code>fromindex</code> 处或字符串的开头（没有指定 fromindex 时），fromindex 合法取值：<code>(0, str.length-1)</code>。</p>
+<p>区别的，<code>lastIndexOf()</code> 会从字符串的 <code>fromindex</code> 处或字符串的结尾（没有指定 fromindex 时），按照从尾到头的方向搜索。如果包含，则立即返回出现的 searchvalue 第一个字符的索引位置，否则返回 <code>-1</code>。</p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;I love JS and I study JS From Baidu&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> iIdx = str1.indexOf(<span class="string">&quot;JS&quot;</span>);</span><br><span class="line">&gt; <span class="keyword">var</span> iLastIdx = str1.lastIndexOf(<span class="string">&quot;JS&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(iIdx);</span><br><span class="line"><span class="number">7</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(iLastIdx);</span><br><span class="line"><span class="number">22</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> iIdx1 = str1.indexOf(<span class="string">&quot;JS&quot;</span>, <span class="number">8</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(iIdx1);</span><br><span class="line"><span class="number">22</span></span><br><span class="line">&gt; <span class="keyword">var</span> iLastIdx1 = str1.lastIndexOf(<span class="string">&quot;JS&quot;</span>, <span class="number">21</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(iLastIdx1);</span><br><span class="line"><span class="number">7</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> iIdxNo = str1.indexOf(<span class="string">&quot;Javascript&quot;</span>);</span><br><span class="line">&gt; <span class="keyword">var</span> iLastIdxNo = str1.lastIndexOf(<span class="string">&quot;Javascript&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(iIdxNo);</span><br><span class="line">-<span class="number">1</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(iLastIdxNo);</span><br><span class="line">-<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><font color="red">2）search</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.search(searchvalue/regexp)</span><br></pre></td></tr></table></figure>
+
+<p><code>search()</code> 搜索字符串 <code>str</code> 中是否包含子串 <code>searchvalue</code> 或是否匹配正则表达式对象 <code>regexp</code>。如果包含（匹配），则返回 <code>str</code> 中第一个与 <code>searchvalue/regexp</code> 相匹配的子串的起始位置，否则返回 <code>-1</code>。</p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;I love JS and I study JS From Baidu&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> iIdx = str1.search(<span class="string">&quot;JS&quot;</span>);</span><br><span class="line">&gt; <span class="keyword">var</span> iIdxRE = str1.search(<span class="regexp">/JS/</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(iIdx);</span><br><span class="line"><span class="number">7</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(iIdxRE);</span><br><span class="line"><span class="number">7</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> iIdxNo = str1.search(<span class="string">&quot;Javascript&quot;</span>);</span><br><span class="line">&gt; <span class="keyword">var</span> iIdxRENo = str1.search(<span class="regexp">/Javascript/</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(iIdxNo);</span><br><span class="line">-<span class="number">1</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(iIdxRENo);</span><br><span class="line">-<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><font color="red">3）match</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.match(searchvalue/regexp)</span><br></pre></td></tr></table></figure>
+
+<p><code>match()</code> 搜索字符串 <code>str</code> 中是否包含子串 <code>searchvalue</code> 或是否匹配正则表达式对象 <code>regexp</code>。如果包含（匹配），则返回一个存放匹配结果的数组，否则返回 <code>null</code>。</p>
+<p><strong>关于数组内容（存放了匹配文本有关的信息）&gt;&gt;&gt;&gt;</strong></p>
+<p>如果检索的是 <code>searchvalue</code>，则该数组的第 <code>0</code> 个元素存放的是第一次匹配到的文本；还包含两个对象属性，其中 <code>index</code> 属性声明的是匹配文本的起始字符在 str 中的位置，<code>input</code> 属性声明的是对 str 的引用。</p>
+<p>如果检索的是 <code>regexp</code>，其内容依赖于正则表达式对象是否具有全局标志 <code>g</code>，以找到一个或多个与 regexp 匹配的文本。如果 regexp 没有全局标志 g，match() 方法只能在 str 中执行一次匹配（第一次匹配），如果没有找到匹配的文本将返回 <code>null</code>；否则返回数组内容同 <code>searchvalue</code>。如果 regexp 具有全局标志 g，则 match() 方法将执行全局检索，找到 str 中的所有匹配子字符串，如果没有找到匹配的文本将返回 <code>null</code>；如果找到了一个或多个匹配子串，其返回的数组存放的是 str 中所有的匹配子串，没有 index 属性或 input 属性。</p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;I love JS and I study JS From Baidu&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> res = str1.match(<span class="string">&quot;JS&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res);</span><br><span class="line">[<span class="string">&#x27;JS&#x27;</span>, <span class="attr">index</span>: <span class="number">7</span>, <span class="attr">input</span>: <span class="string">&#x27;I love JS and I study JS From Baidu&#x27;</span>, <span class="attr">groups</span>: <span class="literal">undefined</span>]</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res[<span class="string">&#x27;index&#x27;</span>]);</span><br><span class="line"><span class="number">7</span></span><br><span class="line">&gt; <span class="keyword">var</span> resNo = str1.match(<span class="string">&quot;JavaScript&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(resNo);</span><br><span class="line"><span class="literal">null</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> res1 = str1.match(<span class="regexp">/JS/</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res1);</span><br><span class="line">[<span class="string">&#x27;JS&#x27;</span>, <span class="attr">index</span>: <span class="number">7</span>, <span class="attr">input</span>: <span class="string">&#x27;I love JS and I study JS From Baidu&#x27;</span>, <span class="attr">groups</span>: <span class="literal">undefined</span>]</span><br><span class="line">&gt; <span class="keyword">var</span> res1g = str1.match(<span class="regexp">/JS/g</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res1g);</span><br><span class="line">(<span class="number">2</span>) [<span class="string">&#x27;JS&#x27;</span>, <span class="string">&#x27;JS&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，全局检索模式（<code>g</code>）下，match() 方法不提供与子表达式匹配的文本的信息（例如字串位置），如果你需要这些全局检索的信息，可以使用 <code>RegExp.exec()</code> 来替换 match() 方法的全局检索模式。</p>
+<p><strong>| &gt;&gt;&gt; ============================================= Split Line ============================================ &lt;&lt;&lt; |</strong></p>
+<p>上面我们已经可以获取字符串（<code>str</code>）中 某个特定字串（或具有某种正则匹配模式的子串）的位置信息，下面来看如何根据上述的字串位置信息截取相应的字串：</p>
+<p><font color="red">4）substring &amp;&amp; substr</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str.substring(start, stop)</span><br><span class="line">str.substr(start, length)</span><br></pre></td></tr></table></figure>
+
+<p><code>substring()</code> 方法可用于截取字符串（<code>str</code>）中介于两个指定下标之间（<code>start-stop</code>）的子串，返回一个新字符串。其中，<code>start</code>（非负的整数）是要提取的子串的首字符索引，<code>stop</code>（非负的整数）是要提取的子串的最后一个字符的索引（缺省表示要截取到字符串结尾）<strong>值加 1</strong>，即前闭后开的（也可以表示为 <code>start + substring.length</code>）。</p>
+<p><code>substr()</code> 方法可用于截取字符串（<code>str</code>）中从 <code>start</code> 下标开始的指定长度（<code>length</code>）的子串，返回一个新字符串。其中，<code>start</code>（整数）为负数时采用反向索引方式来标识开始下标，<code>length</code>（非负的整数）为子串中的字符数（缺省表示要截取到字符串结尾）。</p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;I love JS and I study JS From Baidu&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> subStr1 = str1.substring(<span class="number">7</span>, <span class="number">9</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(subStr1);</span><br><span class="line">JS</span><br><span class="line">&gt; <span class="keyword">var</span> subStr2 = str1.substring(<span class="number">7</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(subStr2);</span><br><span class="line">JS and I study JS From Baidu</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> subStr3 = str1.substr(-<span class="number">13</span>, <span class="number">2</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(subStr3);</span><br><span class="line">JS</span><br><span class="line">&gt; <span class="keyword">var</span> subStr4 = str1.substr(-<span class="number">13</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(subStr4);</span><br><span class="line">JS From Baidu</span><br></pre></td></tr></table></figure>
+
+<p><font color="red">5）slice</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.slice(start, end);</span><br></pre></td></tr></table></figure>
+
+<p><code>slice()</code> 方法可用于截取（分片）字符串（<code>str</code>）中介于两个指定下标之间（<code>start-end</code>）的子串，返回一个新字符串。</p>
+<p>其中，<code>start</code>（整数）是要提取的子串的首字符索引，<code>end</code>（整数）是要提取的子串的最后一个字符的索引（缺省表示要截取到字符串结尾）<strong>值加 1</strong>，即前闭后开的（也可以表示为 <code>start + substring.length</code>）。需要注意的是 <code>start</code> &amp;&amp; <code>end</code> 为负整数的情况。</p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;I love JS and I study JS From Baidu&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> subStr1 = str1.slice(<span class="number">7</span>, <span class="number">9</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(subStr1);</span><br><span class="line">JS</span><br><span class="line">&gt; <span class="keyword">var</span> subStr2 = str1.slice(-<span class="number">13</span>, -<span class="number">11</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(subStr2);</span><br><span class="line">JS</span><br></pre></td></tr></table></figure>
+
+<p><strong>| &gt;&gt;&gt; ============================================= Split Line ============================================ &lt;&lt;&lt; |</strong></p>
+<p>如果仅仅是判断字符串（<code>str</code>）中是否存在某个特定的子串：</p>
+<p><font color="red">6）includes</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.includes(searchvalue, start);</span><br></pre></td></tr></table></figure>
+
+<p>ES 6 中提供的 <code>includes()</code> 函数用于判断字符串中是否包含指定的子串。如果找到返回 <code>true</code>，否则返回 false。其中，<code>searchvalue</code> 表示需检索的子串，<code>start</code>（非负整数）表示在字符串中开始检索的位置，其合法取值为（0, str.length - 1），缺省表似乎从字符串的第一个位置处开始检索。</p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;I love JS and I study JS From Baidu&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> isFind = str1.includes(<span class="string">&quot;JS&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(isFind);</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; <span class="keyword">var</span> isFind1 = str1.includes(<span class="string">&quot;Javascript&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(isFind1);</span><br><span class="line"><span class="literal">false</span></span><br><span class="line">&gt; <span class="keyword">var</span> isFind2 = str1.includes(<span class="string">&quot;love&quot;</span>, <span class="number">7</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(isFind2);</span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>5.2.3】 &gt;&gt;&gt; 字符串替换</strong></p>
+<p><font color="red">1）replace</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.replace(substr/regexp, replacement)</span><br></pre></td></tr></table></figure>
+
+<p><code>replace()</code> 方法执行的是查找并替换的操作，它将在 str 中查找与 <code>substr/regexp</code> 相匹配的子字符串，然后用替换值 <code>replacement</code> 来替换查找到的子串，返回一个替换后的新字符串。</p>
+<p>需要注意的是，如果 regexp 具有全局标志 <code>g</code>，那么将替换所有匹配的子串。否则（substr/regexp）只替换第一个匹配到的子串。</p>
+<p><font color="red">1.1）replace(substr/regexp, newSubStr)</font></p>
+<p>当替换值为一个字符串（还可以函数）时，示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;I love JS and I study JS From Baidu&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> res1 = str1.replace(<span class="string">&quot;JS&quot;</span>, <span class="string">&quot;JavaScript&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res1);</span><br><span class="line">I love JavaScript and I study JS From Baidu</span><br><span class="line">&gt; <span class="keyword">var</span> res2 = str1.replace(<span class="regexp">/JS/</span>, <span class="string">&quot;JavaScript&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res2);</span><br><span class="line">I love JavaScript and I study JS From Baidu</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> res3 = str1.replace(<span class="regexp">/JS/g</span>, <span class="string">&quot;JavaScript&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res3);</span><br><span class="line">I love JavaScript and I study JavaScript From Baidu</span><br></pre></td></tr></table></figure>
+
+<p>替换字符串（<code>newSubStr</code>）中 <font color="green">支持一些特殊的用法 &gt;&gt;&gt; 可以插入下面的特殊变量名</font>：</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>替换文本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$1 … $n</td>
+<td>插入与 regexp 中子表达式 () 对应的第 1 个或第 n 个子表达式相匹配的文本</td>
+</tr>
+<tr>
+<td>$&amp;</td>
+<td>插入与 regexp 相匹配的子串</td>
+</tr>
+<tr>
+<td>$`</td>
+<td>插入当前匹配的子串左边的内容</td>
+</tr>
+<tr>
+<td>$’</td>
+<td>插入当前匹配的子串右边的内容</td>
+</tr>
+<tr>
+<td>$$</td>
+<td>插入一个 $ 字符本身</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> name = <span class="string">&quot;Doe, John&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> resName = name.replace(<span class="regexp">/(\w+)\s*, \s*(\w+)/</span>, <span class="string">&quot;First Name: $2, Last Name: $1&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(resName);</span><br><span class="line">First Name: John, Last Name: Doe</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> resName1 = name.replace(<span class="regexp">/[a-zA-z]+/g</span>, <span class="string">&quot;&#x27;$&amp;&#x27;&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(resName1);</span><br><span class="line"><span class="string">&#x27;Doe&#x27;</span>, <span class="string">&#x27;John&#x27;</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> resName2 = name.replace(<span class="regexp">/[a-zA-z]+/</span>, <span class="string">&quot;$&#x27;&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(resName2);</span><br><span class="line">, John, John</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> resName3 = name.replace(<span class="regexp">/[a-zA-z]+/</span>, <span class="string">&quot;$`&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(resName3);</span><br><span class="line">, John</span><br></pre></td></tr></table></figure>
+
+<p><strong>| &gt;&gt;&gt; ============================================= Split Line ============================================ &lt;&lt;&lt; |</strong></p>
+<p>上述字符串替换功能比较简单，有时需要做一些更复杂的字符串替换操作，这就涉及到 <strong>正则 + function</strong> 的高级用法了。</p>
+<p><font color="red">1.2）replace(regexp, function)</font></p>
+<p>事实上，replace() 方法中的替换值除了可以是上述的字符串外，还可以是一个每次匹配时都要调用的回调函数（匹配时执行），函数的返回值将作为替换字符串。</p>
+<p>需要注意的是，<strong>对 str 使用 Regexp 进行匹配</strong>，如果匹配到多项结果（全局匹配 g，或者分组），那么 <strong>每一个匹配结果都将执行一次回调函数，并且用该函数的返回值替代源字符串中的匹配项。</strong></p>
+<p>下面，我们将根据 Regexp 中是否使用分组分为两种场景进行说明（影响回调函数默认参数列表）：</p>
+<p><font color="red">1.2.1）正则表达式中不使用分组</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str = <span class="string">&quot;I love JS and I study JS From Baidu&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> res = str.replace(<span class="regexp">/JS/</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;JavaScript&quot;</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">console</span>.log(res);</span><br><span class="line">I love JavaScript and I study JS From Baidu</span><br></pre></td></tr></table></figure>
+
+<p>可见，正则表达式没有使用全局匹配符 g，所以只替换了源字符串中第一个 <code>JS</code> 子串。通过 <code>console.log(arguments)</code>（输出回调函数参数信息）可以看出回调函数只执行了一次，如下：</p>
+<p><img src="https://s2.loli.net/2022/12/27/NoAfiSecqDXmbxd.png"></p>
+<p>可以看出，回调函数是有默认参数的：</p>
+<ul>
+<li>arguments[0]：是匹配到的子字符串；</li>
+<li>arguments[1]：是匹配到的子串的索引位置；</li>
+<li>arguments[2]：是源字符串本身。</li>
+</ul>
+<p>再来尝试一下全局匹配（g）的情况：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str = <span class="string">&quot;I love JS and I study JS From Baidu&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> res = str.replace(<span class="regexp">/JS/</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;JavaScript&quot;</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">console</span>.log(res);</span><br><span class="line">I love JavaScript and I study JavaScript From Baidu</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/12/27/QpLZI1ftDBFoXAk.png"></p>
+<p>可见，输出了 2 个 Arguments。这是由于使用全局匹配（g）后，匹配到两个匹配项，执行了 2 次 回调函数。</p>
+<p><font color="red">1.2.2）正则表达式中使用分组</font></p>
+<p>示例，将字符串中所有以 <code>W</code> 为单位的工资，其金额改为元 <code>Y</code>。例如 4W，改为 40000Y。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> txt = <span class="string">&quot;John:5W;Lihua:5000Y;Bob:2000Y;Lucy:20W;Charli:8500Y.&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> res = txt.replace(<span class="regexp">/(\d+)(W)/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">arguments</span>[<span class="number">1</span>] + <span class="string">&quot;0000&quot;</span> + <span class="string">&quot;Y&quot;</span>;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">console</span>.log(res);</span><br><span class="line">John:50000Y;Lihua:5000Y;Bob:2000Y;Lucy:200000Y;Charli:8500Y.</span><br></pre></td></tr></table></figure>
+
+<p>输出展示：</p>
+<p><img src="https://s2.loli.net/2022/12/27/qDG2uFXCJdkRVch.png"></p>
+<p>可以看出，对于使用两个分组的情况，其回调函数刚好增加了两个参数：</p>
+<ul>
+<li>arguments[0]：是匹配到的子字符串；</li>
+<li>arguments[1]：是匹配到的第 1 个分组项；</li>
+<li>arguments[2]：是匹配到的第 2 个分组项；</li>
+<li>arguments[3]：是匹配到的字符串的索引位置；</li>
+<li>arguments[4]：是源字符串本身。</li>
+</ul>
+<p>事实上，如果你在 Regexp 中使用了 <code>n</code> 个分组的话，其回调函数会增加 n 个至 <code>arguments[n]</code>。</p>
+<hr>
+<p><strong>5.2.4】 &gt;&gt;&gt; 字符串分割</strong></p>
+<p>很多时候我们有 分割字符串 的需求，即把一个字符串 <strong>按照某种特定的分隔符进行切割</strong>，注意其与 字符串截取 的区别。</p>
+<p><font color="red">1）split</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.split(separator, howmany)</span><br></pre></td></tr></table></figure>
+
+<p><code>split()</code> 方法会通过根据指定的 <code>separator</code> 分隔符来对 <code>str</code> 进行分割，返回一个字符串数组。其中，<code>howmany</code>（可选，非负整数）用于指定返回数组的长度，即返回几个子串（不全部返回）；如果不指定 <code>howmany</code>，则会从左向右搜索并且每遇到 <code>separator</code> 一次就分割直到搜索完字符串。</p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str = <span class="string">&quot;I love JS and I study JS From Baidu&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> res = str.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res);</span><br><span class="line">(<span class="number">9</span>) [<span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;love&#x27;</span>, <span class="string">&#x27;JS&#x27;</span>, <span class="string">&#x27;and&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;study&#x27;</span>, <span class="string">&#x27;JS&#x27;</span>, <span class="string">&#x27;From&#x27;</span>, <span class="string">&#x27;Baidu&#x27;</span>]</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> res1 = str.split(<span class="string">&quot; &quot;</span>, <span class="number">5</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res1);</span><br><span class="line">(<span class="number">5</span>) [<span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;love&#x27;</span>, <span class="string">&#x27;JS&#x27;</span>, <span class="string">&#x27;and&#x27;</span>, <span class="string">&#x27;I&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，如果把空字符串 (<code>&quot;&quot;</code>) 用作 separator，那么 str 中的每个字符之间都会被分割：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str = <span class="string">&quot;Split Test&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> res = str.split(<span class="string">&quot;&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res);</span><br><span class="line">(<span class="number">10</span>) [<span class="string">&#x27;S&#x27;</span>, <span class="string">&#x27;p&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;t&#x27;</span>, <span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;T&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;s&#x27;</span>, <span class="string">&#x27;t&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p><strong>分隔符可以是子串或正则表达式 &gt;&gt;&gt;</strong>  返回 数组 中包括与正则表达式中子表达式 <code>()</code> 匹配的字串（但不包括与整个正则表达式或子串匹配的文本）:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str = <span class="string">&quot;I love JS and I study JS From Baidu&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> res = str.split(<span class="string">&quot;JS&quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res);</span><br><span class="line">(<span class="number">3</span>) [<span class="string">&#x27;I love &#x27;</span>, <span class="string">&#x27; and I study &#x27;</span>, <span class="string">&#x27; From Baidu&#x27;</span>]</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> res1 = str.split(<span class="regexp">/JS/</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res1);</span><br><span class="line">(<span class="number">3</span>) [<span class="string">&#x27;I love &#x27;</span>, <span class="string">&#x27; and I study &#x27;</span>, <span class="string">&#x27; From Baidu&#x27;</span>]</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> res2 = str.split(<span class="regexp">/(\s)(JS)/</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res2);</span><br><span class="line">(<span class="number">7</span>) [<span class="string">&#x27;I love&#x27;</span>, <span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;JS&#x27;</span>, <span class="string">&#x27; and I study&#x27;</span>, <span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;JS&#x27;</span>, <span class="string">&#x27; From Baidu&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>5.2.5】 &gt;&gt;&gt; 字符串拼接</strong></p>
+<p><font color="red">1）加法 +</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = str1 + str2 + ...;</span><br></pre></td></tr></table></figure>
+
+<p>加法运算符（+）可以直接将多个字符串拼接在一起。示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;Hello &quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> str2 = <span class="string">&quot;JavaScript &quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> str3 = <span class="string">&quot;World.&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> res_str = str1 + str2 + str3;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res_str);</span><br><span class="line">Hello JavaScript World.</span><br></pre></td></tr></table></figure>
+
+<p><font color="red">2）join</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">arr.push(str1);</span><br><span class="line">arr.push(str2);</span><br><span class="line"><span class="keyword">var</span> str = arr.join(<span class="string">&quot;separator&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>join()</code> 方法实现字符串拼接需要借助 数组（Array）对象以及其 <code>push()</code> 方法。需要先将待拼接的字符串（str1/str2/str3…）存储到数组（字符串数组）中，最后调用数组的 join() 方法实现字符串的拼接。其中，<code>separator</code> 可用于指定拼接时的连接符。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> str2 = <span class="string">&quot;JavaScript&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> str3 = <span class="string">&quot;World.&quot;</span>;</span><br><span class="line">&gt; arr.push(str1);</span><br><span class="line">&gt; arr.push(str2);</span><br><span class="line">&gt; arr.push(str3);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(arr);</span><br><span class="line">(<span class="number">3</span>) [<span class="string">&#x27;Hello&#x27;</span>, <span class="string">&#x27;JavaScript&#x27;</span>, <span class="string">&#x27;World.&#x27;</span>]</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> res = arr.join(<span class="string">&quot;&quot;</span>)</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res);</span><br><span class="line">HelloJavaScriptWorld.</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> res1 = arr.join(<span class="string">&quot; &quot;</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res1);</span><br><span class="line">Hello JavaScript World.</span><br></pre></td></tr></table></figure>
+
+<p><font color="red">3）concat</font></p>
+<p>JS 中字符串伪对象和数组对象均支持使用 concat() 函数进行连接操作：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str1.concat(str2, str3, ...)</span><br><span class="line">arrayObject.concat(arrayX, arrayY, arrayZ, ...)</span><br></pre></td></tr></table></figure>
+
+<p><code>concat()</code> 方法参数列表中为待连接的多个字符串或数组，返回一个新的字符串或数组。需要注意的是，concat 连接数组时，添加的是数组中的元素，而不是数组。</p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str1 = <span class="string">&quot;Hello &quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> str2 = <span class="string">&quot;JavaScript&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> str3 = <span class="string">&quot; World.&quot;</span></span><br><span class="line">&gt; <span class="keyword">var</span> res_str = str1.concat(str2, str3);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res_str);</span><br><span class="line">&gt; Hello JavaScript World.</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> arr_a = [<span class="string">&quot;Hello&quot;</span>, <span class="string">&quot;JS&quot;</span>];</span><br><span class="line">&gt; <span class="keyword">var</span> arr_b = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line">&gt; <span class="keyword">var</span> arr_res = arr_a.concat(arr_b);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(arr_res);</span><br><span class="line">(<span class="number">4</span>) [<span class="string">&#x27;Hello&#x27;</span>, <span class="string">&#x27;JS&#x27;</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>5.2.6】 &gt;&gt;&gt; 字符串修剪</strong></p>
+<p><font color="red">1）trim</font></p>
+<p>JS 中字符串伪对象和数组对象均支持使用 concat() 函数进行连接操作：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.trim()</span><br></pre></td></tr></table></figure>
+
+<p><code>trim()</code> 方法可用于删除字符串头尾的空白符，包括空格、制表符 tab、换行符或其他空白符等。</p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str = <span class="string">&quot;   Hello JS  &quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> res = str.trim();</span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&quot;Before trim =[&quot;</span>, str, <span class="string">&quot;], Res =[&quot;</span>, res, <span class="string">&quot;]&quot;</span>);</span><br><span class="line">Before trim =[    Hello JS   ], Res =[ Hello JS ]</span><br></pre></td></tr></table></figure>
+
+<p><font color="red">2）自定义 myTrim 方法</font></p>
+<p>有些浏览器可能不支持 trim 函数，你可以通过字符串替换方法实现 trim 函数功能：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str = <span class="string">&quot;   Hello JS  &quot;</span>;</span><br><span class="line">&gt; <span class="function"><span class="keyword">function</span> <span class="title">myTrim</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">return</span> x.replace(<span class="regexp">/^\s+|\s$/gm</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">console</span>.log(myTrim(str));</span><br><span class="line">Hello JS</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>5.2.7】 &gt;&gt;&gt; 索引访问字符</strong></p>
+<p>访问字符串中指定下标的字符：</p>
+<p><font color="red">1）[] &amp;&amp; charAt &amp;&amp; charCodeAt</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str[index];</span><br><span class="line">str.charAt(index);</span><br><span class="line">str.charCodeAt(index);</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>str</code> 表示要访问的字符串，<code>index</code> 表示要访问的某字符的下标索引。</p>
+<p>区别的是，对于 <code>[]</code>，如果访问的索引在字符串中，则返回该索引处的字符，否则返回 <code>undefined</code>；对于 <code>charAt</code>，如果访问的索引在字符串中，则返回该索引处的字符，否则返回空字符串 <code>&quot;&quot;</code>；对于 <code>charCodeAt</code>，如果访问的索引在字符串中，则返回该索引处字符的 Unicode 码，否则返回 <code>NaN</code>。</p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str = <span class="string">&quot;Hello JS Wrold.&quot;</span>;</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> char1 = str[<span class="number">3</span>];</span><br><span class="line">&gt; <span class="built_in">console</span>.log(char1);</span><br><span class="line">l</span><br><span class="line">&gt; <span class="built_in">console</span>.log(str[<span class="number">20</span>]);</span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> char2 = str.charAt(<span class="number">3</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(char2);</span><br><span class="line">l</span><br><span class="line">&gt; <span class="built_in">console</span>.log(str.charAt(<span class="number">20</span>));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> char3 = str.charCodeAt(<span class="number">3</span>);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(char3);</span><br><span class="line">&gt; <span class="number">108</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(str.charCodeAt(<span class="number">20</span>));\</span><br><span class="line"><span class="literal">NaN</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>[6] &gt;&gt;&gt; 字符串包装对象</strong></p>
+<p>上面我们提到，可以将基本字符串数据类型看作伪对象，但实际上其并不是一个对象。</p>
+<p>但是，你可以使用基本类型的包装对象将其定义为一个对象，详细说明可参加 &gt;&gt;&gt; 【<a href="">JS 教程之 JS 内置 String 对象</a>】中相关说明。</p>
+<hr>
+<h4 id="Number-类型"><a href="#Number-类型" class="headerlink" title="Number 类型"></a>Number 类型</h4><p>JS 中，数值类型（Number）用来定义数值。并且，JS 中的数值是不区分整数和浮点数的，统一使用 Number 类型表示。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num1 = <span class="number">123</span>;     <span class="comment">// 整数</span></span><br><span class="line"><span class="keyword">var</span> num2 = <span class="number">3.14</span>;    <span class="comment">// 浮点数</span></span><br></pre></td></tr></table></figure>
+
+<p>尽管 JS 中数值类型不区分具体的整数和浮点数，但由于整数值和浮点数值使用上的差异，故在使用上以区分：</p>
+<p><strong>[1] &gt;&gt;&gt; 整数（Int）&amp;&amp; 浮点数（Float）</strong></p>
+<p>先来看整数细节：</p>
+<p><strong>1.1】 &gt;&gt;&gt; 整数（Int）</strong></p>
+<p>同数学上的整数，JS 中的 Int 也包括正整数、负整数、0，且在 JS 中的表示方法和 <strong>数学上的写法</strong> 一模一样，例如：<code>1</code>，<code>100</code>，<code>-8080</code>，<code>0</code>，等等（十进制写法，Decimal）。</p>
+<p>而计算机由于使用二进制，所以有时候用 <strong>二进制（Binary）</strong>、<strong>八进制（Octal）</strong> 或者 <strong>十六进制（Hexadecimal）</strong> 表示整数比较方便：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> num = <span class="number">1024</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(num);</span><br><span class="line"><span class="number">1024</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 数字前缀 &#x27;0b&#x27; 表示二进制数 */</span></span><br><span class="line">&gt; <span class="keyword">var</span> num = <span class="number">0b1001</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(num);</span><br><span class="line"><span class="number">9</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 数字前缀 &#x27;0&#x27; 表示八进制数 */</span></span><br><span class="line">&gt; <span class="keyword">var</span> num = <span class="number">037</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(num);</span><br><span class="line"><span class="number">31</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 数字前缀 &#x27;0x&#x27; 表示十六进制数 */</span></span><br><span class="line">&gt; <span class="keyword">var</span> num = <span class="number">0xA0F</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(num);</span><br><span class="line">&gt; <span class="number">2575</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>1.2】 &gt;&gt;&gt; 浮点数（Float）</strong></p>
+<p>浮点数也就是小数，之所以称为浮点数，是因为按照科学记数法表示时，一个浮点数的小数点位置是可变的，比如：<code>1.23 ×10^9</code> 和 <code>12.3 × 10^8</code> 是完全相等的。</p>
+<p>浮点数可以用一般的 <strong>数学写法</strong>，如 <code>1.23</code>，<code>3.14</code>，<code>-9.01</code> 等等。但是对于很大或很小的浮点数，使用 <strong>科学计数法</strong> 表示更为方便，把 <strong>10</strong> 用 <strong>e</strong> 替代，<code>1.23 × 10^9</code> 就是 <code>1.23e9</code>，或者 <code>12.3e8</code>，<code>0.000012</code> 可以写成 <code>1.2e-5</code>，等等。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> num = <span class="number">1.23e5</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(num);</span><br><span class="line"><span class="number">123000</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> num = <span class="number">1.23e-3</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(num);</span><br><span class="line"><span class="number">0.00123</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>| &gt;&gt;&gt; ========================================= 浮点数计算精度问题 ======================================== &lt;&lt;&lt; |</strong></p>
+<p>注意：永远不要直接比较两个浮点的大小。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 尝试一下比较如下大小：</span><br><span class="line"><span class="number">0.1</span> + <span class="number">0.2</span> &gt; <span class="number">0.3</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>这是由于计算机中浮点型数值的存储以及计算是不精确的（十进制和二进制转换引发），这种问题不仅在 JS 中存在，在所有支持浮点数运算的编程语言中都会遇到，它不光是 JS 的 Bug。</p>
+<p>详情请关注编程基础系列博文：</p>
+<p>[ &gt;&gt;&gt;&gt; <a href="https://www.orangeshare.cn/2016/08/01/bian-cheng-ji-chu-zhi-jin-zhi-xiang-jie/">编程基础之进制详解</a> &lt;&lt;&lt;&lt; ]<br>[ &gt;&gt;&gt;&gt; <a href="https://www.orangeshare.cn/2016/07/29/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/">为什么 0.1 + 0.2 不等于 0.3?</a> &lt;&lt;&lt;&lt; ]</p>
+<hr>
+<p><strong>[2] &gt;&gt;&gt; Number 数值范围</strong></p>
+<p>JS 中，Number 类型所能定义的数值并不是无限的，其只能表示 <code>-(2^53 - 1)</code> 到 <code>(2^53 -1)</code> 之间的数值。</p>
+<p>数值类型（Number）所能表示的最大值（MAX VALUE）以及最小值（MIN VALUE），可以通过原始数值类型所对应的数值包装对象（Number）中定义的常量值获得：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">Number</span>.MAX_VALUE</span><br><span class="line"><span class="number">1.7976931348623157e+308</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">Number</span>.MIN_VALUE</span><br><span class="line"><span class="number">5e-324</span></span><br></pre></td></tr></table></figure>
+
+<p>JS 中，如果某次运算的结果超出了 Number 类型的取值范围 <code>(Number.MIN_VALUE，Number.MAX_VALUE)</code>，那么这个数就会自动转化为无穷大：</p>
+<p>Number 包装对象中还定义了两个比较特殊的常量值，用于表示无穷大：<strong>Infinity（正无穷大）</strong> &amp;&amp; <strong>-Infinity（负无穷大）</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">Number</span>.NEGATIVE_INFINITY</span><br><span class="line">-<span class="literal">Infinity</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">Number</span>.POSITIVE_INFINITY</span><br><span class="line"><span class="literal">Infinity</span></span><br></pre></td></tr></table></figure>
+
+<p>其中:</p>
+<ul>
+<li>Infinity：用来表示正无穷大的数值，一般指大于 <code>1.7976931348623157e+308</code>（Number.MAX_VALUE）的数；</li>
+<li>-Infinity：用来表示负无穷大的数值，一般指小于 <code>5e-324</code>（Number.MIN_VALUE）的数。</li>
+</ul>
+<p><strong>无穷数值检测 &gt;&gt;&gt;</strong></p>
+<p>你还可以通过数值包装对象（Number）中提供的 <code>Number.isFinite(number)</code> 方法来检测某个数值变量是否非无穷（运算超出数值范围）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> num = <span class="number">123456</span>;</span><br><span class="line">&gt; <span class="built_in">Number</span>.isFinite(num);</span><br><span class="line"><span class="literal">true</span></span><br><span class="line"></span><br><span class="line">&gt; num = <span class="literal">Infinity</span>;</span><br><span class="line">&gt; <span class="built_in">Number</span>.isFinite(num);</span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>如果，<code>isFinite()</code> 方法返回 <code>true</code> 表示变量中数值为有限的，否则为无穷大。</p>
+<hr>
+<p><strong>[3] &gt;&gt;&gt; NaN（Not a Number）</strong></p>
+<p>NaN，即非数值（Not a Number 的缩写），是 Number 包装对象中定义的一个特殊属性值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">Number</span>.NaN;</span><br><span class="line"><span class="literal">NaN</span></span><br></pre></td></tr></table></figure>
+
+<p>NaN 表示，当前的 Number 类型值不是一个数字，即非数值。</p>
+<p>你可能比较困惑：<font color="red">什么时候会出现非数值的 Number 数值类型？！！</font></p>
+<p>事实上，<strong>当出现无效或不合法的数学运算时</strong>，其返回 NaN。例如 5 除以 0、将一个非数值类型的字符串转化为数值类型。</p>
+<p>需要注意的是，NaN 与任何值都不相等，包括其本身：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">console</span>.log(<span class="literal">NaN</span> == <span class="literal">NaN</span>);</span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>这也就意味着，你不能直接判断一个数值变量是否为 Nan，例如：<code>variable == NaN</code>。</p>
+<p><strong>NaN 检测 &gt;&gt;&gt;</strong></p>
+<p>但，你可以通过数值包装对象（Number）中提供的 <code>Number.isNaN(number)</code> 方法来检测某个数值变量是否不是一个数字：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> num = <span class="literal">NaN</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Number</span>.isNaN(num));</span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>如果，<code>isNaN()</code> 方法返回 <code>true</code> 表示变量中数值是一个数字，否则返回 <code>false</code>。</p>
+<p>关于 Number 对象中特殊值更详细的说明，可参见 &gt;&gt;&gt; 【<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/410729303">探秘 JavaScript 世界的神秘数字</a>】。</p>
+<hr>
+<p><strong>[4] &gt;&gt;&gt; 数值包装对象</strong></p>
+<p>上面你已经见过原始数值数据类型的包装对象中提供的一些属性和方法了~~~</p>
+<p>类似于字符串，可以将基本数值数据类型看作伪对象，但实际上其并不是一个对象。</p>
+<p>但是，你可以使用基本类型的包装对象将其定义为一个对象，详细说明可参加 &gt;&gt;&gt; 【<a href="">JS 教程之 JS 内置 Number 对象</a>】中相关说明。</p>
+<hr>
+<h4 id="Boolean-类型"><a href="#Boolean-类型" class="headerlink" title="Boolean 类型"></a>Boolean 类型</h4><p>JS 中，布尔（Boolean）类型只有两个值，true（真）或者 false（假）。并将其定义成关键字了（请注意大小写）。</p>
+<p>并且 true 在内部存储的值是 <code>1</code>，false 在内部存储的值是 <code>0</code>。故可以直接和数字运算：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">console</span>.log( <span class="literal">true</span> == <span class="number">1</span> );</span><br><span class="line"><span class="number">1</span> <span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log( <span class="literal">true</span> + <span class="number">2</span> );</span><br><span class="line"><span class="number">3</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">console</span>.log( <span class="literal">false</span> == <span class="number">0</span> );</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log( <span class="literal">false</span> + <span class="number">2</span> );</span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>除了直接定义变量为：true Or false，你：</p>
+<p><strong>[1]</strong> ––&gt; 也可以通过 <strong>比较运算符</strong>（&gt;、&lt;、==、!=）计算出来：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="number">3</span> &gt; <span class="number">2</span></span><br><span class="line"><span class="keyword">true</span></span><br><span class="line">&gt; <span class="number">3</span> &lt; <span class="number">2</span></span><br><span class="line"><span class="keyword">false</span></span><br><span class="line">&gt; <span class="keyword">true</span> == <span class="number">2</span>;</span><br><span class="line"><span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[2]</strong> ––&gt; 还可以进行 <code>&amp;&amp;</code>、<code>||</code> 和 <code>!</code> <strong>逻辑表达式</strong> 运算：</p>
+<ul>
+<li><code>&amp;&amp;</code> 运算是 ”与运算”，只有所有都为 <code>true</code>，<code>&amp;&amp;</code> 运算结果才是 <code>true</code>；</li>
+<li><code>||</code> 运算是”或运算”，只要其中有一个为 <code>true</code>，<code>||</code> 运算结果就是 <code>true</code>；</li>
+<li><code>!</code> 运算是”非运算”，它是一个单目运算符，把 <code>true</code> 变成 <code>false</code>，<code>false</code> 变成 <code>true</code>。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">console</span>.log(<span class="literal">true</span> &amp;&amp; <span class="literal">true</span>);</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="literal">true</span> &amp;&amp; <span class="literal">false</span>);</span><br><span class="line"><span class="literal">false</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="literal">true</span> || <span class="literal">false</span>);</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="literal">false</span> || <span class="literal">true</span>);</span><br><span class="line"><span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 逻辑表达式中以下值会被认为是 False：</span></span><br><span class="line"><span class="comment">// 为零的数：0 or -0 or 0.0 or NaN；</span></span><br><span class="line"><span class="comment">// 空字符串：&#x27;&#x27;，&quot;&quot;；</span></span><br><span class="line"><span class="comment">// 空对象：null；</span></span><br><span class="line"><span class="comment">// 未定义：undefined；</span></span><br><span class="line"><span class="comment">// 其他的值（非空字符串、非零数值、非空对象）都认为是 True（注意：[] &amp;&amp; &#123;&#125;）。</span></span><br><span class="line"><span class="comment">// 你可以使用 `Boolean(obj)` 对 JS 中的所有对象进行真假值的测试：包括字符串、数值、null、undefined、obj、表达式等。</span></span><br><span class="line">&gt; <span class="built_in">Boolean</span>(<span class="literal">null</span>)</span><br><span class="line"><span class="literal">false</span></span><br><span class="line">&gt; <span class="built_in">Boolean</span>(<span class="literal">undefined</span>);</span><br><span class="line"><span class="literal">false</span></span><br><span class="line">&gt; <span class="built_in">Boolean</span>([]);</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Boolean</span>(&#123;&#125;);</span><br><span class="line"><span class="literal">true</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">Boolean</span>(<span class="literal">true</span> &amp;&amp; <span class="string">&quot;test&quot;</span>);</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Boolean</span>(<span class="literal">true</span> &amp;&amp; <span class="literal">NaN</span>);</span><br><span class="line"><span class="literal">false</span></span><br><span class="line">&gt; <span class="built_in">Boolean</span>(<span class="literal">false</span> || <span class="number">1.25</span>);</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">Boolean</span>(<span class="literal">false</span> || <span class="string">&quot;&quot;</span>);</span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[3]</strong> ––&gt; 还常常用于 <strong>条件判断（或 while 循环条件）</strong>中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 条件判断（或 while 循环条件）中以下值会被认为是 False：</span></span><br><span class="line"><span class="comment">// 为零的数：0 or -0 or 0.0 or NaN；</span></span><br><span class="line"><span class="comment">// 空字符串：&#x27;&#x27;，&quot;&quot;；</span></span><br><span class="line"><span class="comment">// 空对象：null；</span></span><br><span class="line"><span class="comment">// 未定义：undefined；</span></span><br><span class="line"><span class="comment">// 其他的值（非空字符串、非零数值、非空对象）都认为是 True（注意：[] &amp;&amp; &#123;&#125;）。</span></span><br><span class="line">&gt; <span class="keyword">if</span> (<span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="literal">true</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="literal">false</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"><span class="literal">false</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">if</span> (<span class="number">123</span>)&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="literal">true</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="literal">false</span>);</span><br><span class="line">  &#125;;</span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="null-类型"><a href="#null-类型" class="headerlink" title="null 类型"></a>null 类型</h4><p>null 是一个只有一个值的特殊数据类型，表示 “空”（大小写敏感）。即不存在任何值，什么都没有，用来定义一个空对象指针。</p>
+<p>使用 typeof 操作符来查看 null 的类型，会发现 null 的类型为 <code>Object</code>，说明 Null 其实是属于 Object（对象）的一个特殊值。</p>
+<p>因此，你可以通过将变量赋值为 null 我们可以创建一个空的对象（空对象指针）。</p>
+<p>基于 null 的这种特性，你可以通过将变量重新赋值为 null，以实现清空对象的目的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="literal">null</span>; <span class="comment">// 值为 null(空), 但类型为对象</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="undefined-类型"><a href="#undefined-类型" class="headerlink" title="undefined 类型"></a>undefined 类型</h4><p>Undefined 也是一个只有一个值的特殊数据类型，表示未定义。非关键字，而是一个全局变量，是 Global 的一个属性。</p>
+<p><strong>以下情况会返回 undefined：&gt;&gt;&gt;</strong></p>
+<ul>
+<li>访问了一个未定义的变量；</li>
+<li>访问了一个已声明但未赋值的变量；</li>
+<li>使用了一个对象属性，但该属性不存在或者未赋值；</li>
+<li>调用函数时，需要提供的参数没有提供；</li>
+<li>函数没有返回值时，默认返回 undefined。</li>
+</ul>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> num;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(num);  <span class="comment">// 输出 undefined：访问已声明但未赋值的变量</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="keyword">typeof</span>(num);  <span class="comment">// 输出 undefined：访问已声明但未赋值的变量</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line">&gt; <span class="keyword">typeof</span>(num1);  <span class="comment">// 输出 undefined：访问未定义的变量</span></span><br><span class="line"><span class="literal">undefined</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(a);</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">&gt; func()  <span class="comment">// 输出 undefined：调用函数时，需要提供的参数没有提供</span></span><br><span class="line"><span class="literal">undefined</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="Symbol-类型"><a href="#Symbol-类型" class="headerlink" title="Symbol 类型"></a>Symbol 类型</h4><p>Symbol 是 ECMAScript6(ES6) 中引入的一种新的数据类型，表示独一无二的值。</p>
+<p>Symbol 类型的值只能使用 <code>Symbol()</code> 函数来生成，如下例所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&quot;123&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> sym1 = <span class="built_in">Symbol</span>(str);</span><br><span class="line"><span class="keyword">var</span> sym2 = <span class="built_in">Symbol</span>(str);</span><br><span class="line"><span class="built_in">console</span>.log(sym1);          <span class="comment">// 输出 Symbol(123)</span></span><br><span class="line"><span class="built_in">console</span>.log(sym2);          <span class="comment">// 输出 Symbol(123)\</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 虽然 sym1 与 sym2 看起来是相同的，但实际上它们并不一样。根据 Symbol 类型的特点，sym1 和 sym2 都是独一无二的</span></span><br><span class="line"><span class="built_in">console</span>.log(sym1 == sym2);  <span class="comment">// 输出 false</span></span><br></pre></td></tr></table></figure>
+
+<p>关于 Symbol 数据类型的深入理解和实际应用请参见：[ &gt;&gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1627337">一文了解 JavaScript Symbol</a> &lt;&lt;&lt;&lt; ]。</p>
+<hr>
+<p>这里为了保持数据类型章节的完整性，先来简单认识一下基本的 JS 对象概念，后续在 JS 对象中会进行详细、专门的介绍。</p>
+<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><p>JS 中的引用类型，即 Object（对象）。</p>
+<p>JS 是一种面向对象的编程语言，几乎所有的东西都是对象。例如内置的 Array、Date、Math、RegExp 等均属于对象，属于引用类型。</p>
+<h4 id="Object-类型"><a href="#Object-类型" class="headerlink" title="Object 类型"></a>Object 类型</h4><p>JavaScript 中的对象（Object）类型是一组由键、值对（key:value）组成的无序集合，定义对象类型需要使用花括号 <code>&#123;&#125;</code>。语法格式如下：</p>
+<blockquote>
+<p>{name1: value1, name2: value2, name3: value3, …, nameN: valueN}</p>
+</blockquote>
+<p>其中 name1、name2、name3、…、nameN 为对象中的键，value1、value2、value3、…、valueN 为对应的值。</p>
+<p>需要注意的是，JS 中，<strong>对象类型的键都是字符串类型（或 Symbol 类型）的，值则可以是任意数据类型。</strong></p>
+<p>示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    name: <span class="string">&#x27;Bob&#x27;</span>,</span><br><span class="line">    age: <span class="number">20</span>,</span><br><span class="line">    tags: [<span class="string">&#x27;js&#x27;</span>, <span class="string">&#x27;web&#x27;</span>, <span class="string">&#x27;mobile&#x27;</span>],</span><br><span class="line">    city: <span class="string">&#x27;Beijing&#x27;</span>,</span><br><span class="line">    hasCar: <span class="literal">true</span>,</span><br><span class="line">    zipcode: <span class="literal">null</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(person.name);       <span class="comment">// 输出 Bob</span></span><br><span class="line"><span class="built_in">console</span>.log(person[<span class="string">&#x27;age&#x27;</span>]);     <span class="comment">// 输出 20</span></span><br></pre></td></tr></table></figure>
+
+<p>如上，对象的属性有两种寻址方式：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name = person.name;</span><br><span class="line">name = person[&#x27;name&#x27;];</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>其它常见的内置对象：</p>
+<h4 id="Array-类型"><a href="#Array-类型" class="headerlink" title="Array 类型"></a>Array 类型</h4><p>数组（Array）是一组按一定顺序排列的数据的集合，数组中的每个值都称为元素，而且数组中可以包含任意类型的数据。</p>
+<p>JS 中定义数组需要使用方括号 <code>[]</code>，数组中的每个元素使用逗号 <code>,</code> 进行分隔，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">&#x27;hello&#x27;</span>, <span class="literal">true</span>, <span class="literal">null</span>]</span><br></pre></td></tr></table></figure>
+
+<p>数组中的元素可以通过索引来访问。数组中的索引从 <code>0</code> 开始，并依次递增，也就是说数组第一个元素的索引为 <code>0</code>，第二个元素的索引为 <code>1</code>，以此类推。如下例所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3.14</span>, <span class="string">&#x27;Hello&#x27;</span>, <span class="literal">null</span>, <span class="literal">true</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr[<span class="number">0</span>]);  <span class="comment">// 输出索引为 0 的元素，即 1</span></span><br><span class="line"><span class="built_in">console</span>.log(arr[<span class="number">5</span>]);  <span class="comment">// 输出索引为 5 的元素，即 true</span></span><br><span class="line"><span class="built_in">console</span>.log(arr[<span class="number">6</span>]);  <span class="comment">// 索引超出了范围，返回 undefined</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="值类型-VS-引用类型"><a href="#值类型-VS-引用类型" class="headerlink" title="值类型 VS 引用类型"></a>值类型 VS 引用类型</h3><p>这一小节来总结一下值（原始）类型和引用类型的区别：</p>
+<p><strong>原始类型 &gt;&gt;&gt;</strong></p>
+<ul>
+<li>保存在栈中，占用空间固定；</li>
+<li>保存和复制的是值本身；</li>
+<li>使用 typeof 来检测数据的类型；</li>
+<li>基本（原始）类型数据是值类型。</li>
+</ul>
+<p><strong>引用类型 &gt;&gt;&gt;</strong></p>
+<ul>
+<li>保存在堆中，占用空间不固定；</li>
+<li>保存和复制的是指向对象的一个指针（引用）；</li>
+<li>使用 instanceof 来检测数据的类型；</li>
+<li>使用 new() 方法构造出来的对象是引用类型。</li>
+</ul>
+<hr>
+<h2 id="JS-数据类型转换"><a href="#JS-数据类型转换" class="headerlink" title="JS 数据类型转换"></a>JS 数据类型转换</h2><p>我们知道，JS 中可以定义不同数据类型的变量，而不同数据类型的变量之间的运算需要先对变量的数据类型进行转换，之后才可以进行运算。</p>
+<p>JS 中支持两种数据类型转换方式：</p>
+<ol>
+<li>隐式类型转换；</li>
+<li>显式（强制）类型转换。</li>
+</ol>
+<h3 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h3><p>隐式类型转换，就是 JS 系统在 <strong>运算前自动对 参与运算的操作符（变量） 进行类型转换</strong>。</p>
+<p>例如在一个加法表达式中，运算符两边的操作符数据类型分别为字符串和数字（即字符串加数字），运算时会自动进行类型转换：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> str = <span class="string">&quot;Hello JS&quot;</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> num = <span class="number">666</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> res = str + num;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(res);</span><br><span class="line">Hello JS666</span><br><span class="line">&gt; <span class="keyword">typeof</span>(res);</span><br><span class="line"><span class="string">&#x27;string&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，将一个字符串与一个数字相加，会得到一个字符串类型的值。上面运算之前 JS 解释器会将 <code>num</code> 变量隐式的转换为字符串类型，之后再进行字符串加法运算。</p>
+<p>事实上，当 JS 中的表达式包含以下运算符时，会发生隐式类型转换：</p>
+<ul>
+<li><strong>算术运算符</strong>：加（+）、减（-）、乘（*）、除（/）、取模（%）；</li>
+<li><strong>逻辑运算符</strong>：逻辑与（&amp;&amp;）、逻辑或（||）、逻辑非（!）；</li>
+<li><strong>赋值运算符</strong>：+、+=、-= 等。</li>
+</ul>
+<p>关于运算符说明可见博文系列运算符章节，其运算规律如下：</p>
+<ul>
+<li>字符串和数字相加 &gt;&gt;&gt; 数字会转换为字符串；</li>
+<li>字符串和数字相减、乘、除 &gt;&gt;&gt; 字符串会转换为数字，如果字符串无法转换为数字（不满足数值规范，如 “abc”、”JavaScript”，而 <code>123</code> 可以），则会转换为 NaN；</li>
+<li>数值运算：undefined 转化为数值 NaN，null 转化为数值 0。</li>
+</ul>
+<p>实例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;3&quot;</span> - <span class="number">2</span>); <span class="comment">// 输出：1</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;3&quot;</span> + <span class="number">2</span>); <span class="comment">// 输出：&quot;32&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span> + <span class="string">&quot;2&quot;</span>); <span class="comment">// 输出：&quot;32&quot;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span> * <span class="string">&quot;2&quot;</span>); <span class="comment">// 输出：6</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;10&quot;</span> / <span class="string">&quot;2&quot;</span>); <span class="comment">// 输出：5</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> + <span class="literal">undefined</span>); <span class="comment">// 输出：NaN</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span> + <span class="literal">null</span>); <span class="comment">// 输出：1</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> + <span class="literal">null</span>); <span class="comment">// 输出：1</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> + <span class="literal">undefined</span>); <span class="comment">// 输出：NaN</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><p>不同于隐式类型转换，你也可以手动使用 <strong>特定的转换函数 进行</strong> <strong>不同数据类型变量</strong> 的 <strong>转换</strong>。</p>
+<p>数据类型转化函数列表如下：</p>
+<table>
+<thead>
+<tr>
+<th>转换函数</th>
+<th>说明</th>
+<th>案例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>toString</td>
+<td>转换成字符串类型</td>
+<td>x.ToString()</td>
+</tr>
+<tr>
+<td>String</td>
+<td>转换成字符串类型</td>
+<td>String(x)</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>转换成数字类型</td>
+<td>Number(x)</td>
+</tr>
+<tr>
+<td>parseInt</td>
+<td>转换成整数类型</td>
+<td>parseInt(x)</td>
+</tr>
+<tr>
+<td>parseFloat</td>
+<td>转换成浮点数类型</td>
+<td>parseFloat(x)</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>转换成布尔类型</td>
+<td>Boolean(x)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>下面针对具体的应用场景，来看不同转换函数的使用：</p>
+<h4 id="字符串类型转化"><a href="#字符串类型转化" class="headerlink" title="字符串类型转化"></a>字符串类型转化</h4><p>这一小节来看，JS 中如何将其它基本数据类型的变量转化为字符串类型？！！ &lt;&lt;&lt; 使用 <strong>x.toString()</strong> 或 <strong>String(x)</strong> 方法，返回转化成功后的字符串。</p>
+<blockquote>
+<p>需要注意的是，<strong>null &amp;&amp; undefined</strong> 特殊数据类型 <strong>没有 toString 方法</strong>，想要将其转化为字符串需要 <strong>借助 String()</strong> 全局方法。</p>
+</blockquote>
+<p><strong>[1] &gt;&gt;&gt; Number 类型转为字符串</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> num = <span class="number">1024</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> snum = num.toString();  <span class="comment">// 使用 x.toString() 方法</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&quot;num to string =&quot;</span>, snum, <span class="string">&quot;; type snum:&quot;</span>, <span class="keyword">typeof</span>(snum));</span><br><span class="line">num to string = <span class="number">1024</span> ; type snum: string</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> numS = <span class="built_in">String</span>(num);  <span class="comment">// 使用 String(x) 方法</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&quot;num to string =&quot;</span>, numS, <span class="string">&quot;; type numS:&quot;</span>, <span class="keyword">typeof</span>(numS));</span><br><span class="line">num to string = <span class="number">1024</span> ; type numS: string</span><br></pre></td></tr></table></figure>
+
+<p><strong>[2] &gt;&gt;&gt; Boolean 类型转为字符串</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> isT = <span class="literal">true</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> sIsT = isT.toString();  <span class="comment">// 使用 x.toString() 方法</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&quot;isTrue to string =&quot;</span>, sIsT, <span class="string">&quot;; type sIsT:&quot;</span>, <span class="keyword">typeof</span>(sIsT));</span><br><span class="line">isTrue to string = <span class="literal">true</span> ; type sIsT: string</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> isTStr = <span class="built_in">String</span>(isT);  <span class="comment">// 使用 String(x) 方法</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&quot;isTrue to string =&quot;</span>, isTStr, <span class="string">&quot;; type isTStr:&quot;</span>, <span class="keyword">typeof</span>(isTStr));</span><br><span class="line">isTrue to string = <span class="literal">true</span> ; type isTStr: string</span><br></pre></td></tr></table></figure>
+
+<p><strong>[3] &gt;&gt;&gt; null &amp;&amp; undefined 类型转为字符串</strong></p>
+<p>前面提到过，null &amp;&amp; undefined 只可以使用 String(x) 方法转化为字符串（使用 toString 方法会产生：TypeError）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> isNull = <span class="literal">null</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> sIsNull = <span class="built_in">String</span>(isNull);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&quot;isNull to string =&quot;</span>, sIsNull, <span class="string">&quot;; type sIsNull:&quot;</span>, <span class="keyword">typeof</span>(sIsNull));</span><br><span class="line">isNull to string = <span class="literal">null</span> ; type sIsNull: string</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> isUndfd = <span class="literal">undefined</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> isUndfdStr = <span class="built_in">String</span>(isUndfd);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&quot;isUndfd to string =&quot;</span>, isUndfdStr, <span class="string">&quot;; type isUndfdStr:&quot;</span>, <span class="keyword">typeof</span>(isUndfdStr));</span><br><span class="line">isUndfd to string = <span class="literal">undefined</span> ; type isUndfdStr: string</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="数值类型转化"><a href="#数值类型转化" class="headerlink" title="数值类型转化"></a>数值类型转化</h4><p>JS 中如何将其它基本数据类型的变量转化为数值类型？！！ &lt;&lt;&lt; 使用 <strong>Number(x)</strong> 方法，返回转化成功后的数值。</p>
+<p>先来看较为简单的布尔类型、null 以及 undefined 转化为数值的情况：</p>
+<p><strong>[1] &gt;&gt;&gt; Boolean &amp;&amp; null &amp;&amp; undefined 类型转为数值</strong></p>
+<p>前面在介绍 Boolean 类型时说过， true 在内部存储的值是 <code>1</code>，false 在内部存储的值是 <code>0</code>，转化为数值之后也一样。</p>
+<p>而特殊类型值 null 转化为数值类型后是 <code>0</code>，undefined 转化为数值类型后是 <code>NaN</code>。</p>
+<p>示例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Boolean：</span></span><br><span class="line">&gt; <span class="keyword">var</span> isT = <span class="literal">true</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> isTNum = <span class="built_in">Number</span>(isT);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&quot;isTrue to number =&quot;</span>, isTNum, <span class="string">&quot;; type isTNum:&quot;</span>, <span class="keyword">typeof</span>(isTNum));</span><br><span class="line">isTrue to number = <span class="number">1</span> ; type isTNum: number</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> isF = <span class="literal">false</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> isFNum = <span class="built_in">Number</span>(isF);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&quot;isFalse to number =&quot;</span>, isFNum, <span class="string">&quot;; type isFNum:&quot;</span>, <span class="keyword">typeof</span>(isFNum));</span><br><span class="line">isFalse to number = <span class="number">0</span> ; type isFNum: number</span><br><span class="line"></span><br><span class="line"><span class="comment">// null &amp;&amp; undefined:</span></span><br><span class="line">&gt; <span class="keyword">var</span> isNull = <span class="literal">null</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> isNullNum = <span class="built_in">Number</span>(isNull);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&quot;isNull to number =&quot;</span>, isNullNum, <span class="string">&quot;; type isNullNum:&quot;</span>, <span class="keyword">typeof</span>(isNullNum));</span><br><span class="line">isNull to number = <span class="number">0</span> ; type isNullNum: number</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> isUndfd;  <span class="comment">// 声明后未赋值变量，默认为 undefined</span></span><br><span class="line">&gt; <span class="keyword">var</span> isUndfdNum = <span class="built_in">Number</span>(isUndfd);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&quot;isUndfd to number =&quot;</span>, isUndfdNum, <span class="string">&quot;; type isUndfdNum:&quot;</span>, <span class="keyword">typeof</span>(isUndfdNum));</span><br><span class="line">isUndfd to number = <span class="literal">NaN</span> ; type isUndfdNum: number</span><br></pre></td></tr></table></figure>
+
+<p><strong>[2] &gt;&gt;&gt; String 类型转为数值</strong></p>
+<p>当要转化的数据为字符串时，存在一定的限制：只有 <strong>符合数值规范</strong> 的字符串类数据，才能被强制转换，否则返回一个 <code>NaN</code>。</p>
+<p>符合数值规范 &gt;&gt;&gt; <font color="red">字符串前包含除空格、<code>+</code> 和 <code>-</code> 以外的其它非数字字符，或在字符串中包含了空格、<code>+</code> 和 <code>-</code> 以及其它非数字字符，将返回 <code>NaN</code>。</font> 其它如下：</p>
+<ul>
+<li>空字符串 <code>&quot;&quot;</code> 会被转化为 <code>0</code>；</li>
+<li>字符串中只包含 <font color="red">数字</font>，将转化为十进制数字，会忽略前导的的 <code>0</code> 以及前后导的空格（前导有正负号时，只保留符号 <code>-</code>）；</li>
+<li>字符串中包含 <font color="red">有效浮点数字</font>，将转换为对应的浮点数字，会忽略前导的的 <code>0</code> 以及前后导的空格（前导有正负号时，只保留符号 <code>-</code>）；</li>
+<li>字符串中包含 <font color="red">有效的十六进制（或二进制）数字</font>，将转换为对应大小的十进制数字（八进制无法区分，以数字 <code>0</code> 为前缀）；</li>
+</ul>
+<p>实例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="string">&quot; -00123  &quot;</span>));</span><br><span class="line">-<span class="number">123</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="string">&quot; -000.38 &quot;</span>));</span><br><span class="line">-<span class="number">0.38</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="string">&quot; 0x123 &quot;</span>));</span><br><span class="line"><span class="number">291</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="string">&quot; 0b111 &quot;</span>));</span><br><span class="line"><span class="number">7</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Number</span>(<span class="string">&quot;123+456&quot;</span>));</span><br><span class="line"><span class="literal">NaN</span></span><br></pre></td></tr></table></figure>
+
+<p>事实上，数值类型的包装对象 Number 还提供了两个函数 <strong>parseInt(string, radix)</strong> &amp;&amp; <strong>parseFloat(string)</strong> 可用于将字符串转化为数值类型：</p>
+<p><font color="red">1）parseInt</font></p>
+<p>parseInt 方法是将字符串类型数据解析转化为整型（Int），其语法格式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(string, radix);</span><br></pre></td></tr></table></figure>
+
+<p>其中，参数 <code>radix</code> 表示转化基数（多少进制），默认或为零时表示以十为基（十进制），其范围为（2, 36）&lt;&lt;&lt; 不在范围内返回 NaN。</p>
+<p>和上面 Number 不同的是 &gt;&gt;&gt; <font color="red">字符串前包含除空格、<code>+</code>、<code>-</code> 和 <code>a～f（或 A～F）</code> 以外的其它非数字字符，将返回 <code>NaN</code>。如果在字符串中包含了非数字字符，则返回开头的合法数字部分。</font> 其它如下：</p>
+<ul>
+<li>空字符串 <code>&quot;&quot;</code> 会被转化为 <code>NaN</code>。</li>
+</ul>
+<p>实例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">&quot;1101&quot;</span>,<span class="number">2</span>));</span><br><span class="line"><span class="number">13</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">&quot;a37f&quot;</span>,<span class="number">16</span>));</span><br><span class="line"><span class="number">41855</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">&quot; 00123  &quot;</span>));</span><br><span class="line"><span class="number">123</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">&quot;&quot;</span>));</span><br><span class="line"><span class="literal">NaN</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">parseInt</span>(<span class="string">&quot;a37f&quot;</span>));</span><br><span class="line"><span class="literal">NaN</span></span><br></pre></td></tr></table></figure>
+
+<p><font color="red">2）parseFloat</font></p>
+<p>parseFloat 方法是将字符串类型数据解析转化为浮点型（Float），其语法格式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseFloat</span>(string);</span><br></pre></td></tr></table></figure>
+
+<p>其数值规范 &gt;&gt;&gt;</p>
+<ul>
+<li>解析的过程中遇到了正号（+）、负号（-）、数字（0-9）、小数点（.）、或科学计数法中的指数（e 或 E）以外的字符，则会忽略该字符以及之后的所有字符，并返回解析到的浮点数；</li>
+<li>解析过程中若遇到多个小数点，则会在解析到第二个小数点时停止，并返回第二个小数点之前的解析结果；</li>
+</ul>
+<p>实例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">&quot;312.456&quot;</span>));</span><br><span class="line"><span class="number">312.456</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">&quot;312.45.6&quot;</span>));</span><br><span class="line"><span class="number">312.45</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">&quot;312..456&quot;</span>));</span><br><span class="line"><span class="number">312</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">&quot; -3.12  &quot;</span>));</span><br><span class="line">-<span class="number">3.12</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>(<span class="string">&quot;.12&quot;</span>));</span><br><span class="line"><span class="number">0.12</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[3] &gt;&gt;&gt; 其它特殊类型（Date、Array）转为数值</strong></p>
+<p>如果待转化数据为 Date 对象，将转换为从 1970 年 1 月 1 日到执行转换时的毫秒数；</p>
+<p>如果待转化数据为函数、包含两个元素以上的数组对象以及除 Date 对象以外的其他对象，将转换为 <code>NaN</code>；</p>
+<p>实例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Number</span>(d));</span><br><span class="line"><span class="number">1673601667653</span></span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Number</span>([<span class="number">123</span>]));</span><br><span class="line"><span class="number">123</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Number</span>([<span class="number">123</span>, <span class="number">456</span>]));</span><br><span class="line"><span class="literal">NaN</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="布尔类型转化"><a href="#布尔类型转化" class="headerlink" title="布尔类型转化"></a>布尔类型转化</h4><p>JS 中如何将其它基本数据类型的变量转化为布尔类型？！！ &lt;&lt;&lt; 使用 <strong>Boolean(x)</strong> 方法，返回转化成功后的布尔值。</p>
+<p><strong>[1] &gt;&gt;&gt; Number 类型转为布尔</strong></p>
+<p>JS 中，非 <code>0</code> 数字转成布尔之后，都返回 <code>true</code>，否则都返回 <code>false</code>。实例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(<span class="number">1</span>));</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(<span class="number">0</span>));</span><br><span class="line"><span class="literal">false</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(<span class="number">2</span>));</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(<span class="number">2.3</span>));</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(<span class="literal">NaN</span>));</span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[2] &gt;&gt;&gt; String 类型转为布尔</strong></p>
+<p>JS 中，非空 <code>&quot;&quot;</code> 字符串转成布尔之后，都返回 <code>true</code>，否则都返回 <code>false</code>。实例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(<span class="string">&quot;&quot;</span>));</span><br><span class="line"><span class="literal">false</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(<span class="string">&quot;test&quot;</span>));</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="built_in">Boolean</span>(<span class="string">&quot; hello &quot;</span>));</span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[3] &gt;&gt;&gt; null &amp;&amp; undefined 类型转为布尔</strong></p>
+<p>特殊类型值 null 转化为布尔类型后是 <code>false</code>，undefined 转化为数值类型后也是 <code>false</code>。</p>
+<p>实例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> isNull = <span class="literal">null</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> isNullBL = <span class="built_in">Boolean</span>(isNull);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&quot;isNull to boolean =&quot;</span>, isNullBL, <span class="string">&quot;; type isNullBL:&quot;</span>, <span class="keyword">typeof</span>(isNullBL));</span><br><span class="line">isNull to boolean = <span class="literal">false</span> ; type isNullBL: boolean</span><br><span class="line"></span><br><span class="line">&gt; <span class="keyword">var</span> isUndfd = <span class="literal">undefined</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> isUndfdBL = <span class="built_in">Boolean</span>(isUndfd);</span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&quot;isUndfd to boolean =&quot;</span>, isUndfdBL, <span class="string">&quot;; type isUndfdBL:&quot;</span>, <span class="keyword">typeof</span>(isUndfdBL));</span><br><span class="line">isUndfd to boolean = <span class="literal">false</span> ; type isUndfdBL: boolean</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="javascript-void-0"><a href="#javascript-void-0" class="headerlink" title="javascript:void(0)"></a>javascript:void(0)</h2><p>页面代码中，你经常会见到 <code>javascript:void(0)</code> 这样的语句，那么 JavaScript 中的 <code>javascript:void(0)</code> 到底代表的是什么意思呢？</p>
+<p>而 <code>javascript:void(0)</code> 中最关键的就是 <code>void</code> 关键字：</p>
+<h3 id="void-关键字"><a href="#void-关键字" class="headerlink" title="void 关键字"></a>void 关键字</h3><p>void 是 JS 中非常重要的关键字，其表示 &gt;&gt;&gt; <strong>运行一个表达式或定义一个函数，但是不返回任何值。</strong></p>
+<p><strong>[1] &gt;&gt;&gt; 定义无返回值的函数</strong></p>
+<p>JS 中定义无返回值函数的语法格式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> func();</span><br><span class="line">或</span><br><span class="line"><span class="keyword">void</span>(func());</span><br></pre></td></tr></table></figure>
+
+<p>关于 JS 中函数部分的用法，可以参见后续博文系列中说明，这里有无返回值函数定义的概念即可。</p>
+<p><strong>[2] &gt;&gt;&gt; 运行一个无返回值的表达式</strong></p>
+<p>以下实例中变量 <code>a</code> 将返回 <code>undefined</code>:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;ClickMe&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;getValue()&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> a, b, c;</span></span><br><span class="line"><span class="javascript">                a = <span class="keyword">void</span> (b = <span class="number">2</span>, c = <span class="number">3</span>);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">document</span>.write(<span class="string">&quot;a = &quot;</span> + a + <span class="string">&quot; b = &quot;</span> + b + <span class="string">&quot; c = &quot;</span> + c)</span></span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>故，可以知道 <code>void(0)</code> 计算为 0，不返回任何值，不执行任何动作。</p>
+<hr>
+<h3 id="void-0-修饰超链接"><a href="#void-0-修饰超链接" class="headerlink" title="void(0) 修饰超链接"></a>void(0) 修饰超链接</h3><p>JS 中使用 void(0) 修饰超链接，表明点击超链接不执行任何动作。如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;javascript:void(0)&quot;</span>&gt;</span>单击此处什么也不会发生<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你想在用户点击超链接时执行一些动作，你可以通过在 <code>void()</code> 中定义表达式实现：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">&quot;en&quot;</span>&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=<span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">        &lt;title&gt;JS 演示&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        &lt;a href=<span class="string">&quot;javascript:void(alert(&#x27;alert dialog&#x27;))&quot;</span>&gt;alert dialog&lt;/a&gt;</span><br><span class="line">        &lt;a href=<span class="string">&quot;javascript:void(console.log(&#x27;console log info&#x27;))&quot;</span>&gt;<span class="built_in">console</span> log&lt;/a&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上面的 HTML 页面中，当你点击第一个超链接（<code>alert dialog</code>）时，浏览器会弹出一个警示框；而当你点击第二个超链接（<code>console log</code>）时，浏览器控制台会输出 <code>console log info</code>。</p>
+<hr>
+<h3 id="herf-””-amp-amp-herf-”-”"><a href="#herf-””-amp-amp-herf-”-”" class="headerlink" title="herf=”” &amp;&amp; herf=”#”"></a>herf=”” &amp;&amp; herf=”#”</h3><p>如果 <code>a</code> 标签中 <code>herf</code> 属性为 <code>herf=&quot;&quot;</code> 时，点击超链接会刷新页面。</p>
+<p>而 <code>herf=&quot;javascript: void(0)&quot;</code> 仅仅代表一个无聊的，点击啥也不发生的链接。</p>
+<p><code>herf</code> 属性中的 <code>#</code> 包含一个位置信息（锚），默认的是锚是 <code>#top</code>，也就是网页的顶端。对于很长的页面，可以使用 <code>herf=&quot;#&quot;</code> 来定义页面书签实现快速跳转（<code># + id</code>）。</p>
+<hr>
+<h2 id="JS-严格模式"><a href="#JS-严格模式" class="headerlink" title="JS 严格模式"></a>JS 严格模式</h2><p>前面在介绍 ECMAScript 版本时提到过，ES5 中 JavaScript 添加了 “严格模式”。</p>
+<p>所谓的 “严格模式”，是具有严格限制性的 JavaScript 风格，从而使 JS 代码显式地脱离 Sloppy 模式（马虎模式/稀松模式/懒散模式）。</p>
+<p>简单理解为，<strong>严格模式下的 JS 代码具有严格的语法规范</strong>。</p>
+<p>在 JavaScript 中，如果你想要开启严格模式（Strict），只需要使用如下语句（JS 旧版本中会被忽略）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&quot;use strict&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="严格模式限制"><a href="#严格模式限制" class="headerlink" title="严格模式限制"></a>严格模式限制</h3><p>严格模式下，具有如下限制：</p>
+<ol>
+<li>不允许使用未声明的 <strong>变量</strong>；</li>
+<li>不允许删除 <strong>变量</strong> 或 <strong>对象</strong>；</li>
+<li>不允许删除 <strong>函数</strong>；</li>
+<li>不允许 变量重名；</li>
+<li>不允许使用八进制；</li>
+<li>不允许使用 <strong>转义字符</strong>；</li>
+<li>不允许对只读属性赋值；</li>
+<li>不允许对一个使用 getter 方法读取的属性进行赋值；</li>
+<li>不允许删除一个不允许删除的属性；</li>
+<li>变量名不能使用 “<strong>eval</strong>” 字符串；</li>
+<li>变量名不能使用 “<strong>arguments</strong>” 字符串；</li>
+<li>由于一些安全原因，在作用域 <strong>eval()</strong> 创建的变量不能被调用；</li>
+<li>禁止 <strong>this</strong> 关键字指向全局对象。</li>
+</ol>
+<hr>
+<h3 id="为什么使用严格模式？"><a href="#为什么使用严格模式？" class="headerlink" title="为什么使用严格模式？"></a>为什么使用严格模式？</h3><ol>
+<li>消除 JavaScript 语法的一些不合理、不严谨之处、不安全之处，减少一些怪异行为以及保证代码运行的安全；</li>
+<li>严格模式修复了一些导致 JavaScript 引擎难以执行优化的缺陷（提高编译器效率，增加运行速度）：有时候，相同的代码，严格模式可以比非严格模式下运行得更快；</li>
+<li>禁用了在 ECMAScript 的未来版本中可能会定义的一些语法，为未来新版本的 JavaScript 做好铺垫；</li>
+<li>“严格模式” 体现了 JavaScript 更合理、更安全、更严谨的发展方向，包括 IE 10 在内的主流浏览器，都已经支持它，许多大项目已经开始全面拥抱它；</li>
+</ol>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>JS 教程之 JavaScript 变量和数据类型</p><p><a href="https://www.orangeshare.cn/2019/02/02/js-jiao-cheng-zhi-bian-liang-he-shu-ju-lei-xing/">https://www.orangeshare.cn/2019/02/02/js-jiao-cheng-zhi-bian-liang-he-shu-ju-lei-xing/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-02-02</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2023-01-16</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Front-End-Devp/">Front-End Devp</a><a class="link-muted mr-2" rel="tag" href="/tags/Back-End-Devp/">Back-End Devp</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/02/05/js-jiao-cheng-zhi-yun-suan-fu-yi-ji-liu-cheng-kong-zhi/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">JS 教程之 JavaScript 运算符以及流程控制</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/02/01/js-jiao-cheng-zhi-javascript-ji-chu-yu-fa/"><span class="level-item">JS 教程之 JavaScript 基础语法</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">88</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">39</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#JS-变量和常量"><span class="level-left"><span class="level-item">1</span><span class="level-item">JS 变量和常量</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#变量定义"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">变量定义</span></span></a></li><li><a class="level is-mobile" href="#变量赋值"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">变量赋值</span></span></a></li><li><a class="level is-mobile" href="#变量提升"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">变量提升</span></span></a></li><li><a class="level is-mobile" href="#强类型语言特性"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">强类型语言特性</span></span></a></li><li><a class="level is-mobile" href="#let-amp-amp-const"><span class="level-left"><span class="level-item">1.5</span><span class="level-item">let &amp;&amp; const</span></span></a></li></ul></li><li><a class="level is-mobile" href="#JS-数据类型"><span class="level-left"><span class="level-item">2</span><span class="level-item">JS 数据类型</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#基本数据类型"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">基本数据类型</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#String-类型"><span class="level-left"><span class="level-item">2.1.1</span><span class="level-item">String 类型</span></span></a></li><li><a class="level is-mobile" href="#Number-类型"><span class="level-left"><span class="level-item">2.1.2</span><span class="level-item">Number 类型</span></span></a></li><li><a class="level is-mobile" href="#Boolean-类型"><span class="level-left"><span class="level-item">2.1.3</span><span class="level-item">Boolean 类型</span></span></a></li><li><a class="level is-mobile" href="#null-类型"><span class="level-left"><span class="level-item">2.1.4</span><span class="level-item">null 类型</span></span></a></li><li><a class="level is-mobile" href="#undefined-类型"><span class="level-left"><span class="level-item">2.1.5</span><span class="level-item">undefined 类型</span></span></a></li><li><a class="level is-mobile" href="#Symbol-类型"><span class="level-left"><span class="level-item">2.1.6</span><span class="level-item">Symbol 类型</span></span></a></li></ul></li><li><a class="level is-mobile" href="#引用数据类型"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">引用数据类型</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Object-类型"><span class="level-left"><span class="level-item">2.2.1</span><span class="level-item">Object 类型</span></span></a></li><li><a class="level is-mobile" href="#Array-类型"><span class="level-left"><span class="level-item">2.2.2</span><span class="level-item">Array 类型</span></span></a></li></ul></li><li><a class="level is-mobile" href="#值类型-VS-引用类型"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">值类型 VS 引用类型</span></span></a></li></ul></li><li><a class="level is-mobile" href="#JS-数据类型转换"><span class="level-left"><span class="level-item">3</span><span class="level-item">JS 数据类型转换</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#隐式类型转换"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">隐式类型转换</span></span></a></li><li><a class="level is-mobile" href="#强制类型转换"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">强制类型转换</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#字符串类型转化"><span class="level-left"><span class="level-item">3.2.1</span><span class="level-item">字符串类型转化</span></span></a></li><li><a class="level is-mobile" href="#数值类型转化"><span class="level-left"><span class="level-item">3.2.2</span><span class="level-item">数值类型转化</span></span></a></li><li><a class="level is-mobile" href="#布尔类型转化"><span class="level-left"><span class="level-item">3.2.3</span><span class="level-item">布尔类型转化</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#javascript-void-0"><span class="level-left"><span class="level-item">4</span><span class="level-item">javascript:void(0)</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#void-关键字"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">void 关键字</span></span></a></li><li><a class="level is-mobile" href="#void-0-修饰超链接"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">void(0) 修饰超链接</span></span></a></li><li><a class="level is-mobile" href="#herf-””-amp-amp-herf-”-”"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">herf=”” &amp;&amp; herf=”#”</span></span></a></li></ul></li><li><a class="level is-mobile" href="#JS-严格模式"><span class="level-left"><span class="level-item">5</span><span class="level-item">JS 严格模式</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#严格模式限制"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">严格模式限制</span></span></a></li><li><a class="level is-mobile" href="#为什么使用严格模式？"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">为什么使用严格模式？</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2023 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

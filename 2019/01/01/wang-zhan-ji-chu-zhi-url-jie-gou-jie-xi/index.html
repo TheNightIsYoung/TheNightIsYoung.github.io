@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>网站基础之 URL 结构解析 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="我们知道，URL 是浏览器寻找信息（资源）时所需的地址（位置），通过 URL，浏览器才能找到并使用共享因特网上大量的数据资源。那么，了解 URL 的结构对于网站建设来说是极其重要的。"><meta property="og:type" content="blog"><meta property="og:title" content="网站基础之 URL 结构解析"><meta property="og:url" content="https://www.orangeshare.cn/2019/01/01/wang-zhan-ji-chu-zhi-url-jie-gou-jie-xi/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="我们知道，URL 是浏览器寻找信息（资源）时所需的地址（位置），通过 URL，浏览器才能找到并使用共享因特网上大量的数据资源。那么，了解 URL 的结构对于网站建设来说是极其重要的。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://www.orangeshare.cn/img/og_image.png"><meta property="article:published_time" content="2018-12-31T23:53:58.000Z"><meta property="article:modified_time" content="2023-01-07T16:06:55.314Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Front-End Devp"><meta property="article:tag" content="Back-End Devp"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2019/01/01/wang-zhan-ji-chu-zhi-url-jie-gou-jie-xi/"},"headline":"When Art Meets Tech","image":["https://www.orangeshare.cn/img/og_image.png"],"datePublished":"2018-12-31T23:53:58.000Z","dateModified":"2023-01-07T16:06:55.314Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"我们知道，URL 是浏览器寻找信息（资源）时所需的地址（位置），通过 URL，浏览器才能找到并使用共享因特网上大量的数据资源。那么，了解 URL 的结构对于网站建设来说是极其重要的。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2019/01/01/wang-zhan-ji-chu-zhi-url-jie-gou-jie-xi/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>网站基础之 URL 结构解析</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2019-01-01</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2023-01-08</time></span><span class="level-item"><a class="link-muted" href="/categories/Web-Site/">Web Site</a></span><span class="level-item">22 minutes read (About 3284 words)</span></div></div><div class="content"><p>我们知道，URL 是浏览器寻找信息（资源）时所需的地址（位置），通过 URL，浏览器才能找到并使用共享因特网上大量的数据资源。那么，了解 URL 的结构对于网站建设来说是极其重要的。</p>
+<a id="more"></a>
+
+<p>URL 是互联网的基础，最常见的形式就是网页通过链接（指向其它网页的 URL）相连，用户通过点击链接（URL），从当前 URL 跳转到另一个 URL，也实现了从一个网页跳转到另一个网页，错综复杂的链接使用最终构成了万维网。</p>
+<hr>
+<h2 id="何为-URL？"><a href="#何为-URL？" class="headerlink" title="何为 URL？"></a>何为 URL？</h2><p>在互联网（万维网）中，任何一个可访问的文件或文档都具有一个唯一的地址，这种地址称为统一资源定位符（Uniform Resource Locator，URL），也被称为网址（URL）。</p>
+<p>简言之，URL 是用来 <strong>唯一 标识和定位 万维网上的 WEB 资源的</strong>，每个 URL 都有其对应的文件（文档、图片、视频等），例如 URL: <code>https://www.baidu.com/index.html</code> 对应的则是百度的官网首页等。</p>
+<p>当你点击 HTML 页面中的某个链接时，WEB 浏览器会通过其 URL 从相应的 Web 服务器请求资源（网页、图片、视频、下载文件等等）。</p>
+<hr>
+<p>下面我们看一下 URL 的组成：</p>
+<h2 id="URL-标准语法"><a href="#URL-标准语法" class="headerlink" title="URL 标准语法"></a>URL 标准语法</h2><p>URL 组成遵守一种标准的语法，它由：协议、主机名、域名、端口、路径、以及文件名这六个部分构成（端口可以省略）。具体格式如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheme://host.domain[:port]/path/filename</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>scheme</code> 表示互联网服务类型（协议），<code>host</code> 表示域主机名，<code>domain</code> 表示域名，<code>port</code> 表示端口（可以省略），<code>path</code> 表示文件（资源）的路径，<code>filename</code> 表示文件（资源）名称。</p>
+<hr>
+<p>接下来我们详细看一下这几部分到底是如何使用的：</p>
+<h3 id="Scheme"><a href="#Scheme" class="headerlink" title="Scheme"></a>Scheme</h3><p>协议用来指明客户端和服务器之间通信的类型。我们经常用到的协议有四种：<code>http、https、ftp、file</code>。这四种协议的使用场景如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>Scheme</th>
+<th>全称</th>
+<th>访问</th>
+<th>用于…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>http</td>
+<td>HyperText Transfer Protocol</td>
+<td>超文本传输协议</td>
+<td>Http 协议可以将编码为超文本的数据从一台计算机传送到另一台计算机，不进行加密</td>
+</tr>
+<tr>
+<td>https</td>
+<td>HyperText Transfer Protocol Over SecureSocket Layer</td>
+<td>安全超文本传输协议</td>
+<td>以安全为目标的 Http 通道，安全网页，加密所有信息交换</td>
+</tr>
+<tr>
+<td>ftp</td>
+<td>File Transfer Protocol</td>
+<td>文件传输协议</td>
+<td>用于将文件下载或上传至网站</td>
+</tr>
+<tr>
+<td>file</td>
+<td>file</td>
+<td>本地</td>
+<td>本地计算机文件</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>需要注意的是：通信协议需要与 URL 的其它部分用 <strong>://</strong> 隔开。</p>
+</blockquote>
+<hr>
+<h3 id="Host"><a href="#Host" class="headerlink" title="Host"></a>Host</h3><p>域主机名可以向浏览器提供，访问文件站点的名称。</p>
+<p><strong>www</strong> 是我们常见的域主机名 &gt;&gt;&gt; 例如百度的网址 <code>https://www.baidu.com/</code> &amp;&amp; 淘宝的网址 <code>https://www.taobao.com/</code> 使用的都是 <code>www</code> 的主机名。</p>
+<p>除此之外，还有很多网站使用的是其它主机名：</p>
+<p>例如网易云音乐的网址 <code>https://music.163.com/</code> 的主机名是 <strong>music</strong>。</p>
+<hr>
+<h3 id="Domain"><a href="#Domain" class="headerlink" title="Domain"></a>Domain</h3><p>域名和域主机名一起使用，被用来定义服务器的地址。前面提到过，浏览器会向 URL 指向的 WEB 服务器请求相应资源，这里的 Domain 就是用来定义 WEB 服务器地址的。</p>
+<p>Web 服务器需要遵守数字网际协议（Internet Protocol，IP），即每一台连接到因特网的计算机都有一个固定的 IP 地址。</p>
+<p>而，因为一般的 IP 地址都是长串的数字，为了方便记忆所以使用域名进行替代。简单来说，没有域名（IP）我们就不能上网。</p>
+<p><strong>[1] &gt;&gt;&gt; 域名后缀</strong></p>
+<p>域名后会有域名后缀，一般是由网站组织机构性质决定：</p>
+<ol>
+<li>com : Commercial organizations，国际商业组织或公司，如 sohu.com</li>
+<li>edu : Educational institutions，教研机构, 如 PKU.edu.cn</li>
+<li>gov : Governmental entities，政府部门, 如 beijing.gov.cn</li>
+<li>net : Network operations and service centers，互联网络信息中心和运行中心, 如 263.net</li>
+<li>org : Other organizations，非盈利组织</li>
+</ol>
+<p>另外，还有标识不同国家或地区的最高层域名后缀，如：CN（中国）、JP（日本）、UK（英国）、US（美国）、HK（香港）、TW（台湾）等等。</p>
+<p><strong>[2] &gt;&gt;&gt; 一、二级域名</strong></p>
+<p>以百度搜索为例：</p>
+<p>其一级域名一般是这样的：<code>baidu.com</code>；二级域名一般是这样的：<code>zhidao.baidu.com</code>。</p>
+<p>也即是说，一级域名可以设置很多个二级域名，比如 baidu.com 可以设置 <code>bbs.baidu.com；zhidao.baidu.com；post.baidu.com；mp3.baidu.com</code> 等，相反则不可能！！！</p>
+<p><strong>[3] &gt;&gt;&gt; 域名解析</strong></p>
+<p>前面提到过，域名即服务器 IP 地址的别名，实际上使用域名（Domain）访问网站时，浏览器会先通过 <strong>DNS 域名解析服务器（DNS 服务器）</strong> 拿到域名对应的 IP 地址（域名解析），然后再通过 IP 地址请求服务器上的文件。</p>
+<hr>
+<h3 id="Port"><a href="#Port" class="headerlink" title="Port"></a>Port</h3><p>端口用来定义访问 WEB 服务器的端口号，以提供可以访问到目标的 Web 服务。</p>
+<p>如果不写（浏览器会根据所用的协议来为你指定一个缺省端口），Http 的默认端口号是 <code>80</code>，Https 的默认端口号是 <code>443</code>，Ftp 的默认端口号是 <code>21</code>。</p>
+<p>还是拿 BAIDU 举例说明，不论用户输入 &gt;&gt;&gt; <code>https://www.baidu.com/</code> 还是 &gt;&gt;&gt; <code>https://www.baidu.com:443/</code>，浏览器都会解析为 BAIDU 的链接。</p>
+<hr>
+<h3 id="Path"><a href="#Path" class="headerlink" title="Path"></a>Path</h3><p>路径用于指定请求的服务器上文件（资源）的所在位置。</p>
+<p>就像我们自己在计算机上保存文件时所指定的文件夹一样，Web 服务器上的文件也有可能是存放在子目录（就是文件夹中的子文件夹）中的。如果是这样，路径中的相邻文件夹需要使用斜线（/）隔开。例如 <code>http://www.test.net/view/views/demo.html</code> 这个网址，它的路径就是 <code>/view/views</code>。</p>
+<hr>
+<h3 id="Filename"><a href="#Filename" class="headerlink" title="Filename"></a>Filename</h3><p>文件名用来定义请求的文档或资源的名称。</p>
+<p>和路径类似，路径指的是文件夹，而它指的是文件夹中的文件了，例如 <code>.html 、.php、 .jsp、.asp</code> 等。</p>
+<hr>
+<h2 id="URL-通用语法"><a href="#URL-通用语法" class="headerlink" title="URL 通用语法"></a>URL 通用语法</h2><p>URL 除了上述的标准格式外，更为通用的语法格式为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheme://username:passwd@host.domain[:port]/path/filename[para -&gt; ;参数?查询#片段]</span><br></pre></td></tr></table></figure>
+
+<p>其中，多出了 <code>username:passwd@</code> &amp;&amp; <code>[para -&gt; ;参数?查询#片段]</code> 两部分：</p>
+<h3 id="username-passwd"><a href="#username-passwd" class="headerlink" title="username:passwd"></a>username:passwd</h3><p>很多服务器都要求输入用户名和密码才会允许用户访问数据，如 FTP 服务器（User: joe &amp;&amp; Passwd: joe-passwd）:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp://joe:joepasswd@ftp.prep.edu/pub/name</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="para-gt-参数-查询-片段"><a href="#para-gt-参数-查询-片段" class="headerlink" title="[para -&gt; ;参数?查询#片段]"></a>[para -&gt; ;参数?查询#片段]</h3><p>URL 末尾添加 &gt;&gt;&gt;</p>
+<p><strong>[1] &gt;&gt;&gt; 参数</strong></p>
+<p>为了向应用程序提供它们所需要的输入参数，以便正确地与服务器进行交互，URL 中有个参数组件。由字符 <code>;</code> 将其与 URL 的其余部分分隔开来。</p>
+<p>例如：type=7 &amp;&amp; num=30 就是两个参数：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp://prep.mit.edu/pub;type=7;num=30</span><br></pre></td></tr></table></figure>
+
+<p>注意，查询条件为 <code>参数=参数值</code> 的表达式。</p>
+<p><strong>[2] &gt;&gt;&gt; 查询</strong></p>
+<p>搜索引擎中访问资源，都可以通过提问题或设置查询条件来缩小请求资源的范围。由字符 <code>?</code> 表示查询，并使用 <code>&amp;</code> 分割多个查询条件。如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.cheng.cn/si.html?name=csh&amp;age=24</span><br></pre></td></tr></table></figure>
+
+<p>注意，查询条件为 <code>参数=参数值</code> 的表达式。</p>
+<p><strong>[3] &gt;&gt;&gt; 书签</strong></p>
+<p>页面书签，使用字符 <code>#</code> 来代表要定位的网页中的一个书签位置。</p>
+<p><code>#</code> 后面跟随的字符就是该位置的标识符(一般情况下，锚链接会用到)。</p>
+<p>浏览器读取这个 URL 后，会自动将 <code>第一章</code> 位置滚动至可视区域。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.cheng.cn/si.html#第一章</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>了解了 URL 标准语法和通用语法格式之后，这一小节为我们来看 URL 编码：</p>
+<h2 id="URL-编码"><a href="#URL-编码" class="headerlink" title="URL 编码"></a>URL 编码</h2><p>我们知道，WEB 浏览器会通过 URL 发送一个请求，实现从相应的 Web 服务器请求特定的资源。</p>
+<p>如果 URL 路径或者 <code>[para -&gt; ;参数?查询#片段]</code> 中带有中文或者特殊字符的时候，浏览器在发送请求前会对 URL 进行 URL 编码，这是 <strong>URL 编码协议</strong> 规定的。</p>
+<h3 id="URL-编码协议"><a href="#URL-编码协议" class="headerlink" title="URL 编码协议"></a>URL 编码协议</h3><p>URL 编码协议（RFC3986 协议）中规定：<font color="red">URL 只允许使用 ASCII 字符集中可以显示的字符来通过因特网进行发送。</font></p>
+<p>针对 URL 中可能出现的字符分为三种情况：</p>
+<ul>
+<li>ASCII 码表中不支持的可显示字符；</li>
+<li>ASCII 码表中可显示的不安全字符；</li>
+<li>ASCII 码表中可显示的 URL 保留字符。</li>
+</ul>
+<hr>
+<p><strong>[1] &gt;&gt;&gt; ASCII 码表中不支持的可显示字符</strong></p>
+<p>“ASCII 码表中不支持的可显示字符” 好理解，</p>
+<p>比如你的 URL 中包含有中文或其它非英文国家字符时，均不属于 ASCII 码表。</p>
+<p><strong>[2] &gt;&gt;&gt; ASCII 码表中可显示的 URL 保留字符</strong></p>
+<p>所谓保留字符，就是那些在 URL 中具有特定意义的字符。</p>
+<p>你可以返回上文中查看 URL 标准语法和通用语法中，用来分隔不同 URL 组件时使用的字符，它们属于 URL 结构的一部分，被称为保留（Reserved）字符。</p>
+<p>例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">: / . ... @ ; = ? &amp; 等</span><br></pre></td></tr></table></figure>
+
+<p><strong>[3] &gt;&gt;&gt; ASCII 码表中可显示的不安全字符</strong></p>
+<p>“ASCII 码表中可显示的不安全字符（Unsafe）” 指的是，在 URL 中没有特殊含义，但在 URL 所在的上下文中具有特殊用途或者特殊意义的字符。</p>
+<p>例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt; &gt; “ # % | \ 等</span><br></pre></td></tr></table></figure>
+
+<p>通常情况下，如果对某个字符能否在 URL 中使用有疑问，那么你应该始终使用该字符的编码。除字母、数字和字符 <code>$ - _ . + ! * ’ ( )</code> 外的其它所有字符都应该使用编码，将其编码为有效的 ASCII 格式。</p>
+<hr>
+<h3 id="如何编码？"><a href="#如何编码？" class="headerlink" title="如何编码？"></a>如何编码？</h3><p>众所周知，单字节字符是可由八位字节数（Octet）来表示的，八位字节数可用十六进制来表示它的值。例如字符 <code>&lt;</code> 的八位字节数十六进制值是 <code>3C</code>。</p>
+<p>在 URL 中，单字节字符的编码方式为：<code>%</code> 加上字符的两个十六进制数值，即 <code>%XX</code>。如下：</p>
+<p><strong>部分保留字符和不安全字符及其 URL 编码</strong> &gt;&gt;&gt;</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>描述</th>
+<th>用法</th>
+<th>编码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>;</td>
+<td>分号</td>
+<td>保留</td>
+<td>%3B</td>
+</tr>
+<tr>
+<td>/</td>
+<td>斜线</td>
+<td>保留</td>
+<td>%2F</td>
+</tr>
+<tr>
+<td>?</td>
+<td>问号</td>
+<td>保留</td>
+<td>%3F</td>
+</tr>
+<tr>
+<td>:</td>
+<td>冒号</td>
+<td>保留</td>
+<td>%3A</td>
+</tr>
+<tr>
+<td>@</td>
+<td>“at”符号</td>
+<td>保留</td>
+<td>%4O</td>
+</tr>
+<tr>
+<td>=</td>
+<td>等号</td>
+<td>保留</td>
+<td>%3D</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>“和”符号</td>
+<td>保留</td>
+<td>%26</td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>小于号</td>
+<td>不安全</td>
+<td>%3C</td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>大于号</td>
+<td>不安全</td>
+<td>%3E</td>
+</tr>
+<tr>
+<td>“</td>
+<td>双引号</td>
+<td>不安全</td>
+<td>%22</td>
+</tr>
+<tr>
+<td>#</td>
+<td>井号</td>
+<td>不安全</td>
+<td>%23</td>
+</tr>
+<tr>
+<td>%</td>
+<td>百分号</td>
+<td>不安全</td>
+<td>%25</td>
+</tr>
+<tr>
+<td>{</td>
+<td>左大括号</td>
+<td>不安全</td>
+<td>%7B</td>
+</tr>
+<tr>
+<td>}</td>
+<td>右大括号</td>
+<td>不安全</td>
+<td>%7D</td>
+</tr>
+<tr>
+<td>|</td>
+<td>竖线</td>
+<td>不安全</td>
+<td>%7C</td>
+</tr>
+<tr>
+<td>\</td>
+<td>反斜线</td>
+<td>不安全</td>
+<td>%5C</td>
+</tr>
+<tr>
+<td>^</td>
+<td>加字号</td>
+<td>不安全</td>
+<td>%5E</td>
+</tr>
+<tr>
+<td>~</td>
+<td>波浪</td>
+<td>不安全</td>
+<td>%7E</td>
+</tr>
+<tr>
+<td>[</td>
+<td>左中括号</td>
+<td>不安全</td>
+<td>%5B</td>
+</tr>
+<tr>
+<td>]</td>
+<td>右中括号</td>
+<td>不安全</td>
+<td>%5D</td>
+</tr>
+<tr>
+<td>`</td>
+<td>反单引号</td>
+<td>不安全</td>
+<td>%60</td>
+</tr>
+<tr>
+<td></td>
+<td>空格</td>
+<td>不安全</td>
+<td>+ 或 %20</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>有些同学可能会想到中文字符的编码，由于 URL 编码协议没有规定汉字的编码方式，而是让浏览器自己去决定，因此会造成了不同浏览器对 URL 汉字编码的不统一（UTF-8/GBK-2312）。</p>
+<hr>
+<p>经过浏览器编码处理之后的 URL 才是最终请求中的 URL，故通过编码后的 URL 必然也是可以访问相应的 Web 服务器的。你可以认为我们浏览器中通常可见的未编码处理的 URL 是给用户看的，而编码之后的 URL 是给设备使用的。</p>
+<p><strong>学会使用编码工具</strong></p>
+<p>通过上面的课程你可以看到，采用人工查表的方式去为 URL 进行编码是不现实的，而且很容易出现问题，导致无法访问目标服务器。</p>
+<p>事实上，网络上提供了很多 URL 在线编码（格式化）公式，你只需要 <code>Copy &gt;&gt;&gt; Encode</code> 即可快速获得编码好的 URL。</p>
+<p>如果你学过一些高级编程语言（Python &amp;&amp; Java …），你可以通过其提供的网络扩展包中 URL 编码和解码接口轻松实现上述功能。</p>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>网站基础之 URL 结构解析</p><p><a href="https://www.orangeshare.cn/2019/01/01/wang-zhan-ji-chu-zhi-url-jie-gou-jie-xi/">https://www.orangeshare.cn/2019/01/01/wang-zhan-ji-chu-zhi-url-jie-gou-jie-xi/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-01-01</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2023-01-08</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Front-End-Devp/">Front-End Devp</a><a class="link-muted mr-2" rel="tag" href="/tags/Back-End-Devp/">Back-End Devp</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/01/01/html-jiao-cheng-zhi-chu-shi-html/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">HTML 教程之初识 HTML</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/01/14/python-zhong-de-yi-chang-chu-li-ji-zhi/"><span class="level-item">Python 中的异常处理机制</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">88</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">39</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#何为-URL？"><span class="level-left"><span class="level-item">1</span><span class="level-item">何为 URL？</span></span></a></li><li><a class="level is-mobile" href="#URL-标准语法"><span class="level-left"><span class="level-item">2</span><span class="level-item">URL 标准语法</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Scheme"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">Scheme</span></span></a></li><li><a class="level is-mobile" href="#Host"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">Host</span></span></a></li><li><a class="level is-mobile" href="#Domain"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">Domain</span></span></a></li><li><a class="level is-mobile" href="#Port"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">Port</span></span></a></li><li><a class="level is-mobile" href="#Path"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">Path</span></span></a></li><li><a class="level is-mobile" href="#Filename"><span class="level-left"><span class="level-item">2.6</span><span class="level-item">Filename</span></span></a></li></ul></li><li><a class="level is-mobile" href="#URL-通用语法"><span class="level-left"><span class="level-item">3</span><span class="level-item">URL 通用语法</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#username-passwd"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">username:passwd</span></span></a></li><li><a class="level is-mobile" href="#para-gt-参数-查询-片段"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">[para -&gt; ;参数?查询#片段]</span></span></a></li></ul></li><li><a class="level is-mobile" href="#URL-编码"><span class="level-left"><span class="level-item">4</span><span class="level-item">URL 编码</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#URL-编码协议"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">URL 编码协议</span></span></a></li><li><a class="level is-mobile" href="#如何编码？"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">如何编码？</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2023 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>一文学会正则表达式语法 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="正则表达式（Regular Expression）是一种 文本匹配模式（Pattern），基本上所有的程序设计语言都支持利用正则表达式进行字符串的操作，它是学习编程的基础。"><meta property="og:type" content="blog"><meta property="og:title" content="一文学会正则表达式语法"><meta property="og:url" content="https://www.orangeshare.cn/2016/10/01/yi-wen-xue-hui-zheng-ze-biao-da-shi-yu-fa/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="正则表达式（Regular Expression）是一种 文本匹配模式（Pattern），基本上所有的程序设计语言都支持利用正则表达式进行字符串的操作，它是学习编程的基础。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://s2.loli.net/2023/01/01/t7bnLI1TjCrU3pg.jpg"><meta property="og:image" content="https://s2.loli.net/2023/01/05/U1nlqyIdDCZzKB4.png"><meta property="article:published_time" content="2016-10-01T00:23:03.000Z"><meta property="article:modified_time" content="2023-01-05T10:18:49.689Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Programming"><meta property="article:tag" content="Regular Expression"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://s2.loli.net/2023/01/01/t7bnLI1TjCrU3pg.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2016/10/01/yi-wen-xue-hui-zheng-ze-biao-da-shi-yu-fa/"},"headline":"When Art Meets Tech","image":["https://s2.loli.net/2023/01/01/t7bnLI1TjCrU3pg.jpg","https://s2.loli.net/2023/01/05/U1nlqyIdDCZzKB4.png"],"datePublished":"2016-10-01T00:23:03.000Z","dateModified":"2023-01-05T10:18:49.689Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"正则表达式（Regular Expression）是一种 文本匹配模式（Pattern），基本上所有的程序设计语言都支持利用正则表达式进行字符串的操作，它是学习编程的基础。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2016/10/01/yi-wen-xue-hui-zheng-ze-biao-da-shi-yu-fa/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>一文学会正则表达式语法</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2016-10-01</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2023-01-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Code-Basic/">Code Basic</a></span><span class="level-item">25 minutes read (About 3802 words)</span></div></div><div class="content"><p>正则表达式（Regular Expression）是一种 <strong>文本匹配模式（Pattern）</strong>，基本上所有的程序设计语言都支持利用正则表达式进行字符串的操作，它是学习编程的基础。</p>
+<a id="more"></a>
+
+<p>本博文中，有些地方会将正则表达式简称为 &gt;&gt;&gt; 正则:</p>
+<hr>
+<h2 id="什么是正则"><a href="#什么是正则" class="headerlink" title="什么是正则"></a>什么是正则</h2><p>日常中，典型的文本搜索和替换操作，都要求你提供与预期搜索结果匹配的 <font color="red"> 确切文本</font>。</p>
+<p>而正则表达式（Regular Expression）是一种文本（或字符串）匹配模式（Pattern）。</p>
+<p>常用于 &gt;&gt;&gt; 在文本（或字符串）中，查找、替换 <strong>符合某种正则匹配模式</strong> 的子文本（子串）场景。</p>
+<p>你可以简单的理解为 &gt;&gt;&gt;</p>
+<p>| &gt;&gt;&gt;&gt; <strong>正则就是用有限的字符，来表达无限的序列</strong> &lt;&lt;&lt; |</p>
+<hr>
+<h2 id="正则的构成"><a href="#正则的构成" class="headerlink" title="正则的构成"></a>正则的构成</h2><p>正则表达式，是由 <font color="red"> 普通字符</font> &amp;&amp; <font color="red">特殊字符</font>（也称为元字符）组成的文本模式（Pattern）。</p>
+<p>正则表达式的语法一般类似如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># JS 中两条斜线中间是正则主体（匹配模式）：</span><br><span class="line">/^abc/</span><br></pre></td></tr></table></figure>
+
+<p>字符（普通字符 &amp;&amp; 特殊字符）作为正则的基本构成，接下来需要深入了解一下字符的分类：</p>
+<h3 id="普通字符"><a href="#普通字符" class="headerlink" title="普通字符"></a>普通字符</h3><p>区别于特殊字符，没有特殊意义的字符即简单字符。</p>
+<p>简单字符，在正则中就代表其自身，绝大部分的字符都是简单字符。示例如下（匹配确切文本）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/abc/  <span class="comment">// 用于匹配 abc</span></span><br><span class="line">/<span class="number">123</span>/  <span class="comment">// 匹配 123</span></span><br><span class="line">/-_-<span class="regexp">/ /</span><span class="regexp">/ 匹配 -_-</span></span><br><span class="line"><span class="regexp">/</span>测试/ <span class="comment">// 匹配 测试</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h3><p>所谓特殊字符，是指在正则中具有特殊含义的字符。</p>
+<blockquote>
+<p>可以先跳过本章节内容，或对照下一章节内容进行学习。</p>
+</blockquote>
+<p>正则表达式中支持的特殊字符如下：</p>
+<table>
+<thead>
+<tr>
+<th>Characters</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$</td>
+<td>定位符，匹配输入字符串的结尾位置。要匹配 $ 字符本身，请使用 <code>\$</code></td>
+</tr>
+<tr>
+<td>( )</td>
+<td>分组，标记一个子表达式（分组）的开始和结束位置。要匹配这些字符，请使用 <code>\(</code> 和 <code>\)</code></td>
+</tr>
+<tr>
+<td>*</td>
+<td>量词，匹配前面的子表达式零次或多次（零次及以上）。要匹配 * 字符，请使用 <code>\*</code></td>
+</tr>
+<tr>
+<td>+</td>
+<td>量词，匹配前面的子表达式一次或多次（一次及以上）。要匹配 + 字符，请使用 <code>\+</code></td>
+</tr>
+<tr>
+<td>.</td>
+<td>匹配除换行符 <code>\n</code> <code>\r</code> 之外的任何单字符。要匹配 <code>.</code> ，请使用 <code>\.</code></td>
+</tr>
+<tr>
+<td>[</td>
+<td>标记一个中括号表达式（字符集合）的开始。要匹配 [，请使用 <code>\[</code></td>
+</tr>
+<tr>
+<td>?</td>
+<td>量词，匹配前面的子表达式零次或一次，或定义非贪婪模式。要匹配 ? 字符，请使用 <code>\?</code></td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义，将下一个字符标记为：转义字符、原义字符、特殊字符，或向后引用。要匹配 \ 字符，请使用 <code>\\</code></td>
+</tr>
+<tr>
+<td>^</td>
+<td>定位符，匹配输入字符串的开始位置，或在字符集合 [] 中使用表示取反（非）。要匹配 ^ 字符本身，请使用 <code>\^</code></td>
+</tr>
+<tr>
+<td>{</td>
+<td>量词，数量表达式的开始。要匹配 {，请使用 <code>\&#123;</code></td>
+</tr>
+<tr>
+<td><code>|</code></td>
+<td>选择，两项之间的一个选择（取或）。要匹配 <code>|</code>，请使用 <code>|</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>转义字符详解 &gt;&gt;&gt;&gt;</strong></p>
+<p>字符 <code>\</code> 表示转义，其后跟的字符不同具有不同的含义，可分为四类：</p>
+<ol>
+<li>转义字符：匹配无法显示的特殊字符，如 换行（<code>\n</code>）、制表符（<code>\t</code>）等；</li>
+<li>原义字符：让特殊字符显示其自身，即匹配特殊字符本身，如 <code>\\</code> &amp;&amp; <code>\$</code> 等；</li>
+<li>特殊字符：具有特殊含义，如：<code>\w</code> &amp;&amp; <code>\s</code> 等；</li>
+<li>向后引用：后跟数字表示引用。</li>
+</ol>
+<p>常用转义字符支持：</p>
+<p><img src="https://s2.loli.net/2023/01/01/t7bnLI1TjCrU3pg.jpg"></p>
+<hr>
+<h2 id="正则匹配模式"><a href="#正则匹配模式" class="headerlink" title="正则匹配模式"></a>正则匹配模式</h2><p>正则表达式中使用不同的特殊字符，可以构建具有不同匹配规则的文本模式。</p>
+<h3 id="字符匹配"><a href="#字符匹配" class="headerlink" title="字符匹配"></a>字符匹配</h3><p>首先来基本的字符匹配语法：</p>
+<h4 id="纵向模糊匹配"><a href="#纵向模糊匹配" class="headerlink" title="纵向模糊匹配"></a>纵向模糊匹配</h4><p>纵向模糊匹配，就是 想要匹配的某个字符不确定，有多种情况（属于某个字符簇）。</p>
+<p>方法 &gt;&gt;&gt; 使用字符簇（<code>[]</code>）。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/[abc]/  <span class="comment">// 可以匹配：a 或 b 或 c</span></span><br><span class="line">/a[<span class="number">123</span>]b/  <span class="comment">// 可以匹配：a1b 或 a2b 或 a3b</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[1] &gt;&gt;&gt; 字符簇范围表示法</strong></p>
+<p>对于很长的、且有规律的字符簇，可以使用范围表示法（<code>-</code>）。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/[<span class="number">0</span>-<span class="number">9</span>]/  <span class="comment">// 等价于：[0123456789]</span></span><br><span class="line">/[<span class="number">1</span>-5a-eA-E]/  <span class="comment">// 等价于：[12345abcedABCDE]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[2] &gt;&gt;&gt; 排除字符簇</strong></p>
+<p>在字符簇中的第一位写 <code>^</code>，表示取非。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[^abc]/  <span class="comment">// 可以匹配：a、b、c 之外的任意字符</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[3] &gt;&gt;&gt; 常见字符簇</strong></p>
+<p>正则内置了 7 种常见的字符簇简写形式：</p>
+<ul>
+<li><code>\d = [0-9]</code> &gt;&gt;&gt; 匹配数字；</li>
+<li><code>\D = [^0-9]</code> &gt;&gt;&gt; 匹配除数字以外的任意一个字符</li>
+<li><code>\w = [0-9a-zA-Z_]</code> &gt;&gt;&gt; 匹配字母、数字或下划线</li>
+<li><code>\W = [^0-9a-zA-Z_]</code> &gt;&gt;&gt; 匹配除字母、数字或下划线以外的任意一个字符</li>
+<li><code>\s = [ \t\v\n\r\f]</code> &gt;&gt;&gt; 匹配任意一个空白符（空格、制表符、换行符以及换页符）</li>
+<li><code>\S = [^ \t\v\n\r\f]</code> &gt;&gt;&gt; 匹配非空白符以外的任意一个字符</li>
+<li><code>. = [^\n\r]</code> &gt;&gt;&gt; 匹配除换行符以外的任意一个字符;</li>
+</ul>
+<hr>
+<h4 id="横向模糊匹配"><a href="#横向模糊匹配" class="headerlink" title="横向模糊匹配"></a>横向模糊匹配</h4><p>横向模糊匹配，就是 想要匹配的某个字符，可能会连续出现多次。</p>
+<p>方法 &gt;&gt;&gt; 使用量词（<code>&#123;m, n&#125;</code>），为匹配字符可连续出现 <code>m~n</code> 次（优先匹配 n 次）。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/ab&#123;<span class="number">2</span>,<span class="number">4</span>&#125;c/  <span class="comment">// 可以匹配：abbbbc 或 abbbc 或 abbc，优先匹配 abbbbc</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[1] &gt;&gt;&gt; 常见量词形式</strong></p>
+<p>正则内置了 5 种常见的量词简写形式：</p>
+<ul>
+<li><code>&#123;m&#125;</code>：匹配 <code>m</code> 次，等价于 <code>&#123;m, m&#125;</code>。例如 <code>a&#123;2&#125;</code> 表示：匹配 aa；</li>
+<li><code>&#123;m,&#125;</code>：匹配 <code>m~∞</code> 次，等价于 <code>&#123;m, ∞&#125;</code>，优先匹配 <code>∞</code> 次。例如 <code>a&#123;1,&#125;</code> 可以匹配：aaaa…；</li>
+<li><code>?</code>：匹配 <code>0</code> 次或 <code>1</code> 次，等价于 <code>&#123;0, 1&#125;</code>，优先匹配 <code>1</code> 次（<strong>记忆：有吗？&gt;&gt;&gt; 出现或不出现</strong>）；</li>
+<li><code>+</code>：匹配 <code>1~m</code> 次，等价于 <code>&#123;1, m&#125;</code>，优先匹配 <code>m</code> 次（<strong>记忆：追加 &gt;&gt;&gt; 至少有一个，再追加</strong>）；</li>
+<li><code>*</code>：匹配 <code>0~m</code> 次，等价于 <code>&#123;0, m&#125;</code>，优先匹配 <code>m</code> 次（<strong>记忆：星星，可能一颗，可能几颗，可能数不清</strong>）。</li>
+</ul>
+<p><strong>[2] &gt;&gt;&gt; 贪婪匹配</strong></p>
+<p>正则量词默认和人心一样是贪婪的，其默认是使用 <font color="red"> 贪婪模式 去匹配的，都优先匹配上限而不是下限（尽可能多）</font>。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/a&#123;<span class="number">1</span>, <span class="number">3</span>&#125;/  <span class="comment">// 匹配字符串 `aaa` 时，会匹配 `aaa` 而不是 `a`</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>如何开启 非贪婪模式匹配 &gt;&gt;&gt;</strong></p>
+<p>有时侯，我们不希望使用贪婪模式去匹配，可以通过在量词后面加一个 <code>?</code>，表示开启非贪婪模式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/a&#123;<span class="number">1</span>, <span class="number">3</span>&#125;?<span class="regexp">/  /</span><span class="regexp">/ 匹配字符串 `aaa` 时，会匹配 `a` 而不是 `aaa`</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="选择表达式"><a href="#选择表达式" class="headerlink" title="选择表达式"></a>选择表达式</h4><p>上面我们知道，上面的字符簇是对单个字符取或，例如 <code>[abc]</code> 可以匹配 a 或 b 或 c。</p>
+<p>如果，我们想要对 多个字符拼成的像单词 这样的形式取或，怎么办？</p>
+<p>方法 &gt;&gt;&gt; 使用 <code>|</code> 构建 选择表达式 。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/xxx|yyy|zzz/  <span class="comment">// 可以匹配：xxx 或 yyy 或 zzz</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，<font color="red">选择表达式会优先匹配排在前面的 “单词”</font>，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/good|goodbye/  <span class="comment">// 匹配字符串 `goodbye` 时，会匹配 `good` 而不是 `goodbye`</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h3><p>正则表达式中，可以通过在正则表达式的后面增加修饰符（<code>flags</code>），来指定额外的匹配策略。其语法格式如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/pattern/flags</span><br></pre></td></tr></table></figure>
+
+<p>额外的匹配策略？！！ &gt;&gt;&gt; 例如，<strong>默认情况下，正则匹配时是区分大小写的</strong>！！！你可以通过添加修饰符（<code>i</code> &gt;&gt;&gt; ignore）来将匹配设置为不区分大小写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/ab/i  <span class="comment">// 可以匹配：ab 或 aB 或 Ab 或 AB</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>正则表达式支持的其它常用修饰符 &gt;&gt;&gt;</strong></p>
+<ul>
+<li><code>g</code> &gt;&gt;&gt; global：全局匹配策略，默认情况下正则遇到第一个匹配项就会结束；而加上全局修饰符，可以查找所有的匹配项；</li>
+<li><code>m</code> &gt;&gt;&gt; Multiline：多行模式，使边界字符 <code>^</code> 和 <code>$</code> 可以匹配每一行（<code>\n</code> &amp;&amp; <code>、r</code>）的开头和结尾；而非多行模式则只能匹配整个字符串的起始位置与结束位置；</li>
+<li><code>s</code>：默认情况下的圆点 <code>.</code> 是匹配除换行符 <code>\n</code>、<code>\r</code> 之外的任何字符；而加上 <code>s</code> 修饰符，<code>.</code> 中包含换行符 <code>\n</code> &amp;&amp; <code>\r</code>。</li>
+</ul>
+<p>示例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/JS/g  <span class="comment">// 可以匹配字符串 `Hello JS, I love JS` 中的所有 `JS`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 参考下文位置匹配：</span></span><br><span class="line">/^hello/g  <span class="comment">// 只可以匹配字符串 `hello Google\nEdge\nhello IE` 中的第一个 `hello`</span></span><br><span class="line">/^hello/gm  <span class="comment">// 可以匹配字符串 `hello Google\nEdge\nhello IE` 中的所有 `hello`</span></span><br><span class="line"></span><br><span class="line">/Google./  <span class="comment">// 无法匹配字符串 `Google\nEdge\nIE` 中的 `Google`</span></span><br><span class="line">/Edge./s  <span class="comment">// 可以匹配字符串 `Google\nEdge\nIE` 中的 `Edge`</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="位置匹配"><a href="#位置匹配" class="headerlink" title="位置匹配"></a>位置匹配</h3><p>位置（锚）是指 &gt;&gt;&gt; 相邻字符之间的位置。如下：</p>
+<p><img src="https://s2.loli.net/2023/01/05/U1nlqyIdDCZzKB4.png"></p>
+<p><strong>[1] 特殊位置 &gt;&gt;&gt; 字符边界 &gt;&gt;&gt;</strong></p>
+<p><strong>1.1</strong> 字符边界】&gt;&gt;&gt; <code>^</code> &amp;&amp; <code>$</code></p>
+<p><code>^</code> 在字符簇（<code>[]</code>）外表示匹配文本开头位置的意思，<font color="red">代表文本开头的位置</font>。例如，你可以匹配以某字符开头的文本：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^abc/ <span class="comment">// 可以匹配 abcde，但是不能匹配 aabcde</span></span><br></pre></td></tr></table></figure>
+
+<p><code>$</code> 表示匹配文本结尾位置的意思，<font color="red">代表文本的结尾位置</font>。例如，你可以匹配以某字符结尾的文本：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/abc$/ <span class="comment">// 可以匹配 defabc，但是不能匹配 defabcc</span></span><br></pre></td></tr></table></figure>
+
+<p><font color="green">观察匹配位置实质 &gt;&gt;&gt;</font></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以 JavaScript 为例：</span></span><br><span class="line">&gt; <span class="keyword">var</span> str = <span class="string">&#x27;hello\nworld\ni\nam\nfine&#x27;</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(str.replace(<span class="regexp">/^|$/gm</span>, <span class="string">&#x27;#&#x27;</span>));  <span class="comment">// 匹配位置后替换</span></span><br><span class="line">#hello#</span><br><span class="line">#world#</span><br><span class="line">#i#</span><br><span class="line">#am#</span><br><span class="line">#fine#</span><br></pre></td></tr></table></figure>
+
+<p><strong>1.2</strong> 字符边界】&gt;&gt;&gt; <code>\b</code> &amp;&amp; <code>\B</code></p>
+<p><code>\b</code> 表示匹配文本中的单词边界位置的意思，包括：单词和非单词之间、单词和开头之间、单词和结尾之间。</p>
+<p>例如，你可以匹配文本中以某字符开头（结尾）的单词：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/\bJS/ <span class="comment">// 可以匹配 `Hello JS`，但是不能匹配 `HelloJS`</span></span><br><span class="line">/JS\b/ <span class="comment">// 可以匹配 `HelloJS`</span></span><br><span class="line">/\bJS\b/  <span class="comment">// 仅匹配单词 `JS`</span></span><br></pre></td></tr></table></figure>
+
+<p>而 <code>\B</code> 表示匹配文本中的非单词边界位置的意思，除了 <code>\b</code> 的位置，别的都是 <code>\B</code>。</p>
+<p><font color="green">观察匹配位置实质 &gt;&gt;&gt;</font></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&#x27;[apple] test.mp4 你好&#x27;</span>.replace(<span class="regexp">/\b/g</span>, <span class="string">&#x27;#&#x27;</span>));</span><br><span class="line">[#apple#] #test#.#mp4# 你好</span><br><span class="line"></span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&#x27;[apple] test.mp4&#x27;</span>.replace(<span class="regexp">/\B/g</span>, <span class="string">&#x27;#&#x27;</span>));</span><br><span class="line">#[a#p#p#l#e]# t#e#s#t.m#p#4 #你#好#</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>[2] &gt;&gt;&gt; 预查（断言）</strong></p>
+<p><strong>2.1</strong> 正向预查】&gt;&gt;&gt; <code>(?=pattern)</code> &amp;&amp; <code>(?!pattern)</code></p>
+<p><code>(?=pattern)</code>：表示正向肯定预查 &gt;&gt;&gt; 即该位置后面的字符要匹配 <code>pattern</code>。</p>
+<p>例如，<code>Windows(?=95|98|NT|2000)</code> 能匹配 “Windows2000” 中的 “Windows”，但不能匹配 “Windows3.1” 中的 “Windows”。</p>
+<p><code>(?!pattern)</code>：表示正向否定断言。即该位置后面的字符不能匹配 <code>pattern</code>。</p>
+<p>例如，<code>Windows(?!95|98|NT|2000)</code> 能匹配 “Windows3.1” 中的 “Windows”，但不能匹配 “Windows2000” 中的 “Windows”。</p>
+<p><font color="green">观察匹配位置实质 &gt;&gt;&gt;</font></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&#x27;hello&#x27;</span>.replace(<span class="regexp">/(?=l)/g</span>, <span class="string">&#x27;#&#x27;</span>));</span><br><span class="line">he#l#lo</span><br><span class="line">&gt; <span class="built_in">console</span>.log(<span class="string">&#x27;hello&#x27;</span>.replace(<span class="regexp">/(?!l)/g</span>, <span class="string">&#x27;#&#x27;</span>));</span><br><span class="line">#h#ell#o#</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.2</strong> 反向预查】&gt;&gt;&gt;</p>
+<p><code>(?&lt;=pattern)</code>：表示反向肯定预查 &gt;&gt;&gt; 即该位置前面的字符要匹配 <code>pattern</code>。</p>
+<p>例如，<code>(?&lt;=95|98|NT|2000)Windows</code> 能匹配 “2000Windows” 中的 “Windows”，但不能匹配 “3.1Windows” 中的 “Windows”。</p>
+<p><code>(?&lt;!pattern)</code>：表示反向否定断言。即该位置前面的字符不能匹配 <code>pattern</code>。</p>
+<p>例如，<code>(?&lt;!95|98|NT|2000)Windows</code> 能匹配 “3.1Windows” 中的 “Windows”，但不能匹配 “2000Windows” 中的 “Windows”。</p>
+<p>注意，JS 中仅支持正向预查，不支持反向预查。</p>
+<blockquote>
+<p>需要注意的是，这里特殊字符（<code>^ $ \b \B (?=p) (?!p)</code>）匹配到的是位置！！！其本质代表某一个位置。</p>
+</blockquote>
+<hr>
+<h3 id="分组与引用"><a href="#分组与引用" class="headerlink" title="分组与引用"></a>分组与引用</h3><p>正则表达式使用 <code>()</code> 来表示分组，即构成一个子表达式。</p>
+<p>通过分组可以使得上面的 <strong>量词应用于多个字符</strong>，而非单个字符：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(abc)&#123;<span class="number">2</span>&#125;/  <span class="comment">// 可以匹配：abcabc </span></span><br></pre></td></tr></table></figure>
+
+<p>由于分组的这种特性，故其 <strong>不能放在字符簇（<code>[]</code>）中</strong>，但分组中 <strong>可以使用选择表达式</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/(<span class="number">123</span>|<span class="number">456</span>)&#123;<span class="number">2</span>&#125;/  <span class="comment">// 可以匹配：123123 或 456456 或 123456 或 456123</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[1] &gt;&gt;&gt; 捕获和非捕获分组</strong></p>
+<p>默认情况下，正则引擎在匹配过程中，会为每一个分组都开辟一个空间（用来捕获匹配到的文本），用来存储每一个分组匹配到的数据，以便于引用分组匹配的数据（捕获分组）。如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> regex = <span class="regexp">/(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)/</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> str = <span class="string">&#x27;2021-10-20&#x27;</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(str.match(regex));</span><br><span class="line">[</span><br><span class="line">    <span class="string">&#x27;2021-10-20&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;2021&#x27;</span>,   <span class="comment">// Group 1，捕获到 `2021`</span></span><br><span class="line">    <span class="string">&#x27;10&#x27;</span>,     <span class="comment">// Group 2，捕获到 `10`</span></span><br><span class="line">    <span class="string">&#x27;20&#x27;</span>,     <span class="comment">// Group 3，捕获到 `20`</span></span><br><span class="line">    index: <span class="number">0</span>, </span><br><span class="line">    input: <span class="string">&#x27;2021-10-20&#x27;</span>, </span><br><span class="line">    groups: <span class="literal">undefined</span>]</span><br></pre></td></tr></table></figure>
+
+<p>你也可以通过在分组起始字符 <code>(</code>后，添加 <code>?:</code> 让捕获分组变为非捕获分组 <code>(?:pattern)</code>。</p>
+<p>非捕获分组不会开辟空间来捕获存储，示例如下（日期格式中的月、日不捕获）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> regex = <span class="regexp">/(\d&#123;4&#125;)-(?:\d&#123;2&#125;)-(?:\d&#123;2&#125;)/</span>;</span><br><span class="line">&gt; <span class="keyword">var</span> str = <span class="string">&#x27;2021-10-20&#x27;</span>;</span><br><span class="line">&gt; <span class="built_in">console</span>.log(str.match(regex));</span><br><span class="line">[</span><br><span class="line">    <span class="string">&#x27;2021-10-20&#x27;</span>, </span><br><span class="line">    <span class="string">&#x27;2021&#x27;</span>,   <span class="comment">// Group 1，仅捕获到年分组 `2021`</span></span><br><span class="line">    index: <span class="number">0</span>, </span><br><span class="line">    input: <span class="string">&#x27;2021-10-20&#x27;</span>, </span><br><span class="line">    groups: <span class="literal">undefined</span>]</span><br></pre></td></tr></table></figure>
+
+<p>非捕获分组，可以起到性能优化的作用，节省了内存。</p>
+<p><strong>[2] &gt;&gt;&gt; 捕获分组反向引用</strong></p>
+<p>使用捕获分组（默认）后，你可以在正则表达式分组之后，引用前面分组中捕获的数据（<font color="red"> 捕获就是为了使用，否则就采用非捕获模式匹配，以优化性能</font>）。</p>
+<p>正则中，反向引用的语法是 &gt;&gt;&gt; <code>\number</code>，即反斜杠（反向）加数字，其中数字表示引用前面第几个捕获分组。</p>
+<p>例如，在匹配 HTML 标签时，为了使得 <code>&lt;xxx&gt;&lt;/xxx&gt;</code> 中后面的 xxx 能够和前面保持一致，你可以：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/&lt;([a-z]+)&gt;<span class="xml">&lt;\/\1&gt;</span><span class="regexp">/  /</span><span class="regexp">/ 可以匹配：`&lt;div&gt;&lt;/</span>div&gt;<span class="string">` 或 `</span>&lt;span&gt;&lt;/span&gt;<span class="string">` 等双标签</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="正则可视化"><a href="#正则可视化" class="headerlink" title="正则可视化"></a>正则可视化</h2><p>为了更直观的查看正则表达式，推荐一个图形化展示工具 [ &gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://jex.im/regulex">RegulEx</a> &lt;&lt;&lt; ]。</p>
+<p>正则表达式的基本语法，在任意编程语言中都是一样的。不同的是：每种编程语言会有自己独特的表现形式。</p>
+<p>比如 JS 中用两个斜杠来包裹正则表达式的内容（<code>/pattern/</code>），而 Java 里没有这种写法；但是表达式里概念与写法是一样的。</p>
+<hr>
+<h2 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h2><p>正则表达式计算遵循优先级顺序：相同优先级的从左到右进行运算，不同优先级的运算先高后低。</p>
+<p>运算符优先级列表如下：</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\</td>
+<td>转义符</td>
+</tr>
+<tr>
+<td>(), (?:), (?=), []</td>
+<td>分组和字符簇</td>
+</tr>
+<tr>
+<td>*, +, ?, {n}, {n,}, {n,m}</td>
+<td>量词</td>
+</tr>
+<tr>
+<td>^, $, \任何元字符、任何字符</td>
+<td>定位点和序列（即：位置和顺序）</td>
+</tr>
+<tr>
+<td><code>|</code></td>
+<td>选择表达式，取或</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>一文学会正则表达式语法</p><p><a href="https://www.orangeshare.cn/2016/10/01/yi-wen-xue-hui-zheng-ze-biao-da-shi-yu-fa/">https://www.orangeshare.cn/2016/10/01/yi-wen-xue-hui-zheng-ze-biao-da-shi-yu-fa/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2016-10-01</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2023-01-05</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Programming/">Programming</a><a class="link-muted mr-2" rel="tag" href="/tags/Regular-Expression/">Regular Expression</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2017/07/01/git-shi-yong-zhi-nan-zhi-chu-shi/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Git 使用指南之初识</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2016/09/01/bian-cheng-ji-chu-zhi-bian-ma-xiang-jie/"><span class="level-item">编程基础之编码详解</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">88</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">39</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#什么是正则"><span class="level-left"><span class="level-item">1</span><span class="level-item">什么是正则</span></span></a></li><li><a class="level is-mobile" href="#正则的构成"><span class="level-left"><span class="level-item">2</span><span class="level-item">正则的构成</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#普通字符"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">普通字符</span></span></a></li><li><a class="level is-mobile" href="#特殊字符"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">特殊字符</span></span></a></li></ul></li><li><a class="level is-mobile" href="#正则匹配模式"><span class="level-left"><span class="level-item">3</span><span class="level-item">正则匹配模式</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#字符匹配"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">字符匹配</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#纵向模糊匹配"><span class="level-left"><span class="level-item">3.1.1</span><span class="level-item">纵向模糊匹配</span></span></a></li><li><a class="level is-mobile" href="#横向模糊匹配"><span class="level-left"><span class="level-item">3.1.2</span><span class="level-item">横向模糊匹配</span></span></a></li><li><a class="level is-mobile" href="#选择表达式"><span class="level-left"><span class="level-item">3.1.3</span><span class="level-item">选择表达式</span></span></a></li></ul></li><li><a class="level is-mobile" href="#修饰符"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">修饰符</span></span></a></li><li><a class="level is-mobile" href="#位置匹配"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">位置匹配</span></span></a></li><li><a class="level is-mobile" href="#分组与引用"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">分组与引用</span></span></a></li></ul></li><li><a class="level is-mobile" href="#正则可视化"><span class="level-left"><span class="level-item">4</span><span class="level-item">正则可视化</span></span></a></li><li><a class="level is-mobile" href="#运算符优先级"><span class="level-left"><span class="level-item">5</span><span class="level-item">运算符优先级</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2023 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

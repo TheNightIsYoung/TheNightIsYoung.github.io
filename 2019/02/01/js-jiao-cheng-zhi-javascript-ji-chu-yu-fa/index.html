@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>JS 教程之 JavaScript 基础语法 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="JavaScript 基础语法部分内容，包括：JS 构成、JS 运行、JS 输出、JS 注释、以及 JS 基本概念等等。"><meta property="og:type" content="blog"><meta property="og:title" content="JS 教程之 JavaScript 基础语法"><meta property="og:url" content="https://www.orangeshare.cn/2019/02/01/js-jiao-cheng-zhi-javascript-ji-chu-yu-fa/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="JavaScript 基础语法部分内容，包括：JS 构成、JS 运行、JS 输出、JS 注释、以及 JS 基本概念等等。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://s2.loli.net/2022/12/21/bKsEMwx5QLODBe4.png"><meta property="og:image" content="https://s2.loli.net/2022/12/21/8W1iEVqz9hSk3pT.png"><meta property="og:image" content="https://s2.loli.net/2022/12/21/fSv3nUtP7K91Hyk.png"><meta property="og:image" content="https://s2.loli.net/2022/12/21/tChzMwuYToVUZ5O.png"><meta property="article:published_time" content="2019-02-01T07:35:54.000Z"><meta property="article:modified_time" content="2023-01-12T09:40:10.277Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Front-End Devp"><meta property="article:tag" content="Back-End Devp"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://s2.loli.net/2022/12/21/bKsEMwx5QLODBe4.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2019/02/01/js-jiao-cheng-zhi-javascript-ji-chu-yu-fa/"},"headline":"When Art Meets Tech","image":["https://s2.loli.net/2022/12/21/bKsEMwx5QLODBe4.png","https://s2.loli.net/2022/12/21/8W1iEVqz9hSk3pT.png","https://s2.loli.net/2022/12/21/fSv3nUtP7K91Hyk.png","https://s2.loli.net/2022/12/21/tChzMwuYToVUZ5O.png"],"datePublished":"2019-02-01T07:35:54.000Z","dateModified":"2023-01-12T09:40:10.277Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"JavaScript 基础语法部分内容，包括：JS 构成、JS 运行、JS 输出、JS 注释、以及 JS 基本概念等等。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2019/02/01/js-jiao-cheng-zhi-javascript-ji-chu-yu-fa/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>JS 教程之 JavaScript 基础语法</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2019-02-01</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2023-01-12</time></span><span class="level-item"><a class="link-muted" href="/categories/Web-Site/">Web Site</a></span><span class="level-item">35 minutes read (About 5298 words)</span></div></div><div class="content"><p>JavaScript 基础语法部分内容，包括：JS 构成、JS 运行、JS 输出、JS 注释、以及 JS 基本概念等等。</p>
+<a id="more"></a>
+
+<h2 id="JS-构成"><a href="#JS-构成" class="headerlink" title="JS 构成"></a>JS 构成</h2><p>前面我们提到过，完整的 JavaScript 由以下三个部分组成：</p>
+<ul>
+<li>语言基础（核心，ECMAScript）：提供 JS 语言的基础语法和基本对象定义等；</li>
+<li>浏览器对象模型（BOM）：提供与浏览器进行交互的方法和接口；</li>
+<li>文档对象模型（DOM）：提供操作网页内容的方法和接口。</li>
+</ul>
+<blockquote>
+<p>本博文系列，我们更多的是介绍 JS 语言基础（ECMAScript）和 BOM 的相关使用说明。关于更详细的文档对象模型（DOM）可以参看后续的博文系列 HTML DOM 中说明。</p>
+</blockquote>
+<h3 id="ECMAScript"><a href="#ECMAScript" class="headerlink" title="ECMAScript"></a>ECMAScript</h3><p>ECMAScript 简称 “ES”，是基于 ECMA-262 标准实现的通用脚本语言核心。主要规定了脚本语言核心的语法、数据类型、语句、关键字、保留字、操作符、流程控制、对象等几个部分。</p>
+<p>也就是说，ECMAScript（核心）只是定义了 JavaScript 脚本语言的基础，而在此基础上通过其它部分（DOM、BOM）构建更完善的 JS 脚本语言。</p>
+<p><strong>ECMAScript 版本 &gt;&gt;&gt;&gt;</strong></p>
+<p>ECMAScript 版本发展如下（2015 年开始按年命名）：</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>官方名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ES1</td>
+<td>ECMAScript 1 (1997)</td>
+<td>第一版</td>
+</tr>
+<tr>
+<td>ES2</td>
+<td>ECMAScript 2 (1998)</td>
+<td>只改变编辑方式</td>
+</tr>
+<tr>
+<td><strong>ES3</strong></td>
+<td>ECMAScript 3 (1999)</td>
+<td>添加了正则表达式。添加了 try/catch。</td>
+</tr>
+<tr>
+<td>ES4</td>
+<td>ECMAScript 4</td>
+<td>从未发布过。</td>
+</tr>
+<tr>
+<td><strong>ES5</strong></td>
+<td>ECMAScript 5 (2009)</td>
+<td>添加了 “严格模式”。添加了 JSON 支持。添加了 String.trim()。添加了 Array.isArray()。添加了数组迭代方法。</td>
+</tr>
+<tr>
+<td>ES5.1</td>
+<td>ECMAScript 5.1 (2011)</td>
+<td>编辑改变。</td>
+</tr>
+<tr>
+<td><strong>ES6</strong></td>
+<td>ECMAScript 2015</td>
+<td>添加了 let 和 const 添加了默认参数值添加了 Array.find() 添加了 Array.findIndex()</td>
+</tr>
+<tr>
+<td>ES7</td>
+<td>ECMAScript 2016</td>
+<td>添加了指数运算符（**）。添加了 Array.prototype.includes。</td>
+</tr>
+<tr>
+<td>ES8</td>
+<td>ECMAScript 2017</td>
+<td>添加了字符串填充。添加了新的 Object 属性。添加了异步功能。添加了共享内存。</td>
+</tr>
+<tr>
+<td>ES9</td>
+<td>ECMAScript 2018</td>
+<td>添加了 rest / spread 属性。添加了异步迭代。添加了 Promise.finally()。增加 RegExp。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>所有浏览器都完全支持 ECMAScript 3，所有现代浏览器都完全支持 ECMAScript 5。</p>
+<hr>
+<h3 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h3><p>DOM 即 Document Object Model，文档对象模型的缩写。</p>
+<p>DOM 把整个 HTML 网页映射为一个多层的节点树结构，HTML 页面中的每一个组成部分都是某种类型的节点。</p>
+<p>通过 HTML DOM 创建的表示文档的树形图，且借助 DOM 提供的 API，可以轻松自如地删除，添加，替换或修改任何的 HTML 节点。</p>
+<hr>
+<h3 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h3><p>BOM 即 Browser Object Model，浏览器对象模型的缩写。</p>
+<p>浏览器提供了可访问和操作浏览器窗口的浏览器对象模型，通过其提供的 API 可轻松自如的操作浏览器。</p>
+<p>目前 BOM 已经正式纳入HTML5 标准。</p>
+<hr>
+<h2 id="JS-运行"><a href="#JS-运行" class="headerlink" title="JS 运行"></a>JS 运行</h2><p>我们知道，JavaScript 程序不能够独立运行，只能在 <strong>具有 JavaScript 引擎的宿主环境中执行</strong>。</p>
+<p>在前端页面开发中，一般情况下 JavaScript 程序有以下两种运行方式：</p>
+<ol>
+<li>JavaScript 代码嵌入到 HTML 文档中，借助浏览器环境来运行；</li>
+<li>通过浏览器控制台（Console）中以交互式的方式运行 JavaScript 代码（简单了解）。</li>
+</ol>
+<hr>
+<h3 id="JS-嵌入"><a href="#JS-嵌入" class="headerlink" title="JS 嵌入"></a>JS 嵌入</h3><p>类似于 CSS 嵌入，HTML 文档中提供了以下两种 JS 的嵌入方式：</p>
+<ul>
+<li>行内嵌入：JS 脚本直接嵌入到 HTML 标签中；</li>
+<li>内部嵌入：JS 脚本直接嵌入到 <code>&lt;head&gt;</code> 或 <code>&lt;body&gt;</code> 标签中；</li>
+<li>外部文件嵌入：JS 脚本保存到外部文件，后引入 HTML 文档中。</li>
+</ul>
+<hr>
+<h4 id="行内嵌入"><a href="#行内嵌入" class="headerlink" title="行内嵌入"></a>行内嵌入</h4><p>你可以在 HTML 事件属性中直接插入 JS 代码以响应事件执行。例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">value</span>=<span class="string">&quot;ClickMe&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;alert(&#x27;Hello, JavaScript.&#x27;)&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如上，我们为按钮绑定了一个点击事件（onclick），点击按钮后网页会弹出弹出一个警示框，显示 <code>Hello, JavaScript.</code>。</p>
+<hr>
+<h4 id="内部嵌入"><a href="#内部嵌入" class="headerlink" title="内部嵌入"></a>内部嵌入</h4><p>在 HTML 页面中嵌入 JavaScript 脚本需要使用 <code>&lt;script&gt;</code> 标签，JavaScript 代码必须包含在 <code>&lt;script&gt;...&lt;/script&gt;</code> 标签中。</p>
+<p>由 <code>&lt;script&gt;...&lt;/script&gt;</code> 标签包含的 JS 脚本代码，可被放置在 HTML 文档中的 <code>&lt;body&gt;</code> 和 <code>&lt;head&gt;</code> 元素中（可共存）。</p>
+<p>通常函数放入 <code>&lt;head&gt;</code> 部分（<strong>推荐</strong>）中，或者放在页面底部。这样尽可能的把它们安置到同一处位置，不会干扰页面的内容。</p>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;Hello JavaScript.&quot;</span>);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>document.write</code> 方法会将字符串 <code>Hello JavaScript.</code> 直接写入到 HTML 输出流中，和其它 HTML 内容共同显示。</p>
+<p>同理，你也可以将其嵌入到 <code>&lt;body&gt;</code> 中：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;&lt;h1&gt;JS Demo&lt;/h1&gt;&quot;</span>);</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;&lt;p&gt;Hello JavaScript.&lt;p&gt;&quot;</span>);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>现代浏览器以及 HTML 5 种默认 <code>&lt;script&gt;</code> 标签的脚本类型为 <code>JavaScript</code>，因此可以省略 <code>type=&quot;text/javascript&quot;</code> 属性；如果考虑到兼容早期版本浏览器，则需要设置 type 属性。</p>
+</blockquote>
+<hr>
+<h4 id="外部文件嵌入"><a href="#外部文件嵌入" class="headerlink" title="外部文件嵌入"></a>外部文件嵌入</h4><p>JavaScript 脚本代码不仅可以直接嵌入 HTML 文档中，也可以通过引用外部 JavaScript 脚本文件（js）的方式进行嵌入。JavaScript 脚本文件是纯文本文件，扩展名为 <code>.js</code>。</p>
+<p>类似于外部样式表，外部 JavaScript 脚本文件的嵌入方式，可以实现 JS 代码与 HTML 内容的分离，且外部文件可被多个网页使用。</p>
+<p>如需引用外部 JS 文件，可以通过 <code>&lt;script&gt;</code> 标签的 src 属性来设置指向外部 JavaScript 文件的 URL，引入语法格式如下：</p>
+<blockquote>
+<p><code>&lt;script type=&quot;text/javascript&quot; src=&quot;test.js&quot;&gt;&lt;/script&gt;</code></p>
+</blockquote>
+<p>需要注意的是，所引用的外部 JS 文件内，不要使用 <code>&lt;script&gt;</code> 标签，直接写 JS 代码即可。并且定义 src 属性的 <code>&lt;script&gt;</code> 标签不应再包含 JavaScript 代码。如果嵌入了代码，则只会下载并执行外部 JavaScript 文件，嵌入代码将被忽略。</p>
+<p>示例：首先创建一个外部 JavaScript 文件（test.js），并写入以下内容：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.write(<span class="string">&quot;Hello JavaScript.&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>HTML 文档中引入上述 JS 脚本文件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;js/test.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;JS Output Test.&quot;</span>);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="JS-执行顺序"><a href="#JS-执行顺序" class="headerlink" title="JS 执行顺序"></a>JS 执行顺序</h4><p>我们知道，浏览器在解析 HTML 文档时，将根据 HTML 文档流从上到下逐行解析和显示。</p>
+<p>而 JavaScript 代码也是 HTML 文档的组成部分，因此 JavaScript 脚本的执行顺序也是根据 HTML 文档中 <code>&lt;script&gt;</code> 标签的位置来确定的。</p>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;Hello JavaScript.&quot;</span>);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>JS Demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;&lt;p&gt;This is a paragraph.&lt;/p&gt;&quot;</span>);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="控制台执行"><a href="#控制台执行" class="headerlink" title="控制台执行"></a>控制台执行</h3><p>你还可以直接通过在浏览器的控制台（Console）中，以交互式的方式运行 JavaScript 代码（简单了解一下）。</p>
+<p>目前的主流浏览器：Google Chrome、Microsoft Edge、IE、Safari 等，这些浏览器均提供有浏览器开发者工具，且功能都大同小异，这里将以谷歌的 Chrome 浏览器为例进行简单介绍。</p>
+<p>Chrome 是由 Google 开发的免费网页浏览器，对于前端开发来说（尤其是调试代码）非常方便。</p>
+<p>你可以在 Chrome 浏览器中，通过快捷键 F12（或：More Tools &gt;&gt;&gt; Developer Tools）快速启用开发者工具，界面如下：</p>
+<p><img src="https://s2.loli.net/2022/12/21/bKsEMwx5QLODBe4.png"></p>
+<hr>
+<h4 id="Console-Run"><a href="#Console-Run" class="headerlink" title="Console Run"></a>Console Run</h4><p>打开开发者工具后，你可以直接在 Console 窗口调试 JavaScript 代码，如下图：</p>
+<p><img src="https://s2.loli.net/2022/12/21/8W1iEVqz9hSk3pT.png"></p>
+<p>你可以在输入提示符 <code>&gt;</code> 后输入想要执行的代码，例如 <code>console.log(&quot;Hello, JavaScript&quot;)</code>，按回车（<code>Enter</code>）后执行。</p>
+<p>如果你想输入多行代码，你可以使用 <code>Shift + Enter</code> 进行换行输入，然后按回车（<code>Enter</code>）后执行。</p>
+<p>你还可以使用蓝色框中的按钮，清空 Console 窗口的代码和输出信息。</p>
+<hr>
+<h4 id="Snippets-Run"><a href="#Snippets-Run" class="headerlink" title="Snippets Run"></a>Snippets Run</h4><p>除了使用控制台窗口，也可以在 Chrome 浏览器中创建一个脚本来执行 JavaScript 代码。</p>
+<p>打开开发者工具后，&gt;&gt;&gt; 点击 Sources 面板 &gt;&gt;&gt; 选择 Snippets 选项卡 &gt;&gt;&gt; 选择 New Snippet 来新建一个脚本文件，如下：</p>
+<p><img src="https://s2.loli.net/2022/12/21/fSv3nUtP7K91Hyk.png"></p>
+<p>如果你没看到 Snippets ，可以点左下面板上蓝色框中的 <code>&gt;&gt;</code> 就可以将其显示出来。</p>
+<p>点击 New Snippet 后，会自动创建一个文件，你只需在右侧窗口输入以下代码，然后保存代码（Ctrl + S）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Debug JS Code&quot;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Console Output&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>保存后，右击文件名，选择 “Run” 执行代码：</p>
+<p><img src="https://s2.loli.net/2022/12/21/tChzMwuYToVUZ5O.png"></p>
+<hr>
+<h2 id="JS-输出"><a href="#JS-输出" class="headerlink" title="JS 输出"></a>JS 输出</h2><p>某些情况下，我们可能需要将程序的运行结果输出到浏览器中，例如检验程序的运行是否符合我们的预期（调试）。</p>
+<p>JavaScript 中提供了 5 种不同的方式来向浏览器中输出内容：</p>
+<ul>
+<li>使用 <strong>window.alert()</strong> 函数来弹出警告框；</li>
+<li>使用 <strong>window.confirm()</strong> 函数来弹出一个验证对话框；</li>
+<li>使用 <strong>document.write()</strong> 函数将内容写到 HTML 文档输出流中；</li>
+<li>使用 <strong>innerHTML</strong> 标签属性将内容写入到 HTML 元素中；</li>
+<li>使用 <strong>console.log()</strong> 函数在浏览器的控制台中输出内容。</li>
+</ul>
+<blockquote>
+<p>严格来说，JavaScript 是没有任何打印或者输出函数的，以上几种方式都只不过是一种数据展示的方法。最接近输出的方法应该是 <code>console.log()</code>，但该方法只是一种调试辅助工具。</p>
+</blockquote>
+<hr>
+<p>下面分别来看上述的 5 种数据输出方法：</p>
+<h3 id="alert"><a href="#alert" class="headerlink" title="alert"></a>alert</h3><p>你可以使用 JS <strong>window.alert()</strong> 函数在浏览器窗口中弹出一个警告框来，在警告框中你可以定义要输出的内容，语法格式如下：</p>
+<blockquote>
+<p>alert(message); 或者 window.alert(message)</p>
+</blockquote>
+<p>其中，message 为要在警告框中输出的内容。这里，由于 alert() 函数是 window 对象下的一个函数，故也可以使用 window.alert() 的形式来调用 alert() 函数。</p>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>JS Demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.alert(<span class="string">&quot;这是一个提示信息！&quot;</span>);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="confirm"><a href="#confirm" class="headerlink" title="confirm"></a>confirm</h3><p>类似于 alert，<strong>confirm()</strong> 函数也是 window 对象下的一个函数，其会在浏览器窗口中弹出一个验证（授权）提示框，在提示框中你可以定义要告知用户须知的内容。</p>
+<p>不同的是，使用 confirm() 函数创建的提示框中，除了包含一个 “确定” 按钮外，还有一个 “取消” 按钮。<font color="red">如果点击 “确定” 按钮，那么 confirm() 函数会返回一个布尔值 true，如果点击 “取消” 按钮，那么 confirm() 函数会返回一个布尔值 false。</font></p>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>JS Demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.confirm(<span class="string">&quot;你是否同意完整获取网页权限？&quot;</span>);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，同 alert，window.confirm() 函数也可以简写为 confirm()。</p>
+<hr>
+<h3 id="console-log"><a href="#console-log" class="headerlink" title="console.log"></a>console.log</h3><p>在上面说明 JS 运行方式时，就已经见过 console.log() 函数了。</p>
+<p>使用 JS <strong>console.log()</strong> 函数可以向浏览器的控制台种输出信息，通常用来调试程序，其语法格式如下：</p>
+<blockquote>
+<p>console.log(message);</p>
+</blockquote>
+<p>其中，message 为要输出的内容，可以是字符串或者对象类型。但需要注意的是，console.log() 函数不能简写为 log()！</p>
+<p>想要查看 console.log() 函数的输出内容，需要先打开浏览器的控制台（见 JS 运行部分说明）。</p>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>JS Demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(<span class="string">&quot;JavaScript Output Test&quot;</span>);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="document-write"><a href="#document-write" class="headerlink" title="document.write"></a>document.write</h3><p>使用 JS <strong>document.write()</strong> 函数可以向 HTML 文档输出流中写入 <strong>HTML 或者 JavaScript 代码</strong>，语法格式如下：</p>
+<blockquote>
+<p>document.write(exp1, exp2, exp3, …);</p>
+</blockquote>
+<p>其中，exp1、exp2、exp3 为要向文档中写入的内容（可接收多个写入参数），内容之间使用逗号进行分隔。</p>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>JS Demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;&lt;p&gt;写入 HTML 段落&lt;/p&gt;&quot;</span>);</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="built_in">Date</span>()); <span class="comment">// Date() 是一个 JS 日期函数。</span></span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，如果在文档已完成加载后执行 document.write，整个 HTML 页面将被覆盖：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>JS Demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>点击按钮后，页面内容会被覆盖<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;myfunction()&quot;</span>&gt;</span>Click Me<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="keyword">function</span> <span class="title">myfunction</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">document</span>.write(<span class="built_in">Date</span>());</span></span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里 JS 脚本代码不用深究，后续会理解相关代码的含义。</p>
+<hr>
+<h3 id="innerHTML"><a href="#innerHTML" class="headerlink" title="innerHTML"></a>innerHTML</h3><p>相较于前面，innerHTML 有点特殊。innerHTML 是一个 HTML DOM 属性而不是一个函数，通过它可以设置或者获取指定 HTML 元素中的内容。</p>
+<p>由于 innerHTML 是一个 HTML DOM 属性，需要配合 HTML DOM 中的 <code>document.getElementById(id)</code> 方法使用，该方法可通过 id 属性来访问具有指定 id 属性值的 HTML 元素。</p>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>JS Demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;demo&quot;</span>&gt;</span>元素中内容<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;修改前 &gt;&gt;&gt;&quot;</span>, <span class="built_in">document</span>.getElementById(<span class="string">&quot;demo&quot;</span>).innerHTML, <span class="string">&quot;&lt;br/&gt;&quot;</span>);</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.getElementById(<span class="string">&quot;demo&quot;</span>).innerHTML = <span class="string">&quot;元素中的内容已被修改！&quot;</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;修改后 &gt;&gt;&gt;&quot;</span>, <span class="built_in">document</span>.getElementById(<span class="string">&quot;demo&quot;</span>).innerHTML);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>更多关于 HTML DOM 的介绍，可以参看后续的 HTML DOM 博文系列。这里仅仅需要知道的是 HTML DOM 定义了访问和操作 HTML 文档中元素的方法。</p>
+</blockquote>
+<hr>
+<h2 id="JS-注释"><a href="#JS-注释" class="headerlink" title="JS 注释"></a>JS 注释</h2><p>注释是给开发人员看的，程序在执行时会自动忽略注释的内容。程序中通常会使用注释来为代码添加一些解释说明或描述，以提高代码的可读性。或者为了方便代码调试，可以将不需要运行的代码注释起来等。</p>
+<p>并且类似于 Java 语法风格，JS 也支持单行注释和块注释两种风格：</p>
+<h3 id="行注释"><a href="#行注释" class="headerlink" title="行注释"></a>行注释</h3><p>单行注释以双斜杠 <code>//</code> 开头，<code>//</code> 之后的所有内容都会看作是注释的内容（仅作用于所在行）。</p>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>JS Demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// 使用 document.write() 函数向 HTML 输出流中写入：</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;&lt;p&gt;写入 HTML 段落&lt;/p&gt;&quot;</span>);</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="built_in">Date</span>()); <span class="comment">// Date() 是一个 JS 日期函数。</span></span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="块注释"><a href="#块注释" class="headerlink" title="块注释"></a>块注释</h3><p>块注释以 <code>/*</code> 开头，并以 <code>*/</code> 结尾，出现在 <code>/* 和 */</code> 之间的所有内容都会看作是注释的内容（包围一个代码块的内容）。</p>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>JS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>JS Demo<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;demo&quot;</span>&gt;</span>元素中内容<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">            /*</span><br><span class="line">            操作 id 属性为 demo 的元素：</span><br><span class="line">            1）获取元素中内容；</span><br><span class="line">            2）修改元素中内容。</span><br><span class="line">            */</span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;修改前：&quot;</span>, <span class="built_in">document</span>.getElementById(<span class="string">&quot;demo&quot;</span>).innerHTML, <span class="string">&quot;&lt;br/&gt;&quot;</span>);</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.getElementById(<span class="string">&quot;demo&quot;</span>).innerHTML = <span class="string">&quot;元素中的内容已被修改！&quot;</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.write(<span class="string">&quot;修改后：&quot;</span>, <span class="built_in">document</span>.getElementById(<span class="string">&quot;demo&quot;</span>).innerHTML);</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，<strong>块注释不允许嵌套</strong>，否则会产生语法错误！！！</p>
+<h3 id="HTML-风格注释"><a href="#HTML-风格注释" class="headerlink" title="HTML 风格注释"></a>HTML 风格注释</h3><p>由于 JS 支持 HTML 的内部嵌入方式，故内嵌的 JavaScript 还能够识别 HTML 注释的开始符 <code>&lt;!--</code>，并将其看作单行注释，与 <code>//</code> 效果相同。</p>
+<p>至于 HTML 注释的结束符，JavaScript 不能识别，应该使用 JavaScript 的单行注释将 HTML 注释的结束符注释掉，例如 <code>//--&gt;</code>。</p>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    &lt;!--<span class="built_in">document</span>.getElementById(<span class="string">&quot;demo&quot;</span>).innerHTML = <span class="string">&quot;元素中的内容已被修改！&quot;</span>;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// --&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="comment">// document.getElementById(&quot;demo&quot;).innerHTML = &quot;元素中的内容已被修改！&quot;;</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面两种注释方式等效。需要注意的是，<code>&lt;!--</code> 只生效于其所在行，故不可将需注释内容置于下行！</p>
+<hr>
+<h2 id="JS-基本概念"><a href="#JS-基本概念" class="headerlink" title="JS 基本概念"></a>JS 基本概念</h2><p>正式开始学习 JS 语言基础之前，这里先来了解一下 JavaScript 脚本语言中的几个简单的基本概念，例如：标识符、关键字、保留字、字面量、语句等等，它们是 JS 的基本组成元素。</p>
+<h3 id="标识符命名规范"><a href="#标识符命名规范" class="headerlink" title="标识符命名规范"></a>标识符命名规范</h3><p>程序设计语言中，标识符（Identifier）就是名称，用于给变量、常量、函数、类、对象等命名，以建立起名称与使用之间的关系。</p>
+<p>但标识符的命名不是随意的，而是要遵守一定的命令规则（合法标识符），比如说：</p>
+<p><strong>【1】</strong> 标识符可以由字母、数字、下划线以及美元符号（<code>$</code>）组成，其中，数字不允许作为首字符。</p>
+<p><strong>【2】</strong> 标识符对大小写敏感。</p>
+<p><strong>【3】</strong> JS 中允许使用 Unicode（汉字）作为标识符（避免使用），<strong>建议仅使用 ASCII 编码的字母</strong>。</p>
+<p><strong>【4】</strong> JavaScript 中的关键字、保留字不可作为标识符。</p>
+<p><strong>【5】</strong> 标识符命名方法推荐采用知名的 <strong>匈牙利命名法</strong> 或 <strong>驼峰命名法</strong>：</p>
+<ul>
+<li>匈牙利命名法 &gt;&gt;&gt; 变量名 = 类型（Int &gt; i；Float &gt; fl；Boolean &gt; b；String &gt; s；Array &gt; a；Object &gt; o；Function &gt; fn；Regular Expression &gt; re） + 对象描述；</li>
+<li>驼峰命名法 &gt;&gt;&gt; 大驼峰（每个单词首字母大写）&amp;&amp; 小驼峰（第一个单词首字母小写，其余单词首字母大写）&amp;&amp; 全部小写（单词间使用下划线分割）</li>
+</ul>
+<p><strong>【6】</strong> 标识符应尽量遵循 “见名知义”，让自己或者他人能轻易看懂。</p>
+<p><strong>【7】</strong> 英文名可参照 CODELF 给出：</p>
+<p>困扰：取名字真难？！！对于英语水平高考即巅峰的同学（当然不是贬低）达到见面知义有一定难度。</p>
+<p>这里推荐一个网站：<a target="_blank" rel="noopener" href="https://unbug.github.io/codelf/">CODELF</a>。命名前可以输入中文看看网络大佬们都是如何进行命名的。</p>
+<hr>
+<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><p>关键字（Key Word）就是 JavaScript 语言内部使用的命名，<font color="red">已经被 JS 系统赋予了特定的意义</font>，我们不能把它们用作任何标识符名称。</p>
+<p>JavaScript 中的关键字列表：</p>
+<table>
+<thead>
+<tr>
+<th>Col1</th>
+<th>Col2</th>
+<th>Col3</th>
+<th>Col4</th>
+<th>Col5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>break</td>
+<td>delete</td>
+<td>if</td>
+<td>this</td>
+<td>while</td>
+</tr>
+<tr>
+<td>case</td>
+<td>do</td>
+<td>in</td>
+<td>throw</td>
+<td>with</td>
+</tr>
+<tr>
+<td>catch</td>
+<td>else</td>
+<td>instanceof</td>
+<td>try</td>
+<td></td>
+</tr>
+<tr>
+<td>continue</td>
+<td>finally</td>
+<td>new</td>
+<td>typeof</td>
+<td></td>
+</tr>
+<tr>
+<td>debugger</td>
+<td>for</td>
+<td>return</td>
+<td>var</td>
+<td></td>
+</tr>
+<tr>
+<td>default</td>
+<td>function</td>
+<td>switch</td>
+<td>void</td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="保留字"><a href="#保留字" class="headerlink" title="保留字"></a>保留字</h3><p>保留字（Reserved Word）就是 JavaScript 语言内部预备使用的命名。这些名字可能目前还没有具体的用途，是 <font color="red">为 JavaScript 升级版本预留备用的</font>，建议用户不要把它们用作任何标识符名称。</p>
+<p>JavaScript 中的保留字列表：</p>
+<table>
+<thead>
+<tr>
+<th>Col1</th>
+<th>Col2</th>
+<th>Col3</th>
+<th>Col4</th>
+<th>Col5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>abstract</td>
+<td>double</td>
+<td>goto</td>
+<td>native</td>
+<td>static</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>enum</td>
+<td>implements</td>
+<td>package</td>
+<td>super</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>export</td>
+<td>import</td>
+<td>private</td>
+<td>synchronized</td>
+</tr>
+<tr>
+<td>char</td>
+<td>extends</td>
+<td>int</td>
+<td>protected</td>
+<td>throws</td>
+</tr>
+<tr>
+<td>class</td>
+<td>final</td>
+<td>interface</td>
+<td>public</td>
+<td>transient</td>
+</tr>
+<tr>
+<td>const</td>
+<td>float</td>
+<td>long</td>
+<td>short</td>
+<td>volatile</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>JavaScript 全局变量、对象、属性和方法 &gt;&gt;&gt;</strong></p>
+<p>JavaScript 预定义了很多全局变量、对象、属性和方法，用户也应该避免使用它们作为标识符：</p>
+<table>
+<thead>
+<tr>
+<th>Col1</th>
+<th>Col2</th>
+<th>Col3</th>
+<th>Col4</th>
+<th>Col5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>arguments</td>
+<td>encodeURL</td>
+<td>Infinity</td>
+<td>Number</td>
+<td>RegExp</td>
+</tr>
+<tr>
+<td>Array</td>
+<td>encodeURLComponent</td>
+<td>isFinite</td>
+<td>Object</td>
+<td>String</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>Error</td>
+<td>isNaN</td>
+<td>parseFloat</td>
+<td>SyntaxError</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>eval</td>
+<td>JSON</td>
+<td>parseInt</td>
+<td>TypeError</td>
+</tr>
+<tr>
+<td>decodeURL</td>
+<td>EvalError</td>
+<td>Math</td>
+<td>RangeError</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>decodeURLComponent</td>
+<td>Function</td>
+<td>NaN</td>
+<td>ReferenceError</td>
+<td>URLError</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>HTML &amp;&amp; Windows &amp;&amp; Java &gt;&gt;&gt;</strong></p>
+<p>JavaScript 经常与 HTML &amp;&amp; Java 一起使用，你必须（为了可移植性，你也应该这么做）避免使用 Java、HTML 和 Windows 对象和属性的名称作为 JS 标识符。</p>
+<hr>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>类似于其它编程语言，JavaScript 中也支持多种数据类型，用于描述或存储不同类型的数据：</p>
+<ul>
+<li>数字（Number）</li>
+<li>字符串（String）</li>
+<li>布尔（Boolean）</li>
+<li>空（Null）</li>
+<li>未定义（Undefined）</li>
+<li>Symbol</li>
+<li>数组（Array）</li>
+<li>函数（Function）</li>
+<li>对象（Object）</li>
+</ul>
+<hr>
+<h3 id="字面量"><a href="#字面量" class="headerlink" title="字面量"></a>字面量</h3><p>字面量（Literal）也叫直接量（或字面值），就是具体的值，即能够直接参与运算或显示的值。</p>
+<p>针对值类型的不同，可以分为不同数据类型的字面值。例如：数值字面值、布尔字面值、字符串字面值、正则表达式字面值、对象字面值、数组字面值、函数字面值等。</p>
+<p>不同类型字面值实例如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&quot;Johnson&quot; //字符串直接量</span><br><span class="line">666  //数值直接量</span><br><span class="line">true  //布尔值直接量</span><br><span class="line">/a/g  //正则表达式直接量</span><br><span class="line">null  //特殊值直接量</span><br><span class="line">&#123;&#125;  //空对象直接量</span><br><span class="line">[]  //空数组直接量</span><br><span class="line">function()&#123;&#125;  //空函数直接量，也就是函数表达式</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="JS-语句"><a href="#JS-语句" class="headerlink" title="JS 语句"></a>JS 语句</h3><p>JavaScript 脚本程序就是由一行行的 JS 语句构成的，对应的是一条条的 JS 指令，用来告诉浏览器要做什么事情。</p>
+<p>通常，你需要在每条可执行的 JS 语句结尾添加分号（<code>;</code>），用于分割语句。示例代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5</span>;</span><br><span class="line">b = <span class="number">6</span>;</span><br><span class="line">c = a + b;</span><br></pre></td></tr></table></figure>
+
+<p>你也可以在一行中，写多个 JS 语句（为了提高可读性，不推荐）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5</span>; b = <span class="number">6</span>; c = a + b;</span><br></pre></td></tr></table></figure>
+
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>JS 教程之 JavaScript 基础语法</p><p><a href="https://www.orangeshare.cn/2019/02/01/js-jiao-cheng-zhi-javascript-ji-chu-yu-fa/">https://www.orangeshare.cn/2019/02/01/js-jiao-cheng-zhi-javascript-ji-chu-yu-fa/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-02-01</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2023-01-12</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Front-End-Devp/">Front-End Devp</a><a class="link-muted mr-2" rel="tag" href="/tags/Back-End-Devp/">Back-End Devp</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/02/02/js-jiao-cheng-zhi-bian-liang-he-shu-ju-lei-xing/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">JS 教程之 JavaScript 变量和数据类型</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/02/01/js-jiao-cheng-zhi-chu-shi-javascript/"><span class="level-item">JS 教程之初识 JavaScript</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">88</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">39</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#JS-构成"><span class="level-left"><span class="level-item">1</span><span class="level-item">JS 构成</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#ECMAScript"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">ECMAScript</span></span></a></li><li><a class="level is-mobile" href="#DOM"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">DOM</span></span></a></li><li><a class="level is-mobile" href="#BOM"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">BOM</span></span></a></li></ul></li><li><a class="level is-mobile" href="#JS-运行"><span class="level-left"><span class="level-item">2</span><span class="level-item">JS 运行</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#JS-嵌入"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">JS 嵌入</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#行内嵌入"><span class="level-left"><span class="level-item">2.1.1</span><span class="level-item">行内嵌入</span></span></a></li><li><a class="level is-mobile" href="#内部嵌入"><span class="level-left"><span class="level-item">2.1.2</span><span class="level-item">内部嵌入</span></span></a></li><li><a class="level is-mobile" href="#外部文件嵌入"><span class="level-left"><span class="level-item">2.1.3</span><span class="level-item">外部文件嵌入</span></span></a></li><li><a class="level is-mobile" href="#JS-执行顺序"><span class="level-left"><span class="level-item">2.1.4</span><span class="level-item">JS 执行顺序</span></span></a></li></ul></li><li><a class="level is-mobile" href="#控制台执行"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">控制台执行</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Console-Run"><span class="level-left"><span class="level-item">2.2.1</span><span class="level-item">Console Run</span></span></a></li><li><a class="level is-mobile" href="#Snippets-Run"><span class="level-left"><span class="level-item">2.2.2</span><span class="level-item">Snippets Run</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#JS-输出"><span class="level-left"><span class="level-item">3</span><span class="level-item">JS 输出</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#alert"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">alert</span></span></a></li><li><a class="level is-mobile" href="#confirm"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">confirm</span></span></a></li><li><a class="level is-mobile" href="#console-log"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">console.log</span></span></a></li><li><a class="level is-mobile" href="#document-write"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">document.write</span></span></a></li><li><a class="level is-mobile" href="#innerHTML"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">innerHTML</span></span></a></li></ul></li><li><a class="level is-mobile" href="#JS-注释"><span class="level-left"><span class="level-item">4</span><span class="level-item">JS 注释</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#行注释"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">行注释</span></span></a></li><li><a class="level is-mobile" href="#块注释"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">块注释</span></span></a></li><li><a class="level is-mobile" href="#HTML-风格注释"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">HTML 风格注释</span></span></a></li></ul></li><li><a class="level is-mobile" href="#JS-基本概念"><span class="level-left"><span class="level-item">5</span><span class="level-item">JS 基本概念</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#标识符命名规范"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">标识符命名规范</span></span></a></li><li><a class="level is-mobile" href="#关键字"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">关键字</span></span></a></li><li><a class="level is-mobile" href="#保留字"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">保留字</span></span></a></li><li><a class="level is-mobile" href="#数据类型"><span class="level-left"><span class="level-item">5.4</span><span class="level-item">数据类型</span></span></a></li><li><a class="level is-mobile" href="#字面量"><span class="level-left"><span class="level-item">5.5</span><span class="level-item">字面量</span></span></a></li><li><a class="level is-mobile" href="#JS-语句"><span class="level-left"><span class="level-item">5.6</span><span class="level-item">JS 语句</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2023 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

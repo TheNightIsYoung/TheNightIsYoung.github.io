@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>JS 教程之初识 JavaScript - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="JavaScript，简称 JS，是当前互联网上最流行、应用最广泛的客户端脚本语言，用来为网页添加一些动态效果或者用户交互功能，在 Web 开发领域有着举足轻重的地位。"><meta property="og:type" content="blog"><meta property="og:title" content="JS 教程之初识 JavaScript"><meta property="og:url" content="https://www.orangeshare.cn/2019/02/01/js-jiao-cheng-zhi-chu-shi-javascript/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="JavaScript，简称 JS，是当前互联网上最流行、应用最广泛的客户端脚本语言，用来为网页添加一些动态效果或者用户交互功能，在 Web 开发领域有着举足轻重的地位。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://www.orangeshare.cn/img/og_image.png"><meta property="article:published_time" content="2019-02-01T00:32:16.000Z"><meta property="article:modified_time" content="2022-12-26T07:58:26.983Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Front-End Devp"><meta property="article:tag" content="Back-End Devp"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2019/02/01/js-jiao-cheng-zhi-chu-shi-javascript/"},"headline":"When Art Meets Tech","image":["https://www.orangeshare.cn/img/og_image.png"],"datePublished":"2019-02-01T00:32:16.000Z","dateModified":"2022-12-26T07:58:26.983Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"JavaScript，简称 JS，是当前互联网上最流行、应用最广泛的客户端脚本语言，用来为网页添加一些动态效果或者用户交互功能，在 Web 开发领域有着举足轻重的地位。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2019/02/01/js-jiao-cheng-zhi-chu-shi-javascript/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>JS 教程之初识 JavaScript</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2019-02-01</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2022-12-26</time></span><span class="level-item"><a class="link-muted" href="/categories/Web-Site/">Web Site</a></span><span class="level-item">12 minutes read (About 1817 words)</span></div></div><div class="content"><p>JavaScript，简称 <strong>JS</strong>，是当前互联网上最流行、应用最广泛的客户端脚本语言，用来为网页添加一些动态效果或者用户交互功能，在 Web 开发领域有着举足轻重的地位。</p>
+<a id="more"></a>
+
+<h2 id="认识-JS"><a href="#认识-JS" class="headerlink" title="认识 JS"></a>认识 JS</h2><p>前面我们提过，JavaScript 与 HTML 和 CSS 共同构成了我们所看到的网页（W3C 标准模式），其中：</p>
+<ul>
+<li>HTML 用来定义网页的内容 &gt;&gt;&gt; 例如标题、正文、图像等；</li>
+<li>CSS 用来控制网页的外观 &gt;&gt;&gt; 例如颜色、字体、背景等；</li>
+<li>JavaScript 是行为，用来实时更新网页中的内容 &gt;&gt;&gt; 例如从服务器获取数据并更新到网页中，修改某些标签的样式或其中的内容等，可以让网页更加生动。</li>
+</ul>
+<p>通俗的来说，JavaScript 是一种可插入 HTML 文档的，由浏览器解释执行的，轻量级脚本编程语言。</p>
+<hr>
+<h2 id="JS-的历史"><a href="#JS-的历史" class="headerlink" title="JS 的历史"></a>JS 的历史</h2><p>JavaScript 最初被称为 <font color="red">LiveScrip</font>，由 Netscape（Netscape Communications Corporation，网景通信公司）公司的布兰登·艾奇（Brendan Eich）在 1995 年开发。在 Netscape 与 Sun（Sun Microsystems，现已被甲骨文公司收购）合作之后正式更名为了 <strong>JavaScript</strong>。</p>
+<p>之所以将 LiveScript 更名为 JavaScript，是因为 <font color="red">JavaScript 是受 Java 的启发而设计的，因此在语法上它们有很多相似之处 ，JavaScript 中的许多命名规范也都借鉴自 Java</font>，还有一个原因就是 <font color="red">为了营销，蹭 Java 的热度</font>。</p>
+<p>同一时期，微软和 Nombas 公司也分别开发了 JScript 和 ScriptEase 两种脚本语言，与 JavaScript 形成了三足鼎立之势。它们之间没有统一的标准，不能互用。随着版本不同暴露的问题日益加剧，JavaScript 的规范化最终被提上日程。</p>
+<p>为了解决这一问题，1997 年，在 ECMA（European Computer Manufacturers Association，欧洲计算机制造商协会）的牵头下，Netscape、Sun、微软、Borland 等公司组成了工作组，并 <font color="red">以 JavaScript1.1 为蓝本制定了 ECMA-262</font>，它是一种名为 <strong>ECMAScript</strong> 脚本语言标准。</p>
+<p>第二年，ISO/IEC（国际标准化组织及国际电工委员会）也采用了 ECMAScript 作为标准（即 ISO/IEC-16262）。</p>
+<hr>
+<h2 id="JS-Vs-ECMAScript"><a href="#JS-Vs-ECMAScript" class="headerlink" title="JS Vs ECMAScript"></a>JS Vs ECMAScript</h2><p>有时人们会将 JavaScript 与 ECMAScript 看作是相同的。其实不然，JavaScript 中所包含的内容远比 ECMA-262 中规定的多得多，完整的 JavaScript 是由以下三个部分组成：</p>
+<ul>
+<li>核心（ECMAScript）：提供 JS 语言的核心语法和基本对象支持等；</li>
+<li>文档对象模型（DOM）：提供操作网页内容的方法和接口；</li>
+<li>浏览器对象模型（BOM）：提供与浏览器进行交互的方法和接口。</li>
+</ul>
+<p>也就是说，ECMAScript（核心）只是定义了 JavaScript 脚本语言的基础，而在此基础上通过其它部分（DOM、BOM）构建更完善的 JS 脚本语言。</p>
+<hr>
+<h2 id="如何运行-JS"><a href="#如何运行-JS" class="headerlink" title="如何运行 JS"></a>如何运行 JS</h2><p>作为一种脚本语言，JavaScript 代码不能独立运行，通常情况下我们需要 <font color="red">借助浏览器来运行 JavaScript 代码</font>，目前所有 Web 浏览器都支持 JavaScript。</p>
+<p>除了可以在浏览器中执行外，也可以在 <font color="red">服务端（Nodejs）或者搭载了 JavaScript 引擎的设备</font> 中执行 JavaScript 代码。</p>
+<p>浏览器之所以能够运行 JavaScript 代码就是因为浏览器中都嵌入了 JavaScript 引擎。常见的 JavaScript 引擎有：</p>
+<ul>
+<li>V8 In Chrome &amp;&amp; Opera；</li>
+<li>SpiderMonkey In Firefox；</li>
+<li>Chakra In </li>
+<li>ChakraCore In Microsoft Edge；</li>
+<li>SquirrelFish In Safari。 </li>
+</ul>
+<hr>
+<h2 id="认识-Node-js"><a href="#认识-Node-js" class="headerlink" title="认识 Node.js"></a>认识 Node.js</h2><p>JavaScript 诞生于 1995 年，几乎是和互联网同时出现；Node.js 诞生于 2009 年，比 JavaScript 晚了 15 年左右。</p>
+<p>在 Node.js 之前，JavaScript 只能运行在浏览器中，作为网页脚本使用。有了 Node.js 以后，JavaScript 就可以脱离浏览器，像其它编程语言一样直接在计算机（服务器）上使用，想干什么就干什么，再也不受浏览器的限制了。</p>
+<p>Node.js 既不是一门新的编程语言，也不是一个 JavaScript 框架，它是 <font color="red">一套基于  V8 引擎的 JavaScript 运行环境，用来支持 JavaScript 代码的执行</font>。</p>
+<p>用编程术语来讲，<strong>Node.js 是一个 JavaScript 运行时（Runtime）</strong>。</p>
+<p>现在的 JavaScript 除了用于 Web 前端编程（网页编程），还能干很多事情，比如：</p>
+<ul>
+<li>网站后台（Node.js）；</li>
+<li>CLI 命令行工具(Node.js)；</li>
+<li>桌面 GUI 程序（Electron）；</li>
+<li>手机 App(Cordova)；</li>
+<li>控制硬件-物联网(Ruff)；</li>
+<li>游戏开发(cocos2d-js)。</li>
+</ul>
+<p>也就是说，学会了 JavaScript，你不但是全栈工程师，甚至还将无所不能，这都是 Node.js 带给我们的。</p>
+<hr>
+<p><strong>Runtime 详解 &gt;&gt;&gt;</strong></p>
+<p>所谓运行时，就是程序在运行期间需要依赖的一系列组件或者工具；把这些工具和组件打包在一起提供给程序员，程序员就能运行自己编写的代码了。</p>
+<p>例如：解释器、JS 标准库、JS 本地模块（网络模块、Debugger 模块、HTML 解析模块）等各种组件/工具共同支撑了 JavaScript 代码的运行，它们统称为 JavaScript 运行时。</p>
+<p>在 Node.js 之前，JavaScript 运行时被绑定在浏览器中，作为浏览器的各种模块出现。</p>
+<p>这意味着，要想运行 JavaScript 代码就必须启动浏览器，JavaScript 逃不出浏览器的手掌心，它的功能受到很大的限制，只能作为网页脚本使用。</p>
+<hr>
+<h2 id="JS-特点"><a href="#JS-特点" class="headerlink" title="JS 特点"></a>JS 特点</h2><p>JavaScript 具有以下特点：</p>
+<p><strong>[1] &gt;&gt;&gt; 解释型脚本语言</strong></p>
+<p>JavaScript 是一种解释型脚本语言，与 Java、C/C++ 等语言需要先编译再运行不同，使用 JavaScript 编写的代码不需要编译，可以直接运行。</p>
+<p><strong>[2] &gt;&gt;&gt; 面向对象</strong></p>
+<p>JavaScript 是一种面向对象语言，使用 JavaScript 不仅可以创建对象，也能操作使用已有的对象。</p>
+<p><strong>[3] &gt;&gt;&gt; 弱类型语言</strong></p>
+<p>avaScript 是一种弱类型的编程语言，对使用的数据类型没有严格的要求。例如你可以将一个变量初始化为任意类型，也可以随时改变这个变量的类型。</p>
+<p><strong>[4] &gt;&gt;&gt; 动态性</strong></p>
+<p>JavaScript 是一种采用事件驱动的脚本语言，它不需要借助 Web 服务器就可以对用户的输入做出响应。例如我们在访问一个网页时，通过鼠标在网页中进行点击或滚动窗口时，通过 JavaScript 可以直接对这些事件做出响应。</p>
+<p><strong>[5] &gt;&gt;&gt; 跨平台</strong></p>
+<p>JavaScript 不依赖操作系统，在浏览器中就可以运行。因此一个 JavaScript 脚本在编写完成后可以在任意系统上运行，只需要系统上的浏览器支持 JavaScript 即可。</p>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>JS 教程之初识 JavaScript</p><p><a href="https://www.orangeshare.cn/2019/02/01/js-jiao-cheng-zhi-chu-shi-javascript/">https://www.orangeshare.cn/2019/02/01/js-jiao-cheng-zhi-chu-shi-javascript/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-02-01</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-12-26</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Front-End-Devp/">Front-End Devp</a><a class="link-muted mr-2" rel="tag" href="/tags/Back-End-Devp/">Back-End Devp</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/02/01/js-jiao-cheng-zhi-javascript-ji-chu-yu-fa/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">JS 教程之 JavaScript 基础语法</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/01/14/css-jiao-cheng-zhi-css-ji-chu-yang-shi-she-zhi-zhi-er/"><span class="level-item">CSS 教程之 CSS 基础样式设置之二</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">88</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">39</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#认识-JS"><span class="level-left"><span class="level-item">1</span><span class="level-item">认识 JS</span></span></a></li><li><a class="level is-mobile" href="#JS-的历史"><span class="level-left"><span class="level-item">2</span><span class="level-item">JS 的历史</span></span></a></li><li><a class="level is-mobile" href="#JS-Vs-ECMAScript"><span class="level-left"><span class="level-item">3</span><span class="level-item">JS Vs ECMAScript</span></span></a></li><li><a class="level is-mobile" href="#如何运行-JS"><span class="level-left"><span class="level-item">4</span><span class="level-item">如何运行 JS</span></span></a></li><li><a class="level is-mobile" href="#认识-Node-js"><span class="level-left"><span class="level-item">5</span><span class="level-item">认识 Node.js</span></span></a></li><li><a class="level is-mobile" href="#JS-特点"><span class="level-left"><span class="level-item">6</span><span class="level-item">JS 特点</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2023 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

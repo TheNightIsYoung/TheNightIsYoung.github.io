@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>CSS 教程之 CSS 颜色和长度说明 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="CSS 中的颜色设置，以及元素长度单位说明。"><meta property="og:type" content="blog"><meta property="og:title" content="CSS 教程之 CSS 颜色和长度说明"><meta property="og:url" content="https://www.orangeshare.cn/2019/01/12/css-jiao-cheng-zhi-css-yan-se-he-chang-du-shuo-ming/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="CSS 中的颜色设置，以及元素长度单位说明。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://www.orangeshare.cn/img/og_image.png"><meta property="article:published_time" content="2019-01-12T00:36:43.000Z"><meta property="article:modified_time" content="2022-12-15T10:09:48.436Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Front-End Devp"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2019/01/12/css-jiao-cheng-zhi-css-yan-se-he-chang-du-shuo-ming/"},"headline":"When Art Meets Tech","image":["https://www.orangeshare.cn/img/og_image.png"],"datePublished":"2019-01-12T00:36:43.000Z","dateModified":"2022-12-15T10:09:48.436Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"CSS 中的颜色设置，以及元素长度单位说明。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2019/01/12/css-jiao-cheng-zhi-css-yan-se-he-chang-du-shuo-ming/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>CSS 教程之 CSS 颜色和长度说明</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2019-01-12</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2022-12-15</time></span><span class="level-item"><a class="link-muted" href="/categories/Web-Site/">Web Site</a></span><span class="level-item">15 minutes read (About 2200 words)</span></div></div><div class="content"><p>CSS 中的颜色设置，以及元素长度单位说明。</p>
+<a id="more"></a>
+
+<h2 id="CSS-颜色"><a href="#CSS-颜色" class="headerlink" title="CSS 颜色"></a>CSS 颜色</h2><p>在前面博文【<a href="https://www.orangeshare.cn/2019/01/04/html-jiao-cheng-zhi-html-zi-fu-ji-he-yan-se/">HTML 教程之 HTML 字符集和颜色</a>】中提到过，HTML 颜色采用的是 RGB 颜色模式，是通过对红 (R)、绿 (G)、蓝 (B) 三个颜色通道的变化以及它们相互之间的叠加来得到各式各样的颜色的。</p>
+<p>并且，我们还提到可以使用颜色值（Color Value，3/6 位十六进制颜色值/RGB）和颜色名称（Color Name）来指定 HTML 元素的颜色。</p>
+<p>CSS 中也提供了 <strong>不同模式</strong> 的值来为元素指定颜色，如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Color Name</td>
+<td>使用颜色名称（不区分大小写）来设置具体的颜色，例如 red、blue、brown</td>
+<td>color: red;</td>
+</tr>
+<tr>
+<td>Color Value</td>
+<td>使用 3/6 位十六进制字符的形式来设置具体颜色，形式：<code>#RRGGBB</code> 或 <code>#RGB</code>，例如 #ff0000</td>
+<td>color: #f03;</td>
+</tr>
+<tr>
+<td>RGB</td>
+<td>使用 rgb() 函数（R &amp;&amp; G &amp;&amp; B）三通道的强度进行控制，从而实现不同的颜色</td>
+<td>color: rgb(255,0,51);</td>
+</tr>
+<tr>
+<td>RGBA</td>
+<td>RGBA 扩展了 RGB，在 RGB 的基础上增加了 alpha 通道来设置颜色的透明度，需要 rgba() 函数</td>
+<td>color: rgba(255,0,0,0.1);</td>
+</tr>
+<tr>
+<td>HSL</td>
+<td>使用 hsl() 函数，对颜色的色调、饱和度、亮度进行调节，从而实现不同的颜色</td>
+<td>color: hsl(120,100%,25%);</td>
+</tr>
+<tr>
+<td>HSLA</td>
+<td>HSLA 扩展了 HSL，在 HSL 的基础上增加了 alpha 通道来设置颜色的透明度，需要 hsla() 函数</td>
+<td>color: hsla(240,100%,50%,0.5);</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="Color-Name"><a href="#Color-Name" class="headerlink" title="Color Name"></a>Color Name</h3><p>使用颜色名称来设置颜色是最简单的方法。</p>
+<p>颜色名称是通过一些标准定义好的颜色名，目前所有浏览器都支持 141 个标准颜色名称（ HTML 和 CSS 颜色规范定义）</p>
+<p><strong>17 标准颜色</strong>：黑色，蓝色，水，紫红色，灰色，绿色，石灰，栗色，海军，橄榄，橙，紫，红，白，银，蓝绿色，黄色。再加 <strong>124 个其它颜色</strong>。</p>
+<p>关于HTML 和 CSS 颜色名称支持，你可以参考 &gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://www.w3cschool.cn/html/html-colornames.html">HTML 颜色手册</a>。</p>
+<blockquote>
+<p>需要注意的是，不同的浏览器之间对颜色的解析可能存在差异，为了安全起见，<font color="red">不建议你在 CSS 中使用颜色名称来指定颜色</font>。</p>
+</blockquote>
+<hr>
+<h3 id="Color-Value"><a href="#Color-Value" class="headerlink" title="Color Value"></a>Color Value</h3><p>使用 3 位 或 6 位十六进制码的形式设置颜色是最常见的一种方法。</p>
+<p>它们都可以分为三组，分别对应 R &amp;&amp; G &amp;&amp; B 三个颜色通道，形式为：<code>#RRGGBB</code>（6 位） 或 <code>#RGB</code>（3 位）。</p>
+<p>在使用十六进制码表示颜色时，如果每组的两个十六进制数都是相同的，例如 <code>#00ff00、#ffffff、#aabbcc</code>，则可以将它们简写为 <code>#0f0、#fff、#abc</code>。</p>
+<blockquote>
+<p>需要注意的是，你不需要查颜色手册，可以通过一些 <strong>取色器</strong> 软件即可获取任意可见颜色的十六进制码。</p>
+</blockquote>
+<hr>
+<h3 id="RGB"><a href="#RGB" class="headerlink" title="RGB"></a>RGB</h3><p>CSS 中要使用 RGB 模式来设置颜色需要借助 rgb() 函数，函数的语法格式如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rgb(red, green, blue)</span><br></pre></td></tr></table></figure>
+
+<p>其中，red、green、blue 分别表示三原色红、绿、蓝的强度，这三个参数的取值可以是 <code>0~255</code> 之间的整数，也可以是 <code>0%~100%</code> 之间百分比数值。</p>
+<p>样例如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">rgb</span>(<span class="number">255</span>, <span class="number">165</span>, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">rgb</span>(<span class="number">0%</span>, <span class="number">100%</span>, <span class="number">0%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="RGBA"><a href="#RGBA" class="headerlink" title="RGBA"></a>RGBA</h3><p>RGBA 是 RGB 的扩展，在 RGB 的基础上又增加了对 Alpha 通道的控制，Alpha 通道可以设置颜色的透明度。</p>
+<p>故，CSS 中要使用 RGBA 模式来设置颜色需要借助 rgba() 函数，函数的语法格式如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rgba(red, green, blue, alpha);</span><br></pre></td></tr></table></figure>
+
+<p>其中，alpha 表示颜色的透明度，取值为 <code>0~1</code>（ 0 表示完全透明，1 表示完全不透明）之间的小数。</p>
+<p>样例如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="HSL"><a href="#HSL" class="headerlink" title="HSL"></a>HSL</h3><p>HSL 是 Hue（色调）、Saturation（饱和度）、Lightness（亮度）的缩写，它同样也是一种色彩模式，可以通过对色调、饱和度、亮度三个属性的调节来实现不同颜色的。</p>
+<p>CSS 中要使用 HSL 模式来设置颜色需要借助 hsl() 函数，函数的语法格式如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hsl(hue, saturation, lightness)</span><br></pre></td></tr></table></figure>
+
+<p>其中，</p>
+<p><strong>[1] &gt;&gt;&gt; hue</strong></p>
+<p>参数 hue 表示颜色在色盘上的度数（0~360），<code>0/360</code> 表示红色，<code>120</code> 表示绿色，<code>240</code> 表示蓝色。</p>
+<p><strong>[2] &gt;&gt;&gt; saturation</strong></p>
+<p>参数 saturation 为一个百分比数值，表示色彩的饱和度，<code>0%</code> 表示灰色，<code>100%</code> 表示全彩。</p>
+<p><strong>[3] &gt;&gt;&gt; lightness</strong></p>
+<p>参数 lightness 同样为一个百分比数值，表示颜色的亮度，0% 是黑色（没有亮度），50% 为最合适的亮度（既不发黑也不过亮），100% 是白色（曝光严重）。</p>
+<p>实例如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">hsl</span>(<span class="number">0</span>, <span class="number">100%</span>, <span class="number">50%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="HSLA"><a href="#HSLA" class="headerlink" title="HSLA"></a>HSLA</h3><p>HSLA 是 HSL 的扩展，在 HSLA 中增加了对 Alpha 通道（颜色透明度）的控制，其余与 HSL 相同。</p>
+<p>CSS 中要使用 HSLA 模式来设置颜色需要借助 hsla() 函数，函数的语法格式如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hsla(hue, saturation, lightness, alpha)</span><br></pre></td></tr></table></figure>
+
+<p>其中，alpha 表示颜色的透明度，取值为 <code>0~1</code>（ 0 表示完全透明，1 表示完全不透明）之间的小数。</p>
+<p>实例如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">hsla</span>(<span class="number">0</span>, <span class="number">100%</span>, <span class="number">50%</span>, <span class="number">0.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="CSS-长度单位"><a href="#CSS-长度单位" class="headerlink" title="CSS 长度单位"></a>CSS 长度单位</h2><p>HTML 中元素的尺寸是非常的属性，例如字体大小、元素宽高等等，这就要涉及到长度的单位问题。</p>
+<p>CSS 支持多种不同的长度单位，根据类型的不同可以分为两类：</p>
+<ul>
+<li>绝对长度单位；</li>
+<li>相对长度单位。</li>
+</ul>
+<p>下面我们来看 CSS 中支持的几种具体度量单位：</p>
+<hr>
+<h3 id="绝对长度单位"><a href="#绝对长度单位" class="headerlink" title="绝对长度单位"></a>绝对长度单位</h3><p>绝对长度单位表示一个真实的物理尺寸，它的大小是固定的，不会因为其它元素尺寸的变化而变化。</p>
+<p>如下列举了 CSS 中支持的绝对长度单位（常用高亮）：</p>
+<table>
+<thead>
+<tr>
+<th>单位</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cm</td>
+<td>厘米</td>
+<td>p{font-size: 0.5cm;}</td>
+</tr>
+<tr>
+<td>mm</td>
+<td>毫米</td>
+<td>p{font-size: 5mm;}</td>
+</tr>
+<tr>
+<td>in</td>
+<td>inch 英寸（1in = 96px = 2.54cm）</td>
+<td>p{font-size: 1in;}</td>
+</tr>
+<tr>
+<td><strong>px</strong></td>
+<td>pixel 像素（1px = 1/96in）</td>
+<td>p{font-size: 16px;}</td>
+</tr>
+<tr>
+<td>pt</td>
+<td>point，专用印刷单位 “磅”，（1pt = 1/72in）</td>
+<td>p{font-size: 16pt;}</td>
+</tr>
+<tr>
+<td>pc</td>
+<td>pica，专用字体大小印刷单位 “派卡”，相当于我国新四号铅字的尺寸（1pc = 12pt）</td>
+<td>p{font-size: 5pc;}</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.box</span>&#123;</span></span><br><span class="line">                width: 4in;</span><br><span class="line">                height: 4.5cm;</span><br><span class="line">                border: 2mm solid black;</span><br><span class="line">                font-size: 16px;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.pt</span>&#123;</span></span><br><span class="line">                font-size: 6pt;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.pc</span>&#123;</span></span><br><span class="line">                font-size: 3pc;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">                这是 16px 的字体</span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;pt&quot;</span>&gt;</span>这是 6pt 的字体<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;pc&quot;</span>&gt;</span>这是 3pc 的字体<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="相对长度单位"><a href="#相对长度单位" class="headerlink" title="相对长度单位"></a>相对长度单位</h3><p>相对长度单位指的是这个单位没有一个固定的值，它的值受到其它元素属性（例如浏览器窗口的大小、父级元素的大小）的影响。</p>
+<p>也即是说，相对长度单位必须有一个对照物，即相对于谁的（那个元素）长度单位，在 <strong>响应式布局方面相对长度单位非常适用</strong>。</p>
+<p>如下列举了 CSS 中支持的相对长度单位（常用高亮）：</p>
+<table>
+<thead>
+<tr>
+<th>单位</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>em</strong></td>
+<td>相对于自身 font-size 属性的值（未设置，默认继承父元素 font-size 属性的值），1em 等同于 font-size=”xx” 的属性值。例如 font-size 的值为 16px，那么 1em 就等于 16px</td>
+<td>p{line-height:2em;}</td>
+</tr>
+<tr>
+<td><strong>rem</strong></td>
+<td>相对于根元素<html>的 font-size 属性的大小。例如根元素的 font-size 是 100px，那么 1.2rem 就相当于 120px</td>
+<td>p{font-size: 1.2rem;}</td>
+</tr>
+<tr>
+<td>ex</td>
+<td>相对于所用字体中，小写英文字母 x 的高度，若无法确定 x 的高度则使用 0.5em 计算</td>
+<td>p{font-size: 1ex;}</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>相对于所用字体中，数字 0 的高度，若无法确定 0 的高度则使用 0.5em 计算</td>
+<td>p{line-height: 3ch}</td>
+</tr>
+<tr>
+<td><strong>vw</strong></td>
+<td>相对于浏览器窗口的宽度，1vw = 窗口宽度的 1%</td>
+<td>p{font-size: 5vw;}</td>
+</tr>
+<tr>
+<td><strong>vh</strong></td>
+<td>相对于浏览器窗口的高度，1vh = 窗口高度的 1%</td>
+<td>p{font-size: 5vh;}</td>
+</tr>
+<tr>
+<td>vmin</td>
+<td>vw 与 vh 中较小的值</td>
+<td>p{font-size: 5vmin;}</td>
+</tr>
+<tr>
+<td>vmax</td>
+<td>vw 与 vh 中较大的值</td>
+<td>p{font-size: 5vmax;}</td>
+</tr>
+<tr>
+<td><strong>%</strong></td>
+<td>相对于父元素宽度或字体大小的百分比</td>
+<td>div{width: 55%}</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.box</span>&#123;</span></span><br><span class="line">                width: 50vw;</span><br><span class="line">                height: 50vh;</span><br><span class="line">                border: 1ex solid black;</span><br><span class="line">                font-size: 16px;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.info</span>&#123;</span></span><br><span class="line">                font-size: 2em;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.ex</span> &gt; <span class="selector-tag">span</span>&#123;</span></span><br><span class="line">                font-size: 2ex;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.ch</span> &gt; <span class="selector-tag">span</span>&#123;</span></span><br><span class="line">                font-size: 4ch;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;font-size: 32px;&quot;</span>&gt;</span>这是 32px 的字体<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;info&quot;</span>&gt;</span>这是 2em 的字体<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            这是 16px 的字体</span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;ex&quot;</span>&gt;</span></span><br><span class="line">                x: <span class="tag">&lt;<span class="name">span</span>&gt;</span>这是 3ex 的字体<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;ch&quot;</span>&gt;</span></span><br><span class="line">                0: <span class="tag">&lt;<span class="name">span</span>&gt;</span>这是 4ch 的字体<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>CSS 教程之 CSS 颜色和长度说明</p><p><a href="https://www.orangeshare.cn/2019/01/12/css-jiao-cheng-zhi-css-yan-se-he-chang-du-shuo-ming/">https://www.orangeshare.cn/2019/01/12/css-jiao-cheng-zhi-css-yan-se-he-chang-du-shuo-ming/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-01-12</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-12-15</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Front-End-Devp/">Front-End Devp</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/01/13/css-jiao-cheng-zhi-css-ji-chu-yang-shi-she-zhi-zhi-yi/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">CSS 教程之 CSS 基础样式设置之一</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/01/11/css-jiao-cheng-zhi-css-ji-chu-yu-fa/"><span class="level-item">CSS 教程之 CSS 基础语法</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">88</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">39</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#CSS-颜色"><span class="level-left"><span class="level-item">1</span><span class="level-item">CSS 颜色</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Color-Name"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">Color Name</span></span></a></li><li><a class="level is-mobile" href="#Color-Value"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">Color Value</span></span></a></li><li><a class="level is-mobile" href="#RGB"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">RGB</span></span></a></li><li><a class="level is-mobile" href="#RGBA"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">RGBA</span></span></a></li><li><a class="level is-mobile" href="#HSL"><span class="level-left"><span class="level-item">1.5</span><span class="level-item">HSL</span></span></a></li><li><a class="level is-mobile" href="#HSLA"><span class="level-left"><span class="level-item">1.6</span><span class="level-item">HSLA</span></span></a></li></ul></li><li><a class="level is-mobile" href="#CSS-长度单位"><span class="level-left"><span class="level-item">2</span><span class="level-item">CSS 长度单位</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#绝对长度单位"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">绝对长度单位</span></span></a></li><li><a class="level is-mobile" href="#相对长度单位"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">相对长度单位</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2023 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

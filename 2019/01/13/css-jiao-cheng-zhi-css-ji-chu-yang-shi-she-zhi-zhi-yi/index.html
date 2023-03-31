@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>CSS 教程之 CSS 基础样式设置之一 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="CSS 基础样式设置，包括：背景（Background）样式、文本（Text）样式，以及字体（Fonts）样式。"><meta property="og:type" content="blog"><meta property="og:title" content="CSS 教程之 CSS 基础样式设置之一"><meta property="og:url" content="https://www.orangeshare.cn/2019/01/13/css-jiao-cheng-zhi-css-ji-chu-yang-shi-she-zhi-zhi-yi/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="CSS 基础样式设置，包括：背景（Background）样式、文本（Text）样式，以及字体（Fonts）样式。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://s2.loli.net/2022/12/21/gFj749KuXepnmkB.png"><meta property="article:published_time" content="2019-01-13T06:42:38.000Z"><meta property="article:modified_time" content="2022-12-21T08:05:44.720Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Front-End Devp"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://s2.loli.net/2022/12/21/gFj749KuXepnmkB.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2019/01/13/css-jiao-cheng-zhi-css-ji-chu-yang-shi-she-zhi-zhi-yi/"},"headline":"When Art Meets Tech","image":["https://s2.loli.net/2022/12/21/gFj749KuXepnmkB.png"],"datePublished":"2019-01-13T06:42:38.000Z","dateModified":"2022-12-21T08:05:44.720Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"CSS 基础样式设置，包括：背景（Background）样式、文本（Text）样式，以及字体（Fonts）样式。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2019/01/13/css-jiao-cheng-zhi-css-ji-chu-yang-shi-she-zhi-zhi-yi/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>CSS 教程之 CSS 基础样式设置之一</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2019-01-13</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2022-12-21</time></span><span class="level-item"><a class="link-muted" href="/categories/Web-Site/">Web Site</a></span><span class="level-item">an hour read (About 8586 words)</span></div></div><div class="content"><p>CSS 基础样式设置，包括：背景（Background）样式、文本（Text）样式，以及字体（Fonts）样式。</p>
+<a id="more"></a>
+
+<h2 id="背景（Background）"><a href="#背景（Background）" class="headerlink" title="背景（Background）"></a>背景（Background）</h2><p>在制作网页时，我们往往需要在网页中添加一些背景颜色、背景图像等让网页更加美观，吸引访问者的眼球。</p>
+<p>CSS 中提供了一系列用于 <strong>设置 HTML 元素背景（Background）效果</strong> 的属性，如下所示：</p>
+<ul>
+<li>background-color：设置元素的背景颜色；</li>
+<li>background-image：设置元素的背景图像；</li>
+<li>background-repeat：控制背景图像是否重复；</li>
+<li>background-attachment：控制背景图像是否跟随窗口滚动；</li>
+<li>background-position：控制背景图像在元素中的位置；</li>
+<li>background-size：设置背景图像的尺寸；</li>
+<li>background-origin：设置 background-position 属性相对于什么位置来定位背景图像；</li>
+<li>background-clip：设置背景图像的显示区域；</li>
+<li>background：背景属性的缩写，可以在一个声明中设置所有的背景属性。</li>
+</ul>
+<hr>
+<p>下面来看各个背景属性的用法：</p>
+<h3 id="背景颜色"><a href="#背景颜色" class="headerlink" title="背景颜色"></a>背景颜色</h3><p>你可以通过 <strong>background-color</strong> 属性来为元素设置一个背景颜色，该属性支持以下几种属性值：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>transparent</td>
+<td>默认值（设置背景颜色为透明）。大多数情况下并不会用到它，但如果你不希望某个元素拥有背景颜色，或者不希望用户对浏览器的设置（比如开启夜间模式、护眼模式）影响到你的设计，那么就可以使用 transparent 来将颜色设置为透明的</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承对背景颜色的设置</td>
+</tr>
+<tr>
+<td>CSS Color</td>
+<td>符合 CSS 颜色定义的颜色形式值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">            h1 &#123;</span><br><span class="line"><span class="css">                <span class="selector-tag">background-color</span>: <span class="selector-id">#6495ed</span>;</span></span><br><span class="line">            &#125;</span><br><span class="line">            div &#123;</span><br><span class="line"><span class="css">                <span class="selector-tag">background-color</span>: <span class="selector-id">#e0ffff</span>;</span></span><br><span class="line">            &#125;</span><br><span class="line">            p &#123;</span><br><span class="line"><span class="css">                <span class="selector-tag">background-color</span>: <span class="selector-id">#b0c4de</span>;</span></span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>CSS 背景设置实例<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            当前为 div 元素中的一行文本。</span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>该段落拥有自己的背景颜色<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            当前仍然为 div 元素中的一行文本。</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过该属性可以为元素设置某种颜色的背景，这种 <font color="red">颜色会填充元素的内容、内边距以及边框区域（也可以理解为边框及以内的所有区域），对于元素边框以外的区域（外边距）则没有影响</font>。</p>
+<blockquote>
+<p>需要注意的是，设置页面的背景颜色，即设置 body 元素的背景色。</p>
+</blockquote>
+<hr>
+<h3 id="背景图像"><a href="#背景图像" class="headerlink" title="背景图像"></a>背景图像</h3><p>你可以通过 <strong>background-image</strong> 属性来为某个元素设置背景图像。其属性支持以下几种属性值：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>none</td>
+<td>默认值，不显示背景图像</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承背景图像的设置</td>
+</tr>
+<tr>
+<td>url(‘URL’)</td>
+<td>定义图像的路径，URL 为图像资源地址</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">        h1 &#123;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span>: <span class="selector-id">#6495ed</span>;</span></span><br><span class="line">        &#125;</span><br><span class="line">        p &#123;</span><br><span class="line"><span class="css">            <span class="selector-tag">background-image</span>: <span class="selector-tag">url</span>(&quot;<span class="selector-tag">images</span>/<span class="selector-tag">kawayi</span><span class="selector-class">.jpg</span>&quot;);</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>CSS 背景设置实例<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，浏览器会从元素内容的左上角开始（若有内边距则从元素内边距区域的左上角开始），在水平和垂直方向上重复背景图像，以填充整个元素区域，您可以使用 <code>background-repeat</code> 属性来控制背景图像是否重复或如何重复。</p>
+<blockquote>
+<p>需要注意的是，类似于背景颜色填充，背景图像同样会填充元素的内容、内边距以及边框区域，对于元素边框以外的区域（外边距）则没有影响。</p>
+</blockquote>
+<hr>
+<h3 id="图像平铺"><a href="#图像平铺" class="headerlink" title="图像平铺"></a>图像平铺</h3><p>设置背景图像中提到，默认情况下背景图像会从元素内容的左上角开始（若有内边距则从元素内边距区域的左上角开始），在水平和垂直方向上重复背景图像（图像平铺）以填充整个元素区域（不包括元素的外边距区域）。</p>
+<p>看到上述现象，主要是由于用于设置的 <font color="red">背景图像尺寸调小，无法完整填充整个元素空间（边框，以及边框以内的区域）</font>。你可以尝试修改元素尺寸小于图像尺寸，或修改图像尺寸大于元素尺寸再观察一下填充效果。</p>
+<p>事实上，当背景图片尺寸较小时，我们可以通过 <strong>background-repeat</strong> 属性来控制背景图像的平铺方式，支持一下几种属性值：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>repeat</td>
+<td>默认值，背景图像将在垂直方向和水平方向上重复</td>
+</tr>
+<tr>
+<td>repeat-x</td>
+<td>背景图像仅在水平方向上重复</td>
+</tr>
+<tr>
+<td>repeat-y</td>
+<td>背景图像仅在垂直方向上重复</td>
+</tr>
+<tr>
+<td>no-repeat</td>
+<td>背景图像仅显示一次，不在任何方向上重复</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承 background-repeat 属性的设置</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>你可以通过为 background-repeat 属性设置不同的取值，观察一下上一小节实例的效果。</p>
+<hr>
+<h3 id="图像位置"><a href="#图像位置" class="headerlink" title="图像位置"></a>图像位置</h3><p>你可以通过 <strong>background-position</strong> 属性来设置背景图像的起始位置。其属性支持以下几种属性值：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>left top（左上）left center（左中）、left bottom（左下）、right top（右上）、right center（右中）、right bottom（右下）、center top（中上）、center center（居中）、center bottom（中下）</td>
+<td>使用位置关键词表示背景图像的位置（如果仅设置第一个关键词，那么第二个将默认为 <code>center</code>）</td>
+</tr>
+<tr>
+<td><code>x% y%</code></td>
+<td>使用百分比表示背景图像距离元素左上角（0% 0%）的距离，<code>x%</code> 为水平方向，<code>y%</code> 为垂直方向。（如果仅设置第一个值，那么另一个值将是 <code>50%</code>，默认值为 <code>0% 0%</code>）</td>
+</tr>
+<tr>
+<td><code>xpos ypos</code></td>
+<td>使用 <code>像素或者其它 CSS 单位</code> 表示背景图像距离元素左上角（0px 0px）的距离，xpos 为水平方向，ypos 为垂直方向。（右下角视元素的尺寸而定，百分比和单位的形式可以混用，如果您仅设置第一个值，那么另一个值将默认为 50%）</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>你可以通过为 background-position 属性设置不同的取值，观察一下上一小节实例的效果。</p>
+<p><strong>如何实现背景图片居中</strong> &gt;&gt;&gt; (50% 50%) 或 (center center)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">background-image</span>: <span class="selector-tag">url</span>(&quot;<span class="selector-tag">images</span>/<span class="selector-tag">kawayi</span><span class="selector-class">.jpg</span>&quot;);</span><br><span class="line"><span class="selector-tag">background-repeat</span>: <span class="selector-tag">no-repeat</span>;</span><br><span class="line"><span class="selector-tag">background-position</span>: <span class="selector-tag">center</span> <span class="selector-tag">center</span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="图片固定"><a href="#图片固定" class="headerlink" title="图片固定"></a>图片固定</h3><p>你可以通过 <strong>background-attachment</strong> 属性来设置背景图像是固定在某个位置还是跟随页面一起滚动。其属性支持以下几种属性值：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>scroll</td>
+<td>默认值，背景图像随着页面元素的滚动而移动</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>当页面的其余部分滚动时，背景图像固定不动</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承 background-attachment 属性的设置</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>当你设置为 <code>fixed</code> 后，你会发现图片会被固定到页面初始位置，当页面滚动时，其余部分滚动时，而背景图像固定不动。</p>
+<hr>
+<h3 id="图像尺寸"><a href="#图像尺寸" class="headerlink" title="图像尺寸"></a>图像尺寸</h3><p>你可以通过 <strong>background-size</strong> 属性来设置背景图像的尺寸。其属性支持以下几种属性值：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xpos ypos</td>
+<td>使用像素或其它 CSS 单位来设置背景图像的高度和宽度，xpos 表示宽度，ypos 表示高度。如果只设置第一个值，那么第二个值将被设置为默认值 auto（自动）</td>
+</tr>
+<tr>
+<td>x% y%</td>
+<td>使用百分比表示背景图像相对于所在元素宽度与高度的百分比，x% 表示宽度，y% 表示高度。如果只设置第一个值，那么第二个值将被设置为默认值 auto（自动）</td>
+</tr>
+<tr>
+<td>cover</td>
+<td>保持背景图像的横纵比例并将图像缩放至足够大，使背景图像可以 <strong>完全覆盖元素所在的区域</strong>（可能会导致背景图像的某些部分超出元素区域而无法显示）</td>
+</tr>
+<tr>
+<td>contain</td>
+<td>保持背景图像的横纵比例并将图像缩放至足够大，使背景图像可以 <strong>完整的显示在元素所在区域</strong>（背景图像可能无法完全覆盖整个元素区域）</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>使用 background-size 属性设置背景图像的尺寸，并将背景图像完全覆盖整个元素区域（可能导致失真）：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">&quot;images/kawayi.jpg&quot;</span>);</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-position</span>: center center;</span><br><span class="line">    <span class="attribute">background-size</span>: cover;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="图像相对定位"><a href="#图像相对定位" class="headerlink" title="图像相对定位"></a>图像相对定位</h3><p>CSS3 中新增了 <strong>background-origin</strong> 属性。</p>
+<p>我们知道，在使用 background-position 属性来设置背景图像的位置时，默认是以元素左上角的位置来计算的。您还可以使用 background-origin 属性来 <font color="red">设置 background-position 属性相对哪个位置（内边距区域、边框区域、内容区域）来定位背景图像</font>。</p>
+<p>background-origin 属性的可选值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>padding-box</td>
+<td>相对于元素的内边距区域来定位背景图像</td>
+</tr>
+<tr>
+<td>border-box</td>
+<td>相对于元素的边框区域来定位背景图像</td>
+</tr>
+<tr>
+<td>content-box</td>
+<td>相对于元素的内容区域来定位背景图像</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>【示例】使用 background-origin 属性设置背景图像相对于元素的边框区域来定位：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">&quot;images/kawayi.jpg&quot;</span>);</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-origin</span>: padding-box;</span><br><span class="line">    <span class="attribute">background-position</span>: <span class="number">5px</span> <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">20px</span>; <span class="comment">/*  */</span></span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">10px</span> dotted red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你可以修改为 <code>background-position: 20px 20px;</code> 再次尝试一下显示效果。甚至 <code>background-origin: border-box;</code>。</p>
+<hr>
+<h3 id="图像显示区域"><a href="#图像显示区域" class="headerlink" title="图像显示区域"></a>图像显示区域</h3><p>CSS3 中新增了 <strong>background-clip</strong> 属性。</p>
+<p>你可以通过 background-clip 属性设置背景图像的显示区域，可选属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>border-box</td>
+<td>默认值。在元素边框，及以内的区域显示背景图像</td>
+</tr>
+<tr>
+<td>padding-box</td>
+<td>在元素内边距，及以内的区域显示背景图像</td>
+</tr>
+<tr>
+<td>content-box</td>
+<td>在元素内容区域显示背景图像</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>【示例】通过 background-clip 属性设置，背景图像仅在元素内容区域显示：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">&quot;images/kawayi.jpg&quot;</span>);</span><br><span class="line">    <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">    <span class="attribute">background-clip</span>: content-box;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">10px</span> dotted red;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>background 是背景属性的简写形式，可以为元素同时设置前面的多个或者所有的背景属性。</p>
+<p>在设置多个背景属性时并没有固定的顺序，但推荐使用如下顺序进行设置：</p>
+<blockquote>
+<p>background-color || background-image || background-position [/ background-size]? || background-repeat || background-attachment || background-origin || background-clip</p>
+</blockquote>
+<p>在设置多个背景属性时，有以下几点需要注意：</p>
+<ul>
+<li>每个属性之间使用空格进行分隔；</li>
+<li>如果同时设置 background-position 和 background-size 属性，这两个属性之间需要使用斜线/分隔，并且需要遵循 background-position 属性在前 background-size 属性在后的顺序；</li>
+<li>如果同时设置 background-origin 和 background-clip 属性，需要遵循 background-origin 属性在前 background-clip 属性在后的顺序;</li>
+<li>如果 background-origin 与 background-clip 属性的值相同，则可以只设置一个值。</li>
+</ul>
+<p>设置多个背景属性实例如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#f1f2f3</span> <span class="built_in">url</span>(<span class="string">&quot;images/kawayi.jpg&quot;</span>) center center/<span class="number">50%</span> auto no-repeat fixed ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>background 属性还支持设置多组属性值，例如 <code>#f1f2f3 url(&quot;images/kawayi.jpg&quot;) center center/50% auto no-repeat fixed</code> 就可以看作是一组属性。每组属性值之间使用逗号 <code>,</code> 分隔。但需要注意的是 background-color 属性不能设置多个，并且只能在最后一组属性值中设置。</p>
+<p>实例如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">&quot;images/kawayi.jpg&quot;</span>) left center/<span class="number">50%</span> <span class="number">50%</span> no-repeat fixed,</span><br><span class="line">                <span class="number">#f1f2f3</span> <span class="built_in">url</span>(<span class="string">&quot;images/kawayi.jpg&quot;</span>) center center/<span class="number">50%</span> <span class="number">50%</span> no-repeat fixed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>需要注意的是，如果设置的多组属性中，背景图像之间存在重叠，那么前面设置的背景图像会覆盖在后面的背景图像之上。</p>
+</blockquote>
+<hr>
+<h2 id="字体（Fonts）"><a href="#字体（Fonts）" class="headerlink" title="字体（Fonts）"></a>字体（Fonts）</h2><p>除了上述的背景设置，字体设置也是网页设计中的重要组成部分，合适的字体不仅会使页面更加美观，也可以提升用户体验。</p>
+<p>CSS 中提供了一系列用于 <strong>设置元素内文本的字体样式</strong> 的属性：</p>
+<ul>
+<li>font-family：设置字体；</li>
+<li>font-style：设置字体的倾斜、斜体风格；</li>
+<li>font-weight：设置字体粗细；</li>
+<li>font-size：设置字体尺寸；</li>
+<li>font-variant：将小写字母转换为小型大写字母（不常使用）；</li>
+<li>font-stretch：对字体进行伸缩变形（使用较少，并且主流浏览器都不支持）；</li>
+<li>font：字体属性的缩写，可以在一个声明中设置所有的字体属性。</li>
+</ul>
+<hr>
+<p>下面来看各个字体属性的用法：</p>
+<h3 id="文本字体"><a href="#文本字体" class="headerlink" title="文本字体"></a>文本字体</h3><p>CSS 中使用 <strong>font-family</strong> 属性来设置元素内文本的字体。</p>
+<p>由于字体的种类成千上万，而且有些还不是免费的，因此我们的电脑上几乎不可能拥有所有的字体。</p>
+<p>因此，为了最大程度的保证我们设置的字体能够正常显示，可以通过 font-family 属性定义一个由若干字体名称组成的列表，字体名称之间使用逗号 <code>,</code> 分隔，浏览器会首先尝试列表中的第一个字体，如果不支持则尝试下一个，以此类推。</p>
+<p><strong>font-family</strong> 属性支持以下几种属性值：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>family-name、generic-family</td>
+<td><strong>family-name</strong>：字体名称，一个字体名称就代表一种字体，比如 “微软雅黑” 就是一种字体；<strong>generic-family</strong>：字体族，也就是某种类型的字体组合，一个字体族代表一种类型的字体，其中包含很多相似但又不同的字体，比如 “sans-serif” 就是一种无衬线字体，其中包含很多种相似的字体。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承字体的设置</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>CSS 中常用的 5 种字体族（generic-family）：</p>
+<table>
+<thead>
+<tr>
+<th>字体族</th>
+<th>说明</th>
+<th>字体</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>serif</td>
+<td>有衬线字体，即在文字笔画的结尾添加特殊的装饰线或衬线</td>
+<td>“Lucida Bright”、”Lucida Fax”、Palatino、”Palatino Linotype”、Palladio、”URW Palladio”、serif</td>
+</tr>
+<tr>
+<td>sans-serif</td>
+<td>无衬线字体，即在文字笔画结尾处是平滑的</td>
+<td>“Open Sans”、”Fira Sans”、”Lucida Sans”、”Lucida Sans Unicode”、”Trebuchet MS”、”Liberation Sans”、”Nimbus Sans L”、sans-serif</td>
+</tr>
+<tr>
+<td>monospace</td>
+<td>等宽字体，即每个文字的宽度都是相同的</td>
+<td>“Fira Mono”、”DejaVu Sans Mono”、Menlo、Consolas、”Liberation Mono”、Monaco、”Lucida Console”、monospace</td>
+</tr>
+<tr>
+<td>cursive</td>
+<td>草书字体，该字体有连笔或者特殊的斜体效果，会给人一种手写的感觉</td>
+<td>“Brush Script MT”、”Brush Script Std”、”Lucida Calligraphy”、”Lucida Handwriting”、”Apple Chancery”、cursive</td>
+</tr>
+<tr>
+<td>fantasy</td>
+<td>具有特殊艺术效果的字体</td>
+<td>Papyrus、Herculanum、”Party LET”、”Curlz MT”、Harrington、fantasy</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>在网页设计中最常用的字体族是 <code>serif</code> 和 <code>sans-serif</code>，因为它们适合阅读。在显示一些程序代码是通常使用等宽字体（<code>monospace</code>），这样可以使用程序代码看起来更加工整。</p>
+<p>使用 font-family 属性为 HTML 元素中文本设置字体样式：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">            div &#123;</span><br><span class="line">                font-family:&#x27;Trebuchet MS&#x27;, &#x27;Lucida Sans Unicode&#x27;, &#x27;Lucida Grande&#x27;, &#x27;Lucida Sans&#x27;, Arial, sans-serif;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>CSS 字体设置实例<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            Hello HTML + CSS World.</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>需要注意的是，如果字体族或字体名称中包含空格或多个单词，则必须将它们使用引号包裹起来，例如”Times New Roman”、”Courier New”、”Segoe UI” 等，如果是在元素的 style 属性中使用则必须使用单引号。</p>
+</blockquote>
+<hr>
+<h3 id="字体风格"><a href="#字体风格" class="headerlink" title="字体风格"></a>字体风格</h3><p>使用 <strong>font-style</strong> 属性来设置字体的风格样式，如斜体、倾斜等，该属性的可选属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>normal</td>
+<td>默认值，文本以正常字体显示</td>
+</tr>
+<tr>
+<td>italic</td>
+<td>文本以斜体显示</td>
+</tr>
+<tr>
+<td>oblique</td>
+<td>文本倾斜显示</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承字体样式</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">            div &#123;</span><br><span class="line">                font-style: oblique;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.normal</span> &#123;</span></span><br><span class="line">                font-style: normal;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.italic</span> &#123;</span></span><br><span class="line">                font-style: italic;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.oblique</span> &#123;</span></span><br><span class="line">                font-style: oblique;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.inherit</span> &#123;</span></span><br><span class="line">                font-style: inherit;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;normal&quot;</span>&gt;</span>normal: 显示一个标准的字体<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;italic&quot;</span>&gt;</span>italic: 显示一个斜体的字体<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;oblique&quot;</span>&gt;</span>oblique: 显示一个倾斜的字体<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;inherit&quot;</span>&gt;</span>inherit: 从父元素继承字体样式<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>需要注意的是，italic 和 oblique 浏览器种的效果尽管看起来是一样的，但 italic 显示的是字体的斜体版本，而 oblique 则只是一个倾斜的普通字体。</p>
+</blockquote>
+<hr>
+<h3 id="字体粗细"><a href="#字体粗细" class="headerlink" title="字体粗细"></a>字体粗细</h3><p><strong>font-weight</strong> 属性可用来设置字体的粗细，可选属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>normal</td>
+<td>默认值，标准字体</td>
+</tr>
+<tr>
+<td>bold</td>
+<td>粗体字体</td>
+</tr>
+<tr>
+<td>bolder</td>
+<td>更粗的字体</td>
+</tr>
+<tr>
+<td>lighter</td>
+<td>更细的字体</td>
+</tr>
+<tr>
+<td>100~900(step: 100)</td>
+<td>由细到粗的设置字体粗细，100 为最细的字体，400 等同于 normal，700 等同于 bold</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承字体的粗细</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.normal</span> &#123;</span></span><br><span class="line">                font-weight: normal;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.bold</span> &#123;</span></span><br><span class="line">                font-weight: bold;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.weight-700</span> &#123;</span></span><br><span class="line">                font-weight: 700;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.bolder</span> &#123;</span></span><br><span class="line">                font-weight: bolder;</span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.lighter</span> &#123;</span></span><br><span class="line">                font-weight: lighter;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;normal&quot;</span>&gt;</span>font-weight: normal<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;bold&quot;</span>&gt;</span>font-weight: bold<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;weight-700&quot;</span>&gt;</span>font-weight: 700<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;bolder&quot;</span>&gt;</span>font-weight: bolder<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;lighter&quot;</span>&gt;</span>font-weight: lighter<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="字体字号"><a href="#字体字号" class="headerlink" title="字体字号"></a>字体字号</h3><p><strong>font-size</strong> 属性可用来设置字体的大小（字号），可选属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>xx-small、x-small、small、medium、large、x-large、xx-large</td>
+<td>以关键字的形式把字体设置为不同的大小，从 xx-small 到 xx-large 依次变大，默认值为 medium</td>
+</tr>
+<tr>
+<td>smaller</td>
+<td>为字体设置一个比父元素更小的尺寸</td>
+</tr>
+<tr>
+<td>larger</td>
+<td>为字体设置一个比父元素更大的尺寸</td>
+</tr>
+<tr>
+<td>length</td>
+<td>以数值加单位的形式把字体设置为一个固定尺寸，例如 18px、2em</td>
+</tr>
+<tr>
+<td>%</td>
+<td>以百分比的形式为字体设置一个相对于父元素字体的大小</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承字体的尺寸</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.xx_small</span> &#123; <span class="attribute">font-weight</span>: normal;&#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.x_small</span> &#123; <span class="attribute">font-weight</span>: bold; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.small</span> &#123; <span class="attribute">font-size</span>: small; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.medium</span> &#123; <span class="attribute">font-size</span>: medium; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.large</span> &#123; <span class="attribute">font-size</span>: large; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.x-large</span> &#123; <span class="attribute">font-size</span>: x-large; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.xx-large</span> &#123; <span class="attribute">font-size</span>: xx-large; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.smaller</span> &#123; <span class="attribute">font-size</span>: smaller; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.larger</span> &#123; <span class="attribute">font-size</span>: larger; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.font-20</span> &#123; <span class="attribute">font-size</span>: <span class="number">20px</span>; &#125;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;xx_small&quot;</span>&gt;</span>将字体大小设置为：xx-small<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;x_small&quot;</span>&gt;</span>将字体大小设置为：x-small<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;small&quot;</span>&gt;</span>将字体大小设置为：small<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;medium&quot;</span>&gt;</span>将字体大小设置为：medium<span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;large&quot;</span>&gt;</span>将字体大小设置为：large<span class="tag">&lt;/<span class="name">p</span>&gt;</span>   </span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;x-large&quot;</span>&gt;</span>将字体大小设置为：x-large<span class="tag">&lt;/<span class="name">p</span>&gt;</span>   </span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;xx-large&quot;</span>&gt;</span>将字体大小设置为：xx-large<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>默认字体大小显示<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;smaller&quot;</span>&gt;</span>将字体大小设置为：smaller<span class="tag">&lt;/<span class="name">p</span>&gt;</span>   </span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;larger&quot;</span>&gt;</span>将字体大小设置为：larger<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;font-20&quot;</span>&gt;</span>将字体大小设置为 20 像素<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>需要注意的是，1em 和当前字体大小（font-size）相等。在浏览器中默认的文字大小是 16px。关于更多的字体大小可以参看 &gt;&gt;&gt; <a href="https://www.orangeshare.cn/2019/01/12/css-jiao-cheng-zhi-css-yan-se-he-chang-du-shuo-ming/">CSS 教程之 CSS 长度说明</a>。</p>
+</blockquote>
+<hr>
+<h3 id="文本字母转换"><a href="#文本字母转换" class="headerlink" title="文本字母转换"></a>文本字母转换</h3><p><strong>font-variant</strong> 属性可以将文本中的小写英文字母转换为小型大写字母，转换后的大写字母与转换前小写字母的大小相仿，所以称之为小型大写字母。</p>
+<p>font-variant 属性的可选属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>normal</td>
+<td>默认值，浏览器会显示一个标准的字体</td>
+</tr>
+<tr>
+<td>small-caps</td>
+<td>将文本中的小写英文字母转换为小型大写字母</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承 font-variant 属性的值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.normal</span> &#123; <span class="attribute">font-variant</span>: normal; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.small-caps</span> &#123; <span class="attribute">font-variant</span>: small-caps;&#125;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;normal&quot;</span>&gt;</span>This is a paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;small-caps&quot;</span>&gt;</span>This is a paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Font"><a href="#Font" class="headerlink" title="Font"></a>Font</h3><p>Font 是字体属性的简写形式，可以为元素中文本同时设置前面的多个或者所有的字体属性。</p>
+<p>在设置多个字体属性时并没有固定的顺序，但推荐使用如下顺序进行设置：</p>
+<blockquote>
+<p>font：[[font-style||font-variant||font-weight||font-stretch]?font-size[ /line-height]?font-family] | caption | icon | menu | message-box | small-caption | status-bar</p>
+</blockquote>
+<p>在设置多个字体属性时，有以下几点需要注意：</p>
+<ul>
+<li>使用 font 属性时必须按照如上所示的顺序，并且 font-size 和 font-family 两个属性不可忽略；</li>
+<li>除 font-size 和 font-family 属性外，被忽略的属性将被设置为各自的默认值；</li>
+<li>若要定义 line-height 属性，则需要使用斜线/将 font-size 和 line-height 属性分开。</li>
+</ul>
+<p>设置多个字体属性实例如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">            div &#123;</span><br><span class="line">                font: italic small-caps bold 16px/20px arial, sans-serif;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>This is a paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="文本（Text）"><a href="#文本（Text）" class="headerlink" title="文本（Text）"></a>文本（Text）</h2><p>CSS 中的文本（Text）属性允许你像操作 Word 文档那样，来定义页面文档中的文本颜色、字符间距、文本对齐方式、文本缩进等等样式。</p>
+<p>CSS 中提供了一系列用于 <strong>设置元素内文本样式</strong> 的属性：</p>
+<ul>
+<li>color: 设置文本颜色；</li>
+<li>text-align：设置文本的水平对齐方式；</li>
+<li>text-decoration：设置文本的装饰；</li>
+<li>text-transform：设置文本中英文的大小写转换方式；</li>
+<li>text-indent：设置文本的缩进方式；</li>
+<li>line-height：设置行高；</li>
+<li>letter-spacing：设置字符间距；</li>
+<li>word-spacing：设置单词与单词之间的间距（对中文无效）；</li>
+<li>text-shadow：设置文本阴影；</li>
+<li>vertical-align：设置文本的垂直对齐方式；</li>
+<li>white-space：设置文本中空白的处理方式；</li>
+<li>direction：设置文本方向。</li>
+</ul>
+<hr>
+<p>下面来看各个文本属性的用法：</p>
+<h3 id="文本颜色"><a href="#文本颜色" class="headerlink" title="文本颜色"></a>文本颜色</h3><p><strong>color</strong> 属性被用来设置元素中文本的颜色。</p>
+<p>关于文本颜色设置你可以参考 <a href="https://www.orangeshare.cn/2019/01/12/css-jiao-cheng-zhi-css-yan-se-he-chang-du-shuo-ming/">CSS 教程之 CSS 颜色说明</a>。</p>
+<blockquote>
+<p>对于 W3C 标准的 CSS：如果你定义了颜色属性，你还必须定义元素的背景色属性（background-color）。</p>
+</blockquote>
+<hr>
+<h3 id="文本水平对齐"><a href="#文本水平对齐" class="headerlink" title="文本水平对齐"></a>文本水平对齐</h3><p><strong>text-align</strong> 属性用来设置元素中文本的水平对齐方式，其可选的属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>left</td>
+<td>默认值，左对齐</td>
+</tr>
+<tr>
+<td>right</td>
+<td>右对齐</td>
+</tr>
+<tr>
+<td>center</td>
+<td>居中对齐</td>
+</tr>
+<tr>
+<td>justify</td>
+<td>两端对齐</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承 text-align 属性的值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>【示例】使用 text-align 属性设置文本的水平对齐方式：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">            p, span &#123;</span><br><span class="line"><span class="css">                <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-tag">black</span>; <span class="comment">/* 为了能更直观的体现出文本的对齐方式，这里给标签设置一个边框 */</span></span></span><br><span class="line">            &#125;</span><br><span class="line"><span class="css">            <span class="selector-class">.text1</span> &#123; <span class="attribute">text-align</span>: left; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.text2</span> &#123; <span class="attribute">text-align</span>: center; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.text3</span> &#123; <span class="attribute">text-align</span>: right; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.text4</span> &#123; <span class="attribute">text-align</span>: center; &#125;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;text1&quot;</span>&gt;</span>左对齐<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;text2&quot;</span>&gt;</span>居中对齐<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;text3&quot;</span>&gt;</span>右对齐<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;text4&quot;</span>&gt;</span>Span 元素的居中对齐<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>浏览器中可以看到，<font color="red">块级元素 p 可以看到水平对齐效果，而内联元素 span 却看不出居中对齐效果？</font>这是由于：块级元素，其默认宽度是100%，所以文本有对齐的空间前提。而 span 是内联元素其默认宽度就是其文本内容的宽度，文本已经粑在其边框上了，对齐是看不出效果来的。</p>
+<p>需要注意的是：<code>text-align: justify</code> <strong>文本两端对齐设置</strong> &gt;&gt;&gt;</p>
+<p>将拉伸每一行文本（增加字符之间的间距），以使每行文本具有相同的宽度（最后一行除外），这种对齐方式通常用于出版物，例如杂志和报纸。</p>
+<p>如果元素中的文本不足一行时，是无法实现两端对齐的（默认会以左对齐的效果显示）。只有当元素中的文本足够长，并且在元素中发生了自动换行时，才会将除最后一行以外的文本实现两端对齐。</p>
+<hr>
+<h3 id="文本修饰"><a href="#文本修饰" class="headerlink" title="文本修饰"></a>文本修饰</h3><p>text-decoration 属性用于设置或删除文本的装饰，其可选的属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>none</td>
+<td>默认值，标准文本，没有额外装饰，可以用来删除已有的文本装饰</td>
+</tr>
+<tr>
+<td>underline</td>
+<td>在文本下方添加一条下滑线</td>
+</tr>
+<tr>
+<td>overline</td>
+<td>在文本上方添加一条上滑线</td>
+</tr>
+<tr>
+<td>line-through</td>
+<td>在文本的中间定义一条横向贯穿文本的线（类似于删除线）</td>
+</tr>
+<tr>
+<td>blink</td>
+<td>定义闪烁的文本（目前主流浏览器不再支持）</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承 text-decoration 属性的值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>从设计的角度看主要是用来删除链接的下划线修饰。当然了，你也可以在需要的地方为元素中的文本添加一些装饰，达到突出显示的效果。</p>
+<p>示例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.text1</span>, <span class="selector-class">.linkclear</span> &#123; <span class="attribute">text-decoration</span>: none; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.text2</span> &#123; <span class="attribute">text-decoration</span>: underline; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.text3</span> &#123; <span class="attribute">text-decoration</span>: overline; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.text4</span> &#123; <span class="attribute">text-decoration</span>: line-through; &#125;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;text1&quot;</span>&gt;</span>无装饰文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;text2&quot;</span>&gt;</span>带下划线文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;text3&quot;</span>&gt;</span>带上划线文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;text4&quot;</span>&gt;</span>带贯穿线文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://www.baidu.com&quot;</span>&gt;</span>默认带下划线修饰的链接<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;linkclear&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://www.baidu.com&quot;</span>&gt;</span>删除下划线修饰的链接<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="文本字母转换-1"><a href="#文本字母转换-1" class="headerlink" title="文本字母转换"></a>文本字母转换</h3><p><strong>text-transform</strong> 属性用来控制文本中英文字母的大小写转换，可以在不修改原文的基础上，将文本中的英文统一更改为小写字母、大写字母或者首字母大写的形式。</p>
+<p>其可选的属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>none</td>
+<td>默认值，以原文显示，对文本中的英文不做更改</td>
+</tr>
+<tr>
+<td>capitalize</td>
+<td>将文本中的每个单词更改为以大写字母开头的形式</td>
+</tr>
+<tr>
+<td>uppercase</td>
+<td>将文本中的英文字母全部更改为大写</td>
+</tr>
+<tr>
+<td>lowercase</td>
+<td>将文本中的英文字母全部更改为小写</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承 text-transform 属性的值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>示例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.none</span> &#123; <span class="attribute">text-transform</span>: none; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.uppercase</span> &#123; <span class="attribute">text-transform</span>: uppercase; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.lowercase</span> &#123; <span class="attribute">text-transform</span>: lowercase; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.capitalize</span> &#123; <span class="attribute">text-transform</span>: capitalize; &#125;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>原文： text-transform <span class="symbol">&amp;emsp;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;none&quot;</span>&gt;</span>转换后：text-transform<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>原文： text-transform <span class="symbol">&amp;emsp;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;uppercase&quot;</span>&gt;</span>转换后：text-transform<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>原文： TEXT-TRANSFROM <span class="symbol">&amp;emsp;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;lowercase&quot;</span>&gt;</span>转换后：text-transform<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>原文： text-transform <span class="symbol">&amp;emsp;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;capitalize&quot;</span>&gt;</span>转换后：text-transform<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="文本缩进"><a href="#文本缩进" class="headerlink" title="文本缩进"></a>文本缩进</h3><p><strong>text-indent</strong> 属性用来为元素中的文本添加首行缩进的效果，其可选的属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>length</td>
+<td>以固定的值加单位的形式（例如 2em）定义缩进距离，默认值为 0</td>
+</tr>
+<tr>
+<td>%</td>
+<td>以基于父元素宽度的百分比来定义缩进距离</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承 text-indent 属性的值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">p</span> &#123; <span class="attribute">text-indent</span>: <span class="number">2em</span>;&#125;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>text-indent 属性用来为元素中的文本添加首行缩进的效果，至于是从左侧还是从右侧缩进则取决于 direction 属性定义的文本方向。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="文本行高"><a href="#文本行高" class="headerlink" title="文本行高"></a>文本行高</h3><p><strong>line-height</strong> 属性用来设置文本的行高，其可选的属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>normal</td>
+<td>默认值，使用默认的行高，不对行高进行额外设置</td>
+</tr>
+<tr>
+<td>number</td>
+<td>以具体的数字设置行高，这个数字会与当前的字体大小相乘，并将得到的值设置为行高</td>
+</tr>
+<tr>
+<td>length</td>
+<td>以数字加单位的形式设置固定的行高</td>
+</tr>
+<tr>
+<td>%</td>
+<td>以百分比的形式设置基于当前字体尺寸百分比的行高</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承 line-height 属性的值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>示例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.small</span> &#123; <span class="attribute">line-height</span>: <span class="number">0.8</span>; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.big</span> &#123; <span class="attribute">line-height</span>: <span class="number">200%</span>; &#125;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>默认的标准行高<span class="tag">&lt;<span class="name">br</span>&gt;</span>默认的标准行高<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;small&quot;</span>&gt;</span>使用数字定义一个较小的行高<span class="tag">&lt;<span class="name">br</span>&gt;</span>使用数字定义一个较小的行高<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;big&quot;</span>&gt;</span> 使用百分比的形式定义一个较大的行高<span class="tag">&lt;<span class="name">br</span>&gt;</span> 使用百分比的形式定义一个较大的行高<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="文本间隔"><a href="#文本间隔" class="headerlink" title="文本间隔"></a>文本间隔</h3><p><strong>[1] &gt;&gt;&gt; 文本字符间隔</strong></p>
+<p><strong>letter-spacing</strong> 属性用来设置字符之间的间距，其可选的属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>normal</td>
+<td>默认值，表示字符之间没有额外的间距</td>
+</tr>
+<tr>
+<td>length</td>
+<td>以数值加单位的形式设置字符之间的固定间距（允许使用负值）</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承 letter-spacing 属性的值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">p</span> &#123; <span class="attribute">letter-spacing</span>: <span class="number">5px</span>; &#125;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>letter-spacing 属性用来设置字符之间的间距<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">                letter-spacing 属性用来设置字符之间的间距<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">                letter-spacing 属性用来设置字符之间的间距<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[2] &gt;&gt;&gt; 文本词间隔</strong></p>
+<p><strong>word-spacing</strong> 属性用来设置元素文本中单词与单词之间的间距（对中文无效），其可选的属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>normal</td>
+<td>默认值，表示单词与单词之间没有额外的间距</td>
+</tr>
+<tr>
+<td>length</td>
+<td>以数值加单位的形式设置单词与单词之间的固定间距（允许使用负值）</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承 word-spacing 属性的值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">p</span> &#123; <span class="attribute">word-spacing</span>: <span class="number">20px</span>; &#125;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>word-spacing 属性用来设置单词与单词之间的间距，但对中文无效<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">                word-spacing 属性用来设置单词与单词之间的间距，但对中文无效<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">                word-spacing 属性用来设置单词与单词之间的间距，但对中文无效<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="文本阴影"><a href="#文本阴影" class="headerlink" title="文本阴影"></a>文本阴影</h3><p><strong>text-shadow</strong> 属性用来为文本添加阴影及模糊效果，属性的语法格式如下：</p>
+<blockquote>
+<p>text-shadow: h-shadow v-shadow blur color;</p>
+</blockquote>
+<p>其中，h-shadow 为必填值，用来设置阴影的水平位置，允许为负值；v-shadow 为必填值，用来设置阴影的垂直位置，允许为负值；blur 为可选值，用来设置模糊的距离；color 为可选值，用来设置阴影的颜色。</p>
+<p>类似于 background 属性，text-shadow 属性可以设置一个或多个阴影效果，只需要将每组的值使用逗号 <code>,</code> 分隔即可。示例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">            p &#123;</span><br><span class="line">                text-shadow: 2px 15px red,</span><br><span class="line">                0px -15px 2px blue;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>text-shadow 属性可以为文本添加阴影和模糊效果<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="文本垂直对齐方式"><a href="#文本垂直对齐方式" class="headerlink" title="文本垂直对齐方式"></a>文本垂直对齐方式</h3><p><strong>vertical-align</strong> 属性用来定义元素内文本的垂直对齐方式，其可选的属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>baseline</td>
+<td>默认值，将元素的基线与父元素的基线对齐</td>
+</tr>
+<tr>
+<td>sub</td>
+<td>下标对齐，将元素的基线相对于父元素的基线降低</td>
+</tr>
+<tr>
+<td>super</td>
+<td>上标对齐，将元素的基线相对于父元素的基线升高</td>
+</tr>
+<tr>
+<td>top</td>
+<td>顶部对齐，将元素行内框的顶端与行框的顶端对齐</td>
+</tr>
+<tr>
+<td>text-top</td>
+<td>文本顶部对齐，把元素的顶端与父元素字体的顶端对齐</td>
+</tr>
+<tr>
+<td>middle</td>
+<td>居中对齐，通常使用在图片上，将图片垂直方向的中线与文本的中线对齐</td>
+</tr>
+<tr>
+<td>bottom</td>
+<td>底部对齐，将元素行内框的顶端与行框的底端对齐</td>
+</tr>
+<tr>
+<td>text-bottom</td>
+<td>文本底部对齐，是将元素行内框的底端与行框的底线对齐</td>
+</tr>
+<tr>
+<td>length</td>
+<td>以数字加单位的形式设置元素基线距离父元素基线的距离（可以为负值）</td>
+</tr>
+<tr>
+<td>%</td>
+<td>使用 “line-height” 属性的百分比值来排列此元素，允许使用负值</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承 vertical-align 属性的值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>上表中提到了基线、底线、顶线、中线等概念，它们到底指什么呢？</p>
+<ul>
+<li>顶线：中文汉字的上边沿；</li>
+<li>中线：贯穿小写英文字母 x 中间的线；</li>
+<li>基线：小写英文字母 x 的下边沿；</li>
+<li>底线：中文汉字的下边沿；</li>
+<li>内容区：指底线与顶线包裹的区域；</li>
+<li>行高：包括内容区与以内容区为基础对称拓展的空白区域，也可以认为是相邻文本行基线间的距离；\</li>
+<li>行距：指相邻文本行间上一个文本行底线和下一文本行顶线之间的距离；</li>
+<li>行内框：是一个浏览器渲染模型中的概念，无法显示出来，但是它又确实存在，它的高度与行高相同；</li>
+<li>行框：同行内框类似的概念，行框是指本行的一个虚拟的矩形框，也是浏览器渲染模式中的一个概念。行框高度等于本行内所有元素中行内框最大的值（以行高值最大的行内框为基准，其他行内框采用自己的对齐方式向基准对齐，最终计算行框的高度）。</li>
+</ul>
+<p>示意图如下所示：</p>
+<p><img src="https://s2.loli.net/2022/12/21/gFj749KuXepnmkB.png"></p>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.sub</span> &#123; <span class="attribute">vertical-align</span>: sub; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.supper</span> &#123; <span class="attribute">vertical-align</span>: supper; &#125;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>vertical-align 属性用来<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;sub&quot;</span>&gt;</span>定义元素内文本的垂直对齐方式<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>vertical-align 属性用来<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;supper&quot;</span>&gt;</span>定义元素内文本的垂直对齐方式<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="文本空白格"><a href="#文本空白格" class="headerlink" title="文本空白格"></a>文本空白格</h3><p><strong>white-space</strong> 属性用来设置如何处理元素内的空白，其可选的属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>normal</td>
+<td>默认值，忽略文本中的空白</td>
+</tr>
+<tr>
+<td>pre</td>
+<td>保留文本中的空白，类似于 <code>&lt;pre&gt;</code> 标签的效果</td>
+</tr>
+<tr>
+<td>nowrap</td>
+<td>文本会在一行中显示，不会自动换行，直到遇到 <code>&lt;br&gt;</code> 标签为止</td>
+</tr>
+<tr>
+<td>pre-wrap</td>
+<td>保留文本中的空白，但是正常地进行换行</td>
+</tr>
+<tr>
+<td>pre-line</td>
+<td>合并文本中的空白，但是保留换行符</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承 white-space 属性的值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">p</span> &#123; <span class="attribute">white-space</span>: pre-line; &#125;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span>&gt;</span>white-space 属性用来设置如何处理元素内的空白</span><br><span class="line">            white-space 属性用来设置如何处理元素内的空白</span><br><span class="line">            <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="文本方向"><a href="#文本方向" class="headerlink" title="文本方向"></a>文本方向</h3><p><strong>direction</strong> 属性用来设置文本的方向，其可选的属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ltr</td>
+<td>默认值，文本按从左到右的方向输出</td>
+</tr>
+<tr>
+<td>rtl</td>
+<td>文本按从右到左的方向输出</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>从父元素继承 direction 属性的值</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>实例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>CSS 演示<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.ltr</span> &#123; <span class="attribute">direction</span>: ltr; &#125;</span></span><br><span class="line"><span class="css">            <span class="selector-class">.rtl</span> &#123; <span class="attribute">direction</span>: rtl; &#125;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;ltr&quot;</span>&gt;</span>direction 属性用来设置文本的方向<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;rtl&quot;</span>&gt;</span>direction 属性用来设置文本的方向<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>CSS 教程之 CSS 基础样式设置之一</p><p><a href="https://www.orangeshare.cn/2019/01/13/css-jiao-cheng-zhi-css-ji-chu-yang-shi-she-zhi-zhi-yi/">https://www.orangeshare.cn/2019/01/13/css-jiao-cheng-zhi-css-ji-chu-yang-shi-she-zhi-zhi-yi/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-01-13</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-12-21</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Front-End-Devp/">Front-End Devp</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/01/14/css-jiao-cheng-zhi-css-ji-chu-yang-shi-she-zhi-zhi-er/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">CSS 教程之 CSS 基础样式设置之二</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/01/12/css-jiao-cheng-zhi-css-yan-se-he-chang-du-shuo-ming/"><span class="level-item">CSS 教程之 CSS 颜色和长度说明</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">88</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">39</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#背景（Background）"><span class="level-left"><span class="level-item">1</span><span class="level-item">背景（Background）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#背景颜色"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">背景颜色</span></span></a></li><li><a class="level is-mobile" href="#背景图像"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">背景图像</span></span></a></li><li><a class="level is-mobile" href="#图像平铺"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">图像平铺</span></span></a></li><li><a class="level is-mobile" href="#图像位置"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">图像位置</span></span></a></li><li><a class="level is-mobile" href="#图片固定"><span class="level-left"><span class="level-item">1.5</span><span class="level-item">图片固定</span></span></a></li><li><a class="level is-mobile" href="#图像尺寸"><span class="level-left"><span class="level-item">1.6</span><span class="level-item">图像尺寸</span></span></a></li><li><a class="level is-mobile" href="#图像相对定位"><span class="level-left"><span class="level-item">1.7</span><span class="level-item">图像相对定位</span></span></a></li><li><a class="level is-mobile" href="#图像显示区域"><span class="level-left"><span class="level-item">1.8</span><span class="level-item">图像显示区域</span></span></a></li><li><a class="level is-mobile" href="#Background"><span class="level-left"><span class="level-item">1.9</span><span class="level-item">Background</span></span></a></li></ul></li><li><a class="level is-mobile" href="#字体（Fonts）"><span class="level-left"><span class="level-item">2</span><span class="level-item">字体（Fonts）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#文本字体"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">文本字体</span></span></a></li><li><a class="level is-mobile" href="#字体风格"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">字体风格</span></span></a></li><li><a class="level is-mobile" href="#字体粗细"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">字体粗细</span></span></a></li><li><a class="level is-mobile" href="#字体字号"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">字体字号</span></span></a></li><li><a class="level is-mobile" href="#文本字母转换"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">文本字母转换</span></span></a></li><li><a class="level is-mobile" href="#Font"><span class="level-left"><span class="level-item">2.6</span><span class="level-item">Font</span></span></a></li></ul></li><li><a class="level is-mobile" href="#文本（Text）"><span class="level-left"><span class="level-item">3</span><span class="level-item">文本（Text）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#文本颜色"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">文本颜色</span></span></a></li><li><a class="level is-mobile" href="#文本水平对齐"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">文本水平对齐</span></span></a></li><li><a class="level is-mobile" href="#文本修饰"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">文本修饰</span></span></a></li><li><a class="level is-mobile" href="#文本字母转换-1"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">文本字母转换</span></span></a></li><li><a class="level is-mobile" href="#文本缩进"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">文本缩进</span></span></a></li><li><a class="level is-mobile" href="#文本行高"><span class="level-left"><span class="level-item">3.6</span><span class="level-item">文本行高</span></span></a></li><li><a class="level is-mobile" href="#文本间隔"><span class="level-left"><span class="level-item">3.7</span><span class="level-item">文本间隔</span></span></a></li><li><a class="level is-mobile" href="#文本阴影"><span class="level-left"><span class="level-item">3.8</span><span class="level-item">文本阴影</span></span></a></li><li><a class="level is-mobile" href="#文本垂直对齐方式"><span class="level-left"><span class="level-item">3.9</span><span class="level-item">文本垂直对齐方式</span></span></a></li><li><a class="level is-mobile" href="#文本空白格"><span class="level-left"><span class="level-item">3.10</span><span class="level-item">文本空白格</span></span></a></li><li><a class="level is-mobile" href="#文本方向"><span class="level-left"><span class="level-item">3.11</span><span class="level-item">文本方向</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2023 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

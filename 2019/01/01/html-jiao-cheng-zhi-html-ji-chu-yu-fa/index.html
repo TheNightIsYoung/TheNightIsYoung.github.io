@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>HTML 教程之 HTML 基础语法 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="HTML 英文全称是 Hyper Text Markup Language，中文译为 “超文本标记语言”，专门用来设计和编辑网页。"><meta property="og:type" content="blog"><meta property="og:title" content="HTML 教程之 HTML 基础语法"><meta property="og:url" content="https://www.orangeshare.cn/2019/01/01/html-jiao-cheng-zhi-html-ji-chu-yu-fa/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="HTML 英文全称是 Hyper Text Markup Language，中文译为 “超文本标记语言”，专门用来设计和编辑网页。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/website_construction_visualization.png"><meta property="article:published_time" content="2019-01-01T06:36:58.000Z"><meta property="article:modified_time" content="2022-12-08T14:01:54.605Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Front-End Devp"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/website_construction_visualization.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2019/01/01/html-jiao-cheng-zhi-html-ji-chu-yu-fa/"},"headline":"When Art Meets Tech","image":["https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/website_construction_visualization.png"],"datePublished":"2019-01-01T06:36:58.000Z","dateModified":"2022-12-08T14:01:54.605Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"HTML 英文全称是 Hyper Text Markup Language，中文译为 “超文本标记语言”，专门用来设计和编辑网页。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2019/01/01/html-jiao-cheng-zhi-html-ji-chu-yu-fa/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>HTML 教程之 HTML 基础语法</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2019-01-01</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2022-12-08</time></span><span class="level-item"><a class="link-muted" href="/categories/Web-Site/">Web Site</a></span><span class="level-item">an hour read (About 6799 words)</span></div></div><div class="content"><p><strong>HTML</strong> 英文全称是 Hyper Text Markup Language，中文译为 <strong>“超文本标记语言”</strong>，专门用来设计和编辑网页。</p>
+<a id="more"></a>
+
+<h2 id="深入了解-HTML"><a href="#深入了解-HTML" class="headerlink" title="深入了解 HTML"></a>深入了解 HTML</h2><p>前面提到过，HTML 是一种超文本标记语言，不是编程语言，没有逻辑处理能力，没有计算能力，不能动态地生成内容，而只能静态地描述网页信息。</p>
+<p><strong>1 &gt;&gt;&gt; 超文本特性</strong></p>
+<p>尽管 HTML 文档是一个纯文本文档（HTML 标签 &amp;&amp; 纯文本），但其通过标记标签，可以描述超越纯文本的信息，图片、音视频、表格、列表、链接、按钮、输入框等高级内容。</p>
+<p>而其中的超链接又是互联网的纽带，它能将众多网页连接起来，让它们交织在一起，形成一张“网”。没有超链接，就没有互联网。</p>
+<p><strong>2 &gt;&gt;&gt; 标记语言特性</strong></p>
+<p>HTML 尽管也是一种计算机语言，但它不能编程，只能使用标签来描述网页中的内容。通过不同的标签来描述不同的页面内容、格式、布局等。</p>
+<p>也就是说 &gt;&gt;&gt; <font color="red">HTML 是一种用来设计和编写网页的计算机语言。它通过标签（HTML Tag）将文本、音视频、图片、表格、按钮、输入框等页面需要显示的内容描述出来，同时，对网页内容进行排版和布局。</font></p>
+<hr>
+<h2 id="HTML-版本说明"><a href="#HTML-版本说明" class="headerlink" title="HTML 版本说明"></a>HTML 版本说明</h2><p>自万维网 诞生之后随即就出现了非标准化的 HTML 语言，经过后续不断的发展，HTML 已经更新了多个版本：</p>
+<table>
+<thead>
+<tr>
+<th>发布时间</th>
+<th>版本说明</th>
+<th>HTML 版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1989</td>
+<td>Tim Berners-Lee 发明万维网</td>
+<td>WWW</td>
+</tr>
+<tr>
+<td>1991</td>
+<td>Tim Berners-Lee 制定 HTML 规范</td>
+<td>HTML 1.0</td>
+</tr>
+<tr>
+<td>1995</td>
+<td>HTML 工作组定义 HTML 2.0</td>
+<td>HTML 2.0</td>
+</tr>
+<tr>
+<td>1997</td>
+<td>W3C 推荐标准: HTML 3.2</td>
+<td>HTML 3.2</td>
+</tr>
+<tr>
+<td>1999</td>
+<td>W3C 推荐稳定标准: html 4.01，该版本之后增加了对样式表（CSS）的支持，是当前的官方标准</td>
+<td>HTML 4.01</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>W3C 推荐标准: XHTML 1.0</td>
+<td>XHTML 1.0</td>
+</tr>
+<tr>
+<td>2008</td>
+<td>WhatWG 首次公开 HTML5</td>
+<td>HTML5</td>
+</tr>
+</tbody></table>
+<p><strong>HTML 4</strong> &amp;&amp; <strong>HTML 5</strong>（简称 H5）是两个最重要版本，HTML 4 适应了 PC 互联网时代，HTML 5 适应了移动互联网时代。</p>
+<p>HTML 5 在 HTML 4 的基础上增加了很多语义化的标签，功能更加强大，除了较低版本的 IE 浏览器，几乎所有其它浏览器都能很好地支持 HTML 5。如果您的用户很少使用 IE 浏览器，那么请放心地使用 HTML 5。</p>
+<hr>
+<h2 id="HTML-基本概念"><a href="#HTML-基本概念" class="headerlink" title="HTML 基本概念"></a>HTML 基本概念</h2><p>这里，首先给出一个 HTML 文档 Demo（如下）用于进行后续 HTML 相关语法的说明：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>页面标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>这是一个标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一个段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是另一个段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>HTML 文档是由 HTML 标签组成的网页描述性文档，HTML 标签可以描述文本、图形 、动画、声音 、表格、链接等。 HTML 的结构包括头部 （Head）、主体（Body）两大部分。头部描述浏览器所需的信息，主体包含所要说明的具体内容。</p>
+<p>需要注意的是，本章节中提及到的各种 HTML 标签、属性等，你可以不用深究。这里只是为了认知 HTML 标签 &amp;&amp; 元素 &amp;&amp; 属性 等概念给出的样例，后续博文会有专门的章节进行说明。</p>
+<hr>
+<h3 id="HTML-标签"><a href="#HTML-标签" class="headerlink" title="HTML 标签"></a>HTML 标签</h3><p>HTML 使用标记标签来设计和编写网页，通常也被称之为 HTML 标签（HTML Tag）。其特性如下：</p>
+<ol>
+<li>HTML 标签是由 <strong>尖括号</strong> 包围的关键词，如 <code>&lt;html&gt;</code>；</li>
+<li>HTML 标签 <strong>大多数是成对出现</strong> 的，比如 <code>&lt;html&gt; ... &lt;/html&gt;</code> &amp;&amp; <code>&lt;b&gt; ... &lt;/b&gt;</code>；也有一些单标签：<code>&lt;br/&gt;</code>；</li>
+<li>HTML 标签对中，第一个是 开始标签（开放标签），第二个是 结束标签（闭合标签）；单标签（自闭合标签）开始和结束标签合并表示；</li>
+<li>HTML 标签使用要遵循语法规范，有开始标签，就要有对应的结束标签。</li>
+</ol>
+<p>参考 Demo 中 HTML 代码 &gt;&gt;&gt;&gt;</p>
+<p>标签 <code>&lt;h1&gt;&lt;/h1&gt;</code>：用于标记当前为一级标题 <code>h1</code>; 标签 <code>&lt;p&gt;&lt;/p&gt;</code>：用于标记当前为一个段落; &amp;&amp; ….</p>
+<p>实际上，学习 HTML 其实就是学习各个标签的含义，根据实际场景的需要，选择合适的标签，从而制作出精美的网页。</p>
+<hr>
+<h4 id="标签内容"><a href="#标签内容" class="headerlink" title="标签内容"></a>标签内容</h4><p>开放标签和闭合标签之间的部分，为相应标签的内容。</p>
+<p>例如，<code>&lt;h1&gt;这是一个标题&lt;/h1&gt;</code> &gt;&gt;&gt; 其内容为：<code>这是一个标题</code>；<code>&lt;p&gt;这是一个段落。&lt;/p&gt;</code> &gt;&gt;&gt; 其内容为：<code>这是一个段落。</code>。</p>
+<hr>
+<h4 id="自闭合标签"><a href="#自闭合标签" class="headerlink" title="自闭合标签"></a>自闭合标签</h4><p>少部分的 HTML 标签为单标签，其开始和结束标签合并表示（直接在开始标签中添加 <code>/</code> 来进行闭合），也称为 <strong>自闭合标签</strong>。</p>
+<p>例如：<code>&lt;br/&gt;</code> &gt;&gt;&gt; 表示文本换行 &amp;&amp; <code>&lt;hr/&gt;</code> &gt;&gt;&gt; 表示分割线 &amp;&amp; <code>&lt;img src=&quot;...&quot; alt=&quot;...&quot; /&gt;</code> &gt;&gt;&gt; 表示图像 等等。</p>
+<p>需要注意的是：自闭合标签不需要单独的结束标签，不用包围内容！！！</p>
+<hr>
+<h4 id="标签嵌套"><a href="#标签嵌套" class="headerlink" title="标签嵌套"></a>标签嵌套</h4><p>HTML 标签是支持嵌套使用的，也就是说一个 HTML 标签中可以包含其他的 HTML 标签。来看一个实例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一个段落。<span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">&quot;red&quot;</span>&gt;</span>该部分文字为红色<span class="tag">&lt;/<span class="name">font</span>&gt;</span> <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>HTML 5 标准中，<code>&lt;font&gt;</code> 标签已经成为一种不被建议使用的标签了，请尽量使用 CSS 来设置文本样式。</p>
+</blockquote>
+<p>可以看到，我们在 <code>&lt;p&gt;</code> 标签内容中嵌套了一个 <code>&lt;font&gt;</code> 标签，这是符合语法规范的。</p>
+<p>需要注意的是 &gt;&gt;&gt; <font color="red">尽管标签嵌套层次没有限制的，但是我们应尽量保持 HTML 文档的简洁。并且存在多层次标签嵌套时，一定要注意该闭合的标签一定要闭合，否则可能会引发一些意外。</font></p>
+<hr>
+<h3 id="HTML-元素"><a href="#HTML-元素" class="headerlink" title="HTML 元素"></a>HTML 元素</h3><p>HTML 文档（Web Page）由 HTML 元素定义，HTML 元素指的是从开始标签（Start Tag）到结束标签（End Tag）的所有代码。</p>
+<ol>
+<li>元素的内容是开始标签与结束标签之间的内容；</li>
+<li>某些 HTML 元素具有空内容，如自闭合元素 <code>&lt;br/&gt;</code>，也称为空元素；</li>
+<li>大多数 HTML 元素可拥有属性。</li>
+</ol>
+<p>例如：<code>&lt;p&gt;</code> 元素 <strong>==</strong> <code>&lt;p&gt;这是一个段落。&lt;/p&gt;</code></p>
+<p>| &gt;&gt;&gt; ==================================== <font color="red">Split Line</font> ================================== &lt;&lt;&lt; |</p>
+<p><strong>更一般 HTML 元素格式</strong> &gt;&gt;&gt; 【开始标签 &amp;&amp; 属性 &amp;&amp; 内容 &amp;&amp; 结束标签】，以字体标签为例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">&quot;red&quot;</span>&gt;</span>字体颜色为红色<span class="tag">&lt;/<span class="name">font</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>关于元素属性这里不用深究，见下一小节中属性的相关说明。</p>
+</blockquote>
+<p>其中，<code>&lt;font&gt;</code> 为开始标签；<code>color=&quot;red&quot;</code> 为标签属性；<code>字体颜色为红色</code> 为内容；<code>&lt;/font&gt;</code> 为结束标签。</p>
+<hr>
+<h3 id="HTML-属性"><a href="#HTML-属性" class="headerlink" title="HTML 属性"></a>HTML 属性</h3><p>属性是用来修饰 HTML 标签（元素）的，以提供一些额外的内容描述信息。</p>
+<p>属性需要以 <strong>“键值对（key=”value”）”</strong> 的形式添加在开始标签中（Start Tag），语法格式为：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">attr=&quot;value&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>attr</code> 表示属性名，<code>value</code> 表示属性值。属性值必须使用双引号 <code>&quot; &quot;</code>（<strong>语法规范推荐</strong>） 或者单引号 <code>&#39; &#39;</code> 包围，当属性值本身就含有双引号，那么必须使用单引号。</p>
+</blockquote>
+<p>来看一个属性使用实例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">align</span>=<span class="string">&quot;center&quot;</span>&gt;</span>居中标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>align</code> 为属性名，<code>center</code> 为属性值。</p>
+<hr>
+<p>HTML 中支持的标签属性有很多，大体可以分为三类：</p>
+<ol>
+<li>通用属性：有些属性适用于 &gt;&gt;&gt; 大部分或者所有 HTML 标签；</li>
+<li>专用属性：有些属性只适用于 &gt;&gt;&gt; 一个或者几个特定的 HTML 标签；</li>
+<li>自定义属性：HTML 中也允许我们自定义属性，以提供标签的更多描述。</li>
+</ol>
+<blockquote>
+<p>标签可以没有属性，也可以有一个或者多个属性（<strong>≥0</strong> 个）。当标签使用多个属性修饰时，使用空格隔开即可。</p>
+</blockquote>
+<h4 id="专用属性"><a href="#专用属性" class="headerlink" title="专用属性"></a>专用属性</h4><p>例如，HTML 中的 <code>&lt;img&gt;</code> 标签就有 <code>src</code> 和 <code>alt</code> 两个专用属性，<code>&lt;a&gt;</code> 标签也有 <code>href</code> 和 <code>target</code> 两个专用属性，如下例所示：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;./logo.png&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;Markdown Icon Font&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100&quot;</span> <span class="attr">height</span>=<span class="string">&quot;50&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://www.baidu.com/&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_blank&quot;</span>&gt;</span>百度一下，你就知道<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>属性说明 &gt;&gt;&gt;</p>
+<ul>
+<li><code>&lt;img&gt;</code> 标签中的 <code>src</code> 属性用来定义图像的路径，<code>alt</code> 属性用来定义图像的描述信息，当图像出现异常无法正常显示时就会显示 <code>alt</code> 中的信息；</li>
+<li><code>&lt;a&gt;</code> 标签的 <code>href</code> 属性用来定义链接的地址，<code>target</code> 属性用来定义新页面在浏览器中的打开方式。</li>
+</ul>
+<hr>
+<h4 id="通用属性"><a href="#通用属性" class="headerlink" title="通用属性"></a>通用属性</h4><p>HTML 标签中有一些常见的通用属性，如 <code>id</code> &amp;&amp; <code>title</code> &amp;&amp; <code>class</code> &amp;&amp; <code>style</code> 等，这些通用属性可以在大多数 HTML 标签中都支持。</p>
+<p><strong>[1] &gt;&gt;&gt; id</strong></p>
+<p><code>id</code> 属性用来赋予某个标签唯一的名称（标识符），可用于 <strong>标签定位</strong>。当我们使用 CSS 或者 JavaScript 来访问和操作这个标签时，就可以通过 <code>id</code> 属性来找到这个标签。</p>
+<blockquote>
+<p>注意：在一个 HTML 文档中 id 属性的值必须是唯一的，即不能存在多个有相同 id 的标签或元素。</p>
+</blockquote>
+<p>为标签定义 <code>id</code> 属性可以给我们提供很多便利：</p>
+<ol>
+<li>如果标签中带有 <code>id</code> 属性作为唯一标识符，通过 <code>id</code> 属性可以很方便的定位到该标签；</li>
+<li>如果 HTML 文档中包含多个同名的标签，利用 <code>id</code> 属性的唯一性，可以很方便的区分它们。</li>
+</ol>
+<p>示例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;username&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">&quot;url&quot;</span>&gt;</span>https://www.baidu.com/<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>[2] &gt;&gt;&gt; class</strong></p>
+<p>与 <code>id</code> 属性类似，<code>class</code> 属性也可以为标签定义名称（标识符）。</p>
+<p>但不同的是 <code>class</code> 属性在整个 HTML 文档中不必是唯一的，我们可以为多个标签定义相同的 <code>class</code> 属性值，还可以为一个标签定义多个不同的 <code>class</code> 属性值。</p>
+<p>示例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;className1 className2 className3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span>https://www.baidu.com/<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span>https://www.baidu.com/<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>为标签定义 <code>class</code> 属性后，当使用 CSS 或者 JavaScript 来操作 HTML 标签时，同样可以使用 <code>class</code> 属性来找到对应的 HTML 标签。</p>
+<p>需要注意的 &gt;&gt;&gt; 不同于 <code>id</code> 属性，由于 <code>class</code> 属性不是唯一的，所以通过 CSS 或 JavaScript 对 HTML 标签的操作会应用于所有具有同名 <code>class</code> 属性的标签中。</p>
+<p>你可以将 <strong>具有相同 <code>class</code> 属性的标签看作一个标签族，对其操作会应用于所有具有同名 <code>class</code> 属性的标签中。</strong></p>
+<hr>
+<p><strong>[3] &gt;&gt;&gt; title</strong></p>
+<p><code>title</code> 属性用来对标签内容进行描述说明，当鼠标移动到该标签上方时会显示出 <code>title</code> 属性的值。</p>
+<p>示例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">title</span>=<span class="string">&quot;这是一个链接&quot;</span>&gt;</span>https://www.baidu.com/<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：将鼠标在链接处悬停片刻才能看到提示框。</p>
+</blockquote>
+<hr>
+<p><strong>[4] &gt;&gt;&gt; style</strong></p>
+<p><code>style</code> 属性规定了元素的行内样式（inline style），用来为标签内容定义 CSS 样式，例如设置文本颜色、标题居中等。</p>
+<p>其属性值是一个或多个由分号分隔的 <code>CSS 属性:值</code> 对，例如 <code>color:blue; text-align:center</code>。</p>
+<p>示例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">style</span>=<span class="string">&quot;color:blue;text-align:center&quot;</span>&gt;</span>这是一个标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;color:green&quot;</span>&gt;</span>这是一个段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，style 属性将覆盖任何全局的样式设定，例如在 <code>&lt;style&gt;</code> 标签或在外部样式表中规定的样式。</p>
+<blockquote>
+<p>HTML 4.01 中, style 属性不能用于: <code>&lt;base&gt; &amp;&amp; &lt;head&gt; &amp;&amp; &lt;html&gt; &amp;&amp; &lt;meta&gt; &amp;&amp; &lt;param&gt; &amp;&amp; &lt;script&gt; &amp;&amp; &lt;style&gt; &amp;&amp; &lt;title&gt;</code>。而 HTML5 中, style 属性可用于任何的 HTML 元素 (它会验证任何 HTML 元素。但不一定是有用)。</p>
+</blockquote>
+<hr>
+<h4 id="自定义属性"><a href="#自定义属性" class="headerlink" title="自定义属性"></a>自定义属性</h4><p>除了自带的属性，HTML 也允许我们自定义属性。</p>
+<p>这些属性虽然可以被浏览器识别，但是并不会添加什么特殊效果，你可以尝试随别添加一个属性尝试一下。</p>
+<p>但此时，我们可以借助 CSS 和 JavaScript 处理自定义属性，为 HTML 标签添加指定样式或者行为。</p>
+<blockquote>
+<p>对于自定义属性的使用，后续学习 CSS 和 JavaScript 时你会有更深入的了解。</p>
+</blockquote>
+<hr>
+<h2 id="HTML-注释"><a href="#HTML-注释" class="headerlink" title="HTML 注释"></a>HTML 注释</h2><p>HTML 注释主要用来对文档中的代码进行解释说明，注释也是代码的一部分，但浏览器会自动忽略注释的内容，所以用户在网页中是看不到注释的。</p>
+<h3 id="注释的功能"><a href="#注释的功能" class="headerlink" title="注释的功能"></a>注释的功能</h3><p><strong>[1] &gt;&gt;&gt; 代码说明</strong></p>
+<p>通常，一个完整的 HTML 文档往往由成百上千行代码组成，当我们想要修改其中的某个部分时，可能需要花费很长的时间才能找到想要修改的地方。可以根据功能或者其它条件将程序划分为若干个部分并通过注释进行标记，这样可以帮助您和他人阅读您的代码，提高代码的可读性。</p>
+<p><strong>[2] &gt;&gt;&gt; 代码注释</strong></p>
+<p>除了可以对代码进行说明外，还可以用来注释程序中的代码。</p>
+<p>例如当不希望某段代码执行时，就可以先将它们注释掉，这样浏览器就不会执行这段代码了。</p>
+<hr>
+<h3 id="注释语法格式"><a href="#注释语法格式" class="headerlink" title="注释语法格式"></a>注释语法格式</h3><p>HTML 文档中，使用注释标签 <code>&lt;!--</code> &amp;&amp; <code>--&gt;</code> 来插入注释，支持行注释和块注释。语法格式如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这是一个行注释 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">这是一个多行注释</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="条件注释"><a href="#条件注释" class="headerlink" title="条件注释"></a>条件注释</h3><p>HTML 中你偶尔还会发现一种条件注释，条件注释仅对 Windows 系统上的 Internet Explorer（IE）浏览器中有效，其他的浏览器会忽略它们。</p>
+<p>需要注意的是 &gt;&gt;&gt;&gt; <font color="red">Internet Explorer 从 IE5 开始支持条件注释，您可以使用条件注释为使用 IE 浏览器的用户提供一些说明。自 IE10 起，标准模式不再支持条件注释。</font></p>
+<p><strong>[1] &gt;&gt;&gt; 语法格式</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--[if expression]&gt; HTML Code &lt;![endif]--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>比较 IE 版本将会用到如下关键字：</p>
+<ul>
+<li>lt：less than &gt;&gt;&gt; 小于；</li>
+<li>lte：less than or equal to &gt;&gt;&gt; 小于或等于；</li>
+<li>gt：greater than &gt;&gt;&gt; 大于；</li>
+<li>gte：greater than or equal to &gt;&gt;&gt; 大于或等于；</li>
+<li>! &gt;&gt;&gt; 不等于；</li>
+<li>() &gt;&gt;&gt; 子表达式运算符；</li>
+<li>&amp; ：AND &gt;&gt;&gt; AND 运算符；</li>
+<li>| ：OR &gt;&gt;&gt; OR 运算符；</li>
+</ul>
+<p>示例代码如下（你可以在不同浏览器下尝试一下）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>IE Explorer Conditional Annotation<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>根据不同的 IE 版本显示不同的内容<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 如果使用 IE Explorer，则显示 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--[if IE]&gt;</span></span><br><span class="line"><span class="comment">            &lt;p&gt;您正在使用 IE 浏览器&lt;/p&gt;</span></span><br><span class="line"><span class="comment">        &lt;![endif]--&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&lt;!-- 如果使用 IE8 Explorer，则显示 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--[if IE 8]&gt;</span></span><br><span class="line"><span class="comment">            &lt;p&gt;您正在使用 IE8 浏览器&lt;/p&gt;</span></span><br><span class="line"><span class="comment">        &lt;![endif]--&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 如果不是使用 IE7 Explorer，则显示 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--[if !IE 7]&gt;</span></span><br><span class="line"><span class="comment">            &lt;p&gt;您正在使用不是 IE7 浏览器&lt;/p&gt;</span></span><br><span class="line"><span class="comment">        &lt;![endif]--&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 如果 Explorer 版本小于 IE10，则显示 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--[if lt IE 10]&gt;</span></span><br><span class="line"><span class="comment">            &lt;p&gt;您正在使用 IE10 以下的版本&lt;/p&gt;</span></span><br><span class="line"><span class="comment">        &lt;![endif]--&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!-- 如果 Explorer 版本大于 IE6，则显示 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--[if gt IE 6]&gt;</span></span><br><span class="line"><span class="comment">            &lt;p&gt;您正在使用 IE6 以上的版本&lt;/p&gt;</span></span><br><span class="line"><span class="comment">        &lt;![endif]--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[2] &gt;&gt;&gt; 使用场景</strong></p>
+<p>条件注释可以检测当前浏览器是否是 IE，以及 IE 版本。于是，开发人员可以根据不同的 IE 浏览器加载不同的 <code>CSS</code> 或者 <code>JS</code> 脚本。</p>
+<p>示例代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if lt IE 7 ]&gt;&lt;html class=&quot;ie6&quot; lang=&quot;zh-cn&quot;&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE 7 ]&gt;&lt;html class=&quot;ie7&quot; lang=&quot;zh-cn&quot;&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE 8 ]&gt;&lt;html class=&quot;ie8&quot; lang=&quot;zh-cn&quot;&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if IE 9 ]&gt;&lt;html class=&quot;ie9&quot; lang=&quot;zh-cn&quot;&gt;&lt;![endif]--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if (gt IE 9)|!(IE)]&gt;&lt;!--&gt;</span><span class="tag">&lt;<span class="name">html</span> <span class="attr">class</span>=<span class="string">&quot;&quot;</span> <span class="attr">lang</span>=<span class="string">&quot;zh-cn&quot;</span>&gt;</span><span class="comment">&lt;!--&lt;![endif]--&gt;</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>IE 浏览器对 HTML5 支持不太友好，并且 IE 已经逐渐退出市场，各大互联网巨头也不再兼容 IE，开发过程中如果没有特殊情况也不用重点考虑 IE。</p>
+<hr>
+<h3 id="第三方软件程序注释"><a href="#第三方软件程序注释" class="headerlink" title="第三方软件程序注释"></a>第三方软件程序注释</h3><p>各种 HTML 相关的软件程序也能够生成 HTML 注释。</p>
+<p>例如 <!--webbot bot--> 标签会被包围在由 FrontPage 和 Expression Web 创建的 HTML 注释中。</p>
+<p>作为一项规则，这些标签的存在，有助于对创建这些标签的软件进行支持。</p>
+<hr>
+<h2 id="HTML-编码问题"><a href="#HTML-编码问题" class="headerlink" title="HTML 编码问题"></a>HTML 编码问题</h2><p>有时在浏览器中预览 HTML 页面时会出现 <font color="red">中文乱码 的问题</font>。</p>
+<p>这是由于 HTML 文档是一种纯文本文件，因此会涉及到文件编码格式的问题。也就是说， Web 浏览器必须知道要使用哪种编码来进行显示。</p>
+<p><strong>[1] &gt;&gt;&gt; HTML 字符集</strong></p>
+<p>从 ASCII 到 UTF-8 ↓↓↓↓↓↓↓↓↓↓</p>
+<p><strong>ASCII</strong> 是第一个字符编码标准。ASCII 定义了 128 种可以在互联网上使用的字符：数字（<code>0-9</code>）、英文字母（<code>a-z</code> &amp;&amp; <code>A-Z</code>）和一些特殊字符，比如：<code>! $ + - ( ) @ &lt; &gt;</code>。</p>
+<p><strong>ISO-8859-1</strong> 是 HTML 4 的默认字符集。此字符集支持 256 个不同的字符代码。HTML 4 同时支持 <strong>UTF-8</strong>。</p>
+<p><strong>ANSI（Windows-1252）</strong> 是原始的 Windows 字符集。 ANSI 与 ISO-8859-1 相同，不同之处在于 ANSI 具有 32 个额外的字符。</p>
+<p><strong>[2] &gt;&gt;&gt; Solution</strong></p>
+<p><font color="red">HTML5 规范鼓励 Web 开发人员使用 UTF-8 字符编码，该字符集涵盖了世界上几乎所有的字符和符号！可用于解决页面显示乱码问题。</font></p>
+<p>你可以在 <code>&lt;head&gt;</code> 元素中添加如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>如果你对编码格式不了解的话，请猛击链接学习 &gt;&gt;&gt; <a href="https://www.orangeshare.cn/2016/09/01/bian-cheng-ji-chu-zhi-bian-ma-xiang-jie/">编程基础之编码详解</a>。</p>
+<hr>
+<h2 id="HTML-语法规范"><a href="#HTML-语法规范" class="headerlink" title="HTML 语法规范"></a>HTML 语法规范</h2><p>类似于其它计算机语言，在编写 HTML 代码时通常会有以下两种主要类型的错误：</p>
+<ul>
+<li><strong>语法错误</strong>：由于拼写错误或者语法错误使用导致程序无法运行 &gt;&gt;&gt; 通常熟悉语法并理解错误信息后很容易修复；</li>
+<li><strong>逻辑错误</strong>：不存在语法错误，但代码无法运行出预期结果 &gt;&gt;&gt; 逻辑错误比语法错误更难修复，由于无法得到指向错误源头的信息，需要通过调试等手段进行修复。</li>
+</ul>
+<p>和其它计算机语言不同的是，HTML 本身不容易出现语法错误，因为浏览器是以宽松模式解析 HTML 的。这就意味着，即使出现语法错误浏览器依然会继续运行，浏览器通常都有内建规则来解析书写错误的 HTML 标记，所以即使与预期不符，页面仍可显示出来。</p>
+<blockquote>
+<p>HTML 之所以以宽松的方式进行解析，是因为 Web 创建的初心就是：人人可发布内容，不去纠结代码语法。</p>
+</blockquote>
+<p>你可以尝试一下仅在 HTML 文档中写一行如下内容，浏览器也可以正常解析显示页面：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HTML 文档中没有：!DOCTYPE 声明 &amp;&amp; &lt;head&gt; &amp;&amp; &lt;body&gt; 等，仅一个标题元素--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>这是一个标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[1] 浏览器宽泛解析引发的问题 &gt;&gt;&gt;&gt;</strong></p>
+<p>不要觉得很庆幸，寄希望浏览器可以理解你的预期是存在隐患的，极大可能会带来与预期不符的结果！！！</p>
+<p>尝试预览如下页面：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>页面标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>这是一个标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一个段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一个浏览器宽泛解析测试段落，<span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">&quot;red&quot;</span>&gt;</span>[仅当前文字为红色]，[这里正常显示默认黑色颜色文字]<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里缺省了 <code>&lt;font</code> 标签的结束标签，我们期望的是仅将 [仅当前文字为红色] 设置为红色，然后浏览器宽泛解析后，[这里正常显示默认黑色颜色文字] 也被设置为红色。</p>
+<p>可见，<font color="red">遵循基本的 HTML 语法规范，对于设计和编写符合预期的网页是比较重要的！！！</font></p>
+<p><strong>[2] 基本的 HTML 语法规范 &gt;&gt;&gt;&gt;</strong></p>
+<ol>
+<li>HTML 文档中应包含基本的：<code>!DOCTYPE</code>（文档类型声明）&amp;&amp; <code>&lt;html&gt;&lt;/html&gt;</code>（HTML 页面根标签）&amp;&amp; <code>&lt;head&gt;&lt;/head&gt;</code>（头标签）&amp;&amp; <code>&lt;title&gt;&lt;/title&gt;</code>（网页标题标签）&amp;&amp; <code>&lt;body&gt;&lt;/body&gt;</code>（页面主体标签）以及其它必要的元素标签；</li>
+<li>HTML 标签使用 <code>&lt;&gt;</code> 包围：其中，自闭合标签使用 <code>/</code> 进行闭合，其它标签有开始标签，就需要使用闭合标签进行闭合；</li>
+<li>标签 &amp;&amp; 属性 &amp;&amp; 属性值对大小写不敏感，HTML 4（推荐）&amp;&amp; XHTML（强制）统一使用小写。</li>
+</ol>
+<blockquote>
+<p>关于标签大小写不敏感，是由于 HTML4 标准之前规范较混乱，HTML 代码与 XML 的代码更加相似，而 XML 代码的一大特点就是标签喜欢使用大写，由此沿袭。</p>
+</blockquote>
+<hr>
+<p>对上述基本概念有了一定的认知之后，这一小节我们来看一个简单的 HTML 文档（网页）的基本结构：</p>
+<h2 id="HTML-文档-amp-amp-网页基本结构"><a href="#HTML-文档-amp-amp-网页基本结构" class="headerlink" title="HTML 文档 &amp;&amp; 网页基本结构"></a>HTML 文档 &amp;&amp; 网页基本结构</h2><p>正如上面【HTML 语法规范】中提到的，一个 HTML 文档中应包含基本的：</p>
+<p><code>!DOCTYPE</code>（文档类型声明）&amp;&amp; <code>&lt;html&gt;&lt;/html&gt;</code>（HTML 页面根标签）&amp;&amp; <code>&lt;head&gt;&lt;/head&gt;</code>（头标签）&amp;&amp; <code>&lt;title&gt;&lt;/title&gt;</code>（网页标题标签）&amp;&amp; <code>&lt;body&gt;&lt;/body&gt;</code>（页面主体标签）以及其它必要的元素标签，它们 <strong>共同构成了 HTML 文档（网页）的基本结构</strong>。</p>
+<p>HTML 文档 &amp;&amp; 网页基本结构示例如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>页面标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 其它必要的元素 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>这是一个标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一个段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是另一个段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>语法说明如下（更详细的说明请参见博文系列）</strong> &gt;&gt;&gt;&gt;</p>
+<ul>
+<li><code>&lt;!DOCTYPE html&gt;</code>：标准通用标记语言的文档类型声明（技术层面不属于标签，不区分大小写，不需要闭合），用于声明当前文档类型（HTML），以及 HMTL 使用版本（HTML5 &amp;&amp; HTML 4.0.1 &amp;&amp; XHTML 1.0）；</li>
+<li><code>&lt;html&gt; &lt;/html&gt;</code>：HTML 页面的根标签（root tag），其他所有的标签都需要在 <code>&lt;html&gt;</code> 和 <code>&lt;/html&gt;</code> 标签之间定义；</li>
+<li><code>&lt;head&gt; &lt;/head&gt;</code>：页面头部标签，用来定义 HTML 页面的元数据以及资源引用信息，例如标题、meta 元数据、CSS 样式或 JavaScript 脚本引用等；</li>
+<li><code>&lt;title&gt; &lt;/title&gt;</code>：用来定义网页的标题（网页标题会显示在浏览器的标签栏）；</li>
+<li><code>&lt;body&gt; &lt;/body&gt;</code>：页面主体标签，用来定义网页中能通过浏览器看到的所有内容，例如段落、标题、图片、链接等等；</li>
+<li><code>&lt;h1&gt; &lt;/h1&gt; &amp;&amp; &lt;p&gt; &lt;/p&gt;</code>：构成页面的其它必要的元素标签，这里页面中使用了 <code>&lt;h1&gt;</code> &amp;&amp; <code>&lt;p&gt;</code> 元素标签。</li>
+</ul>
+<p><strong>可视化上述的 HTML 文档（页面）结构</strong> &gt;&gt;&gt;&gt;</p>
+<p><img src="https://cdn.jsdelivr.net/gh/TheNightIsYoung/HexoImageBed0/Img/website_construction_visualization.png"></p>
+<p>需要注意的是，<strong>只有 <code>&lt;body&gt;</code> 标签中的内容才会显示在浏览器。</strong>  </p>
+<hr>
+<h2 id="HTML-中的空格和换行"><a href="#HTML-中的空格和换行" class="headerlink" title="HTML 中的空格和换行"></a>HTML 中的空格和换行</h2><p>不知道你有没有发现，无论你在 HTML 元素中用了多少空格或换行（包括空格字符，换行字符），当浏览器渲染这些代码时，会将连续出现的空格字符（或换行）截短为一个单独的空格符。</p>
+<p>也就是说，下面的代码片段都是等价的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是 一个段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是        一个段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是</span><br><span class="line">    一个段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是</span><br><span class="line">    </span><br><span class="line">    一个段落。<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果就是想使用连续空格，你可以使用 HTML 中表示空格的字符实体（<code>&amp;nbsp</code>）来插入多个空格。更多关于 HTML 字符实体的内容可参考博文系列中相关内容。</p>
+<p>如果就是想换行，你可以使用 HTML 中的换行标签 <code>&lt;br/&gt;</code>，其属于一个自闭合标签。</p>
+<hr>
+<h2 id="lt-DOCTYPE-gt-声明"><a href="#lt-DOCTYPE-gt-声明" class="headerlink" title="&lt;!DOCTYPE&gt; 声明"></a>&lt;!DOCTYPE&gt; 声明</h2><p><code>&lt;!DOCTYPE&gt;</code> 是标准通用标记语言的文档类型声明，有助于在浏览器中正确地显示网页。</p>
+<p>这是由于网络上文件的类型不一，因此需要正确声明文档类型以及使用的 HTML 版本，以使得浏览器能够正确解析并显示网页内容。</p>
+<p>并且，所有主流浏览器（IE &amp;&amp; Firefox &amp;&amp; Opera &amp;&amp; Safari &amp;&amp; Edge &amp;&amp; Chrome）都支持 <code>&lt;!DOCTYPE&gt;</code> 声明。</p>
+<h3 id="HTML4-VS-HTML5"><a href="#HTML4-VS-HTML5" class="headerlink" title="HTML4 VS HTML5"></a>HTML4 VS HTML5</h3><p>开始之前，你需要了解什么是 DTD ？？？</p>
+<p>所谓 DTD，全称 Document Type Defination，即文档类型定义。<font color="red">它是 一套标记符的语法规则，通过定义 DTD，使浏览器使用相应的渲染模式对页面进行渲染，从而正确显示页面。</font></p>
+<p>HTML5 之前，HTML 实际上是基于 SGML （Standard Generalized Markup Language 标准通用标记语言）中规定的一种标记格式，而 SGML 是通过 DTD 来定义文档类型的。</p>
+<p>所以，不出意外地在 <strong>HTML4.01</strong> <code>&lt;!DOCTYPE&gt;</code> 声明中需引用 <strong>DTD</strong>，以帮助浏览器能够使用相应 DTD 的渲染模式去渲染显示页面。而 <strong>HTML5</strong> 不是基于 SGML 的，因此不要求引用 DTD。</p>
+<p>并且，HTML 4.01 中采用了三种不同的 DTD 定义，因此规定了三种不同的 <code>&lt;!DOCTYPE&gt;</code> 声明，分别是：<code>Strict（严格模式）</code>、<code>Transitional（过度模式）</code> 和 <code>Frameset（框架集模式）</code>。 HTML5 中仅规定了一种：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="常见的-DOCTYPE-声明"><a href="#常见的-DOCTYPE-声明" class="headerlink" title="常见的 DOCTYPE 声明"></a>常见的 DOCTYPE 声明</h3><p>使用 &gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://validator.w3.org/">W3C Validation Tool</a> &lt;&lt;&lt; 可以检查你是否编写了一个符合特定 DTD 规则的合法 HTML/XHTML 文档！！！</p>
+<p><strong>HTML 5</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p><strong>HTML 4.01 Strict</strong></p>
+<p>这个 DTD 包含所有 HTML 元素和属性，但不包括展示性的或过时的元素（如 font ），且不允许框架集。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//W3C//DTD HTML 4.01//EN&quot;</span> <span class="meta-string">&quot;http://www.w3.org/TR/html4/strict.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>HTML 4.01 Transitional</strong></p>
+<p>这个 DTD 包含所有 HTML 元素和属性，包括展示性的或过时的元素（如 font ），但不允许框架集。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;</span> <span class="meta-string">&quot;http://www.w3.org/TR/html4/loose.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>HTML 4.01 Frameset</strong></p>
+<p>这个 DTD 包含所有 HTML 元素和属性，包括展示性的或过时的元素（如 font ），且允许框架集。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">HTML</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//W3C//DTD HTML 4.01 Frameset//EN&quot;</span> <span class="meta-string">&quot;http://www.w3.org/TR/html4/frameset.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>XHTML 1.0 Strict</strong></p>
+<p>这个 DTD 包含所有 HTML 元素和属性，但不包括展示性的或过时的元素（如 font ），且不允许框架集。结构必须按标准格式的 XML 进行书写。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot;</span> <span class="meta-string">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>XHTML 1.0 Transitional</strong></p>
+<p>这个 DTD 包含所有 HTML 元素和属性，包括展示性的或过时的元素（如 font ），但不允许框架集。结构必须按标准格式的 XML 进行书写。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span> <span class="meta-string">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>XHTML 1.0 Frameset</strong></p>
+<p>这个 DTD 包含所有 HTML 元素和属性，包括展示性的或过时的元素（如 font ），且允许框架集。结构必须按标准格式的 XML 进行书写。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//W3C//DTD XHTML 1.0 Frameset//EN&quot;</span> <span class="meta-string">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>XHTML 1.1</strong></p>
+<p>这个 DTD 与 XHTML 1.0 Strict 相同，但是允许你添加模块（例如为东亚语言提供 <code>ruby</code> 支持）。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//W3C//DTD XHTML 1.1//EN&quot;</span> <span class="meta-string">&quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>HTML 教程之 HTML 基础语法</p><p><a href="https://www.orangeshare.cn/2019/01/01/html-jiao-cheng-zhi-html-ji-chu-yu-fa/">https://www.orangeshare.cn/2019/01/01/html-jiao-cheng-zhi-html-ji-chu-yu-fa/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2019-01-01</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2022-12-08</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Front-End-Devp/">Front-End Devp</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/01/02/html-jiao-cheng-zhi-html-ji-ben-yuan-su/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">HTML 教程之 HTML 基本元素</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/01/01/html-jiao-cheng-zhi-chu-shi-html/"><span class="level-item">HTML 教程之初识 HTML</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">88</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">39</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#深入了解-HTML"><span class="level-left"><span class="level-item">1</span><span class="level-item">深入了解 HTML</span></span></a></li><li><a class="level is-mobile" href="#HTML-版本说明"><span class="level-left"><span class="level-item">2</span><span class="level-item">HTML 版本说明</span></span></a></li><li><a class="level is-mobile" href="#HTML-基本概念"><span class="level-left"><span class="level-item">3</span><span class="level-item">HTML 基本概念</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#HTML-标签"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">HTML 标签</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#标签内容"><span class="level-left"><span class="level-item">3.1.1</span><span class="level-item">标签内容</span></span></a></li><li><a class="level is-mobile" href="#自闭合标签"><span class="level-left"><span class="level-item">3.1.2</span><span class="level-item">自闭合标签</span></span></a></li><li><a class="level is-mobile" href="#标签嵌套"><span class="level-left"><span class="level-item">3.1.3</span><span class="level-item">标签嵌套</span></span></a></li></ul></li><li><a class="level is-mobile" href="#HTML-元素"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">HTML 元素</span></span></a></li><li><a class="level is-mobile" href="#HTML-属性"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">HTML 属性</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#专用属性"><span class="level-left"><span class="level-item">3.3.1</span><span class="level-item">专用属性</span></span></a></li><li><a class="level is-mobile" href="#通用属性"><span class="level-left"><span class="level-item">3.3.2</span><span class="level-item">通用属性</span></span></a></li><li><a class="level is-mobile" href="#自定义属性"><span class="level-left"><span class="level-item">3.3.3</span><span class="level-item">自定义属性</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#HTML-注释"><span class="level-left"><span class="level-item">4</span><span class="level-item">HTML 注释</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#注释的功能"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">注释的功能</span></span></a></li><li><a class="level is-mobile" href="#注释语法格式"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">注释语法格式</span></span></a></li><li><a class="level is-mobile" href="#条件注释"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">条件注释</span></span></a></li><li><a class="level is-mobile" href="#第三方软件程序注释"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">第三方软件程序注释</span></span></a></li></ul></li><li><a class="level is-mobile" href="#HTML-编码问题"><span class="level-left"><span class="level-item">5</span><span class="level-item">HTML 编码问题</span></span></a></li><li><a class="level is-mobile" href="#HTML-语法规范"><span class="level-left"><span class="level-item">6</span><span class="level-item">HTML 语法规范</span></span></a></li><li><a class="level is-mobile" href="#HTML-文档-amp-amp-网页基本结构"><span class="level-left"><span class="level-item">7</span><span class="level-item">HTML 文档 &amp;&amp; 网页基本结构</span></span></a></li><li><a class="level is-mobile" href="#HTML-中的空格和换行"><span class="level-left"><span class="level-item">8</span><span class="level-item">HTML 中的空格和换行</span></span></a></li><li><a class="level is-mobile" href="#lt-DOCTYPE-gt-声明"><span class="level-left"><span class="level-item">9</span><span class="level-item">&lt;!DOCTYPE&gt; 声明</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#HTML4-VS-HTML5"><span class="level-left"><span class="level-item">9.1</span><span class="level-item">HTML4 VS HTML5</span></span></a></li><li><a class="level is-mobile" href="#常见的-DOCTYPE-声明"><span class="level-left"><span class="level-item">9.2</span><span class="level-item">常见的 DOCTYPE 声明</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2023 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
