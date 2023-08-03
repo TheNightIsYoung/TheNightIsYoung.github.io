@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>The Pixel Matrix Representation Of Image - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="在计算机视觉中，图像是以像素矩阵（Image Pixel Matrix）的形式进行表示和处理的。"><meta property="og:type" content="blog"><meta property="og:title" content="The Pixel Matrix Representation Of Image"><meta property="og:url" content="https://www.orangeshare.cn/2018/02/01/the-pixel-matrix-representation-of-image/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="在计算机视觉中，图像是以像素矩阵（Image Pixel Matrix）的形式进行表示和处理的。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://s2.loli.net/2023/05/26/YGkW1BLI7H8J2ZV.jpg"><meta property="og:image" content="https://s2.loli.net/2023/05/26/j5k2EC8bYzMAusn.jpg"><meta property="og:image" content="https://s2.loli.net/2023/05/26/utHLwMaP8QzSbYK.jpg"><meta property="og:image" content="https://s2.loli.net/2023/05/26/TrpLK8MDO5ARvs9.png"><meta property="og:image" content="https://s2.loli.net/2023/05/27/WXGBui3HEz8y7qj.png"><meta property="og:image" content="https://s2.loli.net/2023/05/27/X8oBwAne42dcYQg.jpg"><meta property="og:image" content="https://s2.loli.net/2023/05/27/2dVmLxWGUZCvgl7.jpg"><meta property="og:image" content="https://s2.loli.net/2023/05/27/Gzvj3tMNFoQqhwd.png"><meta property="og:image" content="https://s2.loli.net/2023/05/28/PVtT9c3qpFjMhnb.png"><meta property="og:image" content="https://s2.loli.net/2023/05/28/TOaIhsygC21Zzc4.jpg"><meta property="og:image" content="https://s2.loli.net/2023/05/28/W6J3PTX4RGoEI1n.png"><meta property="og:image" content="https://s2.loli.net/2023/05/28/kiHL2dChwTlXzjA.png"><meta property="og:image" content="https://s2.loli.net/2023/05/28/RFNSfJIZjlokMcP.png"><meta property="article:published_time" content="2018-02-01T00:36:46.000Z"><meta property="article:modified_time" content="2023-05-28T15:42:37.076Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="TensorFlow"><meta property="article:tag" content="DataSet"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://s2.loli.net/2023/05/26/YGkW1BLI7H8J2ZV.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2018/02/01/the-pixel-matrix-representation-of-image/"},"headline":"When Art Meets Tech","image":["https://s2.loli.net/2023/05/26/YGkW1BLI7H8J2ZV.jpg","https://s2.loli.net/2023/05/26/j5k2EC8bYzMAusn.jpg","https://s2.loli.net/2023/05/26/utHLwMaP8QzSbYK.jpg","https://s2.loli.net/2023/05/26/TrpLK8MDO5ARvs9.png","https://s2.loli.net/2023/05/27/WXGBui3HEz8y7qj.png","https://s2.loli.net/2023/05/27/X8oBwAne42dcYQg.jpg","https://s2.loli.net/2023/05/27/2dVmLxWGUZCvgl7.jpg","https://s2.loli.net/2023/05/27/Gzvj3tMNFoQqhwd.png","https://s2.loli.net/2023/05/28/PVtT9c3qpFjMhnb.png","https://s2.loli.net/2023/05/28/TOaIhsygC21Zzc4.jpg","https://s2.loli.net/2023/05/28/W6J3PTX4RGoEI1n.png","https://s2.loli.net/2023/05/28/kiHL2dChwTlXzjA.png","https://s2.loli.net/2023/05/28/RFNSfJIZjlokMcP.png"],"datePublished":"2018-02-01T00:36:46.000Z","dateModified":"2023-05-28T15:42:37.076Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"在计算机视觉中，图像是以像素矩阵（Image Pixel Matrix）的形式进行表示和处理的。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2018/02/01/the-pixel-matrix-representation-of-image/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>The Pixel Matrix Representation Of Image</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2018-02-01</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2023-05-28</time></span><span class="level-item"><a class="link-muted" href="/categories/DeepLearning/">DeepLearning</a></span><span class="level-item">31 minutes read (About 4691 words)</span></div></div><div class="content"><p>在计算机视觉中，图像是以像素矩阵（Image Pixel Matrix）的形式进行表示和处理的。</p>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<a id="more"></a>
+
+<h2 id="计算机视觉"><a href="#计算机视觉" class="headerlink" title="计算机视觉"></a>计算机视觉</h2><p>我们知道，图像（图片）是 <font color="red">三维现实场景的二维表示。</font></p>
+<p>一切看似复杂的计算机视觉项目，其基础都会回归到单张（灰度/彩色/黑白）图像上。</p>
+<p>那么，计算机是如何认识以及处理图像数据的？！！</p>
+<hr>
+<h3 id="像素网格"><a href="#像素网格" class="headerlink" title="像素网格"></a>像素网格</h3><p>如果你在某个观景处拍张照片，就可以得到它的二维图像，这是计算机 “看” 图的第一步。</p>
+<p>这张图像包含的信息有：景物的颜色、形状、表观大小（随摄影距离的远近，物体表现得更大还是更小），以及随照明条件的不同而产生的不同阴影等。（为了避免彩色带来的复杂性，这里将通过其灰度图像进行说明）</p>
+<div align=center><img src="https://s2.loli.net/2023/05/26/YGkW1BLI7H8J2ZV.jpg"></div>
+
+<p>此时，如果你一直放大图片中的某一小部分，最终会发现 &gt;&gt;&gt;&gt; 原来，计算机中图像是由一个个小块（这就是像素）组成的二维网格（像素网格）：</p>
+<div align=center><img src="https://s2.loli.net/2023/05/26/j5k2EC8bYzMAusn.jpg"></div>
+
+<p>事实上，像素网格中的每个像素都有一个对应的数值（像素值），取值范围是 <code>0~255</code>（其中，<code>0</code> 表示最暗黑色；<code>255</code> 表示最亮白色）。</p>
+<p>这样，就可以通过定位像素网格的横纵坐标来获取某一特定位置的像素值：</p>
+<div align=center><img src="https://s2.loli.net/2023/05/26/utHLwMaP8QzSbYK.jpg"></div>
+
+<p>哎~~~~ 像素网格这不就和矩阵（Matrix）高度吻合了么？，像素网格中的每一个像素对应矩阵的元素！！！</p>
+<hr>
+<p>从像素网格到像素矩阵（Pixel Matrix）：</p>
+<h3 id="像素矩阵"><a href="#像素矩阵" class="headerlink" title="像素矩阵"></a>像素矩阵</h3><p>可以很容易想到 &gt;&gt;&gt;&gt; 图像中的尺寸，有着宽度（width）和高度（height），而矩阵有着对应的行（row）和列（column）定义。矩阵中的每一个元素对应图像中的像素。</p>
+<p>这样，我们就完成了：图像 &gt;&gt;&gt;&gt; 像素网格 &gt;&gt;&gt;&gt; 像素矩阵 的 “映射” 分析。</p>
+<p>实际上，图像在计算机中的处理，就是 <strong>将对图像的操作转换成对图像像素矩阵的操作</strong>（计算机中矩阵的操作是非常常见且成熟的）。事实上所有的图像处理工具都是这么做的。</p>
+<p>这里，将使用 Python 图像处理库 OpenCV 提供的方法来进行简单的图像读取和处理演示。</p>
+<p><strong>[1] &gt;&gt;&gt; 图像读取和查看</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取图像，并设置为灰度图（0）</span></span><br><span class="line">mountain = cv2.imread(<span class="string">&#x27;mountain.png&#x27;</span>, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看图像读取后像素矩阵的数据类型：</span></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;type:&quot;</span>, <span class="built_in">type</span>(mountain))</span><br><span class="line"><span class="comment"># type: &lt;class &#x27;numpy.ndarray&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看图像的尺寸（像素矩阵的形状）：</span></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;shape:&quot;</span>, mountain.shape)</span><br><span class="line"><span class="comment"># shape: (480, 640)</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到，图像读取后，被存储到 NumPy 中的 ndarray 数组中。其中，图像的像素矩阵行（row）为 480 px，列（column）为 640 px；分别对应原始图像中的高度（width）和宽度（height）。</p>
+<p><strong>[2] &gt;&gt;&gt; 获取特定位置的像素值</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(mountain[<span class="number">100</span>, <span class="number">100</span>])</span><br><span class="line"><span class="comment"># 236</span></span><br></pre></td></tr></table></figure>
+
+<p>可在，在像素矩阵中（100, 100）位置处的像素值为：<code>236</code>。</p>
+<p><strong>[3] &gt;&gt;&gt; 图像裁剪操作</strong></p>
+<p>对图像像素矩阵的操作就是对原始图像的操作。例如选取像素矩阵中某个区域的值，也就是所谓的 Crop（图像裁剪）操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> (mountain[<span class="number">9</span>:<span class="number">12</span>, <span class="number">9</span>:<span class="number">12</span>])</span><br></pre></td></tr></table></figure>
+
+<p>输出以下子矩阵：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[244 244 244]</span><br><span class="line"> [244 236 244]</span><br><span class="line"> [244 244 236]]</span><br></pre></td></tr></table></figure>
+
+<p>我们来重新截取，并且显示一下截取到的图像：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 取大一些的区域，并显示出来。</span></span><br><span class="line">crop_image = mountain[<span class="number">200</span>:<span class="number">400</span>, <span class="number">200</span>:<span class="number">600</span>]</span><br><span class="line">cv2.imshow(<span class="string">&quot;crop&quot;</span>, crop_image)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 存储裁剪后的图像，并查看其像素矩阵：</span></span><br><span class="line">cv2.imwrite(<span class="string">&quot;crop_image.png&quot;</span>, crop_image)</span><br><span class="line">print(crop_image.shape)</span><br><span class="line">print(crop_image)</span><br><span class="line">cv2.waitKey()</span><br></pre></td></tr></table></figure>
+
+<p>裁剪区域的像素矩阵如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[[132 236 228 ... 116  84  28]</span><br><span class="line"> [228 204 220 ... 116  92  76]</span><br><span class="line"> [172 132 116 ...  92 116  76]</span><br><span class="line"> ...</span><br><span class="line"> [172 140  92 ...   4  28  28]</span><br><span class="line"> [180 228 180 ...   4   4   4]</span><br><span class="line"> [132 148  84 ...  28   4  28]]</span><br></pre></td></tr></table></figure>
+
+<p>裁剪到的子图像如下：</p>
+<p><img src="https://s2.loli.net/2023/05/26/TrpLK8MDO5ARvs9.png"></p>
+<p>最后再重新读取进来查看一下裁剪到的子图像所对应的矩阵：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mountain_crop = cv2.imread(<span class="string">&#x27;crop_image.png&#x27;</span>, <span class="number">0</span>)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;Shape:&#x27;</span>, mountain_crop.shape)</span><br><span class="line"><span class="built_in">print</span> (<span class="string">&#x27;Image Pix Matrix:&#x27;</span>,<span class="string">&#x27;\n&#x27;</span>, mountain_crop)</span><br></pre></td></tr></table></figure>
+
+<p>输出如下（结果和上述操作完全一致）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Shape: (200, 400)</span><br><span class="line">Pix Matrix: </span><br><span class="line"> [[132 236 228 ... 116  84  28]</span><br><span class="line"> [228 204 220 ... 116  92  76]</span><br><span class="line"> [172 132 116 ...  92 116  76]</span><br><span class="line"> ...</span><br><span class="line"> [172 140  92 ...   4  28  28]</span><br><span class="line"> [180 228 180 ...   4   4   4]</span><br><span class="line"> [132 148  84 ...  28   4  28]]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="RGB-色彩通道"><a href="#RGB-色彩通道" class="headerlink" title="RGB 色彩通道"></a>RGB 色彩通道</h2><p>上面为了避免图像彩色带来的复杂性，仅通过灰度图像引出像素矩阵（Pixel Matrix）的概念，这里我们重新来看彩色图像的像素矩阵。</p>
+<p>毋庸置疑，彩色图像比灰度图像拥有更多的信息，如图：</p>
+<div align=center><img src="https://s2.loli.net/2023/05/27/WXGBui3HEz8y7qj.png"></div>
+
+<p>通过 Python 图像处理库 OpenCV 查看其像素矩阵信息：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line">drawing = cv2.imread(<span class="string">&#x27;color_image.png&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;type:&quot;</span>, <span class="built_in">type</span>(drawing))</span><br><span class="line"><span class="comment"># type: &lt;class &#x27;numpy.ndarray&#x27;&gt;</span></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;shape:&quot;</span>, drawing.shape)</span><br><span class="line"><span class="comment"># shape: (309, 600, 3)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> (<span class="string">&quot;Pixel Value: &quot;</span>, drawing[<span class="number">100</span>, <span class="number">100</span>])</span><br><span class="line"><span class="comment"># Pixel Value:  [58 19 55]</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看出，彩色图像读取后仍然是 Ndarray 数组（但变为了 3 维）。不同的是，彩色图像像素矩阵中某个像素点的值成为一个包含 3 个数值的数组，如何理解？！！</p>
+<hr>
+<h3 id="三维堆叠像素矩阵"><a href="#三维堆叠像素矩阵" class="headerlink" title="三维堆叠像素矩阵"></a>三维堆叠像素矩阵</h3><p>从上可以看出，计算机中，灰度图像是只有长和宽的二维像素矩阵，而彩色图像是三维堆叠像素矩阵。</p>
+<p>事实上，彩色图像会被解析为具有宽（width）、高（height）和色彩通道（channel）的三维堆叠像素矩阵。从数组角度理解，<code>axis=0</code> 轴对应图像的色彩通道，<code>axis=1</code> 轴对应图像的高，<code>axis=2</code> 轴对应图像的宽。<strong>0 轴上的每一个元素都表征一个特定色彩通道（R/G/B）的像素矩阵。</strong></p>
+<div align=center><img src="https://s2.loli.net/2023/05/27/X8oBwAne42dcYQg.jpg"></div>
+
+<p>引入色彩通道，是由于大多数彩色图像可以仅通过三种颜色（三原色 &gt;&gt;&gt;&gt; 红：Red，绿：Green，蓝：Blue）组合来表示，就是我们常说的 RGB。</p>
+<p>故，彩色图像的像素矩阵，可以看作 &gt;&gt;&gt;&gt; <strong>三个表征不同色彩（R/G/B）的二维色彩图层堆叠而成！！！</strong>因此，获取图像中某像素位置处的像素值取到是包含 3 个值的数组，分别代表该像素点处的 R、G、B 值。</p>
+<p>或者，你可以还可以理解为 &gt;&gt;&gt;&gt; <strong>彩色图像的像素矩阵中的，任一像素点都可以分解为 R、G、B 三个基色分量！！！</strong></p>
+<hr>
+<h3 id="二维-RGB-色彩图层"><a href="#二维-RGB-色彩图层" class="headerlink" title="二维 RGB 色彩图层"></a>二维 RGB 色彩图层</h3><p>深入来看一下 RGB 各个色彩图层究竟是什么样子的？！！</p>
+<p>需要注意的是，Python OpenCV 读取彩色图像对应的像素矩阵中顺序是 BGR。下面我们抽离出各通道矩阵来查看其图像：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line">original = cv2.imread(<span class="string">&#x27;color_image.png&#x27;</span>) <span class="comment"># BGR</span></span><br><span class="line">original = cv2.cvtColor(original, cv2.COLOR_BGR2RGB) <span class="comment"># BGR To RGB</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽离各色彩通道（R/G/B）的像素矩阵：</span></span><br><span class="line">pixMatrix_all = [original, original[:, :, <span class="number">0</span>], original[:, :, <span class="number">1</span>], original[:, :, <span class="number">2</span>]]</span><br><span class="line">channels = [<span class="string">&quot;RGB&quot;</span>, <span class="string">&quot;red&quot;</span>, <span class="string">&quot;green&quot;</span>, <span class="string">&quot;blue&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    plt.subplot(<span class="number">2</span>, <span class="number">2</span>, i + <span class="number">1</span>)</span><br><span class="line">    plt.imshow(pixMatrix_all[i], cmap=plt.cm.gray)</span><br><span class="line">    plt.title(channels[i])</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># for item in pixMatrix_all:</span></span><br><span class="line"><span class="comment">#     print(item.shape)</span></span><br></pre></td></tr></table></figure>
+
+<p>可视化输出如下：</p>
+<div align=center><img src="https://s2.loli.net/2023/05/27/2dVmLxWGUZCvgl7.jpg"></div>
+
+<p>可以看出，抽离出的各色彩通道像素矩阵的灰度图，均为原始图像的完整图像，但细节处存在一定的差异。</p>
+<p>为了更贴近彩色图像的像素矩阵表示，你可以将抽离出的各色彩通道像素矩阵转化为三通道彩色图：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line">original = cv2.imread(<span class="string">&#x27;color_image.png&#x27;</span>)  <span class="comment"># BGR</span></span><br><span class="line">original = cv2.cvtColor(original, cv2.COLOR_BGR2RGB)  <span class="comment"># BGR To RGB</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 各通道的图像是一张灰度图，这里我们将其转化为三通道彩色图:</span></span><br><span class="line">red = np.zeros_like(original)</span><br><span class="line">red[..., <span class="number">0</span>] = original[..., <span class="number">0</span>]</span><br><span class="line">green = np.zeros_like(original)</span><br><span class="line">green[..., <span class="number">1</span>] = original[..., <span class="number">1</span>]</span><br><span class="line">blue = np.zeros_like(original)</span><br><span class="line">blue[..., <span class="number">2</span>] = original[..., <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">pixMatrix_all = [original, red, green, blue]</span><br><span class="line"></span><br><span class="line">channels = [<span class="string">&quot;RGB&quot;</span>, <span class="string">&quot;red&quot;</span>, <span class="string">&quot;green&quot;</span>, <span class="string">&quot;blue&quot;</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    plt.subplot(<span class="number">2</span>, <span class="number">2</span>, i + <span class="number">1</span>)</span><br><span class="line">    plt.imshow(pixMatrix_all[i])</span><br><span class="line">    plt.title(channels[i])</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment">#for index in pixMatrix_all:</span></span><br><span class="line"><span class="comment">#    print(index.shape)</span></span><br></pre></td></tr></table></figure>
+
+<p>可视化输出如下：</p>
+<div align=center><img src="https://s2.loli.net/2023/05/27/Gzvj3tMNFoQqhwd.png"></div>
+
+<p>可以看出，每一个 RGB 通道都是一个像素矩阵。这 3 个 RGB 通道堆叠在一起形成了彩色图像~~~</p>
+<hr>
+<h2 id="灰度、灰度级与位深度"><a href="#灰度、灰度级与位深度" class="headerlink" title="灰度、灰度级与位深度"></a>灰度、灰度级与位深度</h2><p>最近刚开始学数字图像处理，以为灰度只是表示黑白/深浅色图像。事实上，<strong>灰度（灰度值）只是表征单色的亮暗程度！！！</strong>灰度（灰度值）越大表示当前单色越亮。</p>
+<p>例如，在黑白显示器中单指像素点显示的亮暗差别；而在彩色显示器中也表征像素点在不同色彩通道的亮暗程度，但不同亮暗程度 R/G/B 色彩分量的组合又表现为颜色的不同。灰度值越多，表现颜色越多，图像层次越清楚逼真。</p>
+<p>而，<strong>灰度级 &gt;&gt;&gt;&gt; 取决于图像中每个像素点对应的存储单元位数（bit），限制了灰度（灰度值）的取值范围。</strong></p>
+<p>例如，某灰度图像中每个像素使用 8 位二进制存储（8 bit），其灰度级为 <code>2^8 = 256</code>，灰度值范围（亮暗范围）为 <code>(0~255)</code>，也对应当前单色的 <code>256</code> 种亮暗变化色。</p>
+<p><strong>位深度 &gt;&gt;&gt;&gt; 即像素点存储单元位数（bit）。</strong>这就是我们常说的 8 位图、16 位图以及 32 位图等。</p>
+<p>位深度和灰度级满足如下关系（其中，K 为位深度，L 为灰度级）：</p>
+<p>$$ L = 2^{k} $$</p>
+<p>通常，图像像素矩阵中的灰度值位于图像可正常显示的整数范围 <code>[0, L-1]</code>。有时，出于算法开发以及计算的目的，你还会遇到对图像进行归一化的操作，它是将图像像素矩阵中的灰度值压缩到 <code>[0, 1]</code>。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>常见位深度彩色图像</strong> 👇👇👇</p>
+<p>各个色彩通道（R/G/B）上的灰度值范围由其所占用位数决定，对应各单色的亮暗变化色数量：</p>
+<p>[1] &gt;&gt;&gt; <strong>8 位图像</strong></p>
+<p>存储一个像素需要内存：1 Byte</p>
+<p>R:G:B = 2:3:3</p>
+<p>可显示颜色：$$ 2^{8} = 2^{2}(B) * 2^{3}(G) * 2^{3}(R) $$</p>
+<p>灰度级：<code>255(2^8)</code></p>
+<p>[2] &gt;&gt;&gt; <strong>16 位图像</strong></p>
+<p>存储一个像素需要内存：2 Byte</p>
+<p>R:G:B = 5:6:5</p>
+<p>可显示颜色：$$ 2^{16} = 2^{5}(B) * 2^{6}(G) * 2^{5}(R) $$</p>
+<p>灰度级：<code>65533(2^16)</code></p>
+<p>[3] &gt;&gt;&gt; <strong>24 位图像</strong></p>
+<p>存储一个像素需要内存：3 Byte</p>
+<p>R:G:B = 8:8:8</p>
+<p>可显示颜色：$$ 2^{24} = 2^{8}(B) * 2^{8}(G) * 2^{8}(R) $$</p>
+<p>灰度级：<code>2^24</code></p>
+<p>[4] &gt;&gt;&gt; <strong>32 位图像</strong></p>
+<p>存储一个像素需要内存：4 Byte</p>
+<p>32 位图像：Alpha 透明度通道 + 24 位</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>由上就可以计算，图像文件未经压缩的字节数 = 图像分辨率 * (位深度/8)。</p>
+<p>例如，一幅分辨率为（640*480），位深度为 24 bit 的图像，其图像未经压缩的数据容量为：<code>640 * 480 * (24 /8) = 900KB</code>。</p>
+<p>为什么要强调图像未经压缩？！！</p>
+<p>这是由于，一张图片可以被保存为很多种不同的格式，例如：<code>bmp/png/jpeg/gif</code>，不同格式文件的压缩品质不同，还有的文件要记录操作信息（图层、通道等），所以上述只是基本的原理算法。</p>
+<hr>
+<h2 id="灰度-彩色-黑白图像"><a href="#灰度-彩色-黑白图像" class="headerlink" title="灰度/彩色/黑白图像"></a>灰度/彩色/黑白图像</h2><p>通过上面的说明，相信你对灰度图像、彩色图像的差异有了一定的认知。这里重新阐述一下：</p>
+<h3 id="彩色图像"><a href="#彩色图像" class="headerlink" title="彩色图像"></a>彩色图像</h3><p>彩色图像不同多说，其像素矩阵是由三个表征不同色彩（R/G/B）的二维色彩图层堆叠而成（三通道），也就说任一像素点都可以分解为 R、G、B 三个基色分量。</p>
+<p>每个基色分量上的灰度值，直接决定了其基色的明暗强度！！！</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<h3 id="灰度图像"><a href="#灰度图像" class="headerlink" title="灰度图像"></a>灰度图像</h3><p>灰度图像，通常显示为从最暗黑色（0）到最亮的白色（255）的灰度（如下图）。</p>
+<div align=center><img src="https://s2.loli.net/2023/05/28/PVtT9c3qpFjMhnb.png"></div>
+
+<p>其像素矩阵就是一个单色的灰度值矩阵（单通道），灰度值表征单个像素点的亮度。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<h3 id="黑白图像"><a href="#黑白图像" class="headerlink" title="黑白图像"></a>黑白图像</h3><p>黑白图像，也叫二值图像，是一种特殊的灰度图像。</p>
+<p>与灰度图像不同的是，黑白图像中每个像素的灰度值仅能取 <code>0</code> 或者 <code>255</code>，分别代表纯黑和纯白。</p>
+<blockquote>
+<p>需要注意的是，单通道图像一定没有彩色；没有彩色的图像不一定是单通道的灰度/黑白图像，比如所有像素分量均为 0 的纯黑彩色图像。</p>
+</blockquote>
+<hr>
+<h3 id="图像灰度化-二值化处理"><a href="#图像灰度化-二值化处理" class="headerlink" title="图像灰度化/二值化处理"></a>图像灰度化/二值化处理</h3><p>大多数的计算机视觉场景下，灰度/黑白图像已经够用了。</p>
+<p>故，一般会对原始图像进行灰度化/二值化处理，生成其灰度/黑白图片，减小了参与运算的图像像素矩阵的规模，可以提高算法的计算性能。</p>
+<p><strong>[1] &gt;&gt;&gt; 灰度化处理</strong></p>
+<p>常用灰度化处理的方法：</p>
+<ol>
+<li><p>浮点算法：<code>Gray = R*0.3 + G*0.59 + B*0.11</code>；</p>
+</li>
+<li><p>整数方法：<code>Gray = (R*30 + G*59 + B*11) / 100</code>；</p>
+</li>
+<li><p>移位方法：<code>Gray = (R*28 + G*151 + B*77) &gt;&gt; 8</code>；</p>
+</li>
+<li><p>平均值法：<code>Gray =（R + G + B）/ 3</code>；</p>
+</li>
+<li><p>仅取绿色：<code>Gray = G</code>，图像中绿色通道的信息最全面。</p>
+</li>
+</ol>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[2] &gt;&gt;&gt; 二值化处理</strong></p>
+<p>二值化就是让图像的像素点矩阵中的每个像素点的灰度值为 0（黑色）或者 255（白色），也就是让整个图像呈现只有黑和白的效果。</p>
+<p>那么一个像素点在灰度化之后的灰度值怎么转化为 0 或者 255 呢？？？比如灰度值为 100，那么在二值化后到底是 0 还是 255 ？！！</p>
+<p><font color="red">↓↓↓↓↓↓ 需要借助阀值来实现 ↓↓↓↓↓↓</font></p>
+<p>1、取阀值为 127（相当于 0~255 的中数，（0+255）/2=127），让灰度值小于等于 127 的变为 0，灰度值大于 127 的变为 255。<font color="blue">好处</font> &gt;&gt;&gt;&gt; 计算量小速度快；<font color="red">缺点</font> &gt;&gt;&gt;&gt; 因为这个阀值在不同的图片中均为 127，但不同图片的颜色分布差别很大，白菜萝卜一刀切的效果肯定是不好的。</p>
+<p>2、像素矩阵中像素点的灰度值的平均值 avg 作为阈值，让灰度值小于等于 avg 的像素点就为 0，灰度值大于 avg 的变为 255。效果要由于方法一。</p>
+<p>3、直方图方法（双峰法）来寻找二值化阀值。直方图方法认为图像由前景和背景组成，在灰度直方图上，前景和背景都形成高峰，在双峰之间的最低谷处就是阀值所在。取到阀值之后再一一比较就可以了。</p>
+<hr>
+<h3 id="彩色-Or-灰度-黑白？？？"><a href="#彩色-Or-灰度-黑白？？？" class="headerlink" title="彩色 Or 灰度/黑白？？？"></a>彩色 Or 灰度/黑白？？？</h3><p>上一小节说到，大多数的计算机视觉场景下，灰度/黑白图像已经够用了。为什么还需要彩色图像？！！</p>
+<p>尽管彩色图像带来了不必要的复杂性且占用了更多的内存空间，但在某些任务中，图像色彩信息会非常有用！！！例如，识别交通道路线中的黄白线时，色彩就显得尤为重要了。</p>
+<p>那么，到底什么时候需要保留色彩信息呢？？？</p>
+<p><strong>原则</strong> &gt;&gt;&gt;&gt; 在计算机视觉应用中，<font color="blue">如果对人眼来说，彩色图像识别起来更轻松，那么彩色图像对算法来说也更轻松些。</font></p>
+<p>一言以蔽之，如果色彩的存在对最终的结果非常有帮助，那就用吧！！！</p>
+<hr>
+<h2 id="深入解析-RGB-图像灰度与通道"><a href="#深入解析-RGB-图像灰度与通道" class="headerlink" title="深入解析 RGB 图像灰度与通道"></a>深入解析 RGB 图像灰度与通道</h2><p>彩色图像/RGB 图像中，图像是一个三维矩阵，如：(244, 780, 3)，其中 244 表示行数（高），780 表示列数（宽），3 代表三个基色分量（R/G/B）。如下：</p>
+<div align=center><img src="https://s2.loli.net/2023/05/28/TOaIhsygC21Zzc4.jpg"></div>
+
+<p>每一层矩阵（244, 780, 0/1/2），分别对应 R/G/B 的灰度值像素矩阵。仅仅表示对应单色光灰度值，不是彩色的图像。如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line">original = cv2.imread(<span class="string">&#x27;red_vs_white.jpg&#x27;</span>) <span class="comment"># BGR</span></span><br><span class="line">original = cv2.cvtColor(original, cv2.COLOR_BGR2RGB) <span class="comment"># BGR To RGB</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 抽离各色彩通道（R/G/B）的像素矩阵：</span></span><br><span class="line">original_all = [original, original[:, :, <span class="number">0</span>], original[:, :, <span class="number">1</span>], original[:, :, <span class="number">2</span>]]</span><br><span class="line">channels = [<span class="string">&quot;RGB&quot;</span>, <span class="string">&quot;red&quot;</span>, <span class="string">&quot;green&quot;</span>, <span class="string">&quot;blue&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    plt.subplot(<span class="number">2</span>, <span class="number">2</span>, i + <span class="number">1</span>)</span><br><span class="line">    plt.imshow(original_all[i], cmap=plt.cm.gray)</span><br><span class="line">    plt.title(channels[i])</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># for item in original_all:</span></span><br><span class="line">    <span class="comment"># print(item.shape)</span></span><br></pre></td></tr></table></figure>
+
+<p>可视化结果如下：</p>
+<div align=center><img src="https://s2.loli.net/2023/05/28/W6J3PTX4RGoEI1n.png"></div>
+
+<p>色彩通道类似颜料（基色），想要什么颜色，对应的通道里的灰度值就大一点就行了。如上图，随便在红色区域上取一个样点 <code>(200, 400)</code>，其灰度值分别是（R:94, G:18,B:18）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(original[<span class="number">200</span>, <span class="number">400</span>])</span><br><span class="line"><span class="comment"># [94 18 18]</span></span><br></pre></td></tr></table></figure>
+
+<p>所以在显示的时候，红色通道里灰度值大，绿色通道和蓝色通道里的灰度值小，显示出来的就是红色。</p>
+<p>如果我们交换一下分量放置的顺序，把 G 分量放进红色通道里，把 R 分量放进绿色通道里，B 分量放进蓝色通道里，会怎么样呢？？？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">new_img = np.zeros_like(original)</span><br><span class="line">new_img[..., <span class="number">0</span>] = original[..., <span class="number">1</span>]</span><br><span class="line">new_img[..., <span class="number">1</span>] = original[..., <span class="number">0</span>]</span><br><span class="line">new_img[..., <span class="number">2</span>] = original[..., <span class="number">2</span>]</span><br><span class="line">plt.imshow(new_img)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<div align=center><img src="https://s2.loli.net/2023/05/28/kiHL2dChwTlXzjA.png"></div>
+
+<p>此时绿通道中的灰度值最大，红色通道和蓝色通道中的灰度值都较低，显示为绿色。</p>
+<p>同理，如果把 B 分量放进红色通道里，把 R 分量放进蓝色通道里，G 分量放进绿色通道里，会怎么样呢？？？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">new_img = np.zeros_like(original)</span><br><span class="line">new_img[..., <span class="number">0</span>] = original[..., <span class="number">2</span>]</span><br><span class="line">new_img[..., <span class="number">1</span>] = original[..., <span class="number">1</span>]</span><br><span class="line">new_img[..., <span class="number">2</span>] = original[..., <span class="number">0</span>]</span><br><span class="line">plt.imshow(new_img)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<div align=center><img src="https://s2.loli.net/2023/05/28/RFNSfJIZjlokMcP.png"></div>
+
+<p>事实上，我们熟知的 RGB 色彩空间，就是把一种颜色，用 RGB 三个分量表达出来。此外还有 CMYK（四个分量）、Lab（三个）、HSV（三个）等等。不同色彩空间之间的关系，类似于空间直角坐标系（x, y, z），球坐标系（r, φ, θ）或柱坐标（r, φ, z）之间的关系。</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Dontla/article/details/106897794">https://blog.csdn.net/Dontla/article/details/106897794</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41498261/article/details/104898045">https://blog.csdn.net/qq_41498261/article/details/104898045</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/gaoxueyi551/article/details/112684581">https://blog.csdn.net/gaoxueyi551/article/details/112684581</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/Strive_0902/article/details/78023080">https://blog.csdn.net/Strive_0902/article/details/78023080</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/427723550">https://zhuanlan.zhihu.com/p/427723550</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44489823/article/details/105996194">https://blog.csdn.net/weixin_44489823/article/details/105996194</a></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>The Pixel Matrix Representation Of Image</p><p><a href="https://www.orangeshare.cn/2018/02/01/the-pixel-matrix-representation-of-image/">https://www.orangeshare.cn/2018/02/01/the-pixel-matrix-representation-of-image/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-02-01</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2023-05-28</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/TensorFlow/">TensorFlow</a><a class="link-muted mr-2" rel="tag" href="/tags/DataSet/">DataSet</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/03/01/mnist-introduction/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">MNIST Introduction</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/01/20/yi-wen-jie-xi-numpy-ndarray-duo-wei-shu-zu-jie-gou-she-ji/"><span class="level-item">一文解析 NumPy ndarray 多维数组结构设计</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">100</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">13</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">43</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#计算机视觉"><span class="level-left"><span class="level-item">1</span><span class="level-item">计算机视觉</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#像素网格"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">像素网格</span></span></a></li><li><a class="level is-mobile" href="#像素矩阵"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">像素矩阵</span></span></a></li></ul></li><li><a class="level is-mobile" href="#RGB-色彩通道"><span class="level-left"><span class="level-item">2</span><span class="level-item">RGB 色彩通道</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#三维堆叠像素矩阵"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">三维堆叠像素矩阵</span></span></a></li><li><a class="level is-mobile" href="#二维-RGB-色彩图层"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">二维 RGB 色彩图层</span></span></a></li></ul></li><li><a class="level is-mobile" href="#灰度、灰度级与位深度"><span class="level-left"><span class="level-item">3</span><span class="level-item">灰度、灰度级与位深度</span></span></a></li><li><a class="level is-mobile" href="#灰度-彩色-黑白图像"><span class="level-left"><span class="level-item">4</span><span class="level-item">灰度/彩色/黑白图像</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#彩色图像"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">彩色图像</span></span></a></li><li><a class="level is-mobile" href="#灰度图像"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">灰度图像</span></span></a></li><li><a class="level is-mobile" href="#黑白图像"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">黑白图像</span></span></a></li><li><a class="level is-mobile" href="#图像灰度化-二值化处理"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">图像灰度化/二值化处理</span></span></a></li><li><a class="level is-mobile" href="#彩色-Or-灰度-黑白？？？"><span class="level-left"><span class="level-item">4.5</span><span class="level-item">彩色 Or 灰度/黑白？？？</span></span></a></li></ul></li><li><a class="level is-mobile" href="#深入解析-RGB-图像灰度与通道"><span class="level-left"><span class="level-item">5</span><span class="level-item">深入解析 RGB 图像灰度与通道</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2023 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>TensorFlow 入门之深度学习和深层神经网络 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="上一篇博文中，我们介绍了 TensorFlow 的基本工作原理，并且给出了一个完整的 TF 样例来优化一个简单的三层全连接神经网络模型。本章我们将进一步介绍如何更加合理的设计和优化神经网络，使得学得的模型能够更好的对未知样本进行更加精确的预测。"><meta property="og:type" content="blog"><meta property="og:title" content="TensorFlow 入门之深度学习和深层神经网络"><meta property="og:url" content="https://www.orangeshare.cn/2018/04/04/tensorflow-ru-men-zhi-shen-du-xue-xi-he-shen-ceng-shen-jing-wang-luo/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="上一篇博文中，我们介绍了 TensorFlow 的基本工作原理，并且给出了一个完整的 TF 样例来优化一个简单的三层全连接神经网络模型。本章我们将进一步介绍如何更加合理的设计和优化神经网络，使得学得的模型能够更好的对未知样本进行更加精确的预测。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://s2.loli.net/2023/05/10/HaA9xPCE3vNcyFt.jpg"><meta property="og:image" content="https://s2.loli.net/2023/05/12/QqUwVuncohYgxsZ.png"><meta property="og:image" content="https://s2.loli.net/2023/05/13/XoDfYSGvRWqlMdE.png"><meta property="og:image" content="https://s2.loli.net/2023/05/14/MEnOLN3VGtD7SAJ.png"><meta property="og:image" content="https://s2.loli.net/2023/05/15/hbzkyasGYdnQ7fO.png"><meta property="og:image" content="https://s2.loli.net/2023/05/15/MVlouiA3vy5CgqK.png"><meta property="og:image" content="https://s2.loli.net/2023/05/17/3leD2La4XjRi1Cr.png"><meta property="og:image" content="https://s2.loli.net/2023/05/17/j8IDkVmiLUe4KqX.png"><meta property="article:published_time" content="2018-04-04T00:10:46.000Z"><meta property="article:modified_time" content="2023-05-17T16:58:25.738Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="TensorFlow"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://s2.loli.net/2023/05/10/HaA9xPCE3vNcyFt.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2018/04/04/tensorflow-ru-men-zhi-shen-du-xue-xi-he-shen-ceng-shen-jing-wang-luo/"},"headline":"When Art Meets Tech","image":["https://s2.loli.net/2023/05/10/HaA9xPCE3vNcyFt.jpg","https://s2.loli.net/2023/05/12/QqUwVuncohYgxsZ.png","https://s2.loli.net/2023/05/13/XoDfYSGvRWqlMdE.png","https://s2.loli.net/2023/05/14/MEnOLN3VGtD7SAJ.png","https://s2.loli.net/2023/05/15/hbzkyasGYdnQ7fO.png","https://s2.loli.net/2023/05/15/MVlouiA3vy5CgqK.png","https://s2.loli.net/2023/05/17/3leD2La4XjRi1Cr.png","https://s2.loli.net/2023/05/17/j8IDkVmiLUe4KqX.png"],"datePublished":"2018-04-04T00:10:46.000Z","dateModified":"2023-05-17T16:58:25.738Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"上一篇博文中，我们介绍了 TensorFlow 的基本工作原理，并且给出了一个完整的 TF 样例来优化一个简单的三层全连接神经网络模型。本章我们将进一步介绍如何更加合理的设计和优化神经网络，使得学得的模型能够更好的对未知样本进行更加精确的预测。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2018/04/04/tensorflow-ru-men-zhi-shen-du-xue-xi-he-shen-ceng-shen-jing-wang-luo/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>TensorFlow 入门之深度学习和深层神经网络</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2018-04-04</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2023-05-18</time></span><span class="level-item"><a class="link-muted" href="/categories/DeepLearning/">DeepLearning</a></span><span class="level-item">2 hours read (About 17506 words)</span></div></div><div class="content"><p>上一篇博文中，我们介绍了 TensorFlow 的基本工作原理，并且给出了一个完整的 TF 样例来优化一个简单的三层全连接神经网络模型。本章我们将进一步介绍如何更加合理的设计和优化神经网络，使得学得的模型能够更好的对未知样本进行更加精确的预测。</p>
+<a id="more"></a>
+
+<p>配置过程中参考了网络上很多的相关博文，也遇到过很多坑，为了感谢配置过程中各位大佬的帮助以及方便本人下次配置或者升级，整理以作此文。</p>
+<p><font color="green">更多 TensorFlow 框架学习相关内容，请关注博主相关博文系列 ↓↓↓↓↓</font></p>
+<p>之一 &gt;&gt;&gt;&gt; <a href="https://www.orangeshare.cn/2018/04/01/yi-wen-xiang-jie-quan-ping-tai-tensorflow-shen-du-xue-xi-kuang-jia-zai-xian-da-jian-cpu-gpu-zhi-chi/">一文详解全平台 TensorFlow 深度学习框架在线搭建 (CPU&amp;GPU 支持)</a></p>
+<p>之二 &gt;&gt;&gt;&gt; <a href="https://www.orangeshare.cn/2018/04/02/tensorflow-gpu-zhi-chi-ubuntu16-04-nvidia-gtx-cuda-cudnn/">TensorFlow GPU 支持: Ubuntu16.04 + Nvidia GTX + CUDA + CUDNN</a></p>
+<p>之三 &gt;&gt;&gt;&gt; <a href="https://www.orangeshare.cn/2018/04/03/tensorflow-ru-men-zhi-tf-ji-ben-gong-zuo-yuan-li/">TensorFlow 入门之 TF 基本工作原理</a></p>
+<p>之四 &gt;&gt;&gt;&gt; <a href="https://www.orangeshare.cn/2018/04/04/tensorflow-ru-men-zhi-shen-du-xue-xi-he-shen-ceng-shen-jing-wang-luo/">TensorFlow 入门之深度学习和深层神经网络</a></p>
+<p>之五 &gt;&gt;&gt;&gt; <a href="https://www.orangeshare.cn/2018/04/05/tensorflow-ru-men-zhi-mnist-shou-xie-ti-shu-zi-shi-bie-wen-ti/">TensorFlow 入门之 MNIST 手写体数字识别问题</a></p>
+<p>之六 &gt;&gt;&gt;&gt; <a href="https://www.orangeshare.cn/">TensorFlow 入门之图像识别和卷积神经网络（CNN）</a></p>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<hr>
+<h2 id="提纲"><a href="#提纲" class="headerlink" title="提纲"></a>提纲</h2><p>本篇，我们总共安排了五个章节来进一步的进行神经网络的学习：</p>
+<p><strong>[1] &gt;&gt;&gt;&gt;</strong> 针对神经网络结构，介绍深层神经网络 (DNN) 的概念，并给出一个样例来说明深层网络可以解决部分浅层网络解决不了的问题；</p>
+<p><strong>[2] &gt;&gt;&gt;&gt;</strong> 针对损失函数，将介绍如何设定神经网络的优化目标（损失函数）。分别给出分类/回归问题中比较常用的几种经典的损失函数，以及 TF 中如何自定义损失函数，使得神经网络优化的目标更加接近实际问题的需求；</p>
+<p><strong>[3] &gt;&gt;&gt;&gt;</strong> 针对反向传播算法以及优化器算法，将更加明确的介绍模型训练时参数的更新方式；</p>
+<p><strong>[4] &gt;&gt;&gt;&gt;</strong> 将给出一个 TensorFlow 实现神经网络模型训练（优化）的通用框架；</p>
+<p><strong>[5] &gt;&gt;&gt;&gt;</strong> 针对神经网络模型优化（训练）过程，将介绍在优化（训练）过程中经常遇到的几个问题，并给出解决方案。</p>
+<hr>
+<h2 id="深度学习和深层神经网络"><a href="#深度学习和深层神经网络" class="headerlink" title="深度学习和深层神经网络"></a>深度学习和深层神经网络</h2><p>维基百科中，对深度学习的精确定义为：</p>
+<blockquote>
+<p>一类通过 <font color="red">多层非线性变换，对高复杂性数据进行建模</font> 的算法合集。</p>
+</blockquote>
+<p>由于 <font color="green">深层神经网络是实现 “多层非线性” 最常用的一种方法</font>。所以在实际中，基本上可以认为 <font color="yellow">深度学习就是深层神经网络的代名词。</font></p>
+<p>从上面的描述中，不难看出深度学习（或深层神经网络）的两个重要的特性： <strong>多层</strong> 和 <strong>非线性</strong> 。为什么要强调这两个性质呢？！！</p>
+<p>下面我们将通过具体样例，来说明这两点特性在对复杂性问题进行建模时是缺一不可的：</p>
+<hr>
+<h3 id="线性模型的局限性"><a href="#线性模型的局限性" class="headerlink" title="线性模型的局限性"></a>线性模型的局限性</h3><p>既然强调是非线性变换，那么线性变换对于处理复杂性问题存在什么问题？？？</p>
+<h4 id="认识线性模型"><a href="#认识线性模型" class="headerlink" title="认识线性模型"></a>认识线性模型</h4><p>在线性模型中，模型的输出为输入的加权和。假设一个模型的输出 <code>y</code> 和输入 <code>x_i</code> 满足以下关系，那么这个模型就是一个线性模型：</p>
+<p>$$ y = \sum_{i=0}w_ix_i + b $$</p>
+<p>在一个线性模型中，通过输入 <code>x_i</code> 得到输出 <code>y</code> 的函数，就称之为一个 <strong>线性变换</strong>（上述公式就是一个线性变换）。</p>
+<p>线性模型的最大特点就是 &gt;&gt;&gt;&gt; <strong>任意线性模型的组合仍然还是线性模型。</strong></p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>我们来看前面博文中实现的三层全连接网络的前向传播过程，其 FP 的计算公式：</p>
+<p>$$ a^{(1)} = xW^{(1)}, y = a^{(1)}W^{(2)} $$</p>
+<p>其中 <code>x</code> 为输入，<code>W</code> 为参数矩阵。由上述关系可以推导得：</p>
+<p>$$ y = (xW^{(1)}W^{(2)}) = x(W^{(1)}W^{(2)}) = xW’ $$</p>
+<p>可见，推导过程中 <code>W^(1) W^(2)</code> 被表示为一个新的参数（权重矩阵） <code>W&#39;</code>，计算过程如下:</p>
+<p>$$ W’ = W^{(1)}W^{(2)} = \left[ \begin{array} {cccc}<br>W_{1,1}^{(1)} &amp; W_{1,2}^{(1)} &amp; W_{1,3}^{(1)}\\<br>W_{2,1}^{(1)} &amp; W_{2,2}^{(1)} &amp; W_{2,3}^{(1)}\\<br>\end{array} \right]\left[ \begin{array} {cccc} W_{1,1}^{(2)}\\ W_{2,1}^{(2)}\\ W_{3,1}^{(2)}\<br>\end{array} \right] = \left[ \begin{array} {cccc} W_{1,1}^{(2)}W_{1,1}^{(2)}+W_{1,2}^{(1)}W_{2,1}^{(2)}+W_{1,3}^{(1)}W_{3,1}^{(2)}\\ W_{2,1}^{(2)}W_{1,1}^{(2)}+W_{2,2}^{(1)}W_{2,1}^{(2)}+W_{2,3}^{(1)}W_{3,1}^{(2)}\end{array} \right] \=  \left[ \begin{array} {cccc} W_1’\\ W_2’\end{array} \right] $$</p>
+<p>这样输入和输出的关系就可以表示为：</p>
+<p>$$ y = xW’ = \left[ \begin{array} {cccc} x_1 &amp; x_2\end{array} \right]\left[ \begin{array} {cccc} W_1’\\ W_2’\end{array} \right] = \left[ \begin{array} {cccc} W_1’x_1+W_2’x_2\end{array} \right] $$</p>
+<p>可见，<font color="red">上篇 FCNN 的前向传播算法完全符合线性模型的定义（两个线性模型的组合）。</font>虽然这个神经网络有两层（不算输入层，输入层节点为非神经元节点），但它和单层的神经网络并没有本质区别。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>由此，我们可以类推出 &gt;&gt;&gt;&gt; 只通过线性变换，任意层的全连接神经网络和单层神经网络模型的表达能力没有任何区别，而且线性模型能够解决的问题是有限的（只能解决线性可分问题）！！！</p>
+<hr>
+<p>下面通过 TF 游乐场样例来看，为什么说线性模型解决的问题是有限的？？？：</p>
+<h4 id="线性可分问题"><a href="#线性可分问题" class="headerlink" title="线性可分问题"></a>线性可分问题</h4><p>还记得上一篇博文中我们 PLAY 过的【<a target="_blank" rel="noopener" href="http://playground.tensorflow.org/">TensorFlow 游乐场</a>】么？！！</p>
+<p>你将默认设置下，网页顶部激活函数（<code>Activation</code>）一栏选择为线性（<code>Linear</code>），这就和我们实现的三层全连接神经网络结构是基本一致了。</p>
+<p>然后开始训练，你会发现 &gt;&gt;&gt;&gt; 当前设置下的线性模型是无法解决这个二分类任务的！！！</p>
+<p>此时，如果你将默认数据集更换成第三个（线性可分数据集），重新开始训练，便可以对数据集做区分了（样本分类）。</p>
+<p>这也就是说，<strong>线性模型表达能力有限，只能解决有限的线性可分问题！！！</strong></p>
+<hr>
+<h4 id="高复杂性问题"><a href="#高复杂性问题" class="headerlink" title="高复杂性问题"></a>高复杂性问题</h4><p>深度学习中为什么强调高复杂问题建模？！！ &gt;&gt;&gt;&gt; 数据至少是无法通过直线（或者高维平面：线性模型中，当输入为 n 个时，x 和 y 就会形成 n+1 维空间中的一个平面）划分的问题。</p>
+<p>这是由于现实生活中，<strong>实际问题往往都是复杂，甚至高复杂性的问题（非线性可分）。</strong></p>
+<hr>
+<p>故，深度学习定义中，对 “非线性”、“高复杂问题” 的强调其实是很有道理的！！！既然线性模型存在上述的局限性，那么如何解决这个问题呢？！！</p>
+<p>也就是说 &gt;&gt;&gt;&gt; <font color="green">如何对神经网络结构的中的神经元节点，进行 “去线性化” 处理，以支持复杂性的现实问题？！！</font></p>
+<h4 id="激活函数去线性化"><a href="#激活函数去线性化" class="headerlink" title="激活函数去线性化"></a>激活函数去线性化</h4><p>前面，通过 TensorFlow 游乐场你已经看到了激活函数（Activation Function）的神奇作用。</p>
+<p>事实上，对神经元节点添加了激活函数处理的神经网络结构，更加符合生物学上的神经网络特征。这一小节，我们来介绍人工神经网络中的激活函数如何工作 &gt;&gt;&gt;&gt;</p>
+<p>我们知道，人工神经元结构的输出为所有输入的加权和，这导致了整个神经网络是一个线性模型。如何对线性模型去线性化，将其转化为非线性模型？！！</p>
+<p>其实很简单，我们只需要让每个神经元的输出再通过一个非线性函数（激活函数），那么整个神经网络模型就不再是线性的了！！！</p>
+<p>翻出前面博文中给出的神经元结构示意图：</p>
+<div align=center><img src="https://s2.loli.net/2023/05/10/HaA9xPCE3vNcyFt.jpg"></div>
+
+<p>可见，除了激活函数外，还增加了一个新的参数–偏置项（Bias）。偏置项也是神经元中非常用的一种结构（模拟神经元的一般敏感性），对应线性模型中的平移变换，可以帮助模型更好的拟合数据集。</p>
+<p>下面我们来看加入 Activation Function &amp;&amp; Biases 之后的神经网络的前向传播算法实现原理：</p>
+<p>$$ A_1 = [a_{11},a_{12},a_{13}] = f(xW^{(1)} + b) = f([x_1, x_2]\left[ \begin{array} {cccc}<br>W_{1,1}^{(1)} &amp; W_{1,2}^{(1)} &amp; W_{1,3}^{(1)}\\<br>W_{2,1}^{(1)} &amp; W_{2,2}^{(1)} &amp; W_{2,3}^{(1)}\<br>\end{array} \right] + \left[ \begin{array} {cccc} b_1 &amp; b_2 &amp; b_3\end{array} \right] )\\ = f([W_{1,1}^{(1)}x_1+W_{2,1}^{(1)}x_2+b_1, W_{1,2}^{(1)}x_1+W_{2,2}^{(1)}x_2+b_2, W_{1,3}^{(1)}x_1+W_{2,3}^{(1)}x_2]+b_3) \\ = [f([W_{1,1}^{(1)}x_1+W_{2,1}^{(1)}x_2+b_1), f(W_{1,2}^{(1)}x_1+W_{2,2}^{(1)}x_2+b_2), f(W_{1,3}^{(1)}x_1+W_{2,3}^{(1)}x_2]+b_3)] $$</p>
+<p>其中，<code>f()</code> 为激活函数，<code>[b_1, b_2, b_3]</code> 表示隐藏层各节点上的偏置（神经元的敏感性）。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>常用非线性激活函数图像</strong> 👇👇👇</p>
+<p><img src="https://s2.loli.net/2023/05/12/QqUwVuncohYgxsZ.png"></p>
+<p>TensorFlow 提供了对上述非线性激活函数的支持：<code>tf.nn.relu()</code> &amp;&amp; <code>tf.sigmoid()</code> &amp;&amp; <code>tf.tanh()</code>。除此之外 TensorFlow 还支持自定义激活函数。</p>
+<p>以下代码展示了 TF 使用 <code>Relu</code> 激活函数实现三层神经网络的前向传播算法：</p>
+<p>$$ a = tf.nn.relu( tf.matmul(x, w1) + biases1)\\<br>y = tf.nn.relu( tf.matmul(w1, w2) + biases2) $$</p>
+<p>关于神经网络中激活函数的选择问题，你可以参考博文【<a href="">深入了解  Relu 非线性激活函数</a>】。</p>
+<hr>
+<h3 id="深层网络学习"><a href="#深层网络学习" class="headerlink" title="深层网络学习"></a>深层网络学习</h3><p>上面我们说明了深度学习中非线性变换的重要性，这一部分我们将通过实际问题来强调深度学习的另一个重要特性：<strong>深层（多层）网络</strong>。</p>
+<h4 id="多层网络解决异或运算"><a href="#多层网络解决异或运算" class="headerlink" title="多层网络解决异或运算"></a>多层网络解决异或运算</h4><p>在神经网络的发展史上，一个很重要的问题就是异或问题。</p>
+<p><font color="yellow">何为异或问题？！！</font> &gt;&gt;&gt;&gt; 直观来说就是如果两个输入的符号相同时（同时为正或同时为负），输出 0；否则（一正一负）输出 1。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>起初，人工神经网络的理论模型是由 <code>Warren McCulloch</code> 和 <code>Walter Pitts</code> 于 1943 年提出，并在 1958 年由 <code>Frank Tosenblatt</code> 提出了 感知机模型，从数学上完成了对神经网络的精确建模。</p>
+<p><strong>感知机模型</strong> &gt;&gt;&gt;&gt; 可以简单理解为单层的神经网络（无隐藏层），它会先将输入进行加权和，然后通过激活函数最终得到输出。上世纪 60 年代，神经网络作为对人类大脑的模拟算法受到了广泛的关注。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>然而到了 1969 年， <code>Marvin Minsky</code> 和 <code>Seymour Papert</code> 发现：<strong>感知机模型是无法模拟异或运算的！！！</strong></p>
+<p>这里，篇幅原因，我们不对其复杂的数学求证过程做推导。但我们可以通过 <a target="_blank" rel="noopener" href="http://playground.tensorflow.org/">TF 游乐场</a> 来模拟一下通过感知机的结构来模拟异或运算问题：</p>
+<p><img src="https://s2.loli.net/2023/05/13/XoDfYSGvRWqlMdE.png"></p>
+<p>可以看到，感知机模型是无法对异或数据集做出有效区分的，这也就是说感知机模型无法模拟异或运算！！！</p>
+<p>而当加入隐藏层（Hidden Layer）之后，我们发现异或问题可以得到很好的解决。这是由于隐藏层中的神经元节点可以被认为从输入的特征向量中提取出了更高维的数据特征。</p>
+<hr>
+<h4 id="深层网络组合特征提取"><a href="#深层网络组合特征提取" class="headerlink" title="深层网络组合特征提取"></a>深层网络组合特征提取</h4><p>神经网络中的每一层输出都可以看作是对原始输入的一次特征提取（表达），并且随着神经网络层次的 “加深”，逐步提取到由低级到高级的特征（抽象）表示。</p>
+<p>类似于人脑视觉系统的信息分级处理机制，【<font color="green">从低级的边缘特征提取（edge basis）</font> &gt;&gt;&gt;&gt; <font color="green">到形状或目标的部分结构特征（object parts，combination of edge basis）</font> &gt;&gt;&gt;&gt; <font color="green">再到更高层的整个目标和目标行为特征（object models，combination of object parts）</font>】。</p>
+<p>也即是说，高层特征是底层特征的组合，从低层到高层的特征表达越来越抽象，参考信息越多（越来越能表达原始输入）。但深度加深，也意味着会带来计算更加复杂，探索的空间增大，训练数据在每个特征上的稀疏等各种各样的问题！！！</p>
+<p><font color="red">↓↓↓↓↓↓ 总结 ↓↓↓↓↓↓</font></p>
+<p><strong>深层神经网络有组合特征提取的功能，对于解决不易提取特征向量的问题（如图像识别、语音识别等）有很大的帮助，这也是深度学习在这些问题上更加容易取得突破性进展的重要原因！</strong></p>
+<hr>
+<p>上面我们针对神经网络结构进一步了解了深度学习的概念。下面我们将介绍如何刻画（评价）不同神经网络模型的效果。</p>
+<h2 id="损失函数（Loss-Function）"><a href="#损失函数（Loss-Function）" class="headerlink" title="损失函数（Loss Function）"></a>损失函数（Loss Function）</h2><p>我们知道，可以通过损失函数（Loss Function）来定义神经网络模型的优化目标。</p>
+<p>除此之外，损失函数还可以用来评价模型的效果，可以通过 <font color="red">“损失函数是否收敛” 来评价一个模型在当前数据集下是否达到最佳？！！</font></p>
+<hr>
+<h3 id="经典损失函数"><a href="#经典损失函数" class="headerlink" title="经典损失函数"></a>经典损失函数</h3><p>我们知道，分类和回归问题是监督学习的两大经典类别。</p>
+<p>下面，将分别介绍适用于分类/回归问题的经典损失函数，并通过 TF 实现这些损失函数：</p>
+<h4 id="分类问题损失"><a href="#分类问题损失" class="headerlink" title="分类问题损失"></a>分类问题损失</h4><p>分类问题希望解决的是 &gt;&gt;&gt;&gt; 将不同的数据样本划分到事先定义好的类别（Class）中。</p>
+<p>比如我们之前章节接触的 FCNN 二分类问题，需要将样本零件划分到合格或不合格两个类别中。后面我们还会介绍到的手写数字识别问题，它可以被归纳为一个十分类问题。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[1] &gt;&gt;&gt; 类别信息以及表示</strong></p>
+<p>在解决判断零件是否合格的二分类问题时，我们认为当最终输出节点值越接近 <code>0</code>，这个样本可能不及格；反之越接近 <code>1</code> 则越有可能合格。为了给出某个零件具体的类别结果，我们可以取 <code>0.5</code> 为阈值。我们认为凡是输出大于 <code>0.5</code> 的样本都认为时合格的，反之不合格。</p>
+<p>但是这样的做法时是不容易推广到多分类的。虽然理论上对于多分类设置多个阈值是可能的，但在解决实际问题的过程一般不会这么处理。怎么办？！！</p>
+<p>实际中，通过神经网络解决多分类问题常用的方法是 &gt;&gt;&gt;&gt; <strong>one-hot 编码</strong>，也就是：</p>
+<blockquote>
+<p>设置 <code>n</code>（n 为类别数目） 个输出节点。对于每一个样例，神经网络都可以得到一个 N 维向量（向量中每一维（或输出层中每一个输出节点）都对应一个类别）作为输出结果。理想情况下，如果一个样本属于类别 <code>k</code>，那么这个类别所对应的输出节点值应该为 <code>1</code> ，其它的均为 <code>0</code>。</p>
+</blockquote>
+<p><font color="red">↓↓↓↓↓↓ 结合一个具体样例进行说明 ↓↓↓↓↓↓</font></p>
+<p>以手写数字图像识别为例，数字图片需要被分类到 <code>0~9</code> 这 10 个数字类别中。</p>
+<p>我们设置 <code>n = 10</code>，对于每一个手写数字图片，通过神经网络模型计算后都可以得到一个 <code>10</code> 维（长度为 10）的向量，每一个维度都对应了 <code>0~9</code> 中数字中的一个。如果某个样本属于数字类别 <code>1</code>，那么输出的数组理想情况（标签）应该是：<code>[0,1,0,0,0,0,0,0,0,0]</code>，神经网络的输出越接近它表示结果越好。</p>
+<p>对于这个神经网络模型我们优化的目标是，就是让神经网络的输出向量尽可能的接近真实标注期望的 one-hot 向量。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>那么，我们如何判断一个输出向量和期望的向量有多接近呢？？？</p>
+<p>交叉熵损失函数是常用的一种评价方法。 <strong>交叉熵刻画了两个概率分布之间的距离（差距）</strong>，它是分类问题最常使用的一种损失函数。</p>
+<p><strong>[2] &gt;&gt;&gt; 交叉熵损失函数（Cross Entropy）</strong></p>
+<p>交叉熵是信息论中的概念，这里不讨论其原本的意义，这里主要讲解它对于评估分类效果的意义。</p>
+<p>假设给定两个概率分布 <code>p</code> 和 <code>q</code>，这里我们通过 <code>q</code> 来表示 <code>p</code> 的交叉熵：</p>
+<p>$$ H(p,q) = - \sum_{x}p(x)log(q(x)) $$</p>
+<p>需要注意的是：<font color="red">交叉熵刻画的是两个概率分布之间的距离，然而神经网络的输出却不一定是一个概率分布。</font>（概率分布刻画的是不同事件发生的概率。由概率论知识可知，当事件总数是有限的前提下，概率分布的和是 <code>1</code>）</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>那么，如何将神经网络的前向传播结果（输出向量）转换成一个概率分布呢？！！</p>
+<p><strong>[3] &gt;&gt;&gt; 引入 Softmax 回归</strong></p>
+<p><code>Softmax</code> 回归是一个非常常用的转化概率分布的方法。事实上，其本身还可以作为一个学习算法来优化分类结果。</p>
+<p>但在 TF 中，<code>Softmax</code> 回归的参数被去掉了，它只是一层额外的处理层，作用就是 &gt;&gt;&gt; <strong>将神经网络的输出变成一个概率分布</strong>。</p>
+<p>添加 <code>softmax</code> 回归的神经网络结构示意图：</p>
+<div align=center><img src="https://s2.loli.net/2023/05/14/MEnOLN3VGtD7SAJ.png"></div>
+
+<p>如图，假设原始的神经网络的输出为 <code>y_1, y_2, ..., y_n</code>，那么经过 <code>Softmax</code> 回归处理之后的输出为：</p>
+<p>$$ softmax(y)_i = y_i’ = \frac{e^{yj}}{\sum_{j=1}^{n}e^{yj}} $$</p>
+<p>可见，神经网络输出经过一个 <code>Softmax</code> 回归就变换成一个概率分布！！！接下来就可以通过交叉熵来刻画神经网络输出的概率分布向量和 one-hot 标签向量的距离了。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>返回来继续看交叉熵，从交叉熵公式中可以看出交叉熵函数不是对称的：</p>
+<p>$$ H(p,q) \ne H(q,p) $$</p>
+<p>因为正确答案是期望得到的，所有当交叉熵作为损失函数时，<code>p</code> 代表答案标注，<code>q</code> 代表预测值（模型计算结构）。<strong>它刻画的是概率分布 <code>q</code> 和 <code>p</code> 的距离，交叉熵越小，概率分布越接近。</strong></p>
+<p>以一个三分类样例，来说明通过交叉熵确实可以判断期望值和预测值之间的距离：</p>
+<p>假设某个样例的标注（期望）是 <code>(1, 0, 0)</code>，当某网络模型经过 Softmax 回归之后的预测值是 <code>(0.5, 0.4, 0.1)</code>，那么这个预测值和正确答案之间的交叉熵为：</p>
+<p>$$ H((1,0,0),(0.5,0.4,0.1)) = -(1*log0.5 + 0*log0.4 + 0*log0.1) \approx 0.3 $$</p>
+<p>另外一个模型经过 Softmax 回归之后的预测值是 (0.8, 0.1, 0.1),那么这个预测值和正确答案之间的交叉熵为：</p>
+<p>$$ H((1,0,0),(0.8,0.1,0.1)) = -(1*log0.8 + 0*log0.1 + 0*log0.1) \approx 0.1 $$</p>
+<p>从直观上很容易知道：第二个模型的答案要优于第一个答案！！！</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[4] &gt;&gt;&gt; TF 的交叉熵损失函数实现</strong></p>
+<p>在之前的章节中，你已经见过 TensorFlow 中定义的交叉熵损失函数。</p>
+<p>这里我们来看其是如何实现的，下面先给出其代码实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cross_entropy = -tf.reduce_mean( input_y * tf.log( tf.clip_by_value(y, <span class="number">1e-10</span>, <span class="number">1.0</span>)) )</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>input_y</code> 代表输入的正确答案（真实标记/期望），<code>y</code> 代表模型预测结果。</p>
+<p>下面分别来看涉及到的几个功能函数：</p>
+<p><font color="red">↓↓↓↓↓↓ tf.clip_by_value(A, min, max) ↓↓↓↓↓↓</font></p>
+<p>该函数输入一个张量 <code>A</code>，将 A 中的每一个元素值都修剪在<code>（min, max）</code>范围之内，小于/大于 min/max 的等于 min/max。一般用于给出其外部函数（log）的有效域，可以避免一些运算错误（比如：<code>log0</code> 是无效的）。</p>
+<p>下面给出一个简单的运算样例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Function Test: tf.clip_by_value()</span></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">v = tf.constant([[<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>], [<span class="number">4.0</span>, <span class="number">5.0</span>, <span class="number">6.0</span>]], dtype=tf.float32)</span><br><span class="line"></span><br><span class="line">sess = tf.InteractiveSession()</span><br><span class="line">print(tf.clip_by_value(v, <span class="number">2.5</span>, <span class="number">4.5</span>).<span class="built_in">eval</span>())</span><br></pre></td></tr></table></figure>
+
+<p>样例输出结果如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[[2.5 2.5 3. ]</span><br><span class="line"> [4.  4.5 4.5]]</span><br></pre></td></tr></table></figure>
+
+<p>可见，输入的张量 v 中的每一个元素数值被限制到了 <code>(2.5, 4.5)</code> 中，即：</p>
+<p>$$ v[i][j]\in(2.5，4.5) $$</p>
+<p><font color="red">↓↓↓↓↓↓ tf.tf.log(A) ↓↓↓↓↓↓</font></p>
+<p>该函数比较简单，用于对张量中的每一个元素计算其对数值。一个简单的运算样例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">v = tf.constant([<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>], dtype=tf.float32)</span><br><span class="line">print(tf.log(v).<span class="built_in">eval</span>())</span><br></pre></td></tr></table></figure>
+
+<p>样例输出结果如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0.        0.6931472 1.0986123]</span><br></pre></td></tr></table></figure>
+
+<p><font color="red">↓↓↓↓↓↓ * 运算符 ↓↓↓↓↓↓</font></p>
+<p>用于将两个矩阵中的元素进行对应相乘，也可以称为数乘（multiply，注意与点乘的区别）。矩阵的乘法通过 <code>tf.matmul()</code> 函数来实现。下面给出一个样例来看一下数乘和点乘的区别：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">v1 = tf.constant([[<span class="number">1.0</span>, <span class="number">2.0</span>], [<span class="number">3.0</span>, <span class="number">4.0</span>]], dtype=tf.float32)</span><br><span class="line">v2 = tf.constant([[<span class="number">5.0</span>, <span class="number">6.0</span>], [<span class="number">7.0</span>, <span class="number">8.0</span>]], dtype=tf.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># multiply</span></span><br><span class="line">print((v1*v2).<span class="built_in">eval</span>())</span><br><span class="line"><span class="comment"># matmul</span></span><br><span class="line">print(tf.matmul(v1, v2).<span class="built_in">eval</span>())</span><br></pre></td></tr></table></figure>
+
+<p>样例输出结果如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[[ 5. 12.]</span><br><span class="line"> [21. 32.]]</span><br><span class="line">[[19. 22.]</span><br><span class="line"> [43. 50.]]</span><br></pre></td></tr></table></figure>
+
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>通过上述三个运算已经可以完成单个样例的的每一个类别的交叉熵 <code>p(x)log(q(x))</code> 的计算了。这三部的计算的结果是一个 <code>n × m</code> 阶的二维矩阵，其中 <code>n</code> 为一个 <code>batch</code> 中的样本数，<code>m</code> 为分类的类别数。</p>
+<p>根据交叉熵公式，应该将每行中的 <code>m</code> 个结果相加得到所有样例的交叉熵 ，然后再对这 <code>n</code> 行取平均值得到一个 <code>batch</code> 的平均交叉熵。但由于分类数是不变的，即每一行都是 <code>n</code> 个分类，所以可以直接对整个矩阵做平均而不改变计算结果的意义，可以使得程序更加简洁。</p>
+<p>下面来看 TF 中对矩阵做平均的函数，其语法格式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">reduce_mean(input_tensor,    <span class="comment"># 输入的 Tensor</span></span><br><span class="line">            axis=<span class="literal">None</span>,       <span class="comment"># 沿指定的轴计算均值；如果不指定，则计算所有元素的均值</span></span><br><span class="line">            keep_dims=<span class="literal">False</span>, <span class="comment"># 是否保持维度</span></span><br><span class="line">            name=<span class="literal">None</span>        <span class="comment"># 操作节点名称</span></span><br><span class="line">            )</span><br></pre></td></tr></table></figure>
+
+<p>样例代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">v1 = tf.constant([[<span class="number">1.0</span>, <span class="number">2.0</span>], [<span class="number">3.0</span>, <span class="number">4.0</span>]], dtype=tf.float32)</span><br><span class="line">sess = tf.InteractiveSession()</span><br><span class="line"></span><br><span class="line">print(tf.reduce_mean(v1).<span class="built_in">eval</span>())</span><br><span class="line"><span class="comment"># 2.5</span></span><br><span class="line">print(tf.reduce_mean(v1, axis=<span class="number">1</span>).<span class="built_in">eval</span>())</span><br><span class="line"><span class="comment"># [1.5 3.5]</span></span><br></pre></td></tr></table></figure>
+
+<p>OK~~~ 前面给出的 TF 交叉熵损失函数定义就解析完毕了！！！</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>什么？！！解析完了也太难记忆？看下面</p>
+<p>由于交叉熵一般会与 “Softmax” 回归一起使用，TF 给出了一个统一函数 <code>tf.nn.softmax_cross_entropy_with_logits()</code> 用来封装 Softmax 回归和交叉熵。以下代码给出了使用了 Softmax 回归之后的交叉熵损失函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Old usage</span></span><br><span class="line"><span class="comment"># cross_entropy = tf.nn.softmax_cross_entropy_with_logits(y, input_y)</span></span><br><span class="line"><span class="comment"># New Version（更安全）:</span></span><br><span class="line">cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=y, labels=input_y)</span><br></pre></td></tr></table></figure>
+
+<p>注意，在只有一个正确答案的分类问题中（可以表示为：<code>One-Hot</code>），TF 提供了 <code>tf.nn.sparse_softmax_cross_entropy_with_logits()</code> 函数来加速计算过程。</p>
+<p>TF 针对分类问题还支持其它的交叉熵函数（类似于 Softmax）：</p>
+<ul>
+<li><code>tf.nn.sigmoid_cross_entropy_with_logits</code>：区别于 Softmax（排斥），适用于每个类别相互独立但互不排斥的情况：例如一幅图可以同时包含一条狗和一只大象。</li>
+<li><code>tf.nn.weighted_cross_entropy_with_logits</code>：具有权重的 sigmoid 交叉熵。</li>
+</ul>
+<hr>
+<h4 id="回归问题损失"><a href="#回归问题损失" class="headerlink" title="回归问题损失"></a>回归问题损失</h4><p>我们知道，分类问题希望解决的是：将不同的数据样本划分到事先定义好的类别中。</p>
+<p>而，回归问题预测的不是一个事先定义好的类别，而是连续的数，是对具体数值的预测（比如：房价预测、销量预测）。解决回归问题的神经网络，一般只有一个输出节点，这个节点的输出值就是预测值。</p>
+<p>对于回归问题，最常用的损失函数是均方误差（<strong>MSE：Mean Squared Error</strong>）。公式定义如下：</p>
+<p>$$ MSE(y,y’) = \cfrac{\sum_{i=1}^{n}(y_i-y_i’)^2}{n} $$</p>
+<p>其中，<code>y_i</code> 为 batch 中第 <code>i</code> 个数据的正确答案，而 <code>y_i&#39;</code> 是神经网络给出的预测值。</p>
+<p>下面给出使用 TF 来实现均方误差损失函数：</p>
+<p>$$mse = tf.reduce\_mean(tf.square(y - y’))$$</p>
+<p>注意，这里的 <code>-</code> 运算符是两个数组中对应元素做差值。</p>
+<hr>
+<h4 id="自定义损失"><a href="#自定义损失" class="headerlink" title="自定义损失"></a>自定义损失</h4><p>TensorFlow 中不仅支持经典的损失函数，还可以 <strong>优化任意的自定义损失函数</strong>。下面将介绍如何 <font color="red"> 通过自定义损失函数的方法，来使得神经网络优化的结果更加接近实际问题的需求。</font></p>
+<p>这里，我们将以 “预测商品销量” 的问题为样例进行讲解：</p>
+<p>在预测商品销量时，如果预测的多了（预测值大于真实销量），商家损失的是生成商品的成本（造成商品积压）；而如果预测少了（预测值小于真实销量），则损失的是商品的利润。那么如何定义网络模型的优化目标（Loss Function）来最大化销售利润？！！</p>
+<p>比如，一件商品的生成成本是 1 元，而利润是 10 元。那么少预测一个就少挣 10 元，而多预测一个才少挣 1 元。如果采用前面的均方误差进行回归预测，那么很有可能此模型无法最大化销售利润（少挣的钱最少）！！！</p>
+<p>为了最大化利润，故定义的损失函数需要刻画商品的成本或者代价（不同的损失权重）。下面公式给出了一个当预测多于或少于真实值时具有不同损失系数的 Loss Funtion：</p>
+<p>$$ Loss(y,y’) = \sum_{i=1}^{n}{f(y_i, y_i’)} $$<br>$$ f(x, y) = \begin{cases} a(x-y), x &gt; y \\ b(y-x), x \leq y \end{cases} $$</p>
+<p>其中，<code>y_i</code> 为一个 batch 中第 i 个数据的正确答案，<code>y_i&#39;</code> 为神经网络计算得到的预测值。f 函数中，<code>a</code> &amp;&amp; <code>b</code> 是常量。上面的销售问题中，a 为 10（预测少了）；b 为 1（预测多了）。</p>
+<p>TF 中实现上述具有不同损失系数的 Loss Function：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loss = tf.reduce_sum(tf.select( tf.greater(v1,v2), (v1-v2) * a, (v1-v2) * b))</span><br></pre></td></tr></table></figure>
+
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>下面分别来看涉及到的几个功能函数：</p>
+<p><font color="red">↓↓↓↓↓↓ tf.greater(a, b) ↓↓↓↓↓↓</font></p>
+<p>比较函数：<code>tf.greater(v1,v2)</code> 的输入是两个张量，函数会比较两个张量中对应位置元素的大小，返回比较的结果。示例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">v1 = tf.constant([[<span class="number">1.0</span>, <span class="number">2.0</span>], [<span class="number">3.0</span>, <span class="number">4.0</span>]], dtype=tf.float32)</span><br><span class="line">v2 = tf.constant([[<span class="number">3.0</span>, <span class="number">4.0</span>], [<span class="number">1.0</span>, <span class="number">2.0</span>]], dtype=tf.float32)</span><br><span class="line"></span><br><span class="line">print(tf.greater(v1, v2).<span class="built_in">eval</span>())</span><br><span class="line"><span class="comment"># [[False False]</span></span><br><span class="line"><span class="comment">#  [ True  True]]</span></span><br></pre></td></tr></table></figure>
+
+<p><font color="red">↓↓↓↓↓↓ tf.select(condition, t, e, name=None) ↓↓↓↓↓↓</font></p>
+<p>选择函数：当条件 <code>condition=True</code> 时，选择参数 <code>t</code> 的值；否则选择参数 <code>e</code>。需要注意的是该函数判断和选择都在元素级别进行。</p>
+<p>实例代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">v1 = tf.constant([<span class="number">1.0</span>,<span class="number">2.0</span>,<span class="number">3.0</span>,<span class="number">4.0</span>])</span><br><span class="line">v2 = tf.constant([<span class="number">4.0</span>,<span class="number">3.0</span>,<span class="number">2.0</span>,<span class="number">1.0</span>])</span><br><span class="line"></span><br><span class="line">sess = tf.InteractiveSession()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> (tf.greater(v1,v2).<span class="built_in">eval</span>())</span><br><span class="line"></span><br><span class="line"><span class="comment"># AttributeError: module &#x27;tensorflow&#x27; has no attribute &#x27;select</span></span><br><span class="line"><span class="comment"># print (tf.select( tf.greater(v1,v2), v1, v2).eval())</span></span><br><span class="line"><span class="comment"># 原因：新版本 TensorFlow API 的名称做了改变，这个选择操作的tf.select()被改为tf.where()。</span></span><br><span class="line"><span class="built_in">print</span> (tf.where( tf.greater(v1,v2), v1, v2).<span class="built_in">eval</span>())</span><br><span class="line"></span><br><span class="line">sess.close()</span><br></pre></td></tr></table></figure>
+
+<p>样例输出结果如下:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[False False  True  True]</span><br><span class="line">[4. 3. 3. 4.]</span><br></pre></td></tr></table></figure>
+
+<p>最后，对上述计算得到的损失值进行平均，计算得到 batch 上的平均利润最少损失即可。</p>
+<hr>
+<h3 id="损失函数对模型的影响"><a href="#损失函数对模型的影响" class="headerlink" title="损失函数对模型的影响"></a>损失函数对模型的影响</h3><p>上面我们了解了 TensorFlow 中经典损失函数以及自定义损失函数的使用，也明白了一个损失函数使用的重要性。</p>
+<p>那么对于一个模型来说，损失函数到底会有怎样的影响？！！</p>
+<p>这里，我们将通过一个样例来说明选择一个合适的损失函数对训练结果影响的重要性。实现一个拥有两个输入节点，一个输出节点，没有隐藏层的神经网络结构：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> numpy.random <span class="keyword">import</span> RandomState</span><br><span class="line"></span><br><span class="line">batch_size = <span class="number">8</span></span><br><span class="line"></span><br><span class="line">input_x = tf.placeholder(tf.float32, shape=(<span class="literal">None</span>,<span class="number">2</span>), name=<span class="string">&quot;input_x&quot;</span>)</span><br><span class="line">input_y = tf.placeholder(tf.float32, shape=(<span class="literal">None</span>,<span class="number">1</span>), name=<span class="string">&quot;input_y&quot;</span>)</span><br><span class="line"></span><br><span class="line">w1 = tf.Variable(tf.random_normal([<span class="number">2</span>,<span class="number">1</span>], stddev=<span class="number">1</span>, seed=<span class="number">1</span>))</span><br><span class="line">y = tf.matmul(input_x, w1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 预测少时损失：</span></span><br><span class="line">loss_less = <span class="number">10</span></span><br><span class="line"><span class="comment"># 预测多时损失：</span></span><br><span class="line">loss_more = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">define_loss = tf.reduce_sum(tf.where( tf.greater(y,input_y), (y-input_y) * loss_more, (input_y-y) * loss_less))</span><br><span class="line">learning_rate = <span class="number">0.001</span></span><br><span class="line">train_op = tf.train.AdamOptimizer(learning_rate).minimize(define_loss)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过随机数生成一个模拟数据集：</span></span><br><span class="line">rdm = RandomState(<span class="number">1</span>)</span><br><span class="line">dataset_size = <span class="number">128</span> <span class="comment"># 训练数据集样本数目</span></span><br><span class="line"></span><br><span class="line">X = rdm.rand(dataset_size, <span class="number">2</span>)</span><br><span class="line"><span class="comment"># 定义规则给出样本的标签（x1 + x2 + noise）：</span></span><br><span class="line"><span class="comment"># 为了加入不可预测噪音（noise），否则设置不同损失函数意义不大，因为不同损失函数都在完全预测正确时最低</span></span><br><span class="line"><span class="comment"># noise 属于 -0.05 ~ 0.05 的值</span></span><br><span class="line">Y = [ [x1 + x2 + rdm.rand()/<span class="number">10.0</span>-<span class="number">0.05</span>] <span class="keyword">for</span> (x1, x2) <span class="keyword">in</span> X ]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面创建一个会话来运行程序：</span></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    </span><br><span class="line">    init_op = sess.run(tf.global_variables_initializer())</span><br><span class="line">    <span class="comment"># 打印训练之前的神经网络参数：</span></span><br><span class="line">    print(<span class="string">&quot;| ============= Parameters Before Training ============ |&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(w1))</span><br><span class="line">    print(<span class="string">&quot;| ===================================================== |&quot;</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 开始训练：</span></span><br><span class="line">    <span class="comment"># 定义训练轮数：</span></span><br><span class="line">    STEPS = <span class="number">5000</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(STEPS):</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 每次选取一个 batch 的数据进行训练：</span></span><br><span class="line">        start = (i * batch_size) % dataset_size</span><br><span class="line">        end = <span class="built_in">min</span>(start + batch_size, dataset_size)</span><br><span class="line">        </span><br><span class="line">        data_feed = feed_dict=&#123;input_x: X[start:end], input_y: Y[start:end]&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 训练神经网络参数</span></span><br><span class="line">        sess.run(train_op, data_feed)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 打印训练之后的神经网络参数：</span></span><br><span class="line">    print(<span class="string">&quot;| ============= Parameters Before Training ============ |&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span> (sess.run(w1))</span><br><span class="line">    print(<span class="string">&quot;| ===================================================== |&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>样例输出结果如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">| ============= Parameters Before Training ============ |</span><br><span class="line">[[-<span class="number">0.8113182</span>]</span><br><span class="line"> [ <span class="number">1.4845988</span>]]</span><br><span class="line">| ===================================================== |</span><br><span class="line">| ============= Parameters Before Training ============ |</span><br><span class="line">[[<span class="number">1.019347</span> ]</span><br><span class="line"> [<span class="number">1.0428089</span>]]</span><br><span class="line">| ===================================================== |</span><br></pre></td></tr></table></figure>
+
+<p>标准答案（期望）为：<code>x1 + x2</code>，预测值为 <code>1.02x_1 + 1.04x_2</code>。此时的参数下，模型更加偏向于预测多一点（预测少了的损失更大：loss_less &gt; loss_more）。</p>
+<p>如果将 <code>loss_less</code> 和 <code>loss_more</code> 和值互换（此时，预测少时损失小为 1，预测多时损失大为 10），那么最终 <code>w1 = [0.95525807, 0.9813394]</code>，此时模型更加偏向预测少一点。而如果使用均方误差作为损失函数，<code>w1 = [0.97437561, 1.0243336]</code>，会让预测值离标准答案更近。</p>
+<p>👇👇👇 <strong>结论</strong> 👇👇👇</p>
+<p>相同的神经网络结构，不同的损失函数的使用会对训练得到的模型（预测方向）产生重要的影响！！！</p>
+<hr>
+<h2 id="神经网络优化器算法（Optimizer）"><a href="#神经网络优化器算法（Optimizer）" class="headerlink" title="神经网络优化器算法（Optimizer）"></a>神经网络优化器算法（Optimizer）</h2><p>我们知道，反向传播传播算法（BP）是训练（优化）神经网络的核心算法，它可以根据定义好的损失函数优化神经网络中参数的取值，从而使得神经网络模型在训练数据集上的损失函数达到一个较小值，从而提高网络模型的精确度。</p>
+<p>其优化（训练）过程可以分为两个阶段：</p>
+<ul>
+<li>第一阶段：先通过前向传播算法计算得到预测值，并将预测值和真实值做对比得出两者之间的差距（<code>loss</code>）;</li>
+<li>第二阶段：通过反向传播算法计算损失函数对每一个参数的梯度，再根据梯度和学习率使用梯度下降算法更新每一个参数，使得损失函数不断减少。</li>
+</ul>
+<p>关于第一阶段的 Loss Function 不再进行赘述，这一小节我们将介绍如何通过反向传播算法（Back Propagation）和梯度下降（Gradient Decent）优化器算法来更新神经网络中的参数（略去算法的数学推导和证明）。</p>
+<p>事实上，<font color="red"> 梯度下降优化器算法主要用于优化单个参数的取值，而反向传播算法给出了一个高效的方式在所有参数上使用梯度下降算法，最小化损失函数。</font></p>
+<hr>
+<h3 id="梯度下降算法（Gradient-Descent）"><a href="#梯度下降算法（Gradient-Descent）" class="headerlink" title="梯度下降算法（Gradient Descent）"></a>梯度下降算法（Gradient Descent）</h3><p>我们知道，神经网络的训练（优化）过程，就是不断降低损失函数值（使其收敛于一个最低值）以及参数更新的过程，从而提高学习模型的精确度。</p>
+<p>学习模型中，“损失函数是否收敛于一个较小值” 可以来评价一个模型在当前数据集下是否达到最佳。</p>
+<p>事实上，<strong>梯度下降算法（Gradient Descent）的目的 &gt;&gt;&gt;&gt; 就是为了最小化损失函数！！！</strong></p>
+<hr>
+<h4 id="梯度下降原理"><a href="#梯度下降原理" class="headerlink" title="梯度下降原理"></a>梯度下降原理</h4><p>那么，如何寻找损失函数的最低点呢？！！</p>
+<p>显而易见的是，损失函数里一般有两种参数：控制输入信号量的权重参数（Weight，<code>W</code>），以及调整函数与真实值距离的偏置（Bias，<code>b</code>）。梯度下降算法，需要不断地调整权重 <code>W</code> 和偏置 <code>b</code>，使得损失函数的值变得越来越小，以期望达到最低。</p>
+<p>目前，没有一个通用的方法对任意的损失函数求解最佳的参数取值。故通常会采用 <font color="red"> 微积分求导的方式</font> &gt;&gt;&gt;&gt; <font color="green">通过求出损失函数的导数值（梯度），找到函数梯度下降的方向，从而找到损失函数的最低点（极值点）。</font></p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>单个参数的梯度下降过程</strong> 👇👇👇</p>
+<p>为了方便理解，仅以某一个权重参数 <code>θ</code> 的更新为样例进行说明。</p>
+<p>假设模型的损失函数为 <code>J(θ)</code>，满足如下图所示关系。梯度下降算法（GD）会迭代式的更新参数 θ，即不断沿着梯度（<code>∂J/∂θ</code>）下降的方向让参数朝着损失更小的方向进行更新！！！</p>
+<div align=center><img src="https://s2.loli.net/2023/05/15/hbzkyasGYdnQ7fO.png"></div>
+
+<p>如图，通过计算梯度（<code>∂J/∂θ</code>），模型优化器就可以判断权重 <code>θ</code> 的移动方向，会让其向左而不是向右移动，随着不断的迭代训练最终使得损失函数收敛于最低点（梯度为 0 的地方）。</p>
+<p>知道了 <code>θ</code> 的移动方向之后，还需要确定每次应该前进多少（即前进的距离或步长），这通过 <strong>学习率（Learning Rate）</strong>来定义。</p>
+<p><font color="red">↓↓↓↓↓↓ 详解上述过程 ↓↓↓↓↓↓</font></p>
+<p>假设要通过梯度下降算法来优化参数 <code>θ</code>，使得损失函数 <code>J(θ)= θ^2</code> 的值尽量小。梯度下降算法的第一步需要随机产生一个参数 <code>θ</code> 的初始值，然后再通过梯度和学习率来更新参数 θ 的取值。</p>
+<p>样例中参数 <code>θ</code> 的梯度为：</p>
+<p>$$\nabla=\cfrac{\partial J(\theta)}{\partial θ} = 2\theta$$</p>
+<p>那么 <code>BP</code> 中每次使用梯度下降算法对参数 θ 的更新公式为：</p>
+<p>$$ θ_{n+1} = θ_n - \eta \nabla $$</p>
+<p>其中，<code>θ_n</code> 表示权重的初始值，<code>θ_(n+1)</code> 表示更新后的权重值，使用 <code>η</code> 来表示学习率。 </p>
+<p>假设参数 <code>θ</code> 初始值为 <code>5</code>，学习率设置为 <code>0.3</code>，那么优化过程可以总结为下表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">epoch</th>
+<th align="left">当前轮参数值</th>
+<th align="left">梯度×学习率</th>
+<th align="left">更新后参数值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">5</td>
+<td align="left">2×5×0.3=3</td>
+<td align="left">5-3=2</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2×2×0.3=1.2</td>
+<td align="left">2-1.2=0.8</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">0.8</td>
+<td align="left">2×0.8×0.3=0.48</td>
+<td align="left">0.8-0.48=0.32</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">0.32</td>
+<td align="left">2×0.32×0.3=0.192</td>
+<td align="left">0.32-0.192=0.128</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">0.128</td>
+<td align="left">2×0.128×0.3=0.0768</td>
+<td align="left">0.128-0.0768=0.0512</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>可见，经过  <code>5</code> 轮迭代后，参数 <code>θ</code> 的取值已变为 <code>0.0512</code>，和参数最优值 θ = 0 已经很接近了。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>上面讲解了对单个权重参数 W 的优化过程，而对于偏置 b 也是同样的处理过程，这里不再进行赘述。</p>
+<p>事实上，对神经网络中的所有权重（Weight）和偏置（Bias）参数，均采用上述原理进行优化。</p>
+<hr>
+<p>前面提到过：梯度下降优化器算法主要用于优化单个参数的取值，而反向传播算法给出了一个高效的方式在所有参数上使用梯度下降算法，最小化损失函数。</p>
+<h4 id="BP-梯度下降过程"><a href="#BP-梯度下降过程" class="headerlink" title="BP 梯度下降过程"></a>BP 梯度下降过程</h4><p>根据上述说明，给出模型训练时 BP 梯度下降算法的整个过程：</p>
+<p><strong>1 &gt;&gt;&gt;&gt;</strong> for i = 0 to (训练数据的个数):</p>
+<p>(1) 计算第 <code>i</code> 个训练数据的权重 W 和偏置 b 相对于损失函数的梯度。最终得到每一个训练数据的权重和偏差的梯度值。</p>
+<p>(2) 计算所有训练数据权重 W 的梯度的总和。</p>
+<p>(3) 计算所有训练数据偏差 b 的梯度的总和。</p>
+<p><strong>2 &gt;&gt;&gt;&gt;</strong> 平均梯度计算，更新参数:</p>
+<p>(1) 根据上面 (2)、(3) 结果，计算所有样本的权重和偏差的梯度平均值。 </p>
+<p>(2) 使用下面的式子，更新每个样本的权重值和偏差值：</p>
+<p>$$ W_{i+1} = W_i - \eta * \cfrac{\partial J(\theta)}{\partial W_i} $$</p>
+<p>$$ b_{i+1} = b_i - \eta * \cfrac{\partial J(\theta)}{\partial b_i} $$</p>
+<p><strong>3 &gt;&gt;&gt;&gt;</strong> 重复上述过程，直至损失函数收敛不变。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>伪代码表示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">X, y, W, B, alpha, max_iters</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    选取所有的数据作为训练样本来执行梯度下降</span></span><br><span class="line"><span class="string">    X : 训练数据集</span></span><br><span class="line"><span class="string">    y : 训练数据集所对应的目标值</span></span><br><span class="line"><span class="string">    W : 权重向量</span></span><br><span class="line"><span class="string">    B ： 偏差变量</span></span><br><span class="line"><span class="string">    alpha ： 学习速率</span></span><br><span class="line"><span class="string">    max_iters : 梯度下降过程最大的迭代次数</span></span><br><span class="line"><span class="string">   &#x27;&#x27;&#x27;</span></span><br><span class="line">   dW = <span class="number">0</span> <span class="comment"># 初始化权重向量的梯度累加器</span></span><br><span class="line">   dB = <span class="number">0</span> <span class="comment"># 初始化偏差向量的梯度累加器</span></span><br><span class="line">   m = X.shape[<span class="number">0</span>] <span class="comment"># 训练数据的数量</span></span><br><span class="line">   </span><br><span class="line">   <span class="comment"># 开始梯度下降的迭代</span></span><br><span class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(max_iters): </span><br><span class="line">       dW = <span class="number">0</span> <span class="comment"># 重新设置权重向量的梯度累加器</span></span><br><span class="line">       dB = <span class="number">0</span> <span class="comment"># 重新设置偏差向量的梯度累加器</span></span><br><span class="line">       </span><br><span class="line">       <span class="comment"># 对所有的训练数据进行遍历</span></span><br><span class="line">       <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(m):</span><br><span class="line">           <span class="comment"># 1. 遍历所有的训练数据</span></span><br><span class="line">           <span class="comment"># 2. 计算每个训练数据的权重向量梯度w_grad和偏差向量梯度b_grad</span></span><br><span class="line">           <span class="comment"># 3. 把w_grad和b_grad的值分别累加到dW和dB两个累加器里</span></span><br><span class="line">       </span><br><span class="line">       W = W - alpha * (dW / m) <span class="comment"># 更新权重的值</span></span><br><span class="line">       B = B - alpha * (dB / m) <span class="comment"># 更新偏差的值</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> W, B <span class="comment"># 返回更新后的权重和偏差。</span></span><br></pre></td></tr></table></figure>
+
+<p>可见：每一次迭代进行梯度下降的过程中，都需要对所有样本数据的梯度进行计算。</p>
+<blockquote>
+<p>关于反向传播算法（BP）中梯度下降更详细和深入的了解，请参见 &gt;&gt;&gt;&gt; 【<a href="">BP 算法的深入理解与相关推导</a>】。</p>
+</blockquote>
+<hr>
+<h4 id="存在问题分析"><a href="#存在问题分析" class="headerlink" title="存在问题分析"></a>存在问题分析</h4><p>事实上，梯度下降算法（Gradient Descent）存在一些问题：</p>
+<p><strong>[1] &gt;&gt;&gt; 陷入局部最优解</strong></p>
+<p>梯度下降算法，并不能保证被优化的损失函数达到全局最优解，可能陷入局部最优！！！什么意思？？？</p>
+<p>如下图所示，图中给出损失函数情况下，就有可能只能得到局部最优解而不是全局最优：</p>
+<div align=center><img src="https://s2.loli.net/2023/05/15/MVlouiA3vy5CgqK.png"></div>
+
+<p>参数梯度落在图中标记点处（小黑点：A），此时损失函数的偏导为 <code>0</code>，于是参数就不会在进一步更新了。</p>
+<blockquote>
+<p>梯度下降是否能够达到全局最优取决于 &gt;&gt;&gt;&gt; 待优化参数初始值落在哪个区域。</p>
+<p>参数初始值的选取很大程度影响最后的优化结果。只有当损失函数为凸函数时，梯度下降算法才能保证达到全局最优。</p>
+</blockquote>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[2] &gt;&gt;&gt; 耗时</strong></p>
+<p>梯度下降算法另一个存在的问题就是计算时间太长。</p>
+<p>因为要在全部训练数据上最小化损失，也就是说所有损失函数 <code>J(θ)</code> 是在所有的训练数据上的损失和达到最小。</p>
+<p>这样在每一轮的迭代中都需要计算在全部训练数据上的损失。在海量训练训练数据下，要计算所有训练数据的损失函数是极其耗时的。</p>
+<hr>
+<p>为了加速训练过程，提出了随机梯度下降算法（<code>Stochastic Gradient Decent：[stə&#39;kæstɪk ˈɡreɪdiənt dɪˈsent]</code>，SGD）:</p>
+<h3 id="随机梯度下降算法（SGD）"><a href="#随机梯度下降算法（SGD）" class="headerlink" title="随机梯度下降算法（SGD）"></a>随机梯度下降算法（SGD）</h3><p>随机梯度下降算法 SGD 优化的不是在全部训练数据上的损失函数，而是在每一轮迭代中随机优化某一条训练数据上的损失函数，这样每一轮参数更新的速度就大大加快了。</p>
+<p>但由于 SGD 算法每次优化的只是在某一条数据上的损失函数，所以问题也非常明显：在某一条数据上损失函数更小并不能代表在全部数据上的损失函数更小！！！</p>
+<p>你应该能理解：随机梯度下降 <font color="red"> 仍然存在陷入局部最优解</font> 的情况（想想上面的局部最优解图示）。</p>
+<p>更为严重的是 &gt;&gt;&gt;&gt; <strong>使用随机梯度下降算法优化，得到的神经网络甚至可能无法达到局部最优。</strong>为什么？！！</p>
+<p>这是由于每次训练使用的样本数据都是随机的，所以参数可能落在任何使得梯度下降的方向上。</p>
+<hr>
+<p>为了综合梯度下降算法（达到某个最优）和随机梯度下降算法（快速）的优缺点，在实际应用中提出了一种折中的办法 &gt;&gt;&gt; <code>Mini Batch SGD</code>:</p>
+<h3 id="小批量样本梯度下降（MGD）"><a href="#小批量样本梯度下降（MGD）" class="headerlink" title="小批量样本梯度下降（MGD）"></a>小批量样本梯度下降（MGD）</h3><p><code>Mini Batch SGD</code> 算法的优化过程是 &gt;&gt;&gt;&gt; 每次计算一小部分训练数据的损失函数值，也就是我们之前提到的一个 <code>batch</code> 的数据上的损失。</p>
+<p>通过矩阵运算，每次在一个 <code>batch</code> 的数据上优化神经网络的参数并不会比单个数据慢太多；另一方面，每次使用一个 <code>batch</code> 的数据可以大大减少损失函数收敛所需要的迭代次数，同时可以使得收敛的结果更加接近梯度下降的效果。</p>
+<p>👇👇👇 <strong>Batch Size 的设置要合理</strong> 👇👇👇</p>
+<p>当神经网络模型比较复杂或者数据本身（大尺寸图像）比较大，太大的 <code>batch</code> 会导致计算时间过程过长，甚至发生内存溢出！！！</p>
+<p><code>batch-size</code> 一般选取为：64，128，256，512 等，最好是 2 的次方。</p>
+<hr>
+<h3 id="Momentum-amp-RMSprop-amp-Adam-amp-…"><a href="#Momentum-amp-RMSprop-amp-Adam-amp-…" class="headerlink" title="Momentum &amp; RMSprop &amp; Adam &amp; …"></a>Momentum &amp; RMSprop &amp; Adam &amp; …</h3><p>上面我们介绍的梯度下降算法是最简单、最基础的模型优化方法。</p>
+<p>除此之外，还有一些基于梯度下降算法的改进算法，例如：Momentum、Adagrad、RMSProp、Adam 等等。</p>
+<p>关于反向传播优化算法更深入的了解，可参考 &gt;&gt;&gt;&gt; 【<a href="">解析神经网络主流优化器算法</a>】。这里由于篇幅原因，不再进行过多的说明。</p>
+<hr>
+<h3 id="BP-和优化器算法"><a href="#BP-和优化器算法" class="headerlink" title="BP 和优化器算法"></a>BP 和优化器算法</h3><p>说了这么多，你是否能够更好的区分 BP 算法和优化器算法的不同作用，以及在神经网络模型优化中充当的角色？！！</p>
+<p>我们知道，神经网络模型的学习需要有目标函数（损失函数），才能通过求解目标函数的最优解来找到合适的模型（这一过程称为训练或优化）。</p>
+<p>而找目标函数最优解的方法，就是 &gt;&gt;&gt;&gt; 优化器算法，如 SGD &amp;&amp; Adam &amp;&amp; RMSprop 等。目前没有一个通用的方法对任意的目标函数求解最优解，优化器算法都是基于目标函数的导数！！！</p>
+<p>而 BP 算法就是一种计算神经网络目标函数的导数的方法。</p>
+<hr>
+<p>至此，我们就可以给出 TF 深度神经网络（Deep Neural Network）模型训练（优化）的通用框架：</p>
+<h2 id="TF-DNN-模型优化通用框架"><a href="#TF-DNN-模型优化通用框架" class="headerlink" title="TF-DNN 模型优化通用框架"></a>TF-DNN 模型优化通用框架</h2><p>框架代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> numpy.random <span class="keyword">import</span> RandomState</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义 batch 大小：</span></span><br><span class="line">batch_size = <span class="number">8</span></span><br><span class="line"></span><br><span class="line">input_x = tf.placeholder(tf.float32, shape=(<span class="literal">None</span>,<span class="number">2</span>), name=<span class="string">&quot;input_x&quot;</span>)</span><br><span class="line">input_y = tf.placeholder(tf.float32, shape=(<span class="literal">None</span>,<span class="number">1</span>), name=<span class="string">&quot;input_y&quot;</span>)</span><br><span class="line"></span><br><span class="line">w1 = tf.Variable(tf.random_normal([<span class="number">2</span>,<span class="number">1</span>], stddev=<span class="number">1</span>, seed=<span class="number">1</span>))</span><br><span class="line">w2</span><br><span class="line">.....</span><br><span class="line"></span><br><span class="line">define_loss = ...</span><br><span class="line">learning_rate = <span class="number">0.001</span></span><br><span class="line">train_op = tf.train.AdamOptimizer(learning_rate).minimize(define_loss)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    </span><br><span class="line">    init_op = sess.run(tf.global_variables_initializer())</span><br><span class="line">    <span class="comment"># 打印训练之前的神经网络参数：</span></span><br><span class="line">    <span class="built_in">print</span> (sess.run(w1))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 开始训练：</span></span><br><span class="line">    <span class="comment"># 定义训练轮数：</span></span><br><span class="line">    STEPS = <span class="number">5000</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(STEPS):</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 每次选取一个 batch 的数据进行训练：</span></span><br><span class="line">        start = (i * batch_size) % dataset_size</span><br><span class="line">        end = <span class="built_in">min</span>(start + batch_size, dataset_size)</span><br><span class="line">        </span><br><span class="line">        data_feed = feed_dict=&#123;input_x: X[start:end], input_y: Y[start:end]&#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 训练神经网络参数</span></span><br><span class="line">        sess.run(train_op, data_feed)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="进一步优化神经网络"><a href="#进一步优化神经网络" class="headerlink" title="进一步优化神经网络"></a>进一步优化神经网络</h2><p>这一小节，我们将针对神经网络优化过程可能遇到的问题，进一步合理设置神经网络。</p>
+<p>例如：如何合理设置梯度下降算法的学习率，让训练模型快速、合理收敛？如何解决过拟合，使得我们训练好的模型更加泛化？以及如何使用滑动平均模型使得学得的模型更加健壮，滑动平均模型可以一定程度上提高模型在最终测试数据集上的表现（增强模型效果）。</p>
+<hr>
+<h3 id="学习率设置问题"><a href="#学习率设置问题" class="headerlink" title="学习率设置问题"></a>学习率设置问题</h3><p>在讲解梯度下降算法（Gradient Descent）时提到，神经网络模型的训练（学习）需要通过学习率来控制参数更新的幅度或步长。</p>
+<p>那么考虑一个问题 &gt;&gt;&gt;&gt; 学习率较低时增加了模型收敛所需的迭代次数，那么是否只需要设置一个较大的学习率，就可以让模型在很短时间内达到局部最优？？？</p>
+<p>答案肯定是否定的！！！</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<h4 id="学习率影响"><a href="#学习率影响" class="headerlink" title="学习率影响"></a>学习率影响</h4><p>学习率决定了参数每次更新的幅度 &gt;&gt;&gt;&gt; 如果 <strong>更新幅度过大</strong>，那么可能导致参数在极优值两侧来回移动，无法收敛到一个极小值；相反，如果 <strong>更新幅度过小</strong>，每次参数更新幅度较小，虽然能够保证收敛性，但这会大大降低参数的优化（训练）速度。模型需要更多轮的迭代才可以达到一个比较理想的结果。</p>
+<p><font color="red">↓↓↓↓↓↓ 以梯度下降算法中单个参数的梯度下降样例进行讲解 ↓↓↓↓↓↓</font></p>
+<p>假设：参数 <code>0</code> 初始值为：<code>5</code></p>
+<p>当学习率为：<code>0.001</code> 时，迭代 <code>5</code> 次之后，<code>0</code> 的取值将为 <code>4.95</code>。要将 <code>0</code> 训练到 <code>0.05</code> 需要大约 <code>2300</code> 轮； 当学习率为：<code>0.3</code> 时，只需要迭代 <code>5</code> 轮就可以达到。</p>
+<p>👇👇👇 <strong>综上所述</strong> 👇👇👇</p>
+<p>如何更加合理的设置学习率取值为对保证模型优化的高效和精确是必要的！！！</p>
+<hr>
+<h4 id="指数衰减学习率"><a href="#指数衰减学习率" class="headerlink" title="指数衰减学习率"></a>指数衰减学习率</h4><p>为了解决学习率设定过大过小的问题，TF 中提供了一种更加灵活的学习率设置方法：<strong>指数衰减法</strong>。</p>
+<p>TF 通过 <code>tf.train.exponential_decay()</code> 函数实现了指数衰减学习率。它会 <font color="red">指数级地减少学习率，让模型在训练前期快速接近较优解，又保证在模型训练后期不会波动太大（更加稳定），从而逐渐收敛于最优解。</font></p>
+<p>其语法格式如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tf.train.exponential_decay(</span><br><span class="line">    learning_rate,    <span class="comment"># 初始学习率</span></span><br><span class="line">    global_step,      <span class="comment"># 全局迭代次数（总迭代次数）</span></span><br><span class="line">    decay_steps,      <span class="comment"># 衰减速度</span></span><br><span class="line">    decay_rate,       <span class="comment"># 衰减系数</span></span><br><span class="line">    staircase=<span class="literal">False</span>,  <span class="comment"># 衰减方式（阶梯式衰减 or 连续衰减）</span></span><br><span class="line">    name=<span class="literal">None</span>         <span class="comment"># String. Optional name of the operation. Defaults to ‘ExponentialDecay’.</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>上述函数实现了以下代码的功能：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">decayed_learning_rate = learning_rate * decay_rate ^ (global_step / decay_steps)</span><br></pre></td></tr></table></figure>
+
+<p>| ================================================== <strong>staircase</strong> =============================================== |</p>
+<p>👇👇👇 <strong>staircase 参数详解</strong> 👇👇👇</p>
+<p>指数衰减函数中 <code>staircase</code> 参数用来指定衰减的方式：阶梯式衰减（True）？ or 连续衰减（False）？</p>
+<p>区别在于 &gt;&gt;&gt;&gt; 当参数设置为 <code>True</code> 时，<code>(global_step / decay_steps)</code> 结果会取整，学习率就成为阶梯函数（<code>Staircase Function</code>）了。</p>
+<p>不同衰减方式示意图：</p>
+<div align=center><img src="https://s2.loli.net/2023/05/17/3leD2La4XjRi1Cr.png"></div>
+
+<p>阶梯衰减学习率 &gt;&gt;&gt;&gt; <code>decay_steps</code> 通常代表完整的使用一遍训练数据样本所需要的迭代轮数，也就是总训练样本数除以每一个 <code>batch</code> 中的训练样本数（即：<code>batch_size</code>）。这种设置的常用场景是：每完整的过完一遍训练数据，学习率就减少一次。</p>
+<p>优点 &gt;&gt;&gt;&gt; 可以使得训练数据集中的所有数据对模型训练有相等的作用。</p>
+<p>连续衰减学习率 &gt;&gt;&gt;&gt; 不同的训练数据有不同的学习率，只有当学习率减小时，对应的训练数据对模型的训练结果的影响也就小了。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>下面将给出一个使用了指数衰减学习率的优化器样例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">global_step = tf.Variable(<span class="number">0</span>, trainable=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">starter_learning_rate = <span class="number">0.1</span></span><br><span class="line"></span><br><span class="line">learning_rate = tf.train.exponential_decay(</span><br><span class="line">    starter_learning_rate, </span><br><span class="line">    global_step,</span><br><span class="line">    <span class="number">100000</span>, </span><br><span class="line">    <span class="number">0.96</span>, </span><br><span class="line">    staircase=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Passing global_step to minimize() will increment it at each step.</span></span><br><span class="line">train_op = (</span><br><span class="line">    tf.train.GradientDescentOptimizer(learning_rate)</span><br><span class="line">    .minimize(...my loss..., global_step=global_step)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>学习率决定了参数更新（损失函数下降）的速度。一般来说，初始学习率、衰减学习率以及衰减速度都是根据经验设置的。</p>
+<p>但是损失函数下降的速度和迭代结束之后总损失的大小没有必然的联系。也就是说，并不能通过前几轮损失函数下降的速度来比较不同神经网络模型的效果。</p>
+</blockquote>
+<hr>
+<h3 id="模型拟合问题"><a href="#模型拟合问题" class="headerlink" title="模型拟合问题"></a>模型拟合问题</h3><p>我们知道，神经网络的训练（优化）的目标，就是在训练的样本数据上优化一个给定的损失函数。</p>
+<p>然而在真实的应用中，我们期望的并不是单纯让模型尽量模拟（拟合）训练数据的行为，而是希望通过训练出来的模型对未知数据也能够给出很好的预测。</p>
+<p>而在我们机器学习和深度学习的训练过程中，经常会出现 <strong>过拟合（Overfitting）</strong>和 <strong>欠拟合（Underfitting）</strong> 的现象。</p>
+<h4 id="过拟合-欠拟合"><a href="#过拟合-欠拟合" class="headerlink" title="过拟合/欠拟合"></a>过拟合/欠拟合</h4><ul>
+<li>过拟合：是指当一个模型过为复杂之后，它可以很好的记忆每一个训练数据中的随机噪音的部分，而忘记去“学习”训练数据中的通用趋势。</li>
+<li>欠拟合：是指模型较为简单，无法很好的学习到数据的内在特征，模型训练时的表现就很差。</li>
+</ul>
+<p>欠拟合好理解，下面我们将</p>
+<p><font color="red">↓↓↓↓↓↓ 通过一个极端的样例进行过拟合的说明 ↓↓↓↓↓↓</font></p>
+<p>如果一个模型中的参数比训练数据的总数还多（一般样本数维持在参数量的<code>10</code>倍），那么只要训练数据不冲突，这个模型完全可以记住所有训练数据的结果从而使得损失函数为 <code>0</code>。你可以直观的想象一个包含 <code>n</code> 个变量和 <code>n</code> 个等式的方程组：当方程不冲突时，这个方程组是可以通过数学方法求解的。</p>
+<p>然而过度拟合训练数据的随机噪音虽然可以得到非常小的损失，但是对于未知数据可能无法做出可靠的判断。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>下图给出模型训练可能发生的三种不同拟合情况：</p>
+<div align=center><img src="https://s2.loli.net/2023/05/17/j8IDkVmiLUe4KqX.png"></div>
+
+<ol>
+<li>第一种情况下，由于模型过于简单，无法很好刻画问题的趋势，属于欠拟合（<font color="red">模型在训练数据集的准确率较低</font>）；</li>
+<li>第二张模型是比较合理的，它既不会过于关注训练数据中的噪音，又能很好的刻画问题的整体趋势（理想情况）；</li>
+<li>第三种模型就是过拟合了，虽然第三个模型完美地划分了不同形状的点，但这样的划分并不能很好地对未知数据做出判断，因为它过度拟合了训练数据中的噪音数据而忽略了问题的整体规律（<font color="red">测试集准确率远远跟不上训练集测试集</font>）。</li>
+</ol>
+<p>我们一直在说一个模型简单/复杂…. 那么如何来衡量一个神经网络的复杂程度？！！</p>
+<p>事实上，<strong>神经网络中的参数量可以很大程度上作为衡量模型复杂度的标准！！！</strong>其它设置相同的情况下，一个神经网络模型中的参数量数量级越大，意味着模型越复杂。</p>
+<p>关于拟合问题更详细深入的了解，你可以参考博文 &gt;&gt;&gt;&gt; 【<a href="">Deep Learning 之模型评估</a>】。</p>
+<hr>
+<h4 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h4><p>为了避免过拟合问题，一个非常常用的方法就是 &gt;&gt;&gt;&gt; 正则化（Regularization）。</p>
+<p>正则化的核心思想 &gt;&gt;&gt;&gt; <font color="red"> 在神经网络模型的优化目标 –&gt; 损失函数中，加入刻画模型复杂程度的指标。</font></p>
+<p>假设用于刻画模型在训练数据上表现的损失函数为 <code>J(θ)</code>，那么在优化时不是直接优化 J(θ)，而是优化</p>
+<p>$$ Loss = J(θ) + λR(w) $$</p>
+<p>其中，<code>R(w)</code> 刻画的是模型的复杂程度，而 <code>λ</code> 表示模型的复杂损失在总损失中所占的比例。需要注意的是 &gt;&gt;&gt;&gt; 这里的参数 <code>θ</code> 表示的是一个神经网络中的所有参数，包括权重（weight）和偏置（Bias）；而模型的复杂度只由权重（<code>w</code>）决定。</p>
+<p>常用的刻画模型复杂程度的 R(w) 函数有两种，一种是 L1 正则化，其公式为：</p>
+<p>$$ R(w) = \mid\mid w \mid\mid_{1} = \sum_{i}|{w_i}| $$</p>
+<p>另一种是 L2 正则化：</p>
+<p>$$ R(w) = \mid\mid w \mid\mid_{2}^{2} = \sum_{i}{w_i^{2}} $$</p>
+<p>无论哪一种正则化，其思想都是希望通过限制权重的大小，使得模型不能任意拟合训练数据中随机噪音！！！</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>L1 Vs L2</strong> 👇👇👇</p>
+<p>L1 正则化会让参数变得更加稀疏（会有更多的参数变为 0），而 L2 则不会，达到类似特征选取的功能。之所以 L2 正则化不会让参数变得稀疏的原因是 &gt;&gt;&gt;&gt; 当参数很小时，例如 <code>0.001</code>，这个参数的平方基本上可以忽略了，于是模型不会进一步计算将这个参数调整为 0。</p>
+<p>其次，L1 正则化的计算公式不可导，而 L2 正则化公式可导数。由于在优化时需要计算损失函数的偏导数，故对包含 L2 正则化的损失函数的优化更加方便，优化带 L1 正则化的损失函数要更加复杂（但优化方法也很多）！！！</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>实践中，也可将 L1 正则化和 L2 正则化同时使用：</p>
+<p>$$ R(w) = \sum_{i}α|{w_i}| + (1-α){w_i^{2}} $$</p>
+<hr>
+<h4 id="TF-正则化防止过拟合"><a href="#TF-正则化防止过拟合" class="headerlink" title="TF 正则化防止过拟合"></a>TF 正则化防止过拟合</h4><p>我们知道，使用 TensorFlow 可以优化任意形式的损失函数，所以 TF 自然也可以优化任何带正则化的损失函数。</p>
+<p>以下代码给出了一个简单的带 <strong>L2</strong> 正则化的损失函数定义:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">w = tf.Variable(tf.random_normal([<span class="number">2</span>,<span class="number">1</span>], stddev=<span class="number">1</span>, seed=<span class="number">1</span>))</span><br><span class="line">y = tf.matmul(x,w)</span><br><span class="line"></span><br><span class="line"><span class="comment"># loss = 经验风险最小化 + 结构风险最小化</span></span><br><span class="line">loss = tf.reduce_mean(tf.square(y_ - y)) +  tf.contrib.layers.l2_regularizer(<span class="keyword">lambda</span>)(w)  </span><br><span class="line"><span class="comment">#lambda为正则化权重  实际过程中 lambda 为关键字</span></span><br></pre></td></tr></table></figure>
+
+<p><code>loss</code> 定义为损失函数，由两个部分组成：第一个部分是均方误差损失函数，刻画模型在训练数据上的表现。第二部分就是正则化，防止模型过度模拟训练数据中的随机噪声。</p>
+<p>类似的, <code>tensorflow.contrib.layers.l1_regularizer(lambda)(w)</code> 函数可以计算 <strong>L1</strong> 正则化的值。以下代码给出了使用这两个函数的样例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">weights = tf.constant([[<span class="number">1.0</span>, -<span class="number">2.0</span>], [-<span class="number">3.0</span>, <span class="number">4.0</span>]])</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment"># 输出为：(|1| + |-2| + |-3| + |4|) * 0.5 = 5。其中 0.5 为正则化项的权重。</span></span><br><span class="line">    <span class="built_in">print</span> (sess.run(tf.contrib.layers.l1_regularizer(<span class="number">.5</span>)(weights)))</span><br><span class="line">    <span class="comment"># 输出为：(1^2 + (-2)^2 + (-3)^2 + 4^2) * 0.5 = 7.5。</span></span><br><span class="line">    <span class="built_in">print</span> (sess.run(tf.contrib.layers.l2_regularizer(<span class="number">.5</span>)(weights)))</span><br></pre></td></tr></table></figure>
+
+
+<p>样例输出结果为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5.0</span><br><span class="line">7.5</span><br></pre></td></tr></table></figure>
+
+<p>在简单的神经网络中，上述代码可以很好地计算带正则化的损失函数，但当神经网络的参数增多之后，这样的方式可能导致 <code>loss</code> 函数定义可读性变差。更主要的是导致：网络结构复杂之后，定义网络结构的部分和计算损失函数的部分可能不在同一函数中，这样通过变量这样方式计算损失函数就不方便了。</p>
+<p>👇👇👇 <strong>TF 更加合理的正则化使用方法</strong> 👇👇👇</p>
+<p>下面我们给出一个使用 TF 中给提供的集合（<code>Collection</code>）解决一个 <code>5</code> 层神经网络带 <code>L2</code> 正则化 的损失函数计算方法（网络结构的部分和计算损失函数的部分不在同一函数）:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="comment"># Part 1：定义神经网络结构以及前向传播算法：</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取单层神经网络 Edge 上的权重，并且将这个权重的 L2 正则化损失加入到名称为 &#x27;losses&#x27; 的集合中：</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_weight</span>(<span class="params">shape, lamada</span>):</span></span><br><span class="line">    <span class="comment"># 创建变量：</span></span><br><span class="line">    var = tf.Variable(tf.random_normal(shape), dtype=tf.float32)</span><br><span class="line">    <span class="comment"># 使用 add_to_collection() 函数将这个新创建的变量的 L2 正则化损失加入到集合</span></span><br><span class="line">    <span class="comment"># 这个函数的第一个参数 &#x27;losses&#x27; 是集合的名称；第二个参数是要加入到集合的内容</span></span><br><span class="line">    tf.add_to_collection(<span class="string">&#x27;losses&#x27;</span>, tf.contrib.layers.l2_regularizer(lamada)(var))</span><br><span class="line">    <span class="keyword">return</span> var</span><br><span class="line"></span><br><span class="line"><span class="comment"># 带输入特征向量以及标签的占位符</span></span><br><span class="line">input_x = tf.placeholder(tf.float32, shape=(<span class="literal">None</span>, <span class="number">2</span>))</span><br><span class="line">input_y = tf.placeholder(tf.float32, shape=(<span class="literal">None</span>, <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># batch size：</span></span><br><span class="line">batch_size = <span class="number">8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义神经网络中每一层网络中的节点个数：</span></span><br><span class="line">layer_dimension = [<span class="number">2</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">10</span>, <span class="number">1</span>]</span><br><span class="line"><span class="comment"># 获取神经网络的层数</span></span><br><span class="line">n_layers = <span class="built_in">len</span>(layer_dimension)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个变量用于维护前向传播时当前层的节点，开始的时候就是输入层：</span></span><br><span class="line">cur_layer = input_x</span><br><span class="line"><span class="comment"># 获取当前层节点个数：</span></span><br><span class="line">in_dimension = layer_dimension[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过一个循环生成5层全连接的神经网络结构</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n_layers):</span><br><span class="line">    <span class="comment"># 获取下一层节点的个数</span></span><br><span class="line">    out_dimension = layer_dimension[i]</span><br><span class="line">    <span class="comment"># 获取当前计算层的权重并加入了 L2 正则化损失</span></span><br><span class="line">    weight = get_weight([in_dimension, out_dimension], <span class="number">0.001</span>)</span><br><span class="line">    <span class="comment"># 随机生成偏向</span></span><br><span class="line">    bias = tf.Variable(tf.constant(<span class="number">0.1</span>, shape=[out_dimension]))</span><br><span class="line">    <span class="comment"># 计算前向传播节点，使用RELU激活函数</span></span><br><span class="line">    cur_layer = tf.nn.relu(tf.matmul(cur_layer, weight) + bias)</span><br><span class="line">    <span class="comment"># 进入下一层之前，更新下一层节点的输入节点数</span></span><br><span class="line">    in_dimension = layer_dimension[i]</span><br><span class="line">    </span><br><span class="line"><span class="comment"># Part 2：定义损失函数以及反向传播算法：</span></span><br><span class="line"><span class="comment"># 计算模型数据的均值化损失加入损失集合</span></span><br><span class="line">mse_loss = tf.reduce_mean(tf.square(input_y - cur_layer))</span><br><span class="line">tf.add_to_collection(<span class="string">&#x27;losses&#x27;</span>, mse_loss)</span><br><span class="line"></span><br><span class="line"><span class="comment"># get_collection 返回一个列表，列表是所有这个集合的所有元素</span></span><br><span class="line"><span class="comment"># 在本例中，元素代表了其他的损失，加起来就得到了所有的损失</span></span><br><span class="line">loss = tf.add_n(tf.get_collection(<span class="string">&#x27;losses&#x27;</span>))</span><br><span class="line"></span><br><span class="line">global_step = tf.Variable(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 学习率的设置：指数衰减法，参数：初始参数，全局步骤，每训练100轮乘以衰减速度0,96(当staircase=True的时候)</span></span><br><span class="line">learning_rate = tf.train.exponential_decay(<span class="number">0.1</span>, global_step, <span class="number">100</span>, <span class="number">0.96</span>, staircase=<span class="literal">True</span>)</span><br><span class="line">train_step = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss, global_step=global_step)</span><br></pre></td></tr></table></figure>
+
+<p>上面给出的代码给出的是一个只有 <code>5</code> 层的全连接神经网络。在更加复杂的网络结构中，使用这样的方式来计算损失函数将大大增强代码的可读性。</p>
+<hr>
+<p>上一小节我们通过神经网络训练过程可能产生的过拟合问题，提出了可以通过添加正则化使得模型在测试数据上更健壮（泛化能力更强）。</p>
+<h3 id="滑动平均模型"><a href="#滑动平均模型" class="headerlink" title="滑动平均模型"></a>滑动平均模型</h3><p>这里，我们将要介绍另一种保证模型健壮性的方法 &gt;&gt;&gt;&gt; 滑动平均模型。</p>
+<p>在采用 随机梯度下降算法（SGD）训练神经网络时，使用滑动平均模型在很多应用中都可以在一定程度上提高最终模型在预测数据上的表现（学完这一小节思考一下）。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<h4 id="滑动平均原理"><a href="#滑动平均原理" class="headerlink" title="滑动平均原理"></a>滑动平均原理</h4><p>滑动平均是针对神经网络模型中的参数而言的，而 TF 中参数是使用变量来进行管理和组织的，故滑动平均模型又称为：变量的滑动平均模型。</p>
+<p><strong>[1] &gt;&gt;&gt; 变量滑动平均</strong></p>
+<p>滑动平均 &gt;&gt;&gt;&gt; <font color="red"> 使变量的更新与一段时间内（而非某一时刻）的取值有关。</font></p>
+<p>在创建滑动平均模型后，滑动平均模型会为每一个变量维护一个影子变量（<strong>shadow_variable</strong>，影子变量的初始值为相应变量的初始值），每当变量更新时，影子变量的值会更新为：</p>
+<p>$$ shadow\_variable = decay × shadow\_variable + ( 1 - decay ) × variable $$</p>
+<p>其中，<code>shadow_variable</code> 为影子变量；<code>variable</code> 为待更新变量；<code>decay</code> 为衰减率。注意区分：第一个 <code>shadow_variable​</code> 是当前时刻影子变量的值，而第二个是上一时刻变量的影子变量。</p>
+<p>从公式中可以看出，衰减率 <code>decay</code> 决定了模型更新的速度，<code>decay</code> 越大，影子变量受变量更新的影响越小，模型越趋于稳定。故，在实际的应用中，<code>decay</code> 值一般会设成非常接近 <code>1</code> 的数（如：<code>0.999</code>、<code>0.9999</code>）。</p>
+<blockquote>
+<p>注意，变量的影子变量和变量的滑动平均值是一个意思！！！</p>
+</blockquote>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[2] &gt;&gt;&gt; 意义</strong></p>
+<p>事实上，滑动平均值可以看作是变量的过去一段时间（过去 <strong>1/(1-decay​)</strong> 个时刻）取值的均值。相比对变量直接赋值而言，采用滑动平均得到的值在图像上更加平缓光滑，抖动性更小，不会因为某次的异常取值而使得滑动平均值波动很大。</p>
+<p>故，使用滑动平均可以防止训练过程遇到异常数据或者随机跳跃（毕竟是随机批量，数据不确定）影响训练效果，使得参数权重和偏置相对稳定。在小数据量、数据不稳定或者小 batch_size 的情况下尤其有用。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[3] &gt;&gt;&gt; 测试中使用</strong></p>
+<p>对神经网络边的权重 <code>weights</code> 使用滑动平均，并且得到其对应的影子变量 <code>shadow_weights</code>。</p>
+<p>但注意，在训练过程仍然使用原来不带滑动平均的权重 <strong>weights</strong>，不然无法得到 <strong>weights</strong> 下一步更新的值，又怎么求下一步 <strong>weights</strong> 所对应的影子变量 <strong>shadow_weights</strong> 呢？！！</p>
+<p>故，之后在测试过程中使用 shadow_weights 来代替 weights 作为神经网络边的权重，这样在测试数据上效果更好。</p>
+<hr>
+<h4 id="TF-滑动平均模型实现"><a href="#TF-滑动平均模型实现" class="headerlink" title="TF 滑动平均模型实现"></a>TF 滑动平均模型实现</h4><p>TF 中通过 <code>tf.train.ExponentialMovingAverage()</code> 函数来实现滑动平均模型。</p>
+<p><strong>[1] &gt;&gt;&gt; 滑动平均对象初始化</strong></p>
+<p>在初始化滑动平均对象时，需要提供一个衰减率（<code>decay</code>），这个衰减率将用于控制模型更新的速度：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">variable_averages = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY, num_updates)</span><br></pre></td></tr></table></figure>
+
+<p>为了使模型在训练前期更新得的更快，该函数还提供了 <code>num_updates</code> 参数来动态设置 <code>decay</code> 的大小。如果在函数初始化时提供了 <code>num_updates</code> 参数，那么每次使用的衰减率将是：</p>
+<p>$$ min \{ {decay, \cfrac{1 + num\_updates}{10 + num\_updates}} \} ​$$</p>
+<p>可以看出，num_updates 越大，衰减率就越大。num_updates 一般会设为迭代轮数，所以当迭代轮数越大，模型参数就越稳定。即：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">variable_averages = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY, global_step)</span><br></pre></td></tr></table></figure>
+
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[2] &gt;&gt;&gt; 添加/更新影子变量</strong></p>
+<p>添加目标变量，为之维护影子变量：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">variable_averages_op = variable_averages.apply([var0, var1, ..., var_n])</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是 &gt;&gt;&gt;&gt; 维护不是自动的，更新一次影子变量就需要训练中执行一次上述语句。</p>
+<p>这里提供了一种方法 &gt;&gt;&gt;&gt; 一般都会使用 <code>tf.control_dependencies</code> 使之和 <code>train_op</code> 绑定，使得每次 train_op 都会更新影子变量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Tensorflow提供了两种机制：tf.control_dependencie 和 tf.group：</span></span><br><span class="line"><span class="comment"># train_op = tf.group(train_step, variables_averages_op) 等价于 ==</span></span><br><span class="line"><span class="keyword">with</span> tf.control_dependencies([train_step, variables_averages_op]):</span><br><span class="line">    train_op = tf.no_op(name=<span class="string">&#x27;train&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[3] &gt;&gt;&gt; 获取影子变量值</strong></p>
+<p>从影子变量集合中提取目标变量对应的滑动平均值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sess.run(variable_averages.average([var0, var1]))</span><br></pre></td></tr></table></figure>
+
+<p>| ============================================== <strong>样例模拟更新过程</strong> =========================================== |</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个变量用以计算滑动平均 &gt;&gt;&gt;&gt; 变量的初始值为: 0，手动指定类型为: float32</span></span><br><span class="line">v1 = tf.Variable(<span class="number">0</span>, dtype=tf.float32)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 模拟神经网络迭代的轮数，动态控制衰减率</span></span><br><span class="line">step = tf.Variable(<span class="number">0</span>, trainable=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个滑动平均的类，初始化时给定衰减率为 0.99 和控制衰减率大小的变量</span></span><br><span class="line">ema = tf.train.ExponentialMovingAverage(<span class="number">0.99</span>, step)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个添加/更新影子变量的操作（每次更新都需要调用）</span></span><br><span class="line"><span class="comment"># 这里需要给定一个变量列表，每次执行这个操作时，列表里的元素都会被更新</span></span><br><span class="line">maintain_average_op = ema.apply([v1])</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    <span class="comment"># 初始化所有变量</span></span><br><span class="line">    init_op = tf.global_variables_initializer()</span><br><span class="line">    sess.run(init_op)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 获取变量，以及其影子变量的初始值：</span></span><br><span class="line">    <span class="built_in">print</span> (sess.run([v1, ema.average(v1)])) <span class="comment"># 输出：[0.0, 0.0]</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># ================ 第一次更新 =============== #</span></span><br><span class="line">    <span class="comment"># 更新 v1 的值为：5</span></span><br><span class="line">    sess.run(tf.assign(v1, <span class="number">5</span>))</span><br><span class="line">    <span class="comment"># 更新 v1 的滑动平均值，衰减率为：min&#123;0.99, (1+step)/(10+step)=0.1&#125;=0.1</span></span><br><span class="line">    <span class="comment"># 所以 v1 的滑动平均被更新为：0.1*0 + 0.9*5 = 4.5</span></span><br><span class="line">    sess.run(maintain_average_op)  <span class="comment"># 更新必执行</span></span><br><span class="line">    <span class="built_in">print</span> (sess.run([v1, ema.average(v1)])) <span class="comment"># 输出：[5.0, 4.5]</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># ================ 第二次更新 =============== #</span></span><br><span class="line">    <span class="comment"># 更新迭代的轮数</span></span><br><span class="line">    sess.run(tf.assign(step, <span class="number">10000</span>))</span><br><span class="line">    sess.run(tf.assign(v1, <span class="number">10</span>))</span><br><span class="line">    <span class="comment"># 这里的衰减率变成：min&#123;0.99, (1+step)/(10+step)=0.999&#125;=0.99</span></span><br><span class="line">    <span class="comment"># v1 = 0.99*4.5 + 0.01*10 = 4.555</span></span><br><span class="line">    sess.run(maintain_average_op)</span><br><span class="line">    <span class="built_in">print</span> (sess.run([v1, ema.average(v1)])) <span class="comment"># 输出：[10.0, 4.555]</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># ================ 第三次更新 =============== #</span></span><br><span class="line">    <span class="comment"># 再次更新滑动平均值</span></span><br><span class="line">    sess.run(maintain_average_op)</span><br><span class="line">    <span class="comment"># v1 = 0.99*4.555 + 0.01*10 = 4.60945</span></span><br><span class="line">    <span class="built_in">print</span> (sess.run([v1, ema.average(v1)])) <span class="comment"># 输出：[10.0, 4.60945]</span></span><br></pre></td></tr></table></figure>
+
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>关于本篇博文内容，更多是偏向于神经网络中基础概念的原理讲解，没有给出具体的应用示例。为了加强理解和应用，你可以结合博文【<a href="">TensorFlow 入门之 MNIST 手写体数字识别问题</a>】进行学习，它给出了一个本篇所有内容的综合应用实例。</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/68468520">https://zhuanlan.zhihu.com/p/68468520</a></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>TensorFlow 入门之深度学习和深层神经网络</p><p><a href="https://www.orangeshare.cn/2018/04/04/tensorflow-ru-men-zhi-shen-du-xue-xi-he-shen-ceng-shen-jing-wang-luo/">https://www.orangeshare.cn/2018/04/04/tensorflow-ru-men-zhi-shen-du-xue-xi-he-shen-ceng-shen-jing-wang-luo/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-04-04</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2023-05-18</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/TensorFlow/">TensorFlow</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2018/04/05/tensorflow-ru-men-zhi-mnist-shou-xie-ti-shu-zi-shi-bie-wen-ti/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">TensorFlow 入门之 MNIST 手写体数字识别问题</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/04/03/tensorflow-ru-men-zhi-tf-ji-ben-gong-zuo-yuan-li/"><span class="level-item">TensorFlow 入门之 TF 基本工作原理</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">100</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">13</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">43</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#提纲"><span class="level-left"><span class="level-item">1</span><span class="level-item">提纲</span></span></a></li><li><a class="level is-mobile" href="#深度学习和深层神经网络"><span class="level-left"><span class="level-item">2</span><span class="level-item">深度学习和深层神经网络</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#线性模型的局限性"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">线性模型的局限性</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#认识线性模型"><span class="level-left"><span class="level-item">2.1.1</span><span class="level-item">认识线性模型</span></span></a></li><li><a class="level is-mobile" href="#线性可分问题"><span class="level-left"><span class="level-item">2.1.2</span><span class="level-item">线性可分问题</span></span></a></li><li><a class="level is-mobile" href="#高复杂性问题"><span class="level-left"><span class="level-item">2.1.3</span><span class="level-item">高复杂性问题</span></span></a></li><li><a class="level is-mobile" href="#激活函数去线性化"><span class="level-left"><span class="level-item">2.1.4</span><span class="level-item">激活函数去线性化</span></span></a></li></ul></li><li><a class="level is-mobile" href="#深层网络学习"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">深层网络学习</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#多层网络解决异或运算"><span class="level-left"><span class="level-item">2.2.1</span><span class="level-item">多层网络解决异或运算</span></span></a></li><li><a class="level is-mobile" href="#深层网络组合特征提取"><span class="level-left"><span class="level-item">2.2.2</span><span class="level-item">深层网络组合特征提取</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#损失函数（Loss-Function）"><span class="level-left"><span class="level-item">3</span><span class="level-item">损失函数（Loss Function）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#经典损失函数"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">经典损失函数</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#分类问题损失"><span class="level-left"><span class="level-item">3.1.1</span><span class="level-item">分类问题损失</span></span></a></li><li><a class="level is-mobile" href="#回归问题损失"><span class="level-left"><span class="level-item">3.1.2</span><span class="level-item">回归问题损失</span></span></a></li><li><a class="level is-mobile" href="#自定义损失"><span class="level-left"><span class="level-item">3.1.3</span><span class="level-item">自定义损失</span></span></a></li></ul></li><li><a class="level is-mobile" href="#损失函数对模型的影响"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">损失函数对模型的影响</span></span></a></li></ul></li><li><a class="level is-mobile" href="#神经网络优化器算法（Optimizer）"><span class="level-left"><span class="level-item">4</span><span class="level-item">神经网络优化器算法（Optimizer）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#梯度下降算法（Gradient-Descent）"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">梯度下降算法（Gradient Descent）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#梯度下降原理"><span class="level-left"><span class="level-item">4.1.1</span><span class="level-item">梯度下降原理</span></span></a></li><li><a class="level is-mobile" href="#BP-梯度下降过程"><span class="level-left"><span class="level-item">4.1.2</span><span class="level-item">BP 梯度下降过程</span></span></a></li><li><a class="level is-mobile" href="#存在问题分析"><span class="level-left"><span class="level-item">4.1.3</span><span class="level-item">存在问题分析</span></span></a></li></ul></li><li><a class="level is-mobile" href="#随机梯度下降算法（SGD）"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">随机梯度下降算法（SGD）</span></span></a></li><li><a class="level is-mobile" href="#小批量样本梯度下降（MGD）"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">小批量样本梯度下降（MGD）</span></span></a></li><li><a class="level is-mobile" href="#Momentum-amp-RMSprop-amp-Adam-amp-…"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">Momentum &amp; RMSprop &amp; Adam &amp; …</span></span></a></li><li><a class="level is-mobile" href="#BP-和优化器算法"><span class="level-left"><span class="level-item">4.5</span><span class="level-item">BP 和优化器算法</span></span></a></li></ul></li><li><a class="level is-mobile" href="#TF-DNN-模型优化通用框架"><span class="level-left"><span class="level-item">5</span><span class="level-item">TF-DNN 模型优化通用框架</span></span></a></li><li><a class="level is-mobile" href="#进一步优化神经网络"><span class="level-left"><span class="level-item">6</span><span class="level-item">进一步优化神经网络</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#学习率设置问题"><span class="level-left"><span class="level-item">6.1</span><span class="level-item">学习率设置问题</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#学习率影响"><span class="level-left"><span class="level-item">6.1.1</span><span class="level-item">学习率影响</span></span></a></li><li><a class="level is-mobile" href="#指数衰减学习率"><span class="level-left"><span class="level-item">6.1.2</span><span class="level-item">指数衰减学习率</span></span></a></li></ul></li><li><a class="level is-mobile" href="#模型拟合问题"><span class="level-left"><span class="level-item">6.2</span><span class="level-item">模型拟合问题</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#过拟合-欠拟合"><span class="level-left"><span class="level-item">6.2.1</span><span class="level-item">过拟合/欠拟合</span></span></a></li><li><a class="level is-mobile" href="#正则化"><span class="level-left"><span class="level-item">6.2.2</span><span class="level-item">正则化</span></span></a></li><li><a class="level is-mobile" href="#TF-正则化防止过拟合"><span class="level-left"><span class="level-item">6.2.3</span><span class="level-item">TF 正则化防止过拟合</span></span></a></li></ul></li><li><a class="level is-mobile" href="#滑动平均模型"><span class="level-left"><span class="level-item">6.3</span><span class="level-item">滑动平均模型</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#滑动平均原理"><span class="level-left"><span class="level-item">6.3.1</span><span class="level-item">滑动平均原理</span></span></a></li><li><a class="level is-mobile" href="#TF-滑动平均模型实现"><span class="level-left"><span class="level-item">6.3.2</span><span class="level-item">TF 滑动平均模型实现</span></span></a></li></ul></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2023 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
