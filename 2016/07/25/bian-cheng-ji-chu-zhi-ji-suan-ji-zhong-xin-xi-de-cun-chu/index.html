@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>编程基础之计算机中信息的存储 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="一文深入理解计算机底层数据信息的存储形式，以及数据存储单位 B、KB、MB、GB、TB、PB、EB 等概念。"><meta property="og:type" content="blog"><meta property="og:title" content="编程基础之计算机中信息的存储"><meta property="og:url" content="https://www.orangeshare.cn/2016/07/25/bian-cheng-ji-chu-zhi-ji-suan-ji-zhong-xin-xi-de-cun-chu/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="一文深入理解计算机底层数据信息的存储形式，以及数据存储单位 B、KB、MB、GB、TB、PB、EB 等概念。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://www.orangeshare.cn/img/og_image.png"><meta property="article:published_time" content="2016-07-25T07:39:03.000Z"><meta property="article:modified_time" content="2024-01-13T04:52:29.251Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Character Encoding"><meta property="article:tag" content="Programming"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2016/07/25/bian-cheng-ji-chu-zhi-ji-suan-ji-zhong-xin-xi-de-cun-chu/"},"headline":"When Art Meets Tech","image":["https://www.orangeshare.cn/img/og_image.png"],"datePublished":"2016-07-25T07:39:03.000Z","dateModified":"2024-01-13T04:52:29.251Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"一文深入理解计算机底层数据信息的存储形式，以及数据存储单位 B、KB、MB、GB、TB、PB、EB 等概念。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2016/07/25/bian-cheng-ji-chu-zhi-ji-suan-ji-zhong-xin-xi-de-cun-chu/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>编程基础之计算机中信息的存储</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2016-07-25</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2024-01-13</time></span><span class="level-item"><a class="link-muted" href="/categories/Code-Basic/">Code Basic</a></span><span class="level-item">8 minutes read (About 1236 words)</span></div></div><div class="content"><p>一文深入理解计算机底层数据信息的存储形式，以及数据存储单位 B、KB、MB、GB、TB、PB、EB 等概念。</p>
+<a id="more"></a>
+
+<p>更多相关编程基础内容，请关注博主 Hexo 博文系列：</p>
+<p><a href="https://www.orangeshare.cn/2016/07/25/bian-cheng-ji-chu-zhi-ji-suan-ji-zhong-xin-xi-de-cun-chu/">计算机中信息的存储</a></p>
+<p><a href="https://www.orangeshare.cn/2016/09/01/bian-cheng-ji-chu-zhi-bian-ma-xiang-jie/">编码详解</a></p>
+<p><a href="https://www.orangeshare.cn/2016/08/01/bian-cheng-ji-chu-zhi-jin-zhi-xiang-jie/">进制详解</a></p>
+<p><a href="https://www.orangeshare.cn/2016/07/29/bian-cheng-ji-chu-zhi-ji-qi-shu-he-suan-zhu-yi-chu/">机器数和算术溢出</a></p>
+<hr>
+<p>我们知道，计算机要处理的信息是多种多样的，如数字、文字、符号、图形、音频、视频等，这些信息在人们的眼里是不同的，那么计算机是如何存储以及管理这些丰富多样的数据呢？！！</p>
+<h2 id="数据在内存-磁盘中的存储"><a href="#数据在内存-磁盘中的存储" class="headerlink" title="数据在内存/磁盘中的存储"></a>数据在内存/磁盘中的存储</h2><p>事实上，由于计算机的硬件决定，数据在内存中都是一样的，都是以二进制的形式来表示，它是计算机处理数据的基础。</p>
+<p><font color="red">↓↓↓↓↓↓ 以内存条为例 ↓↓↓↓↓↓</font></p>
+<p>内存条是一个非常精密的部件，包含了上亿个微小的（纳米级别）电子元器件。这些元器件，实际上就是电路，电路的电压会变化，要么是 <code>0V</code>，要么是 <code>5V</code>，只有这两种电压（门电路）。<code>5V</code> 是通电，用 <code>1</code> 来表示，<code>0V</code> 是断电，用 <code>0</code> 来表示。所以，一个元器件有 <code>2</code> 种状态：<code>0</code> 或者 <code>1</code>。</p>
+<p>这也就说明，对于计算机中底层存储 &gt;&gt;&gt;&gt;</p>
+<blockquote>
+<p>计算机只能识别 <code>0</code> &amp;&amp; <code>1</code> 两种数据，任何存储于计算机中的数据，其本质都是以二进制码形式存储。</p>
+</blockquote>
+<hr>
+<p><strong>[0 &amp;&amp; 1] 组合表示丰富的数据信息 &gt;&gt;&gt;&gt;</strong></p>
+<p>我们可以通过电路来控制这些元器件的通断电，会得到很多 <code>0</code>、<code>1</code> 的组合。</p>
+<p>例如，<code>8</code> 个元器件有 <code>2^8=256</code> 种不同的组合，<code>16</code> 个元器件有 <code>2^16=65536</code> 种不同的组合。虽然一个元器件只能表示 <code>2</code> 个数值，但是多个结合起来就可以表示很多数值了。</p>
+<p>同时，我们可以给每一种组合赋予特定的含义。例如，可以分别用 <code>1101000</code>、<code>00011100</code>、<code>11111111</code>、<code>00000000</code> 来表示 <code>我</code>、<code>爱</code>、<code>中</code>、<code>国</code> 这几个字，那么结合起来 <code>1101000 00011100 11111111 00000000</code> 就表示：“我爱中国”。这样不就可以存储文本了么？！！</p>
+<p>实际上，也确实是这样用的，详情请参考 &gt;&gt;&gt;&gt; 【<a href="https://www.orangeshare.cn/2016/09/01/bian-cheng-ji-chu-zhi-bian-ma-xiang-jie/">编程基础之字符编码</a>】。</p>
+<hr>
+<p><strong>比特（bit）&amp;&amp; 字节（Byte） &gt;&gt;&gt;&gt;</strong></p>
+<p>一般情况下，我们不一个一个的使用元器件，而是将 <code>8</code> 个元器件看做一个单位。这样，即使表示一个很小的数，例如 <code>1</code>，也需要 <code>8</code> 个，也就是 <code>00000001</code>。</p>
+<p>1 个元器件称为 <code>1 Bit（比特）</code>，8 个元器件统称为 <code>1 Byte（字节）</code>。那么 <code>16</code> 个元器件就是 <code>2 Byte</code>，<code>32</code> 个就是 <code>4 Byte</code>，以此类推：</p>
+<ul>
+<li><code>8 × 1024</code> 个元器件就是 <code>1024 Byte</code>，简写为 <code>1KB</code>；</li>
+<li><code>8 × 1024 × 1024</code> 个元器件就是 <code>1024 KB</code>，简写为 <code>1MB</code>；</li>
+<li><code>8 × 1024 × 1024 × 1024</code> 个元器件就是 <code>1024 MB</code>，简写为 <code>1GB</code>。</li>
+</ul>
+<p>现在，你知道 <code>1GB</code> 的内存有多少个元器件了吧？！！</p>
+<hr>
+<p><strong>B、KB、MB、GB、TB、PB、EB &gt;&gt;&gt;&gt;</strong></p>
+<p>我们通常所说的文件大小是多少多少 KB，多少多少 MB，就是指占用了多少字节。</p>
+<p>单位换算 &gt;&gt;&gt;&gt;</p>
+<ul>
+<li>1 Byte = 8 Bit</li>
+<li>1 KB = 1024 Byte = 2^10 Byte</li>
+<li>1 MB = 1024 KB = 2^20 Byte</li>
+<li>1 GB = 1024 MB = 2^30 Byte</li>
+<li>1 TB = 1024 GB = 2^40 Byte</li>
+<li>1 PB = 1024 TB = 2^50 Byte</li>
+<li>1 EB = 1024 PB = 2^60 Byte</li>
+</ul>
+<p>平时使用计算机时，通常只会设计到 KB、MB、GB、TB 这几个单位，PB 和 EB 这两个高级单位一般在大数据处理过程中才会用到。</p>
+<hr>
+<p><strong>500 GB 硬盘的实际容量 &gt;&gt;&gt;&gt;</strong></p>
+<p>当你购买了一块 500 GB 的硬盘，回来接到 Windows 下却显示没有 500 GB，买到假的了？！！</p>
+<p>实际硬盘空间之所以跟标准计算有差距是因为换算的问题。只是由于硬件厂商在生产时是按照 <code>1MB=1000KB</code> 来算的，而 Windows 系统是按照 <code>1MB=1024KB</code> 来进行计算显示的。所以：</p>
+<blockquote>
+<p>N GB 硬盘的实际容量 ≈ (N × 1000 × 1000 × 1000) / (1024 × 1024 × 1024) ≈ (N × 10^9) / (2^30)  ≈ 0.93N</p>
+</blockquote>
+<p>故，500 GB ≈ 465 GB</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>总结一下：</p>
+<p>你看，在内存中没有 <code>abc</code> 这样的字符，也没有 gif、jpg 这样的图片，只有 <code>0</code> 和 <code>1</code> 两个数字，计算机也只认识 <code>0</code> 和 <code>1</code>。所以，计算机使用二进制，写入内存或磁盘中的数据都会被转换成 <code>0</code> 和 <code>1</code> 的组合。</p>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>编程基础之计算机中信息的存储</p><p><a href="https://www.orangeshare.cn/2016/07/25/bian-cheng-ji-chu-zhi-ji-suan-ji-zhong-xin-xi-de-cun-chu/">https://www.orangeshare.cn/2016/07/25/bian-cheng-ji-chu-zhi-ji-suan-ji-zhong-xin-xi-de-cun-chu/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2016-07-25</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-01-13</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Character-Encoding/">Character Encoding</a><a class="link-muted mr-2" rel="tag" href="/tags/Programming/">Programming</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2016/07/29/wei-shi-me-0-1-0-2-bu-deng-yu-0-3/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">为什么 0.1 + 0.2 不等于 0.3 ?</span></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">101</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">13</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">43</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#数据在内存-磁盘中的存储"><span class="level-left"><span class="level-item">1</span><span class="level-item">数据在内存/磁盘中的存储</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2024 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
