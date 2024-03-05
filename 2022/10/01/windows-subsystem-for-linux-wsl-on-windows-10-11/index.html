@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Windows Subsystem for Linux (WSL) on Windows 10/11 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="Linux 的 Windows 子系统（Windows Subsystem for Linux, WSL）使得开发人员无需虚拟机（VirtualBox &amp;#x2F; VMware）就可以直接在 Windows 上运行各种 Linux 发行版（例如 Ubuntu、OpenSUSE、Kali、Debian、Arch Linux…）环境，包括大多数命令行工具、程序和应用，不用进行任何修改，也无需承担传统虚拟机或双"><meta property="og:type" content="blog"><meta property="og:title" content="Windows Subsystem for Linux (WSL) on Windows 10/11"><meta property="og:url" content="https://www.orangeshare.cn/2022/10/01/windows-subsystem-for-linux-wsl-on-windows-10-11/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="Linux 的 Windows 子系统（Windows Subsystem for Linux, WSL）使得开发人员无需虚拟机（VirtualBox &amp;#x2F; VMware）就可以直接在 Windows 上运行各种 Linux 发行版（例如 Ubuntu、OpenSUSE、Kali、Debian、Arch Linux…）环境，包括大多数命令行工具、程序和应用，不用进行任何修改，也无需承担传统虚拟机或双"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://s2.loli.net/2024/02/21/TF3UYmVQKfhXRtr.png"><meta property="article:published_time" content="2022-10-01T02:40:29.000Z"><meta property="article:modified_time" content="2024-02-29T04:16:09.058Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Operate System"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://s2.loli.net/2024/02/21/TF3UYmVQKfhXRtr.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2022/10/01/windows-subsystem-for-linux-wsl-on-windows-10-11/"},"headline":"When Art Meets Tech","image":["https://s2.loli.net/2024/02/21/TF3UYmVQKfhXRtr.png"],"datePublished":"2022-10-01T02:40:29.000Z","dateModified":"2024-02-29T04:16:09.058Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"Linux 的 Windows 子系统（Windows Subsystem for Linux, WSL）使得开发人员无需虚拟机（VirtualBox &#x2F; VMware）就可以直接在 Windows 上运行各种 Linux 发行版（例如 Ubuntu、OpenSUSE、Kali、Debian、Arch Linux…）环境，包括大多数命令行工具、程序和应用，不用进行任何修改，也无需承担传统虚拟机或双"}</script><link rel="canonical" href="https://www.orangeshare.cn/2022/10/01/windows-subsystem-for-linux-wsl-on-windows-10-11/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>Windows Subsystem for Linux (WSL) on Windows 10/11</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2022-10-01</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2024-02-29</time></span><span class="level-item"><a class="link-muted" href="/categories/OS/">OS</a></span><span class="level-item">an hour read (About 9902 words)</span></div></div><div class="content"><p>Linux 的 Windows 子系统（Windows Subsystem for Linux, WSL）使得开发人员无需虚拟机（VirtualBox / VMware）就可以直接在 Windows 上运行各种 Linux 发行版（例如 Ubuntu、OpenSUSE、Kali、Debian、Arch Linux…）环境，包括大多数命令行工具、程序和应用，不用进行任何修改，也无需承担传统虚拟机或双启动设置的费用。</p>
+<a id="more"></a>
+
+<p><font color="red">WSL</font>，简单点说 &gt;&gt;&gt;&gt; 就是 <font color="red">可以在 Windows 上直接使用各种 Linux 发行版。</font></p>
+<p>👇👇👇 <strong>使用 WSL 的优势</strong> 👇👇👇 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/">Windows WSL 官方文档传送门</a></p>
+<ul>
+<li>与在虚拟机中使用 Linux 相比，WSL 更加流畅；</li>
+<li>WSL 可以对 Windows 文件系统下的文件直接进行读写，文件传输更方便；</li>
+<li>剪贴板互通，开启 “复制-粘贴”。</li>
+</ul>
+<hr>
+<h2 id="WSL-Setup"><a href="#WSL-Setup" class="headerlink" title="WSL Setup"></a>WSL Setup</h2><p>关于 WSL 的安装，由于越来越多的开发人员开始转战 WSL 了，你可以在网络上找到大把的安装教程，但这些教程的主流思路都是 &gt;&gt;&gt; 一上来先让你启用 Windows WSL 和虚拟平台支持，然后让你根据给出的一系列相关指令进行操作 … balabala …</p>
+<p>事实上，WSL 安装过程中我们需要关注的一个非常重要的问题是 &gt;&gt;&gt;&gt; <font color="red"> Windows 操作系统当前的版本号？！！</font> &lt;&lt;&lt;&lt; WSL 能否成功安装的先决条件。&gt;&gt;&gt;&gt; 分别对于 Windows 更早的版本或较新版本会采用不同的安装方式。</p>
+<p>除此之外，对于某些特定场景或例外情况，<font color="red">选择 WSL 1 还是 WSL 2 ？</font></p>
+<p>上述问题的确认，对于 WSL 的安装以及后续的使用具有较为重要的影响。</p>
+<hr>
+<h3 id="预安装准备"><a href="#预安装准备" class="headerlink" title="预安装准备"></a>预安装准备</h3><p>也就是说，WSL Setup 正式开始之前，你需要检查当前运行的操作系统环境，以及具有一定的 WSL 知识储备。</p>
+<h4 id="关于-Windows-版本问题"><a href="#关于-Windows-版本问题" class="headerlink" title="关于 Windows 版本问题"></a>关于 Windows 版本问题</h4><p>对于 Windows 10 较新（高）版本或 Windows 11，推荐直接使用 <code>wsl --install</code> 安装适用于 Linux 的 Windows 子系统；但如果运行的是更早版本的 Windows，则可能不支持这种方式，需要采用 WSL 手动安装步骤。</p>
+<p>因此，安装前，你需要明确当前 Windows 操作系统的版本号：</p>
+<blockquote>
+<p>版本号查看方法 &gt;&gt;&gt;&gt; 按下【Win + R】键 &gt;&gt; 输入【WINVER】&gt;&gt;【ENTER】 &lt;&lt;&lt;&lt; 即可查看到 Windows 版本号。</p>
+</blockquote>
+<p>这里，你只需要明确了当前 Windows 的版本号即可，当前版本号的 Windows 具体采用哪种 WSL 安装方式见后文正式安装小节。</p>
+<hr>
+<h4 id="WSL1-Or-WSL2"><a href="#WSL1-Or-WSL2" class="headerlink" title="WSL1 Or WSL2"></a>WSL1 Or WSL2</h4><p>你还需要详细了解不同的 WSL 版本，包括为什么 WSL 2 现在是默认版本，以及可能需要将已安装的 Linux 发行版切换到早期 WSL 1 体系结构以满足特定场景或例外情况。</p>
+<p>事实上，WSL 2 是对 WSL 1 基础体系结构的一次重大改造：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>WSL 1</th>
+<th>WSL 2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 和 Linux 之间的集成</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>启动时间短</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>与传统虚拟机相比，占用的资源量少</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>可以与当前版本的 VMware 和 VirtualBox 一起运行</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>托管 VM</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>完整的 Linux 内核</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>完全的系统调用兼容性</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>跨 OS 文件系统的性能</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>systemd 支持</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>IPv6 支持</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>可以看出，WSL 2 架构在几个方面优于 WSL 1，但跨 <font color="green">OS 文件系统的性能除外，对于这种情况，可通过将项目文件存储在与处理项目时运行的工具相同的操作系统上进行处理。</font></p>
+<p>WSL 2 最主要的优势在于 &gt;&gt;&gt;&gt; <font color="red">使用虚拟化技术在轻量级的虚拟机 (VM) 内运行实际的 Linux 内核（将 Linux 发行版作为托管 VM 内的隔离容器运行），来提高文件系统 IO 性能和支持完整的系统调用兼容性。</font></p>
+<hr>
+<p>详细说明 WSL 2 的优势 &gt;&gt;&gt;&gt;</p>
+<p>👇👇👇 <strong>WSL 体系结构</strong> 👇👇👇</p>
+<p>传统的 VM 体验，可能启动速度慢，且消耗大量资源，需要花费时间进行管理和配置。</p>
+<p>而 WSL 1/2 中 Windows 和 Linux 之间的无缝集成；启动时间短；资源占用量少；WSL 2 中尽管使用 VM，但无需 VM 配置或管理（幕后托管）。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>完整的 Linux 内核</strong> 👇👇👇</p>
+<p>WSL 2 中使用了完整的 Linux 内核，在虚拟机 (VM) 内运行。</p>
+<p>WSL 2 中的 Linux 内核，专门针对 WSL 2 进行了调整，针对大小和性能进行了优化，以便在 Windows 上提供良好的 Linux 体验。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/microsoft/WSL2-Linux-Kernel">WSL 2 Linux 内核是开源的</a>，由 Windows 更新提供服务，你可以轻松获取最新的内核改进功能（Update）。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>提升了文件 IO 性能</strong> 👇👇👇</p>
+<p>WSL 2，对于文件密集型操作（如 git 克隆、npm 安装、apt 更新、apt 升级等）的速度都明显更快。</p>
+<p>实际的速度提升将取决于你运行的应用以及它与文件系统的交互方式。 在对压缩的 tarball 进行解包时，WSL 2 的初始版本的运行速度比 WSL 1 快达 20 倍，在各种项目上使用 git 克隆、npm 安装和 cmake 时，大约快 2-5 倍。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>完全的系统调用兼容性</strong> 👇👇👇</p>
+<p>Linux 二进制文件使用系统调用来执行访问文件、请求内存、创建进程等功能。</p>
+<p>WSL 1 使用的是由 WSL 团队构建的转换层；但 WSL 2 由于包括了自己的 Linux 内核，因此具有完全的（100%）系统调用兼容性。优点包括：</p>
+<ul>
+<li>可以在 WSL 内部运行的一组全新应用，例如 Docker 等；</li>
+<li>对 Linux 内核的任何更新都立即可供使用。 （无需等待 WSL 团队实现更新并添加更改）。</li>
+</ul>
+<hr>
+<p><font color="red">↓↓↓↓↓↓ 使用 WSL 1 而不是 WSL 2 ↓↓↓↓↓↓</font></p>
+<p>推荐使用 WSL 2，因为它提供更快的性能和 100% 的系统调用兼容性。在某些特定常见或例外情况下，你可能会更倾向于使用 WSL 1：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 如果你将使用 WSL Linux 分发版来访问必须存储在 Windows 文件系统上的项目文件，WSL 1 可以更快地访问从 Windows 装载的文件；</span><br><span class="line"></span><br><span class="line">2. 一个项目要求对相同的文件使用 Windows 和 Linux 工具进行交叉编译（使用 Windows 应用程序来访问 Linux 文件）；</span><br><span class="line"></span><br><span class="line">3. 你的项目需要访问串行端口或 USB 设备。 但是，现在可通过 USBIPD-WIN 项目为 WSL 2 提供 USB 设备支持。 有关设置步骤，请参阅 [连接 USB 设备](https://learn.microsoft.com/zh-cn/windows/wsl/connect-usb)。</span><br><span class="line"></span><br><span class="line">4. 有严格的内存要求: 关闭 WSL 实例前，WSL 2 还不会将内存中缓存的页面释放回 Windows。 如果你有长时间运行的 WSL 会话或访问非常大量的文件，此缓存可能会耗尽 Windows 内存。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>开始 WSL 的正式安装：</p>
+<h3 id="Begin-To-Setup"><a href="#Begin-To-Setup" class="headerlink" title="Begin To Setup"></a>Begin To Setup</h3><p>前面我们提到过，分别对于 Windows 更早的版本或较新版本会采用不同的安装方式：</p>
+<ul>
+<li>对于 Windows 较新的版本：<font color="red"> WSL 便捷安装 </font></li>
+<li>对于 Windows 更早的版本：<font color="red"> WSL 手动安装 </font></li>
+</ul>
+<p>那么，哪个 Windows 版本号是较新版本？哪个是更早的版本？！！</p>
+<blockquote>
+<p>Windows 10 版本 2004 及更高版本（内部版本 19041 及更高版本）或 Windows 11 推荐使用便捷安装；如果使用的是更早的版本，推荐使用手动安装步骤。</p>
+</blockquote>
+<hr>
+<p>如果你当前的 Windows 系统版本满足较新，你可以使用便捷安装方式：</p>
+<h4 id="WSL-便捷安装"><a href="#WSL-便捷安装" class="headerlink" title="WSL 便捷安装"></a>WSL 便捷安装</h4><p><strong>[1] &gt;&gt;&gt;</strong> 管理员模式（Run as administrator）下打开 PowerShell 或 Command Prompt（Windows 命令提示符）</p>
+<p><strong>[2] &gt;&gt;&gt;</strong> PowerShell 或 Command Prompt 下执行（<font color="red">先不要着急执行！！！你可能想更改默认安装的 Linux 发行版版本</font>）：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> wsl -<span class="literal">-install</span></span><br></pre></td></tr></table></figure>
+
+<p>此命令，将启用运行 WSL，并安装最新版本的 Linux Ubuntu 发行版。安装信息如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> wsl -<span class="literal">-install</span></span><br><span class="line">Installing: Windows Subsystem <span class="keyword">for</span> Linux</span><br><span class="line">Windows Subsystem <span class="keyword">for</span> Linux has been installed.</span><br><span class="line">Downloading: WSL Kernel</span><br><span class="line">Installing: WSL Kernel</span><br><span class="line">WSL Kernel has been installed.</span><br><span class="line">Downloading: GUI App Support</span><br><span class="line">Installing: GUI App Support</span><br><span class="line">GUI App Support has been installed.</span><br><span class="line">Downloading: Ubuntu</span><br><span class="line">The requested operation is successful. Changes will not be effective <span class="keyword">until</span> the System is rebooted.</span><br></pre></td></tr></table></figure>
+
+<p><font color="red">↓↓↓↓↓↓ 更改默认安装的 Linux 发行版 ↓↓↓↓↓↓</font></p>
+<p>默认安装最新的 Linux Ubuntu 发行版，如果你希望选择其他类型的发行版，可以首先通过如下指令查看可用发行版列表：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> wsl -<span class="literal">-list</span> -<span class="literal">-online</span> <span class="comment"># 命令可简写为：wsl -l -o</span></span><br><span class="line"></span><br><span class="line">以下是可安装的有效分发的列表。</span><br><span class="line">使用 <span class="string">&#x27;wsl.exe --install &lt;Distro&gt;&#x27;</span> 安装。</span><br><span class="line"></span><br><span class="line">NAME                                   FRIENDLY NAME</span><br><span class="line">Ubuntu                                 Ubuntu</span><br><span class="line">Debian                                 Debian GNU/Linux</span><br><span class="line">kali<span class="literal">-linux</span>                             Kali Linux Rolling</span><br><span class="line">Ubuntu<span class="literal">-18</span>.<span class="number">04</span>                           Ubuntu <span class="number">18.04</span> LTS</span><br><span class="line">Ubuntu<span class="literal">-20</span>.<span class="number">04</span>                           Ubuntu <span class="number">20.04</span> LTS</span><br><span class="line">Ubuntu<span class="literal">-22</span>.<span class="number">04</span>                           Ubuntu <span class="number">22.04</span> LTS</span><br><span class="line">OracleLinux_7_9                        Oracle Linux <span class="number">7.9</span></span><br><span class="line">OracleLinux_8_7                        Oracle Linux <span class="number">8.7</span></span><br><span class="line">OracleLinux_9_1                        Oracle Linux <span class="number">9.1</span></span><br><span class="line">openS<span class="built_in">USE-Leap</span><span class="literal">-15</span>.<span class="number">5</span>                     openSUSE Leap <span class="number">15.5</span></span><br><span class="line">S<span class="built_in">USE-Linux</span><span class="literal">-Enterprise</span><span class="literal">-Server</span><span class="literal">-15</span><span class="literal">-SP4</span>    SUSE Linux Enterprise Server <span class="number">15</span> SP4</span><br><span class="line">S<span class="built_in">USE-Linux</span><span class="literal">-Enterprise</span><span class="literal">-15</span><span class="literal">-SP5</span>           SUSE Linux Enterprise <span class="number">15</span> SP5</span><br><span class="line">openS<span class="built_in">USE-Tumbleweed</span>                    openSUSE Tumbleweed</span><br></pre></td></tr></table></figure>
+
+<p>| ================================================== <strong>Error Info</strong> =============================================== |</p>
+<p>使用命令 <code>wsl --install</code> Or <code>wsl --list --online</code> 时，你可能产生如下报错：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">无法从“https://raw.githubusercontent.com/microsoft/WSL/master/distributions/DistributionInfo.json”中提取列表分发。无法解析服务器的名称或地址</span><br><span class="line">Error code: Wsl/WININET_E_NAME_NOT_RESOLVED</span><br><span class="line"></span><br><span class="line">或者：</span><br><span class="line"></span><br><span class="line">无法从“https://raw.githubusercontent.com/microsoft/WSL/master/distributions/DistributionInfo.json”中提取列表分发。无法与服务器建立连接</span><br><span class="line">Error code: Wsl/WININET_E_CANNOT_CONNECT</span><br></pre></td></tr></table></figure>
+
+<p>这是由于网络运营商 DNS 服务器无法解析 raw.githubusercontent.com 服务器名称或无法连接服务器，解决方法可参考【Relevant Issues】小节下【服务器无法解析或连接】中描述。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>然后在 <code>wsl --install</code> 命令中引入 <code>-d &lt;Distribution Name&gt;</code> 进行 Linux 发行版的更改，以 Ubuntu 20.04 安装为例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --install -d Ubuntu-20.04</span></span><br><span class="line">正在安装: Ubuntu 20.04 LTS</span><br><span class="line">已安装 Ubuntu 20.04 LTS。</span><br><span class="line">正在启动 Ubuntu 20.04 LTS...</span><br><span class="line">Installing, this may take a few minutes...</span><br><span class="line">Please create a default UNIX user account. The username does not need to match your Windows username.</span><br><span class="line">For more information visit: https://aka.ms/wslusers.</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果要安装版本的 Linux 发行版不在上面的有效分发的列表，可使用 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/use-custom-distro">TAR 文件导入任何 Linux 发行版</a> &lt;&lt;&lt; Docker。 在某些情况下，与 Arch Linux 一样，也可使用 <code>.appx</code> 文件进行手动安装。 还可以通过 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/build-custom-distro">WSL 创建自己的自定义 Linux 发行版</a>，以供使用。</p>
+</blockquote>
+<p>注意：如果你由于网络等原因，仍然无法使用 <code>wsl --install -d</code> 安装 Linux 发行版，可使用下一小节【WSL 手动安装】方法进行安装。<br>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[3] &gt;&gt;&gt;</strong> 等待首次启动 Linux 发行版时的解压缩</p>
+<p>首次从开始菜单启动新安装的 Linux 发行版（Ubuntu 20.04）时，将打开一个控制台窗口，要求你等待将文件解压缩并存储到计算机上（未来的所有启动时间应不到一秒）。</p>
+<p><strong>[4] &gt;&gt;&gt;</strong> 创建用户帐户和密码</p>
+<p>启动后，需要为新安装的 Linux 发行版创建用户帐户和密码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Enter new UNIX username: orange</span><br><span class="line">New password:</span><br><span class="line">Retype new password:</span><br><span class="line">passwd: password updated successfully</span><br><span class="line">Installation successful!</span><br><span class="line">To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.</span><br><span class="line">See &quot;man sudo_root&quot; for details.                          ]</span><br></pre></td></tr></table></figure>
+
+<p>你已经可以正常体验安装好的 WSL Linux 发行版（Ubuntu 20.04）了~~~</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>至此，WSL 的快捷安装已经完成~~~ 你可以选择跳转至后文【WSL Linux 启动测试】小节中，继续后续内容的学习。</p>
+<hr>
+<p>如果你运行的是旧版（不支持 wsl install），或只是不想使用 <code>wsl install</code> 命令并希望获得分步指引，可以选择：</p>
+<h4 id="WSL-手动安装"><a href="#WSL-手动安装" class="headerlink" title="WSL 手动安装"></a>WSL 手动安装</h4><p>详细的 WSL 手动安装步骤：</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[1] &gt;&gt;&gt;</strong> 启用 “适用于 Linux 的 Windows 子系统（WSL）”</p>
+<p>Windows 上需要先启用 “适用于 Linux 的 Windows 子系统（WSL）” 可选功能，然后才能在 Windows 上安装 Linux 分发。</p>
+<p>你可以通过 GUI &gt;&gt;&gt;【控制面板】&gt;&gt;&gt;【程序】&gt;&gt;&gt;【程序和功能】&gt;&gt;&gt; 在【启用或关闭 Windows 功能】中，勾选 “适用于 Linux 的 Windows 子系统”，进行开启。</p>
+<p>或者（<font color="red">等价</font>），可以通过以管理员身份打开 PowerShell，然后输入以下命令进行开启：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</span></span><br></pre></td></tr></table></figure>
+
+<p>但如果只想安装 WSL 1，现在可以重新启动计算机。然后直接跳转至行步骤 [6]，安装你选择的 Liunx 发行版。</p>
+<blockquote>
+<p>注意：需要开启 “适用于 Liunx 的 Windows 子系统” 的设置，才重新启动计算机。如果已开启，则不需要。</p>
+</blockquote>
+<p>若要更新到 WSL 2，请等待重新启动计算机，然后继续执行下一步。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[2] &gt;&gt;&gt;</strong> 检查运行 WSL 2 的要求</p>
+<p>若要更新到 WSL 2，需要运行 Windows 10：</p>
+<ul>
+<li>对于 x64 系统：版本 1903 或更高版本，内部版本为 18362.1049 或更高版本；</li>
+<li>对于 ARM64 系统：版本 2004 或更高版本，内部版本为 19041 或更高版本。</li>
+</ul>
+<p>或 Windows 11。</p>
+<p>若要检查 Windows 版本及内部版本号是否满足 WSL 2 运行要求，可参见上文【预安装准备】中【关于 Windows 版本问题】小节中版本号查看方法。</p>
+<p>如果 Windows 版本不满住 WSL 2 运行要求，可以选择更新 Windows 版本！！！</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[3] &gt;&gt;&gt;</strong> 启用虚拟机功能</p>
+<p>安装 WSL 2 之前，Windows 必须启用 “虚拟机平台” 可选功能，以支持 WSL 2 所需的虚拟化功能（VM）。</p>
+<p>同样的，你可以通过 GUI &gt;&gt;&gt;【控制面板】&gt;&gt;&gt;【程序】&gt;&gt;&gt;【程序和功能】&gt;&gt;&gt; 在【启用或关闭 Windows 功能】中，勾选 “虚拟机平台”，进行开启。</p>
+<p>或者（<font color="red">等价</font>），可以通过以管理员身份打开 PowerShell，然后输入以下命令进行开启：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
+
+<p>重新启动计算机，以使得配置的虚拟机功能生效</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[4] &gt;&gt;&gt;</strong> 下载、安装 Linux 内核更新包。</p>
+<p>Linux 内核更新包会安装最新版本的 WSL 2 Linux 内核（若要运行 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/compare-versions#wsl-in-the-microsoft-store">Microsoft Store 中的 WSL</a> 并更频繁地推送更新，请使用 <code>wsl.exe --install</code> 或 <code>wsl.exe --update</code>）：</p>
+<p><strong>[4.1] &gt;&gt;&gt;</strong> 下载最新内核包</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">适用于 x64 计算机的 WSL2 Linux 内核更新包</a></li>
+<li><a target="_blank" rel="noopener" href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi">适用于 ARM64 计算机的 WSL2 Linux 内核更新包</a></li>
+</ul>
+<p>你可以通过在 PowerShell | CMD 中 输入 <code>systeminfo</code> 命令查看系统是 ARM64 Or X64：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">系统类型:         x64-based PC</span><br></pre></td></tr></table></figure>
+
+<p><strong>[4.2] &gt;&gt;&gt;</strong> 安装最新内核包</p>
+<p>运行上一步中下载的更新包（双击以运行 - 系统将提示你提供提升的权限，选择 “是” 以批准此安装）。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[5] &gt;&gt;&gt;</strong> 将 WSL 2 设置为默认版本</p>
+<p>打开 PowerShell，然后在安装新的 Linux 发行版时运行以下命令，将 WSL 2 设置为默认版本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --set-default-version 2</span></span><br></pre></td></tr></table></figure>
+
+<p>如果希望将新的 Linux 安装设置为 WSL 1，请跳过此步骤！！！</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[6] &gt;&gt;&gt;</strong> 安装所选的 Linux 分发</p>
+<p>打开 Microsoft Store（如果你当前环境无法使用 Microsoft Store，可通过【手动下载安装 Linux 发行版】小节完成 Linux 分发的安装），并选择你偏好的 Linux 分发版，并进行安装。</p>
+<blockquote>
+<p>如果要安装版本的 Linux 发行版不在 Microsoft Store 中，可使用 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/use-custom-distro">TAR 文件导入任何 Linux 发行版</a> &lt;&lt;&lt; Docker。 在某些情况下，与 Arch Linux 一样，也可使用 <code>.appx</code> 文件进行手动安装。 还可以通过 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/build-custom-distro">WSL 创建自己的自定义 Linux 发行版</a>，以供使用。</p>
+</blockquote>
+<p>首次从开始菜单启动新安装的 Linux 发行版（Ubuntu 20.04）时，将打开一个控制台窗口，要求你等待将文件解压缩并存储到计算机上（未来的所有启动时间应不到一秒）。</p>
+<p>启动后，需要为新安装的 Linux 发行版创建用户帐户和密码：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Enter new UNIX username: orange</span><br><span class="line">New password:</span><br><span class="line">Retype new password:</span><br><span class="line">passwd: password updated successfully</span><br><span class="line">Installation successful!</span><br><span class="line">To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.</span><br><span class="line">See &quot;man sudo_root&quot; for details.                          ]</span><br></pre></td></tr></table></figure>
+
+<p>祝贺你！！！现已成功安装并设置了与 Windows 操作系统完全集成的 Linux 分发~~~</p>
+<hr>
+<h4 id="WSL-Linux-启动测试"><a href="#WSL-Linux-启动测试" class="headerlink" title="WSL Linux 启动测试"></a>WSL Linux 启动测试</h4><p>安装成功之后，你需要完成 WSL Linux 发行版运行测试：</p>
+<p><strong>[1] &gt;&gt;&gt; GUI 启动</strong></p>
+<p>Windows 开始菜单中 &gt;&gt;&gt; 搜索【Ubuntu】，找到 “Ubuntu 20.04 LTS” 应用 &gt;&gt;&gt;【打开】</p>
+<p>此时，会打开一个 Windows 命令符终端，显示如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.133.1-microsoft-standard-WSL2 x86_64)</span><br><span class="line"></span><br><span class="line"> * Documentation:  https://help.ubuntu.com</span><br><span class="line"> * Management:     https://landscape.canonical.com</span><br><span class="line"> * Support:        https://ubuntu.com/advantage</span><br><span class="line"></span><br><span class="line">  System information as of Tue Feb 20 16:00:23 CST 2024</span><br><span class="line"></span><br><span class="line">  System load:  0.24                Processes:             77</span><br><span class="line">  Usage of /:   0.1% of 1006.85GB   Users logged in:       0</span><br><span class="line">  Memory usage: 6%                  IPv4 address for eth0: 172.26.98.86</span><br><span class="line">  Swap usage:   0%</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Expanded Security Maintenance for Applications is not enabled.</span><br><span class="line"></span><br><span class="line">0 updates can be applied immediately.</span><br><span class="line"></span><br><span class="line">Enable ESM Apps to receive additional future security updates.</span><br><span class="line">See https://ubuntu.com/esm or run: sudo pro status</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">The list of available updates is more than a week old.</span><br><span class="line">To check for new updates run: sudo apt update</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">This message is shown once a day. To disable it please create the</span><br><span class="line">/root/.hushlogin file.</span><br><span class="line">root@LAPTOP-SNOSCKOB:~#</span><br></pre></td></tr></table></figure>
+
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[2] &gt;&gt;&gt; PowerShell | CMD 启动</strong></p>
+<p>你可以通过 PowerShell 或 CMD 运行特定的 Linux 发行版：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl -l -v</span></span><br><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Ubuntu-20.04    Stopped         2</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl --distribution Ubuntu-20.04</span></span><br><span class="line">root@LAPTOP-SNOSCKOB:/mnt/c/Users/Xxxxx#</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，默认 WSL Linux 登录用户是 <code>root</code>。</p>
+<p>需要注意的是：使用 <code>exit</code> 退出 WSL Linux 后，Linux 发行版仍然在后台运行！！！</p>
+<hr>
+<h4 id="更改登录时的默认用户"><a href="#更改登录时的默认用户" class="headerlink" title="更改登录时的默认用户"></a>更改登录时的默认用户</h4><p>我们知道，默认情况下 WSL Linux 登录用户是 <code>root</code>。</p>
+<p>更改用于发行版默认登录时的默认用户（用户必须已经存在于发行版中才能成为默认用户），以 Ubuntu-20.04（Ubuntu2004）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl -l -v</span></span><br><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Ubuntu-20.04    Stopped         2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> &lt;DistributionName&gt; config --default-user &lt;Username&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> Ubuntu2004 config --default-user orange</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl --distribution Ubuntu-20.04</span></span><br><span class="line">To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.</span><br><span class="line">See &quot;man sudo_root&quot; for details.</span><br><span class="line"></span><br><span class="line">orange@LAPTOP-SNOSCKOB:/mnt/c/Users/Xxxxx$</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="检查正在运行的-WSL"><a href="#检查正在运行的-WSL" class="headerlink" title="检查正在运行的 WSL"></a>检查正在运行的 WSL</h3><p>WSL 的基本命令（Power Shell | CMD 中执行）：</p>
+<p><strong>[1] &gt;&gt;&gt; WSL Help</strong></p>
+<p>查看 WSL 中可用的选项和命令列表:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --<span class="built_in">help</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[2] &gt;&gt;&gt; 检查 WSL 版本信息</strong></p>
+<p>检查有关 WSL 及其组件的版本信息:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --version</span></span><br><span class="line">WSL 版本： 2.0.9.0</span><br><span class="line">内核版本： 5.15.133.1-1</span><br><span class="line">WSLg 版本： 1.0.59</span><br><span class="line">MSRDC 版本： 1.2.4677</span><br><span class="line">Direct3D 版本： 1.611.1-81528511</span><br><span class="line">DXCore 版本： 10.0.25131.1002-220531-1700.rs-onecore-base2-hyp</span><br><span class="line">Windows 版本： 10.0.22631.3007</span><br></pre></td></tr></table></figure>
+
+<p><strong>[3] &gt;&gt;&gt; 检查 WSL 状态</strong></p>
+<p>查看有关 WSL 配置的常规信息（例如默认发行版类型、默认发行版和内核版本）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --status</span></span><br><span class="line">默认分发: Ubuntu-20.04</span><br><span class="line">默认版本: 2</span><br></pre></td></tr></table></figure>
+
+<p><strong>[4] &gt;&gt;&gt; 更新 WSL</strong></p>
+<p>将 WSL 版本内核更新到最新：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --update</span></span><br></pre></td></tr></table></figure>
+
+<p>你可以设置 “从 GitHub 而不是 Microsoft Store 下载最新更新” &gt;&gt;&gt; <code>--web-download</code> 选项。</p>
+<p><strong>[5] &gt;&gt;&gt; 列出已安装的 Linux 发行版</strong></p>
+<p>通过在 PowerShell 或 Windows 命令提示符中输入以下命令，来列出所有已安装的 Linux 发行版，以及每个发行版的运行情况以及其 WSL 版本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --list --verbose <span class="comment"># 命令可简写为：wsl -l -v</span></span></span><br><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Ubuntu-20.04    Stopped         2</span><br></pre></td></tr></table></figure>
+
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[6] &gt;&gt;&gt; PowerShell | CMD 运行特定的 Linux 发行版</strong></p>
+<p>若要通过特定用户运行特定 Linux 发行版，可使用如下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> wsl --distribution &lt;Distribution Name&gt; --user &lt;User Name&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl -d Ubuntu-20.04 --user root</span></span><br><span class="line">root@LAPTOP-SNOSCKOB:/mnt/c/Users/Xxxxx#</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>&lt;Distribution Name&gt;</code> 为待运行的 Linux 发行版名称；<code>&lt;User Name&gt;</code> 为登录的用户。</p>
+<p><strong>[7] &gt;&gt;&gt; PowerShell | CMD 运行默认的 Linux 发行版</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl</span></span><br><span class="line">To run a command as administrator (user &quot;root&quot;), use &quot;sudo &lt;command&gt;&quot;.</span><br><span class="line">See &quot;man sudo_root&quot; for details.</span><br><span class="line"></span><br><span class="line">orange@LAPTOP-SNOSCKOB:/mnt/c/Users/Xxxxx$</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 以指定用户身份运行 WSL，请将 &lt;Username&gt; 替换为 WSL 发行版中存在的用户名:</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl --user &lt;Username&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[8] &gt;&gt;&gt; 设置 WSL 默认的 Linux 发行版</strong></p>
+<p>设置后，WSL 命令（<code>wsl</code>）将用于运行的默认 Linux 发行版：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --set-default &lt;Distribution Name&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>示例如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl -l -v</span></span><br><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Ubuntu-20.04    Stopped         2</span><br><span class="line">  Debian          Stopped         2</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl --set-default Debian</span></span><br><span class="line">操作成功完成。</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl -l -v</span></span><br><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Debian          Stopped         2</span><br><span class="line">  Ubuntu-20.04    Stopped         2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> WSL 默认的 Linux 发行版已变更为：Debian</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl</span></span><br><span class="line">orange@LAPTOP-SNOSCKOB:/mnt/c/Users/Xxxxx$ $ cat /etc/issue</span><br><span class="line">Debian GNU/Linux 12 \n \l</span><br></pre></td></tr></table></figure>
+
+<p><strong>[9] &gt;&gt;&gt; 关闭 WSL</strong></p>
+<p>立即终止所有正在运行的发行版和 WSL 2 轻量级实用工具虚拟机：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --shutdown</span></span><br></pre></td></tr></table></figure>
+
+<p>在需要重启 WSL 2 虚拟机环境的情形下，例如：更改内存使用限制，或更改 <code>.wslconfig</code> 文件，可能必须使用此命令。</p>
+<p><strong>[10] &gt;&gt;&gt; 仅关闭特定 WSL Linux 发行版</strong></p>
+<p>若要终止指定的发行版或阻止其运行:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 命令可简化为：wsl -t &lt;Distribution Name&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl --terminate &lt;Distribution Name&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl -l -v</span></span><br><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Debian          Running         2</span><br><span class="line">  Ubuntu-20.04    Stopped         2</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl -t Debian</span></span><br><span class="line">操作成功完成。</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl -l -v</span></span><br><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Debian          Stopped         2</span><br><span class="line">  Ubuntu-20.04    Stopped         2</span><br></pre></td></tr></table></figure>
+
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[11] &gt;&gt;&gt; 设置默认的 WSL 版本</strong></p>
+<p>若想要设置 WSL 1 或 WSL 2 的默认版本，请将 <Version> 替换为数字 1 或 2（表示新 Linux 发行版安装默认使用的 WSL 版本。）。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --set-default-version &lt;Version&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 示例：</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl --set-default-version 2</span></span><br></pre></td></tr></table></figure>
+
+<p><font color="red">WSL 2 仅在 Windows 11 或 Windows 10 版本 1903、内部版本 18362 或更高版本中可用！！！</font></p>
+<p><strong>[12] &gt;&gt;&gt; 切换指定 Linux 发行版中的 WSL 版本</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --set-version &lt;distribution name&gt; &lt;versionNumber&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是 &gt;&gt;&gt; 在 WSL 1 和 WSL 2 之间切换可能非常耗时，并且可能会由于两种体系结构之间的差异而导致失败。 对于包含大型项目的分发，建议在尝试转换之前备份文件。</p>
+<hr>
+<h3 id="Linux-发行版迁移"><a href="#Linux-发行版迁移" class="headerlink" title="Linux 发行版迁移"></a>Linux 发行版迁移</h3><p>默认情况下，WSL Linux 发行版会被安装到 C 盘，随着文件系统，可能会把你的 C 盘爆掉。</p>
+<p>这一小节，我们来看如何将 WSL Linux 发行版迁移至其它空闲盘，以 F 盘为例：</p>
+<p><strong>[1] &gt;&gt;&gt; 查看要迁移的 Linux 发行版信息</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl -l -v</span></span><br><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Ubuntu-20.04    Running         2</span><br></pre></td></tr></table></figure>
+
+<p><strong>[2] &gt;&gt;&gt; 停止正在运行的将要迁移的 Linux 发行版</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --terminate Ubuntu-20.04</span></span><br><span class="line">操作成功完成。</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl --list --verbose</span></span><br><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Ubuntu-20.04    Stopped         2</span><br></pre></td></tr></table></figure>
+
+<p><strong>[3] &gt;&gt;&gt; 导出需要迁移的 Linux 发行版</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --<span class="built_in">export</span> Ubuntu-20.04 F:/WinSubSystem/export.tar</span></span><br><span class="line">正在导出，这可能需要几分钟时间。...</span><br><span class="line">操作成功完成。</span><br></pre></td></tr></table></figure>
+
+<p><strong>[4] &gt;&gt;&gt; 卸载原有的 Linux 发行版</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --unregister Ubuntu-20.04</span></span><br><span class="line">正在注销。</span><br><span class="line">操作成功完成。</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl -l -v</span></span><br><span class="line">适用于 Linux 的 Windows 子系统没有已安装的分发。</span><br><span class="line"></span><br><span class="line">使用‘wsl.exe --list --online’列出可用的分发</span><br><span class="line">和 ‘wsl.exe --install &lt;Distro&gt;’进行安装。</span><br><span class="line"></span><br><span class="line">也可以通过访问 Microsoft Store 安装分发：</span><br><span class="line">https://aka.ms/wslstore</span><br></pre></td></tr></table></figure>
+
+<p><strong>[5] &gt;&gt;&gt; 将打包好的 Linux 发行版导入空闲目录</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --import Ubuntu-20.04 F:/WinSubSystem/Ubuntu F:/WinSubSystem/export.tar --version 2</span></span><br><span class="line">正在导入，这可能需要几分钟时间。</span><br><span class="line">操作成功完成。</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 发现以及迁移成功：</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl -l -v</span></span><br><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Ubuntu-20.04    Stopped         2</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="注销或卸载-Linux-发行版"><a href="#注销或卸载-Linux-发行版" class="headerlink" title="注销或卸载 Linux 发行版"></a>注销或卸载 Linux 发行版</h3><p>我们知道，可以通过 Microsoft Store 安装 Linux 发行版，但无法通过 Store 将其卸载。</p>
+<p>现列举两种卸载方式：</p>
+<h4 id="GUI"><a href="#GUI" class="headerlink" title="GUI"></a>GUI</h4><p>通过 Windows 系统的应用与功能卸载，步骤如下：</p>
+<p>按出【Windows 开始菜单】&gt;&gt;&gt; 打开【设置】&gt;&gt;&gt; 点击【应用】&gt;&gt;&gt; 从【安装应用列表】搜索 “Ubuntu” 关键字 &gt;&gt;&gt; 查找到后进行【卸载】操作。</p>
+<hr>
+<h4 id="Unregister"><a href="#Unregister" class="headerlink" title="Unregister"></a>Unregister</h4><p>注销并卸载指定的 WSL 发行版：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wsl --unregister &lt;DistributionName&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>详细步骤如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看要卸载的 Linux 发行版信息</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl -l -v</span></span><br><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Ubuntu-20.04    Stopped         2</span><br><span class="line">  Debian          Stopped         2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 卸载目标 WSL Linux 子系统：</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl --unregister Debian</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl -l -v</span></span><br><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Ubuntu-20.04    Stopped         2</span><br></pre></td></tr></table></figure>
+
+<p><font color="red">警告</font>：取消注册后，与该分发版关联的所有数据、设置和软件将永久丢失！！！</p>
+<hr>
+<h3 id="手动下载安装-Linux-发行版"><a href="#手动下载安装-Linux-发行版" class="headerlink" title="手动下载安装 Linux 发行版"></a>手动下载安装 Linux 发行版</h3><p>如果 Microsoft Store 应用不可用，例如：</p>
+<ul>
+<li>正在运行不支持 Microsoft Store 的 Windows Server 或长期服务 (LTSC) 桌面操作系统 SKU</li>
+<li>你的公司网络策略和/或管理员不允许在你的环境中使用 Microsoft Store</li>
+</ul>
+<p>同时，网站访问受限，通过命令 <code>wsl --install -d Ubuntu</code> 也无法下载安装 Ubuntu。</p>
+<p>↓↓↓↓↓↓ 在这些情况下，虽然 WSL 本身可用，你可能需要 ↓↓↓↓↓↓</p>
+<p>微软提供了手动下载安装的方法：|&gt;&gt;&gt; <a href="https://link.zhihu.com/?target=https://learn.microsoft.com/en-us/windows/wsl/install-manual">Manual installation steps for older versions of WSL</a> &lt;&lt;&lt;|，可使用文中给出的以下链接来下载并手动安装 Linux 发行版：</p>
+<p><a target="_blank" rel="noopener" href="https://aka.ms/wslubuntu">Ubuntu</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wslubuntu2204">Ubuntu 22.04 LTS</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wslubuntu2004">Ubuntu 20.04</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wslubuntu2004arm">Ubuntu 20.04 ARM</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wsl-ubuntu-1804">Ubuntu 18.04</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wsl-ubuntu-1804-arm">Ubuntu 18.04 ARM</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wsl-ubuntu-1604">Ubuntu 16.04</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wsl-debian-gnulinux">Debian GNU/Linux</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wsl-kali-linux-new">Kali Linux</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wsl-sles-12">SUSE Linux Enterprise Server 12</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wsl-SUSELinuxEnterpriseServer15SP2">SUSE Linux Enterprise Server 15 SP2</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wsl-SUSELinuxEnterpriseServer15SP3">SUSE Linux Enterprise Server 15 SP3</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wsl-opensuse-tumbleweed">openSUSE Tumbleweed</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wsl-opensuseleap15-3">openSUSE Leap 15.3</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wsl-opensuseleap15-2">openSUSE Leap 15.2</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wsl-oraclelinux-8-5">Oracle Linux 8.5</a><br><a target="_blank" rel="noopener" href="https://aka.ms/wsl-oraclelinux-7-9">Oracle Linux 7.9</a><br><a target="_blank" rel="noopener" href="https://github.com/WhitewaterFoundry/WSLFedoraRemix/releases/">Fedora Remix for WSL</a></p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[1] &gt;&gt;&gt; Download</strong></p>
+<p>你可以直接通过上述链接将 <code>&lt;distro&gt;.appx</code> 下载到你指定的文件夹中。</p>
+<p>或者，你也可以使用 PowerShell（Ubuntu 20.04 为例）下载：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>wslubuntu2004</code> 为需要下载安装的 distribution 名称，对应 Ubuntu-20.04（查看上面的链接）。你也可以根据需要下载其他 distribution（ 例如 ubuntu-22.04 为 <code>wslubuntu2204</code>）。</p>
+<p><strong>[2] &gt;&gt;&gt; Setup</strong></p>
+<p>下载了发行版后，导航到包含下载内容的文件夹，并在该目录中运行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Add-AppxPackage .\app_name.appx</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>app-name</code> 是 Linux 发行版 <code>.appx</code> 文件的名称，这里为 ubuntu2004。</p>
+<hr>
+<h2 id="WSL-Quick-Guide"><a href="#WSL-Quick-Guide" class="headerlink" title="WSL Quick Guide"></a>WSL Quick Guide</h2><p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/setup/environment">WSL</a> 开发环境配置及使用：</p>
+<h3 id="更换-Apt-get-软件源-换源"><a href="#更换-Apt-get-软件源-换源" class="headerlink" title="更换 Apt-get 软件源 (换源)"></a>更换 Apt-get 软件源 (换源)</h3><p>换源操作请参考 |&gt;&gt;&gt; <a href="https://www.orangeshare.cn/2015/04/01/ubuntu-server-quick-configuration-guide/">Ubuntu Server: Quick Configuration Guide</a> &lt;&lt;&lt;| 中【更换 Apt-get 软件源 (换源)】中描述。</p>
+<p>换源后，你需要更新软件源，并且升级系统中应用（可选）：</p>
+<p>👇👇👇 <strong>更新和升级包</strong> 👇👇👇</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get update</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt-get upgrade</span></span><br></pre></td></tr></table></figure>
+
+<p>Windows 不会自动更新或升级 Linux 分发版。 大多数 Linux 用户往往倾向于自行控制此任务。</p>
+<hr>
+<h3 id="终端选择"><a href="#终端选择" class="headerlink" title="终端选择"></a>终端选择</h3><p>终端有很多，CMD、Cmder、PowerShell（Windows Terminal）等等，这里推荐使用是 Windows 自带的 Windows Terminal（PowerShell）。</p>
+<p>每当安装新的 WSL Linux 发行版时，都会在 Windows Terminal 中为其创建一个新实例，该实例可根据你的偏好进行自定义。建议将 WSL 与 Windows Terminal 配合使用，尤其是在计划使用多个命令行时。</p>
+<p>关于 Windows Terminal &amp;&amp; WSL Linux Shell 更多高级的使用和配置，请参见博文 |&gt;&gt;&gt; <a href="https://www.orangeshare.cn/2023/04/01/da-zao-gao-xiao-terminal-gong-zuo-liu-cmd-shell-oh-my-zsh-tmux-vim/">打造高效 Terminal 工作流 CMD/Shell: Oh My Zsh + Tmux + Vim</a> &lt;&lt;&lt;|，可以帮助你打造更高效、优美的 Terminal 使用环境。</p>
+<hr>
+<h3 id="文件存储和性能"><a href="#文件存储和性能" class="headerlink" title="文件存储和性能"></a>文件存储和性能</h3><p>你可以通过在 Windows 文件资源管理器的地址栏中输入 <code>\\wsl$</code> 或者 <code>Linux</code>，以查看 WSL 所有可用的 Linux 发行版及其根文件系统：</p>
+<p><img src="https://s2.loli.net/2024/02/21/TF3UYmVQKfhXRtr.png"></p>
+<p>同样，你可以在 Linux Shell 中，使用以下命令直接打开当前目录的 Windows 文件资源管理器：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">explorer.exe .</span><br></pre></td></tr></table></figure>
+
+<p>请确保在命令的末尾添加句点！！！以打开当前目录。</p>
+<p>需要注意的是，对于 Linux 而言，Windows 文件系统位于如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ls /mnt/</span></span><br><span class="line">c/    d/    e/    f/</span><br></pre></td></tr></table></figure>
+
+<p>Linux 发行版将 Windows 文件系统视为已装载的驱动器。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>跨文件系统的文件存储和性能</strong> 👇👇👇</p>
+<p>推荐 &gt;&gt;&gt; <font color="red">尽量不要跨操作系统使用文件，除非有这么做的特定原因，这可能会显著降低性能。</font></p>
+<p>也就是说，尽量将 “项目文件” 与 “计划使用项目文件的工具” 存储在相同的操作系统上！！！想获得最快的性能速度：</p>
+<ul>
+<li>使用 Linux 工具在 Linux 命令行（Ubuntu、OpenSUSE 等）中处理文件，请将这些文件存储在 WSL 文件系统中；</li>
+<li>如果 Windows 工具在 Windows 命令行（PowerShell、命令提示符）中工作，请将文件存储在 Windows 文件系统中。</li>
+</ul>
+<p>例如，Ubuntu 中默认自带有 Git 工具，而你的 Windows 中也安装有一个 Git，在 Ubuntu Shell 中使用 <code>git status</code> 来查看一个位于 Windows 文件系统中的一个 Git 项目：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Ubuntu Git：</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git --version</span></span><br><span class="line">git version 2.25.1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Windows Git:</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git.exe --version</span></span><br><span class="line">git version 2.29.2.windows.1</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 测试 git status：</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ../git_project</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git status</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git.exe status</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Win-amp-amp-Linux-命令的互操作性"><a href="#Win-amp-amp-Linux-命令的互操作性" class="headerlink" title="Win &amp;&amp; Linux 命令的互操作性"></a>Win &amp;&amp; Linux 命令的互操作性</h3><p>借助 WSL，Windows 和 Linux 工具和命令可互换使用：</p>
+<ul>
+<li>从 Linux 命令行（即 Ubuntu）运行 Windows 工具（即 notepad.exe）；</li>
+<li>从 Windows 命令行（即 PowerShell）运行 Linux 工具（即 grep）；</li>
+<li>在 Windows 与 Windows 之间共享环境变量（混合命令）。</li>
+</ul>
+<h4 id="Win-CMD-Run-Linux"><a href="#Win-CMD-Run-Linux" class="headerlink" title="Win-CMD Run Linux"></a>Win-CMD Run Linux</h4><p>Windows 命令提示符 (CMD) 或 PowerShell 中使用 <code>wsl &lt;command&gt;</code> 来运行 Linux 命令。例如：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">C:\temp&gt; wsl <span class="built_in">ls</span> <span class="literal">-la</span></span><br><span class="line">&lt;- contents of C:\temp -&gt;</span><br></pre></td></tr></table></figure>
+
+<p>以这种方式调用 Linux 命令：</p>
+<ul>
+<li>使用当前 CMD 或 PowerShell 提示符中所位于的同一工作目录</li>
+<li>以 WSL 默认用户的身份运行</li>
+<li>拥有与调用方进程和终端相同的 Windows 管理权限</li>
+</ul>
+<p>wsl 后面的 Linux 命令的处理方式与 WSL 中运行的任何命令的处理方式类似。 可以执行 sudo、管道处理和文件重定向等操作。</p>
+<hr>
+<h4 id="混合-Win-amp-amp-Linux"><a href="#混合-Win-amp-amp-Linux" class="headerlink" title="混合 Win &amp;&amp; Linux"></a>混合 Win &amp;&amp; Linux</h4><p>给出几个使用 CMD &amp;&amp; PowerShell 混合 Linux 和 Windows 命令的示例（PowerShell 中混合）。</p>
+<p>若要使用 Linux 命令 <code>ls -la</code> 列出文件，并使用 PowerShell 命令 <code>findstr</code> 来筛选包含 “git” 的文件：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> wsl <span class="built_in">ls</span> <span class="literal">-la</span> | findstr <span class="string">&quot;git&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><font color="red">等价于</font>，使用 PowerShell 命令 <code>dir</code> 列出文件，并使用 Linux 命令 <code>grep</code> 来筛选包含 “git” 的的文件：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$</span> <span class="built_in">dir</span> | wsl grep git</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="Linux-Shell-Run-Win"><a href="#Linux-Shell-Run-Win" class="headerlink" title="Linux Shell Run Win"></a>Linux Shell Run Win</h4><p>WSL 可以使用 <code>[tool-name].exe</code> 直接从 WSL 命令行运行 Windows 工具。</p>
+<p>例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cmd.exe</span></span><br></pre></td></tr></table></figure>
+
+<p>以这种方式调用 Windows 应用程序：</p>
+<ul>
+<li>按 WSL 命令提示保留工作目录（大部分情况下是这样 – 下面所述的情况除外）</li>
+<li>以活动 Windows 用户的身份运行，拥有与 WSL 进程相同的权限</li>
+<li>显示在 Windows 任务管理器中，就如同直接从 CMD 提示符执行的一样</li>
+</ul>
+<p>在 WSL 中运行的 Windows 可执行文件的处理方式类似于本机 Linux 可执行文件 - 管道处理、重定向，甚至后台处理都可按预期方式工作。</p>
+<p>给出几个样例：</p>
+<p>使用 Linux 命令 <code>ls -la</code> 列出直接文件及其创建详细信息，并使用 Windows PowerShell 工具 <code>findstr.exe</code> 来筛选结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -la | findstr.exe .profile</span><br></pre></td></tr></table></figure>
+
+<p>通过输入以下命令列出 Windows 文件系统 <code>C:\</code> 目录的内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd.exe /C dir</span><br></pre></td></tr></table></figure>
+
+<p>通过 <code>notepad.exe</code> 打开 <code>C:\temp\foo.txt</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notepad.exe &quot;C:\temp\foo.txt&quot;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="IDE-选择和设置"><a href="#IDE-选择和设置" class="headerlink" title="IDE 选择和设置"></a>IDE 选择和设置</h3><p>推荐使用支持 WSL 进行远程开发和调试功能的 IDE &gt;&gt;&gt;&gt; Visual Studio Code。</p>
+<p>关于 WSL + Visual Studio Code 的开发环境搭建，推荐参考 &gt;&gt;&gt;&gt;【<a href="https://www.orangeshare.cn/2017/08/02/wan-zhuan-vscode-zhi-pei-zhi-yuan-cheng-kai-fa-huan-jing/">玩转 VSCode 之配置远程开发环境</a>】中【WSL Connection】小节的描述。</p>
+<hr>
+<h3 id="Git-版本管理"><a href="#Git-版本管理" class="headerlink" title="Git 版本管理"></a>Git 版本管理</h3><p>你可以在 WSL Linux 上使用 Git 进行版本管理。</p>
+<p>WSL 上使用 Git 和 VM 上 Linux 发行版上使用 Git 是相同的，推荐参考 Git 博文系列 &gt;&gt;&gt;&gt;【<a href="https://www.orangeshare.cn/2017/07/01/git-shi-yong-zhi-nan-zhi-chu-shi/">Git 使用指南</a>】。</p>
+<hr>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>开始使用 MySQL、PostgreSQL、MongoDB、Redis、Microsoft SQL Server 或 SQLite。</p>
+<p>按照此分步指南 &gt;&gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/wsl-database">开始使用 WSL 上的数据库</a> &lt;&lt;&lt;&lt; 并将项目连接到 WSL 环境中的数据库。</p>
+<hr>
+<h3 id="设置-GPU-加速"><a href="#设置-GPU-加速" class="headerlink" title="设置 GPU 加速"></a>设置 GPU 加速</h3><p>按照此分步指南 &gt;&gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/gpu-compute">在 WSL 中设置 GPU 加速的机器学习训练</a> &lt;&lt;&lt;&lt; 利用计算机的 GPU（图形处理单元）来加速性能繁重的工作负载。</p>
+<hr>
+<h2 id="Other-Linux-Distro-Installations"><a href="#Other-Linux-Distro-Installations" class="headerlink" title="Other Linux-Distro Installations"></a>Other Linux-Distro Installations</h2><p>前面我们提到过：</p>
+<p>如果要安装版本的 Linux 发行版不在有效的分发的列表，可使用 <a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/use-custom-distro">TAR 文件导入任何 Linux 发行版</a> &lt;&lt;&lt; 借助 Docker 容器。</p>
+<p>这里，我们提供另一种替代性的方法 &gt;&gt;&gt;&gt; <font color="red">使用从 Github 制作的 Linux 发行版镜像，直接进行安装。</font></p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>以 CentOS 系统的安装为例</strong> 👇👇👇</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/wsldl-pg/CentWSL">CentWSL Github 镜像库地址</a>，其它更多 Linux 发行版镜像下载地址，参看【<a target="_blank" rel="noopener" href="https://wsldl-pg.github.io/docs/Using-wsldl/#distros">这里</a>】。</p>
+<p>从上述链接中，下载期望的 Linux 发行版镜像压缩文件（例如 CentOS7.zip）、解压、选择目录存放，解压后有两个文件：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CentOS7.exe</span><br><span class="line">rootfs.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>双击 <code>.exe</code> 文件，等待显示安装完成，此时会在当前解压目录中生成一个 <code>ext4.vhdx</code> 的文件（安装的系统，无法直接访问），安装过程如下所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Using: F:\WinSubSystem\CentOS7\rootfs.tar.gz</span><br><span class="line">Installing...</span><br><span class="line">Installation complete</span><br><span class="line">Press enter to continue...</span><br></pre></td></tr></table></figure>
+
+<p>安装之后，你可以通过在资源管理器中查找 <code>Linux</code> 或者 <code>\\wsl$</code> 或者<code>\\wsl.localhost</code> 来查看安装好的 CentOS7 系统的根目录。</p>
+<p>最后，你可以通过 PowerShell 或 CMD 运行特定的 Linux 发行版：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wsl -l -v</span><br><span class="line">  NAME            STATE           VERSION</span><br><span class="line">* Ubuntu-20.04    Stopped         2</span><br><span class="line">  CentOS7         Stopped         2</span><br><span class="line">  Debian          Stopped         2</span><br><span class="line">PS C:\Users\Xxxxx&gt; wsl --distribution CentOS7</span><br><span class="line">[root@LAPTOP-SNOSCKOB Xxxxx]#</span><br></pre></td></tr></table></figure>
+
+<p>可以发现，默认 WSL Linux 登录用户是 root。</p>
+<p>这里由于我们还未创建普通用户，你可以添加一个用户供日常使用，或者供他人使用。</p>
+<p>同时可以参照上文【更改登录时的默认用户】进行用户登录设置。但你需要在解压目录中执行如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PS F:\WinSubSystem\CentOS7&gt; .\CentOS7.exe config --default-user orange</span><br><span class="line">PS F:\WinSubSystem\CentOS7&gt; wsl -d CentOS7</span><br><span class="line">[orange@LAPTOP-SNOSCKOB CentOS7]$</span><br></pre></td></tr></table></figure>
+
+<p>由于是 CentOS7 的最小安装，一些常用的命令工具无法使用，可以使用 yum 包管理器进行安装：</p>
+<ul>
+<li>更新系统中已有的软件包 <code>yum -y update</code></li>
+<li>安装 GCC/G++、Wget 等 <code>yum -y install gcc gcc-c++ make wget</code></li>
+<li>安装 SSH 相关 <code>yum -y install openssh-clients openssh-server</code></li>
+<li>安装 Vim 编辑器 <code>yum -y install vim</code></li>
+<li>安装压缩、解压缩工具 <code>yum -y install tar</code></li>
+<li>安装网络工具 <code>yum -y install net-tools</code></li>
+</ul>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>至此 Linux 发行版 CentOS 的安装就完成了，其它发行版本过程类似~~~</p>
+<hr>
+<h2 id="Relevant-Issues"><a href="#Relevant-Issues" class="headerlink" title="Relevant Issues"></a>Relevant Issues</h2><p>这里总结了 WSL 安装使用过程中可能产生的问题，以及相关的解决方法：</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<h3 id="WSL2-终端卡顿滞后的优化"><a href="#WSL2-终端卡顿滞后的优化" class="headerlink" title="WSL2 终端卡顿滞后的优化"></a>WSL2 终端卡顿滞后的优化</h3><p>WSL2 内置 Shell 卡顿的罪魁祸首 &gt;&gt;&gt;&gt; <font color="red">WSL2 默认将 Windows 的环境变量（path）添加到了 WSL 环境变量中了。</font>如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$PATH</span>&quot;</span></span></span><br><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/f/NodeJs/:/mnt/f/Java/jdk1.8.0_271/bin:/mnt/f/Apache Maven/apache-maven-3.6.3/bin:/mnt/f/Apache Tomcat/apache-tomcat-9.0.40/bin:/mnt/f/MinWG64/mingw64/bin:/mnt/f/Python/Python36:/mnt/f/Python/Python36/Scripts:/mnt/f/Anaconda3:/mnt/f/Anaconda3/Scripts:/mnt/f/Anaconda3/Library/bin:/mnt/f/Anaconda3/Library/mingw-w64:/mnt/f/DataBases/mysql-5.7.29-winx64/bin:/mnt/f/Git/Git/cmd:/snap/bin</span><br></pre></td></tr></table></figure>
+
+<p>在 Linux Shell 中遍历环境变量的时候会遍历到 Windows 的系统环境变量，因为 WSL2 跨系统访问 Windows 的性能较低，就导致终端遍历的速度很慢，出现滞后。</p>
+<p>这种滞后，一般出现在加装了高亮提示插件的 ZSH 上，因为高亮提示插件会不停的遍历环境变量。</p>
+<p><font color="red">↓↓↓↓↓↓ 解决思路 ↓↓↓↓↓↓</font></p>
+<p>核心思路 &gt;&gt;&gt;&gt; <font color="red">禁用 WSL2 访问 Windows 的环境变量，手动添加需要的 Windows 环境变量。</font></p>
+<p><strong>[1] &gt;&gt;&gt; 警用 WSL2 访问 Windows 环境变量</strong></p>
+<p>编辑 <code>/etc/wsl.conf</code> 这个配置文件（如果没有该配置文件，请手动创建），在里面添加如下内容：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[interop]</span><br><span class="line">appendWindowsPath=false</span><br></pre></td></tr></table></figure>
+
+<p>不允许访问 Windows 的环境变量当然会对我们愉快的使用 WSL2 有影响，所以我们可以再选择性的添加一些环境变量就可以了</p>
+<p><strong>[2] &gt;&gt;&gt; 选择性添加 Windows 环境变量</strong></p>
+<p>编辑 <code>/etc/profile</code> 文件，在末尾追加如下内容:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export PATH=&quot;$PATH:/mnt/c/Windows&quot;</span><br><span class="line">export PATH=&quot;$PATH:/mnt/c/Windows/system32&quot;</span><br><span class="line">export PATH=&quot;$PATH:/mnt/f/NodeJs/&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>[3] &gt;&gt;&gt; 重启 WSL2</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 关闭 WSL</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl --shutdown</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动默认 WSL 发行版</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wsl</span></span><br></pre></td></tr></table></figure>
+
+<p>这样就既可以流畅使用 WSL2，又可以保留 WSL2 对 Windows 程序的调用。</p>
+<hr>
+<h3 id="服务器无法解析或连接"><a href="#服务器无法解析或连接" class="headerlink" title="服务器无法解析或连接"></a>服务器无法解析或连接</h3><p>使用命令 <code>wsl --install</code> Or <code>wsl --list --online</code> 时，你可能产生如下报错：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">无法从“https://raw.githubusercontent.com/microsoft/WSL/master/distributions/DistributionInfo.json”中提取列表分发。无法解析服务器的名称或地址</span><br><span class="line">Error code: Wsl/WININET_E_NAME_NOT_RESOLVED</span><br></pre></td></tr></table></figure>
+
+<p>这是由于网络运营商 DNS 服务器无法解析 raw.githubusercontent.com 服务器名称，或者网站访问被限制。</p>
+<p><font color="red">↓↓↓↓↓↓ 解决思路 ↓↓↓↓↓↓</font></p>
+<p>这里提供几种解决方法：</p>
+<p>👇👇👇 <strong>科学上网</strong> 👇👇👇</p>
+<p>最简单、快捷，究极的方法，你可以通过开启科学上网工具来解析或访问 raw.githubusercontent.com 服务器。</p>
+<p>👇👇👇 <strong>配置 DNS 解析服务器 Or 添加 Hosts 域名映射</strong> 👇👇👇</p>
+<p>具体解决方法请参见 |&gt;&gt;&gt; <a href="https://www.orangeshare.cn/2022/07/01/yi-wen-jie-xi-fu-wu-qi-yu-ming-wu-fa-jie-xi-lian-jie-chao-shi-fang-wen-shou-xian-wen-ti/">一文解析服务器域名无法解析 &amp;&amp; 连接超时 &amp;&amp; 访问受限问题</a> &lt;&lt;&lt;| 下【域名无法解析】中的描述。</p>
+<p>👇👇👇 <strong>手动安装</strong> 👇👇👇</p>
+<p>具体解决方法请参见前面【WSL Setup】小节中【手动下载安装 Linux 发行版】安装步骤说明。</p>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Windows Subsystem for Linux (WSL) on Windows 10/11</p><p><a href="https://www.orangeshare.cn/2022/10/01/windows-subsystem-for-linux-wsl-on-windows-10-11/">https://www.orangeshare.cn/2022/10/01/windows-subsystem-for-linux-wsl-on-windows-10-11/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2022-10-01</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-02-29</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Operate-System/">Operate System</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2022/11/05/da-zao-gao-xiao-terminal-gong-zuo-liu-cmd-shell-oh-my-zsh-tmux-vim/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">打造高效 Terminal 工作流 CMD/Shell: Oh My Zsh + Tmux + Vim</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2022/07/01/yi-wen-jie-xi-fu-wu-qi-yu-ming-wu-fa-jie-xi-lian-jie-chao-shi-fang-wen-shou-xian-wen-ti/"><span class="level-item">一文解析服务器域名无法解析 &amp;&amp; 连接超时 &amp;&amp; 访问受限问题</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">113</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">13</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">43</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#WSL-Setup"><span class="level-left"><span class="level-item">1</span><span class="level-item">WSL Setup</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#预安装准备"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">预安装准备</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#关于-Windows-版本问题"><span class="level-left"><span class="level-item">1.1.1</span><span class="level-item">关于 Windows 版本问题</span></span></a></li><li><a class="level is-mobile" href="#WSL1-Or-WSL2"><span class="level-left"><span class="level-item">1.1.2</span><span class="level-item">WSL1 Or WSL2</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Begin-To-Setup"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">Begin To Setup</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#WSL-便捷安装"><span class="level-left"><span class="level-item">1.2.1</span><span class="level-item">WSL 便捷安装</span></span></a></li><li><a class="level is-mobile" href="#WSL-手动安装"><span class="level-left"><span class="level-item">1.2.2</span><span class="level-item">WSL 手动安装</span></span></a></li><li><a class="level is-mobile" href="#WSL-Linux-启动测试"><span class="level-left"><span class="level-item">1.2.3</span><span class="level-item">WSL Linux 启动测试</span></span></a></li><li><a class="level is-mobile" href="#更改登录时的默认用户"><span class="level-left"><span class="level-item">1.2.4</span><span class="level-item">更改登录时的默认用户</span></span></a></li></ul></li><li><a class="level is-mobile" href="#检查正在运行的-WSL"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">检查正在运行的 WSL</span></span></a></li><li><a class="level is-mobile" href="#Linux-发行版迁移"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">Linux 发行版迁移</span></span></a></li><li><a class="level is-mobile" href="#注销或卸载-Linux-发行版"><span class="level-left"><span class="level-item">1.5</span><span class="level-item">注销或卸载 Linux 发行版</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#GUI"><span class="level-left"><span class="level-item">1.5.1</span><span class="level-item">GUI</span></span></a></li><li><a class="level is-mobile" href="#Unregister"><span class="level-left"><span class="level-item">1.5.2</span><span class="level-item">Unregister</span></span></a></li></ul></li><li><a class="level is-mobile" href="#手动下载安装-Linux-发行版"><span class="level-left"><span class="level-item">1.6</span><span class="level-item">手动下载安装 Linux 发行版</span></span></a></li></ul></li><li><a class="level is-mobile" href="#WSL-Quick-Guide"><span class="level-left"><span class="level-item">2</span><span class="level-item">WSL Quick Guide</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#更换-Apt-get-软件源-换源"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">更换 Apt-get 软件源 (换源)</span></span></a></li><li><a class="level is-mobile" href="#终端选择"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">终端选择</span></span></a></li><li><a class="level is-mobile" href="#文件存储和性能"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">文件存储和性能</span></span></a></li><li><a class="level is-mobile" href="#Win-amp-amp-Linux-命令的互操作性"><span class="level-left"><span class="level-item">2.4</span><span class="level-item">Win &amp;&amp; Linux 命令的互操作性</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Win-CMD-Run-Linux"><span class="level-left"><span class="level-item">2.4.1</span><span class="level-item">Win-CMD Run Linux</span></span></a></li><li><a class="level is-mobile" href="#混合-Win-amp-amp-Linux"><span class="level-left"><span class="level-item">2.4.2</span><span class="level-item">混合 Win &amp;&amp; Linux</span></span></a></li><li><a class="level is-mobile" href="#Linux-Shell-Run-Win"><span class="level-left"><span class="level-item">2.4.3</span><span class="level-item">Linux Shell Run Win</span></span></a></li></ul></li><li><a class="level is-mobile" href="#IDE-选择和设置"><span class="level-left"><span class="level-item">2.5</span><span class="level-item">IDE 选择和设置</span></span></a></li><li><a class="level is-mobile" href="#Git-版本管理"><span class="level-left"><span class="level-item">2.6</span><span class="level-item">Git 版本管理</span></span></a></li><li><a class="level is-mobile" href="#数据库"><span class="level-left"><span class="level-item">2.7</span><span class="level-item">数据库</span></span></a></li><li><a class="level is-mobile" href="#设置-GPU-加速"><span class="level-left"><span class="level-item">2.8</span><span class="level-item">设置 GPU 加速</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Other-Linux-Distro-Installations"><span class="level-left"><span class="level-item">3</span><span class="level-item">Other Linux-Distro Installations</span></span></a></li><li><a class="level is-mobile" href="#Relevant-Issues"><span class="level-left"><span class="level-item">4</span><span class="level-item">Relevant Issues</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#WSL2-终端卡顿滞后的优化"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">WSL2 终端卡顿滞后的优化</span></span></a></li><li><a class="level is-mobile" href="#服务器无法解析或连接"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">服务器无法解析或连接</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2024 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Linux Installation tutorial - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="一文详解不同场景下（VMware Workstation &amp;amp;&amp;amp; Virtual Box &amp;amp;&amp;amp; Real PC &amp;amp;&amp;amp; Cloud Platform &amp;amp;&amp;amp; WSL &amp;amp;&amp;amp; Docker …）的 Linux OS 安装教程。"><meta property="og:type" content="blog"><meta property="og:title" content="Linux Installation tutorial"><meta property="og:url" content="https://www.orangeshare.cn/2015/01/27/linux-installation-tutorial/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="一文详解不同场景下（VMware Workstation &amp;amp;&amp;amp; Virtual Box &amp;amp;&amp;amp; Real PC &amp;amp;&amp;amp; Cloud Platform &amp;amp;&amp;amp; WSL &amp;amp;&amp;amp; Docker …）的 Linux OS 安装教程。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://s2.loli.net/2024/03/01/KShVq81bmYdyfkz.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/MeuUfhsbi34AVKW.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/L4nvtOWz1YD6PAo.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/KShVq81bmYdyfkz.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/IwEOCMATRS365fj.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/ZIQNXuG7PY8WzkH.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/NSxocZYafL1gJh3.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/U3SMyEWHialQ1tb.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/ugcDraX9FpGVRnK.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/svi9U6RCXIhDua7.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/AQ8MUSj2ipGTquh.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/lh1qwjsHTNzeR2n.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/mv9cOd1PGx8iut7.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/LT8FucjfRnE7WDU.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/kOgZjS1NcMJ48bC.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/tUk7lug5wb38oNx.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/KpzNjU8Muy31DnF.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/7hVvjWuCyItsA8b.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/iFCDlWacbOxuJVh.png"><meta property="og:image" content="https://s2.loli.net/2024/03/03/BNPDQCLujaEpq41.png"><meta property="og:image" content="https://s2.loli.net/2024/03/03/IJEB2aGyTVzuCSl.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/tdqLsnJBhAoHD49.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/JuslhatEwjvL7Uc.png"><meta property="og:image" content="https://s2.loli.net/2024/03/03/qDY6rGdoKMcTmxR.png"><meta property="og:image" content="https://s2.loli.net/2024/03/03/tPjh4flnG5ODgUA.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/iFCDlWacbOxuJVh.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/2Vhgx3pOJy6u8FC.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/6DnVZQqBPLaicMp.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/tdqLsnJBhAoHD49.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/3uLMpTN4fQbvPl5.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/yLoGsORhAUFTIHQ.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/PikOJF98eQR1lzn.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/KaJIxbO1cqRZWl5.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/u157OGQmXCytvNf.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/4x5Ph9XVyvukJcR.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/JnISKBXN1GLsFam.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/cCef2G5zN8A4Y6J.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/vPZkzsSJc83epNT.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/NeJToBIj2vKfOXH.png"><meta property="og:image" content="https://s2.loli.net/2024/03/03/OkunCf4XBbcrGaL.png"><meta property="og:image" content="https://s2.loli.net/2024/03/03/ERiBHJLd8lYpOAt.png"><meta property="og:image" content="https://s2.loli.net/2024/03/03/gedjvDs1kNIclXu.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/syOIfTiaRZnJgL3.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/XASN342vPrTsElg.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/lt2cygmTRNkwXCF.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/7hVvjWuCyItsA8b.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/h6IxYvmwETWjS9f.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/WXpiMmkUC6jNzrh.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/AH7hdSNVjsJ4QMK.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/qgHczlpnkPa2rjK.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/iHID5JdhV6zOscp.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/6cpkrCy8D9HbMZi.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/pz7rOcQdm8VnvXu.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/1ukZObmQV94NJ8L.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/df9jClEU8iLG5DB.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/OHnN4jvXzCkrYtc.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/X6C1qwnjIMt4h25.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/lcM5XLCqD3sNp1v.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/4x5Ph9XVyvukJcR.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/b5cMoAUfnKmXwky.png"><meta property="og:image" content="https://s2.loli.net/2024/03/02/ai6ArJb3USgcDLs.png"><meta property="og:image" content="https://s2.loli.net/2024/03/01/QmVCMZoYTHlIR2v.png"><meta property="article:published_time" content="2015-01-27T02:40:29.000Z"><meta property="article:modified_time" content="2024-03-04T11:41:32.966Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Operate System"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://s2.loli.net/2024/03/01/KShVq81bmYdyfkz.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2015/01/27/linux-installation-tutorial/"},"headline":"When Art Meets Tech","image":["https://s2.loli.net/2024/03/01/KShVq81bmYdyfkz.png","https://s2.loli.net/2024/03/01/MeuUfhsbi34AVKW.png","https://s2.loli.net/2024/03/01/L4nvtOWz1YD6PAo.png","https://s2.loli.net/2024/03/01/KShVq81bmYdyfkz.png","https://s2.loli.net/2024/03/01/IwEOCMATRS365fj.png","https://s2.loli.net/2024/03/01/ZIQNXuG7PY8WzkH.png","https://s2.loli.net/2024/03/01/NSxocZYafL1gJh3.png","https://s2.loli.net/2024/03/01/U3SMyEWHialQ1tb.png","https://s2.loli.net/2024/03/01/ugcDraX9FpGVRnK.png","https://s2.loli.net/2024/03/01/svi9U6RCXIhDua7.png","https://s2.loli.net/2024/03/01/AQ8MUSj2ipGTquh.png","https://s2.loli.net/2024/03/01/lh1qwjsHTNzeR2n.png","https://s2.loli.net/2024/03/01/mv9cOd1PGx8iut7.png","https://s2.loli.net/2024/03/01/LT8FucjfRnE7WDU.png","https://s2.loli.net/2024/03/01/kOgZjS1NcMJ48bC.png","https://s2.loli.net/2024/03/01/tUk7lug5wb38oNx.png","https://s2.loli.net/2024/03/01/KpzNjU8Muy31DnF.png","https://s2.loli.net/2024/03/01/7hVvjWuCyItsA8b.png","https://s2.loli.net/2024/03/01/iFCDlWacbOxuJVh.png","https://s2.loli.net/2024/03/03/BNPDQCLujaEpq41.png","https://s2.loli.net/2024/03/03/IJEB2aGyTVzuCSl.png","https://s2.loli.net/2024/03/02/tdqLsnJBhAoHD49.png","https://s2.loli.net/2024/03/02/JuslhatEwjvL7Uc.png","https://s2.loli.net/2024/03/03/qDY6rGdoKMcTmxR.png","https://s2.loli.net/2024/03/03/tPjh4flnG5ODgUA.png","https://s2.loli.net/2024/03/01/iFCDlWacbOxuJVh.png","https://s2.loli.net/2024/03/02/2Vhgx3pOJy6u8FC.png","https://s2.loli.net/2024/03/02/6DnVZQqBPLaicMp.png","https://s2.loli.net/2024/03/02/tdqLsnJBhAoHD49.png","https://s2.loli.net/2024/03/02/3uLMpTN4fQbvPl5.png","https://s2.loli.net/2024/03/02/yLoGsORhAUFTIHQ.png","https://s2.loli.net/2024/03/02/PikOJF98eQR1lzn.png","https://s2.loli.net/2024/03/02/KaJIxbO1cqRZWl5.png","https://s2.loli.net/2024/03/02/u157OGQmXCytvNf.png","https://s2.loli.net/2024/03/02/4x5Ph9XVyvukJcR.png","https://s2.loli.net/2024/03/02/JnISKBXN1GLsFam.png","https://s2.loli.net/2024/03/02/cCef2G5zN8A4Y6J.png","https://s2.loli.net/2024/03/02/vPZkzsSJc83epNT.png","https://s2.loli.net/2024/03/02/NeJToBIj2vKfOXH.png","https://s2.loli.net/2024/03/03/OkunCf4XBbcrGaL.png","https://s2.loli.net/2024/03/03/ERiBHJLd8lYpOAt.png","https://s2.loli.net/2024/03/03/gedjvDs1kNIclXu.png","https://s2.loli.net/2024/03/01/syOIfTiaRZnJgL3.png","https://s2.loli.net/2024/03/01/XASN342vPrTsElg.png","https://s2.loli.net/2024/03/01/lt2cygmTRNkwXCF.png","https://s2.loli.net/2024/03/01/7hVvjWuCyItsA8b.png","https://s2.loli.net/2024/03/01/h6IxYvmwETWjS9f.png","https://s2.loli.net/2024/03/01/WXpiMmkUC6jNzrh.png","https://s2.loli.net/2024/03/01/AH7hdSNVjsJ4QMK.png","https://s2.loli.net/2024/03/01/qgHczlpnkPa2rjK.png","https://s2.loli.net/2024/03/01/iHID5JdhV6zOscp.png","https://s2.loli.net/2024/03/01/6cpkrCy8D9HbMZi.png","https://s2.loli.net/2024/03/01/pz7rOcQdm8VnvXu.png","https://s2.loli.net/2024/03/01/1ukZObmQV94NJ8L.png","https://s2.loli.net/2024/03/01/df9jClEU8iLG5DB.png","https://s2.loli.net/2024/03/01/OHnN4jvXzCkrYtc.png","https://s2.loli.net/2024/03/02/X6C1qwnjIMt4h25.png","https://s2.loli.net/2024/03/02/lcM5XLCqD3sNp1v.png","https://s2.loli.net/2024/03/02/4x5Ph9XVyvukJcR.png","https://s2.loli.net/2024/03/02/b5cMoAUfnKmXwky.png","https://s2.loli.net/2024/03/02/ai6ArJb3USgcDLs.png","https://s2.loli.net/2024/03/01/QmVCMZoYTHlIR2v.png"],"datePublished":"2015-01-27T02:40:29.000Z","dateModified":"2024-03-04T11:41:32.966Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"一文详解不同场景下（VMware Workstation &amp;&amp; Virtual Box &amp;&amp; Real PC &amp;&amp; Cloud Platform &amp;&amp; WSL &amp;&amp; Docker …）的 Linux OS 安装教程。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2015/01/27/linux-installation-tutorial/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>Linux Installation tutorial</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2015-01-27</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2024-03-04</time></span><span class="level-item"><a class="link-muted" href="/categories/OS/">OS</a></span><span class="level-item">an hour read (About 12637 words)</span></div></div><div class="content"><p>一文详解不同场景下（VMware Workstation &amp;&amp; Virtual Box &amp;&amp; Real PC &amp;&amp; Cloud Platform &amp;&amp; WSL &amp;&amp; Docker …）的 Linux OS 安装教程。</p>
+<a id="more"></a>
+
+<p>操作系统（Linux、Window、Mac…）的安装是需要 <font color="red">依赖于物理设备或基于物理设备的虚拟机（虚拟机软件）的</font>，在物理机（<strong>Real PC</strong>）和虚拟机（<strong>Virtual Machine</strong>）中 Linux 等 OS 的安装方法存在一定差异，但使用是没有明显的区别的，可以等同。</p>
+<p>云（<strong>Cloud Platform</strong>），实质上也可以看作虚拟机。随着云技术以及虚拟技术的发展，一些拥有服务器资源的公司会将许多的服务器组合成更大的硬件资源池，然后分割成（虚拟出）许多满足用户需求配置的虚拟机，出租给用户搭建满足用户需求的各种环境，如：阿里云、腾讯云、百度云等。简单来说，你可以将用户租用的云服务器看成一个个的虚拟机，然后用户可以在云服务器上搭建不用的操作系统测试环境。</p>
+<p>事实上，<strong>Windows Subsystem For Linux（WSL）</strong>和 <strong>Docker</strong> 都或多或少的都应用了虚拟技术~~~</p>
+<hr>
+<h2 id="Virtual-Machine"><a href="#Virtual-Machine" class="headerlink" title="Virtual Machine"></a>Virtual Machine</h2><p>VM 虚拟机（Virtual Machine），是一个使用虚拟技术的，用于 “虚拟 PC” 的软件。</p>
+<h3 id="Virtual-Technology"><a href="#Virtual-Technology" class="headerlink" title="Virtual Technology"></a>Virtual Technology</h3><p>当在物理机（Real PC）中安装 OS 时，有些新手连 Windows 的安装都不太熟悉，更别提 Linux 的安装了；即使照着教程安装完成了，也有可能破坏现有的 Windows 系统（比如：导致硬盘数据丢失、Windows 无法开机等）。</p>
+<p>而通过 Virtual Machine Technology（虚拟机技术）很容易冲破这种困境。由于虚拟机安装 Linux 所有的操作（例如硬盘分区、删除或修改数据）都是在虚拟硬盘中进行，因此不会对现有的数据和系统造成任何损失，即使安装失败了也无所谓。</p>
+<p>优于物理机中 “多启动系统” 在一个时刻只能运行一个系统（在系统切换时需要重新启动机器），VM 虚拟机采用了完全不同的概念，使你可以在一台机器上同时运行 两个或更多 Windows、LINUX 系统。</p>
+<p><font color="red">↓↓↓↓↓↓ VM 虚拟机优越性 ↓↓↓↓↓↓</font></p>
+<ol>
+<li>不需要分区或重启就能在同一台计算机上同时使用两种以上的操作系统；</li>
+<li>操作系统之间完全隔离, 可以很好保护系统环境，应用软件和数据等；</li>
+<li>支持不同操作系统之间的相互访问，包括网络、周边、文件共享以及复制、粘贴的多种功能；</li>
+<li>复原（Undo）&amp;&amp; 镜像克隆（Clone）功能，快速恢复误操作，以及快速克隆一个期望系统；</li>
+<li>能够随时修改操作系统的各种环境设置，如：内存、磁盘空间、周边的设备等等。</li>
+</ol>
+<p>实际使用过程中，你可以通过在虚拟机中搭建实际开发环境的副本先进行测试，避免直接在物理机搭建产生的各种问题。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>常用的 VM 虚拟机软件</strong> 👇👇👇</p>
+<ul>
+<li><font color="red">VMWare Workstation</font></li>
+<li><font color="red">Virtual Box</font></li>
+<li><font color="red">Hyper-V</font></li>
+</ul>
+<p><strong>[1] &gt;&gt;&gt;</strong> VMWare Workstation</p>
+<p>VMWare Workstation（收费，但可破解)，是虚拟机产品中的经典，在功能和性能方面都很优越。</p>
+<p>只要内存允许，VMware 可以在一台计算机上同时运行多种操作系统的虚拟机，可以将这些虚拟机构建成一个非常复杂的网络，因此非常便于我们进行各种操作系统配置方面的实验。</p>
+<p><strong>[2] &gt;&gt;&gt;</strong> Virtual Box</p>
+<p>Virtual Box(免费，开源)：遵循 GUN GPL 协议，相较于 VMWare 界面简洁，功能较多，使用简单。</p>
+<p><strong>[3] &gt;&gt;&gt;</strong> Hyper-V</p>
+<p>Hyper-V 是 Microsoft Windows10 上自带的虚拟机工具，只可以在 Win10 专业版，企业版和教育版上使用，无法在家庭版上使用。</p>
+<p>由于 Hyper-V 受限于安装平台，这里只作为参考，作为 Win10 以上虚拟机工具的扩展，不作为选择。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>那么，选择 <font color="red">↓↓↓↓↓↓ VMware Or VirtualBox ？？？ ↓↓↓↓↓↓</font></p>
+<p>事实上，VMware 的虚拟机比 Virtual Box 的同类产品运行得更快。</p>
+<p>但这种差异在小、中型规模的项目上可能不那么明显（两者均可），但它会影响企业（大型）项目的性能（选择  VMware）。</p>
+<hr>
+<p>下面我们将分别来看 VMWare Workstation &amp;&amp; Virtual Box 的安装配置，以及如何使用虚拟机工具在 Windows（其它平台同理）下创建不同的 Win/Mac/Linux 虚拟机：</p>
+<h3 id="VMware-Workstation"><a href="#VMware-Workstation" class="headerlink" title="VMware Workstation"></a>VMware Workstation</h3><p>VMware Workstation Pro 是收费的，可以免费试用 30 天。如果想永久使用（相信难不倒你），可以从官网购买密钥。</p>
+<h4 id="VMWare-Setup"><a href="#VMWare-Setup" class="headerlink" title="VMWare Setup"></a>VMWare Setup</h4><p><a target="_blank" rel="noopener" href="https://www.vmware.com/">VMware WORKSTATION 官方</a> 下载网址 | &gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://www.vmware.com/products/workstation-pro/workstation-pro-evaluation.html">Download VMware Workstation Pro</a> &lt;&lt;&lt; |。</p>
+<p>下载好 VMware Workstation 安装包后，直接双击运行即可进入安装界面。安装过程较为简单，一路保持默认，需要注意的是【自定义安装路径】时保持路径中不含中文，其它【Next By Next】即可。</p>
+<p>安装成功后，初始界面如下（<code>VMware® Workstation 15.5.6 Pro</code>）：</p>
+<p><img src="https://s2.loli.net/2024/03/01/KShVq81bmYdyfkz.png"></p>
+<p>👇👇👇 <strong>VMWARE 安装验证</strong> 👇👇👇</p>
+<p><img src="https://s2.loli.net/2024/03/01/MeuUfhsbi34AVKW.png"></p>
+<p>在【控制面板】 &gt;&gt;&gt; 【网络和 Internet】&gt;&gt;&gt;【网络和共享中心】&gt;&gt;&gt;【更改适配器】&gt;&gt;&gt; 在打开的连接界面中看到 <code>VMware Network Adapter VMnet1/VMnet8</code> 两块网卡，表明安装成功。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>Vmware Workstation 安装过程可能会遇到一些问题，参见后文【Reff Issue】中关于 VMWare 安装问题（Problem 1/2/）描述。</p>
+<hr>
+<h4 id="VMWARE-Config-Related"><a href="#VMWARE-Config-Related" class="headerlink" title="VMWARE Config-Related"></a>VMWARE Config-Related</h4><p>VMware Workstation 配置相关：</p>
+<p><strong>[1] &gt;&gt;&gt; Preferences（首选项）</strong></p>
+<p>工作区（自定义虚拟机默认安装位置）；热键（Ctrl + Alt 释放虚拟机控制）；显示（窗口自适应）；内存（虚拟内存设置，配置虚拟机内存不可以超过物理内存可用数，否则虚拟机将无法启动）。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[2] &gt;&gt;&gt; Virtual Network Editor（网络配置）</strong></p>
+<p>VMware Workstation 支持三种网络模式：NAT（网络地址转换模式）&amp;&amp; Bridged（桥接模式）&amp;&amp; Host-Only（仅主机模式）。</p>
+<p>你可以通过启动 VMWare &gt;&gt;&gt;【选项栏】&gt;&gt;&gt;【编辑】&gt;&gt;&gt; 打开【虚拟网络编辑器（Virtual Network Editor）】中看到：VMnet0（Bridged）、VMnet1（Host-Only）、VMnet8（NAT）</p>
+<p><img src="https://s2.loli.net/2024/03/01/L4nvtOWz1YD6PAo.png"></p>
+<p>其中，<strong>VMnet0</strong> 表示的是用于桥接模式（Bridged）下的虚拟交换机；<strong>VMnet1</strong> 表示的是用于仅主机模式（Host-Only）下的虚拟交换机；<strong>VMnet8</strong> 表示的是用于 NAT 模式下的虚拟交换机。</p>
+<p>并且，在【控制面板】 &gt;&gt;&gt; 【网络和 Internet】&gt;&gt;&gt;【网络和共享中心】&gt;&gt;&gt;【更改适配器】&gt;&gt;&gt; 在打开的连接界面中看到 <code>VMware Network Adapter VMnet1/VMnet8</code> 两块虚拟网卡，这两块网卡分别作用于 <code>Host-Only/NAT</code> 模式</p>
+<blockquote>
+<p>如果不小心将 <code>VMnet1/VMnet8</code> 网卡卸载，可以在【Virtual Network Editor】中点击【还原默认设置】进行恢复。</p>
+</blockquote>
+<p>为什么没有 <code>VMnet0</code> 呢？！！思考一下，等学习完后文【Virtual Machine NETCONF】中关于 VMWare 网络配置的描述，你就会有答案了。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[3] &gt;&gt;&gt; VMWare 系统服务配置</strong></p>
+<p>虚拟机安装好后，会在系统中自动安装 5 个服务，为了节省系统资源，推荐选择性的将其停止自动启动：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. VMWARE Authorization Service：认证授权服务（手动 &gt;&gt; off）；</span><br><span class="line">2. VMWARE DHCP Service：DHCP 服务（手动 &gt;&gt; off）&lt;&lt;&lt; 禁用会导致虚拟机网络受限；</span><br><span class="line">3. VMWARE NAT Service：NAT 服务（on）；</span><br><span class="line">4. VMWARE USB Arbitration Service：虚拟机 USB 设备启动识别（手动 &gt;&gt; off）；</span><br><span class="line">5. VMWARE Workstation Server: 虚拟机共享服务关掉后，会自动禁用。</span><br></pre></td></tr></table></figure>
+
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[4] &gt;&gt;&gt; VMWare 关闭开机自启</strong></p>
+<p>Windows 开始菜单 &gt;&gt;&gt; 搜索【任务管理器】&gt;&gt;&gt; 搜索【VMware Tray】Process：</p>
+<p>然后，将其设置为【禁用】。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[5] &gt;&gt;&gt; 彻底关闭 VMWare</strong></p>
+<p>运行完虚拟机后，发现就算在关闭程序后一直开启着相应的服务，抢占系统资源，VMWare 系统托盘图标也无法关闭。</p>
+<p>VMWare 选项菜单 &gt;&gt;&gt;【编辑】&gt;&gt;&gt;【首选项】&gt;&gt;&gt;【工作区】&gt;&gt;&gt;【显示托盘图标】&gt;&gt;&gt; 改为【当虚拟机开机时】。</p>
+<p>可以看到，VMWare 系统托盘图标已经不见了~~~</p>
+<p>接着，在后台运行的进程中搜索 &gt;&gt;&gt; VMware 关键字，关闭如下进程：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. VMWARE Authorization Service</span><br><span class="line">2. VMWARE DHCP Service</span><br><span class="line">3. VMWARE NAT Service</span><br><span class="line">4. VMWARE USB Arbitration Service</span><br><span class="line">5. VMWARE Workstation Server</span><br><span class="line">6. VMware Tray Process</span><br><span class="line">7. VMWARE-Host.exe</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="New-VM-Container"><a href="#New-VM-Container" class="headerlink" title="New VM Container"></a>New VM Container</h4><p>这一小节来看，如何基于 VMWare Workstation Pro 来为 Windows/Mac/Linux OS 创建虚拟机容器（用于后续 OS 的安装）：</p>
+<p><strong>[Step 1] &gt;&gt;&gt; New Virtual Machine</strong></p>
+<p>启动 VMWare Workstation Pro，并点击 “创建新的虚拟机”：</p>
+<p><img src="https://s2.loli.net/2024/03/01/KShVq81bmYdyfkz.png"></p>
+<p><strong>[Step 2] &gt;&gt;&gt; New Virtual Machine Wizard</strong></p>
+<p>在新建虚拟机向导界面，选择自定义配置（Custom），Next：</p>
+<p><img src="https://s2.loli.net/2024/03/01/IwEOCMATRS365fj.png"></p>
+<p><strong>[Step 3] &gt;&gt;&gt; Choose the VM Hardware Compatibility</strong></p>
+<p>选择硬件兼容性，默认兼容当前 VMWare Workstation 版本，Next：</p>
+<p><img src="https://s2.loli.net/2024/03/01/ZIQNXuG7PY8WzkH.png"></p>
+<p><strong>[Step 4] &gt;&gt;&gt; Guest Operating System Installation</strong></p>
+<p>选择虚拟机中操作系统来源：光盘驱动器（ROM-Driver）/光盘镜像文件（Image File &lt;&lt;&lt; ISO File）。</p>
+<p>这里，选择稍后安装操作系统（install the operating system later），创建好的虚拟机包含一块空白硬盘。Next：</p>
+<p><img src="https://s2.loli.net/2024/03/01/NSxocZYafL1gJh3.png"></p>
+<p><strong>[Step 5] &gt;&gt;&gt; Select a Guest Operating System</strong></p>
+<p>选择后续将要在 VM 中安装的操作系统的类型，以 Linux &gt;&gt;&gt; CentOS7 为例，Next：</p>
+<p><img src="https://s2.loli.net/2024/03/01/U3SMyEWHialQ1tb.png"></p>
+<p><strong>[Step 6] &gt;&gt;&gt; Name The Virtual Machine</strong></p>
+<p>为创建的虚拟机命名（用于区分不同的 VM），并且支持修改当前 VM 的存放目录（这里我自定义了一个 VMWare 虚拟机存放仓库：<code>VMWare VMs</code>），Next：</p>
+<p><img src="https://s2.loli.net/2024/03/01/ugcDraX9FpGVRnK.png"></p>
+<p>注意 &gt;&gt;&gt; 此路径为虚拟机数据的存放点，非磁盘（OS 文件系统）存放点，数据存放点所占用宿主机的磁盘空间很小</p>
+<p><strong>[Step 7] &gt;&gt;&gt; Processor Configuration</strong></p>
+<p>为虚拟机分配 CPU，依赖物理机的处理器（CPU）情况设置（默认推荐单处理器单核），Next：</p>
+<p><img src="https://s2.loli.net/2024/03/01/svi9U6RCXIhDua7.png"></p>
+<p><strong>[Step 8] &gt;&gt;&gt; Memory For The Virtual Machine</strong></p>
+<p>为虚拟机分配内存（Memory），依赖物理机的内存情况设置（默认推荐 1 GB），Next：</p>
+<p><img src="https://s2.loli.net/2024/03/01/AQ8MUSj2ipGTquh.png"></p>
+<p><strong>[Step 9] &gt;&gt;&gt; Network Type</strong></p>
+<p>选择 VM 所连接的网络类型，默认 NAT，Next：</p>
+<p><img src="https://s2.loli.net/2024/03/01/lh1qwjsHTNzeR2n.png"></p>
+<p><strong>[Step 10] &gt;&gt;&gt; Select a Disk</strong></p>
+<p>在设置磁盘之前，可能还需要让你配置 I/O 控制器类型（LSI/LSI SAS/SCSI/BusLogic）、磁盘类型（IDE/SCISI/SATA/NVMe）等，保持默认即可。</p>
+<p>设置 VM 磁盘来源：创建一块新的虚拟硬盘/已存在的虚拟硬盘/使用物理硬盘，以支持本地访问。这里，选择为虚拟机创建一块新的虚拟磁盘：</p>
+<p><img src="https://s2.loli.net/2024/03/01/mv9cOd1PGx8iut7.png"></p>
+<p><strong>[Step 11] &gt;&gt;&gt; Specifies The Disk Capacity</strong></p>
+<p>设置 VM 的磁盘容量（默认推荐 20 GB），影响 VM 中操作系统硬盘大小，Next：</p>
+<p><img src="https://s2.loli.net/2024/03/01/LT8FucjfRnE7WDU.png"></p>
+<p><strong>[Step 11] &gt;&gt;&gt; Specifies The Disk File</strong></p>
+<p>指定磁盘文件存储名称和位置（尽量和上面虚拟机存放位置保持同一仓库下，容易管理），这里就是随后安装 Centos OS 的文件系统：</p>
+<p><img src="https://s2.loli.net/2024/03/01/kOgZjS1NcMJ48bC.png"></p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>至此，我们已经为后续的 CentOS7 OS 创建了一个名为 CentOS 7 的虚拟机（其它 OS 的 VM 同理创建）。虚拟机 GUI 如下：</p>
+<p><img src="https://s2.loli.net/2024/03/01/tUk7lug5wb38oNx.png"></p>
+<p>随后，你就可以基于虚拟机来安装 CentOS 7 操作系统了~~~</p>
+<hr>
+<h4 id="VM-Container-Config-Related"><a href="#VM-Container-Config-Related" class="headerlink" title="VM Container Config-Related"></a>VM Container Config-Related</h4><p>你可以通过虚拟机 GUI 中的【编辑虚拟机设置（Edit The Virtual Machine Settings）】来重新调整当前 VM 的硬件配置：</p>
+<p><img src="https://s2.loli.net/2024/03/01/KpzNjU8Muy31DnF.png"></p>
+<p>常见的有：移除打印机、声卡、USB 等无用硬件，以腾出更多的资源空间。</p>
+<p>👇👇👇 <strong>VM 中安装系统须知</strong> 👇👇👇</p>
+<p>其中，虚拟机光驱 <code>CD/DVD (IDE)</code> 中可用于指定期待安装的存储于本地的 “linux 安装光盘的 iso 镜像文件” 路径：</p>
+<p><img src="https://s2.loli.net/2024/03/01/7hVvjWuCyItsA8b.png"></p>
+<p>至此，关于 VMWare Workstation Pro 中虚拟机（VM）的创建和配置就完成了，你可以着手准备 Windows/Mac/Linux 等操作系统的安装了 &gt;&gt;&gt; 跳转至【Windows/Mac/Linux OS Setup】中的【Linux CentOS】小节。</p>
+<hr>
+<p>推荐阅读部分（可以帮助你快速掌握 VMWare 的使用）：</p>
+<p><strong>[1] &gt;&gt;&gt; VMWare Import/Export</strong></p>
+<p>这里来介绍 VMWare 虚拟机的导入/导出：</p>
+<p><strong>[1.1] &gt;&gt;&gt;</strong> VM Export</p>
+<p>导出（Export）虚拟机时，要确保 VM 处于关机状态。</p>
+<p>然后，通过【File】&gt;&gt;&gt;【导出为 OVF】&gt;&gt;&gt; 在弹出的窗口中选择【导出文件位置】&amp;&amp;【文件格式（.ovf或者.ova）】，点击【保存】，等待导出过程结束。</p>
+<p><code>OVA（Open Virtualization Appliance：开放虚拟化设备）</code> 和 <code>OVF（Open Virtualization Format：开放虚拟化格式）</code>均是符合某种规范的虚拟机文件，两者包含所有用于部署虚拟机的必要信息。</p>
+<p>另外需要注意的是 &gt;&gt;&gt; OVF 格式的导出目录中包含多个文件（<code>.mf</code> &amp; <strong>.ovf</strong> &amp; <code>.vmdk</code>）； OVA 格式只导出一个 <strong>.ova</strong> 文件。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[1.2] &gt;&gt;&gt;</strong> VM Import</p>
+<p>导入（Import）虚拟机，将符合规范的虚拟机文件（<code>.ova</code> &amp;&amp; <code>.ovf</code>），解析到 VMWare 管理器中运行的过程。</p>
+<p>通过【File】&gt;&gt;&gt;【打开（Open）】&gt;&gt;&gt; 定位期望导入的 VM 文件路径，点击【打开】，等待导入过程结束。</p>
+<blockquote>
+<p>你需要知道，VM 的导入/导出功能，可以实现不同虚拟机软件间（例如 Virtual Box 和 VMWare Workstation 之间），或不同设备间虚拟机的迁移。</p>
+</blockquote>
+<hr>
+<p><strong>[2] &gt;&gt;&gt; VMWare Clone</strong></p>
+<p>这里来介绍 VMWare 虚拟机克隆/复制（Clone），基于已存在 VM 快速生成一个副本：</p>
+<p>在想要复制的虚拟机上 &gt;&gt;&gt; 右键，点击【管理】&gt;&gt;&gt;【Clone（克隆）】&gt;&gt;&gt; 开启【克隆虚拟机向导】。</p>
+<p>关于【克隆虚拟机向导】的配置过程，可以参见后文【Virtual Box】章节中，【VM Container Config-Related】 小节下关于【VBox Clone】描述（类似）。</p>
+<hr>
+<p><strong>[3] &gt;&gt;&gt; VMWare Remove</strong></p>
+<p>如何删除完全无用的虚拟机，以释放资源？！！</p>
+<p>在想要删除的虚拟机上 &gt;&gt;&gt; 右键，点击【管理】&gt;&gt;&gt;【从磁盘中删除】；如果仅使用 【Remove】仅从 VMWare 管理列表移除。</p>
+<hr>
+<p><strong>[4] &gt;&gt;&gt; VMWare Group</strong></p>
+<p>对于虚拟集群或分布式环境时，而你的 VMWare 中安装有大量 VM 时，很容易造成虚拟机列表管理混乱。</p>
+<p>这时，你可以使用 VMWare Group 来为某个集群或分布式环境拉一个组，以实现有序、清晰管理。</p>
+<p>在我的计算机上 &gt;&gt;&gt; 右键，点击【新建文件夹】&gt;&gt;&gt; 为文件夹命名 &gt;&gt;&gt; 将 VM 拖入该文件夹即可。</p>
+<hr>
+<p><strong>[5] &gt;&gt;&gt; VMWare Snapshots</strong></p>
+<p>VMWare 支持虚拟机快照功能。</p>
+<p>在想要 “拍照” 的虚拟机上 &gt;&gt;&gt; 右键，点击【快照】&gt;&gt;&gt;【拍摄快照】，创建某个良好状态下的虚拟机快照，方便以后系统回退到某个快照建立时的状态。</p>
+<hr>
+<h4 id="VMWare-Tools"><a href="#VMWare-Tools" class="headerlink" title="VMWare Tools"></a>VMWare Tools</h4><p>前面提到过：VM 中安装 OS 时，会在 VM 显示屏幕下方提示你安装 <code>VMWare Tools</code>，可以极大的提升显示（分辨率）、鼠标移动、视频、文件自由复制等性能（个人桌面版强烈推荐安装）。</p>
+<p>这里，我们来看 VMWare Tools 安装详细步骤：</p>
+<p><strong>[1] &gt;&gt;&gt; Prepare VMWare Tools Package</strong></p>
+<p>你可以从 <a target="_blank" rel="noopener" href="https://customerconnect.vmware.com/cn/downloads/info/slug/datacenter_cloud_infrastructure/vmware_tools/11_x">VMWare 官网</a> 获取 VMWare Tools 的安装包，也可以直接从安装好的 VMWare Workstation Pro 目录中获取。</p>
+<p>VMWare Workstation Pro 目录（<code>F:\VMWare</code>）下有一个 <code>linux.iso</code> 压缩镜像文件，其中包含有名为 <code>VMwareTools-10.3.22-xxxxx.tar.gz</code> 的 VMWare Tools 安装包。</p>
+<p>需要注意的是 &gt;&gt;&gt;&gt; VMware Tools 须在虚拟机运行的状态下安装。</p>
+<p><strong>[2] &gt;&gt;&gt; VMWare Tools Setup</strong></p>
+<p><strong>[Step 2.1] &gt;&gt;&gt;</strong> 启动某个虚拟机，在 VMware 菜单栏里点击虚拟机选项，找到【安装 VMware tools】选项</p>
+<p><strong>[Step 2.2] &gt;&gt;&gt;</strong> 如果【安装 VMware tools】选项为灰色（无效），关闭虚拟机，打开虚拟机编辑设置选项，将【虚拟机光驱 CD/DVD (IDE)】 中使用的 ISO 映像文件指定为：<code>F:\VMWare\linux.iso</code>。</p>
+<p><strong>[Step 2.3] &gt;&gt;&gt;</strong> 重新启动虚拟机，此时再回到 [Step 2.1] 步骤，可发现【安装 VMware tools】变成了黑色可选状态。</p>
+<p><strong>[Step 2.4] &gt;&gt;&gt;</strong> 点击【安装 VMware tools】，虚拟机中弹出【是否确实要断开 CD-ROM 连接并覆盖锁定设置】&gt;&gt;&gt;【确定】。</p>
+<p><strong>[Step 2.5] &gt;&gt;&gt;</strong> 在虚拟机系统桌面/任务栏找到 CD/DVD 图标，打开后可以发现 VMWare Tools 的压缩文件，将其复制到某用户目录中（例如 <code>~/Tools</code>）。</p>
+<p><strong>[Step 2.6] &gt;&gt;&gt;</strong> 进入 <code>~/Tools</code> 目录，使用如下命令进行解压:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ~/Tools</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> tar -zxvf VMwareTools-10.3.22-15902021.tar.gz</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>[Step 2.7] &gt;&gt;&gt;</strong> 进入解压完成的目录 <code>vmware-tools-distrib</code> 中进行安装，执行如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> vmware-tools-distrib</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo ./vmware-install.pl</span></span><br></pre></td></tr></table></figure>
+
+<p>安装完成后，重启虚拟机即可。你会发现，虚拟机系统已经自动自适应窗口大小了。</p>
+<hr>
+<h3 id="Virtual-Box"><a href="#Virtual-Box" class="headerlink" title="Virtual Box"></a>Virtual Box</h3><p>Virtual Box 遵循 GUN GPL 协议，是开源、免费的。相较于 VMWare 界面简洁，使用更为简单。</p>
+<h4 id="VBox-Setup"><a href="#VBox-Setup" class="headerlink" title="VBox Setup"></a>VBox Setup</h4><p><a target="_blank" rel="noopener" href="https://www.virtualbox.org/">Virtual Box 官方</a> 下载网址 | &gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://www.virtualbox.org/wiki/Downloads">Download Virtual Box</a> &lt;&lt;&lt; |。</p>
+<blockquote>
+<p>如果需要用到 <code>VirtualBox RDP</code> &amp;&amp; <code>Disk Encryption</code> &amp;&amp; <code>NVMe</code> &amp;&amp; <code>PXE boot for Intel cards</code> 功能的话，可以在下载 VirtualBox Setup Package 的同时下载下面的 <font color="green">VirtualBox Oracle VM VirtualBox Extension Pack</font> 扩展包（注意扩展包和本体软件版本保持一致）。</p>
+</blockquote>
+<p>下载好 Virtual Box 安装包后，直接双击运行即可进入安装界面。安装过程较为简单，一路保持默认，需要注意的是【自定义安装路径】时保持路径中不含中文，其它【Next By Next】即可。</p>
+<p>安装成功后，初始界面如下（<code>Virtual Box 7.0.14</code>）：</p>
+<p><img src="https://s2.loli.net/2024/03/01/iFCDlWacbOxuJVh.png"></p>
+<p>你可以通过 <strong>Tools</strong> 右侧的缩略标识图标，打开其下级菜单（菜单中显示 VBox 中目前支持的工具项）：</p>
+<ul>
+<li><font color="red">Welcome（欢迎/主页）</font>：包含 VMBox 全局设定（Preferences）、虚拟机导入/导出（Import/Export）、虚拟机注册（Add）和新建（New）；</li>
+<li><font color="red">Media（介质）</font>：支持虚拟 硬盘（Hard Disk）/光盘（CD/ROM）/软盘（Floppy Disk） 的 &gt;&gt;&gt; 注册（Add）/创建（Create）/查看属性（Properties）/… 等；</li>
+<li><font color="red">Network（网络）</font>：Host Only 网络的创建（Create）/卸载（Remove）/查看属性（Properties）；</li>
+<li><font color="red">Extensions（拓展）</font>：支持额外扩展（例如：VM VirtualBox Extension Pack）的 &gt;&gt;&gt; 安装（Install）/卸载（Uninstall）；</li>
+<li><font color="red">Cloud/Activities …</font></li>
+</ul>
+<blockquote>
+<p>Tools 中提供的工具项，和【File】选项菜单中支持的功能项对应，保持在其中任一地方进行操作即可。</p>
+</blockquote>
+<p>👇👇👇 VMWARE 安装验证 👇👇👇</p>
+<p>Windows 开始菜单中，搜索【网络连接】&gt;&gt;&gt; 在打开的连接界面中看到 <code>VirtualBox Host-Only Ethernet Adapter</code> 网卡，表明安装成功。</p>
+<hr>
+<h4 id="VBox-Config-Related"><a href="#VBox-Config-Related" class="headerlink" title="VBox Config-Related"></a>VBox Config-Related</h4><p>VMware Box 配置相关：</p>
+<p><strong>[1] &gt;&gt;&gt; Preferences（全局设定）</strong></p>
+<p>常规（自定义虚拟机默认安装位置）；热键（Ctrl + Alt 释放虚拟机控制）；语言（Language：English/Chinese）；显示（窗口自适应）；代理（可手动设置代理或使用系统代理）。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[2] &gt;&gt;&gt; VBox Network Configuration</strong></p>
+<p>Virtual Box 支持多种网络模式：</p>
+<ul>
+<li>Not Attached；</li>
+<li>NAT</li>
+<li>NAT Network</li>
+<li>Bridged</li>
+<li>Internet Network</li>
+<li>Host-Only</li>
+<li>Generic Driver</li>
+</ul>
+<p><font color="red">↓↓↓↓↓↓ Host-Only ↓↓↓↓↓↓</font></p>
+<p>你还可以通过【File（管理）&gt;&gt;&gt; Tools（工具）】&gt;&gt;&gt;【Network Manager（网络管理器）&gt;&gt;&gt; Host-Only Networks】，直接添加一个 Host-Only 网络：</p>
+<p><img src="https://s2.loli.net/2024/03/03/BNPDQCLujaEpq41.png"></p>
+<p>如果不小心将默认的 <code>VirtualBox Host-Only Ethernet Adapter/Adapter #2</code> 网卡卸载，可以在【Host-Only Network】中重新添加，然后使用【自动配置网卡】进行恢复。</p>
+<p><font color="red">↓↓↓↓↓↓ NAT  Network ↓↓↓↓↓↓</font></p>
+<p>你可以通过启动 【Network Manager（网络管理器）&gt;&gt;&gt; NAT Networks】，直接添加一个 NAT Network（添加的是 NAT 网络，而非 NAT）：</p>
+<p><img src="https://s2.loli.net/2024/03/03/IJEB2aGyTVzuCSl.png"></p>
+<p>需要注意的是 &gt;&gt;&gt; 不同于 VMware 的 VMnet8 网卡（NAT），在系统的【网络连接】中 VirtualBox 下 NAT 网卡（适配器）不可见。</p>
+<p>关于 VBox 其它网络模式，以及更详细的网络模式配置学习，请跳转至后文【Virtual Machine NETCONF】中关于 VBox 网络配置的描述。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[3] &gt;&gt;&gt; Virtual Media Manager</strong></p>
+<p>创建虚拟机时，会让你设置虚拟硬盘（将用来存储 OS 文件系统）配置：</p>
+<p><img src="https://s2.loli.net/2024/03/02/tdqLsnJBhAoHD49.png">、</p>
+<p>如果你选择的是：先不设置，创建虚拟机后通过介质（Media）进行单独添加。那么，你需要通过【Tools（工具）】&gt;&gt;&gt;【Media（介质）】单独创建一块虚拟硬盘：</p>
+<p><img src="https://s2.loli.net/2024/03/02/JuslhatEwjvL7Uc.png"></p>
+<p>事实上，通过 Media（介质）单独创建虚拟硬盘的过程，和创建虚拟机时直接创建一块虚拟硬盘完全一样，你可以参考【New VM Container】&gt;&gt;&gt;【[Step 4] &gt;&gt;&gt; Hard Disk】中描述。</p>
+<p><img src="https://s2.loli.net/2024/03/03/qDY6rGdoKMcTmxR.png"></p>
+<p>可见，我们创建除了一块名为 <code>NewVirtualDisk.vdi</code> 的虚拟硬盘，当你将鼠标移至上面时可以看到：<code>Attached to：No Attached</code>，说明该硬盘没有被 VM 使用。如果有别人给的虚拟硬盘文件在这里找不到，可以注册（Add）一下，或者还没有创建的话点击创建（Create）。</p>
+<p>接下来，就是为 VM 添加 <code>NewVirtualDisk.vdi</code> 虚拟硬盘，通过 VM【Settings（设置）】&gt;&gt;&gt;【Storage（存储）】&gt;&gt;&gt;【Container：SATA（控制器：SATA）】&gt;&gt;&gt;【Add Attachment（添加新盘）】即可。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[4] &gt;&gt;&gt; USB Devices</strong></p>
+<p>如果想要在虚拟机中使用 USB 设备，你需要为 Virtual Box 安装 <code>VirtualBox Extension Pack</code> 扩展：</p>
+<p>Virtual Box 【File（管理）】&gt;&gt;&gt;【Tools（工具）】&gt;&gt;&gt;【Extension Pack Manager（扩展管理器）】&gt;&gt;&gt;【Install（安装）】，定位 <code>VirtualBox Extension Pack</code> 扩展包存储位置，选择进行安装：</p>
+<p><img src="https://s2.loli.net/2024/03/03/tPjh4flnG5ODgUA.png"></p>
+<p>然后在虚拟机关机的情况下再【Settings（设置）】&gt;&gt;&gt; 【USB】 &gt;&gt;&gt;【Enable USB Controller（启用 USB 控制器）】，这个 USB 控制器需要根据你电脑和设备来选择（现在来说常见的都是 USB 3.0，如果后面过程中有问题的话可以再换 USB 2.0 试试）。</p>
+<p>完成设置后，重启动虚拟机，从启动的 VM 界面的【Devices（设备）】&gt;&gt;&gt; 下拉，从检测到的【USB】列表中，选择已经插到电脑上的 USB 设备了（例如 U 盘、键盘、鼠标等）。</p>
+<hr>
+<h4 id="New-VM-Container-1"><a href="#New-VM-Container-1" class="headerlink" title="New VM Container"></a>New VM Container</h4><p>这一小节来看，如何基于 Virtual Box 来为 Windows/Mac/Linux OS 创建虚拟机容器（用于后续 OS 的安装）：</p>
+<p><strong>[Step 1] &gt;&gt;&gt; New Virtual Machine</strong></p>
+<p>启动 Virtual Box，Tools Welcome 中并点击 “创建（New）” 来创建虚拟机：</p>
+<p><img src="https://s2.loli.net/2024/03/01/iFCDlWacbOxuJVh.png"></p>
+<p><strong>[Step 2] &gt;&gt;&gt; Create Virtual Machine</strong></p>
+<p>在新建虚拟机界面，配置虚拟机的名称和系统类型（Name and Operating System）:</p>
+<ul>
+<li>Name（名称）</li>
+<li>Machine Folder（虚拟机存放）</li>
+<li>Type（类型）</li>
+<li>Version（版本）</li>
+</ul>
+<p>注意 &gt;&gt;&gt; 此路径（Folder）为虚拟机数据的存放点，非磁盘（OS 文件系统）存放点，数据存放点所占用宿主机的磁盘空间很小。</p>
+<p><img src="https://s2.loli.net/2024/03/02/2Vhgx3pOJy6u8FC.png"></p>
+<p>Next…</p>
+<p>接下来是设置虚拟硬件配置（Hardware），包括：Memory &amp;&amp; Processors</p>
+<p><strong>[Step 3] &gt;&gt;&gt; Memory Size &amp;&amp; Processors</strong></p>
+<p>为虚拟机分配内存（Memory），依赖物理机的内存情况设置（默认推荐 1 GB），Next：</p>
+<p><img src="https://s2.loli.net/2024/03/02/6DnVZQqBPLaicMp.png"></p>
+<p>根据 VMBox 版本的不同，可能会将 CPU Processors 的配置放在 VM 创建之后，通过 VM 的【设置】进行配置（这里不要疑惑为什么不配置 CPU）。</p>
+<p><strong>[Step 4] &gt;&gt;&gt; Hard Disk</strong></p>
+<p>虚拟硬盘（将用来存储 OS 文件系统）配置：</p>
+<p><img src="https://s2.loli.net/2024/03/02/tdqLsnJBhAoHD49.png"></p>
+<blockquote>
+<p>你可以选择暂时先不设置，VM 创建完成之后，跳转至【VBox Config-Related】下【Virtual Media Manager】中配置虚拟硬盘。</p>
+</blockquote>
+<p>这里保持默认，选中在当前直接创建硬盘，Create（创建）。接下来会让你配置 &gt;&gt;&gt; 虚拟硬盘的文件类型 &amp;&amp; 虚拟硬盘文件在物理硬盘中的存储方式 &amp;&amp; 虚拟硬盘文件存放位置和容量大小。</p>
+<p><strong>Hard disk file type</strong> &gt;&gt;&gt; 配置虚拟硬盘的文件类型：</p>
+<p><img src="https://s2.loli.net/2024/03/02/3uLMpTN4fQbvPl5.png"></p>
+<p><strong>Storage On Physical Hard Disk</strong> &gt;&gt;&gt; 配置虚拟硬盘文件在物理硬盘中的存储分配方式:</p>
+<p><img src="https://s2.loli.net/2024/03/02/yLoGsORhAUFTIHQ.png"></p>
+<p><font color="red">Dynamically Allocated（动态分配）</font> &gt;&gt;&gt; 假设虚拟硬盘文件在实际硬盘中能用的极限大小是 10G：选择动态分配的话，虚拟硬盘在实际硬盘中占用的空间是 <code>0~10G</code>。</p>
+<p><font color="red">Fixed Size（固定大小）</font> &gt;&gt;&gt; 假设虚拟硬盘文件在实际硬盘中能用的极限大小是 10G：选择固定大小的话，虚拟硬盘占用实际硬盘的大小永远是 10G，无论空间是否全部使用。</p>
+<p><strong>File Location And Size</strong> &gt;&gt;&gt; 配置虚拟硬盘文件存放位置和容量大小:</p>
+<p><img src="https://s2.loli.net/2024/03/02/PikOJF98eQR1lzn.png"></p>
+<p>Create… 成功了~~~</p>
+<p>| ================================================== Split Line =============================================== |</p>
+<p>至此，我们已经为后续的 Ubuntu OS 创建了一个名为 Ubuntu2004 的虚拟机（其它 OS 的 VM 同理创建）。虚拟机 GUI 如下：</p>
+<p><img src="https://s2.loli.net/2024/03/02/KaJIxbO1cqRZWl5.png"></p>
+<p>VM Box 中虚拟机（VM）支持三种启动（Start）方式：</p>
+<ul>
+<li>Normal Start（正常启动）：有界面启动，关闭界面既关闭虚拟机；</li>
+<li>Headless Start（无界面启动）：仅在后台启动虚拟机，可用 Shell 工具去连接；</li>
+<li>Detached Start（分离式启动）：有界面启动，关闭界面不会关闭虚拟机</li>
+</ul>
+<p>此时，如果使用 Normal Start 启动 Ubuntu2004 虚拟机会提醒你：<code>FATAL: no bootable medium found! System halted</code> &lt;&lt;&lt; 磁盘盘未发现可启动的媒介，你需要安装 OS 后启动。</p>
+<p>随后，你就可以基于此虚拟机来安装 CentOS 7 操作系统了~~~</p>
+<hr>
+<h4 id="VM-Container-Config-Related-1"><a href="#VM-Container-Config-Related-1" class="headerlink" title="VM Container Config-Related"></a>VM Container Config-Related</h4><p>你可以通过虚拟机 GUI 中的【编辑虚拟机设置（Edit The Virtual Machine Settings）】来重新调整当前 VM 的硬件配置：</p>
+<p><img src="https://s2.loli.net/2024/03/02/u157OGQmXCytvNf.png"></p>
+<p>常见的有：移除打印机、声卡、USB 等无用硬件，以腾出更多的资源空间。</p>
+<p>👇👇👇 <strong>VM 中安装系统须知</strong> 👇👇👇</p>
+<p>其中，虚拟机光驱（Storage &gt;&gt;&gt; Controller: IDE）中可用于指定期待安装的存储于本地的 “linux 安装光盘的 iso 镜像文件” 路径：</p>
+<p><img src="https://s2.loli.net/2024/03/02/4x5Ph9XVyvukJcR.png"></p>
+<p>至此，关于 Virtual Box 中虚拟机（VM）的创建和配置就完成了，你可以着手准备 Windows/Mac/Linux 等操作系统的安装了 &gt;&gt;&gt; 跳转至【Windows/Mac/Linux OS Setup】中的【Linux Ubuntu】小节。</p>
+<hr>
+<p>推荐阅读部分（可以帮助你快速掌握 VMBox 的使用）：</p>
+<p><strong>[1] &gt;&gt;&gt; VBox Import/Export/Add</strong></p>
+<p>这里来介绍 VBox 虚拟机的注册，以及导入/导出：</p>
+<p><strong>[1.1] &gt;&gt;&gt;</strong> VM Add</p>
+<p>注册（Add）虚拟机，是将现有 VirtualBox 虚拟机目录，加载到 VirtualBox 管理器中运行的过程。</p>
+<p>你可以通过【Add（注册）】&gt;&gt;&gt; 找到【VBox 虚拟机目录】，进入 &gt;&gt;&gt; 选择 VBox 虚拟机目录中的【<code>*.vbox</code>】文件打开，即可完成注册操作。</p>
+<p>VirtualBox 虚拟机目录可以以压缩包形式发布（降低体积，避免拷贝目录的过程丢失文件）；使用时，解压到 VirtualBox VM 默认位置下，VBox 注册 VM 之后版可以使用和管理。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[1.2] &gt;&gt;&gt;</strong> VM Export</p>
+<p>导出（Export）虚拟机时，要确保 VM 处于关机状态。</p>
+<p>然后，通过【导出（Export）】&gt;&gt;&gt; 从【Virtual Machine】列表中选择要导出的 VM，点击 Next，设置文件导出格式：</p>
+<p><img src="https://s2.loli.net/2024/03/02/JnISKBXN1GLsFam.png"></p>
+<p><code>OVA（Open Virtualization Appliance：开放虚拟化设备）</code> 和 <code>OVF（Open Virtualization Format：开放虚拟化格式）</code>均是符合某种规范的虚拟机文件，两者包含所有用于部署虚拟机的必要信息。</p>
+<p>另外需要注意的是 &gt;&gt;&gt; OVF 格式的导出目录中包含多个文件（<code>.mf</code> &amp; <strong>.ovf</strong> &amp; <code>.vmdk</code>）； OVA 格式只导出一个 <strong>.ova</strong> 文件。</p>
+<p>Next… 之后，会让你补充输入一些关于导出虚拟机的信息，给使用该虚拟机的用户使用。最后点击【Export】，等待导出过程结束。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[1.3] &gt;&gt;&gt;</strong> VM Import</p>
+<p>导入（Import）虚拟机，将符合规范的虚拟机文件（<code>.ova</code> &amp;&amp; <code>.ovf</code>），解析到 VirtualBox 管理器中运行的过程。</p>
+<p>通过【导入（Import）】&gt;&gt;&gt; 定位期望导入的 VM 文件路径，点击 Next，即可查看到导入虚拟机的信息：</p>
+<p><img src="https://s2.loli.net/2024/03/02/cCef2G5zN8A4Y6J.png"></p>
+<p>此时，你可以根据你的主机实际配置，进行相应虚拟机配置修改的。确认导入信息后，点击【Import（导入）】，等待导入过程结束。</p>
+<blockquote>
+<p>你需要知道，VM 的导入/导出，可以实现不同虚拟机软件间（例如 Virtual Box 和 VMWare Workstation 之间），或不同设备间虚拟机的迁移。</p>
+</blockquote>
+<hr>
+<p><strong>[2] &gt;&gt;&gt; VBox Clone</strong></p>
+<p>这里来介绍 VBox 虚拟机克隆/复制（Clone），基于已存在 VM 快速生成一个副本：</p>
+<p>在想要复制的虚拟机上 &gt;&gt;&gt; 右键，点击【Clone（复制）】：</p>
+<p><img src="https://s2.loli.net/2024/03/02/vPZkzsSJc83epNT.png"></p>
+<p>此时，需要指定 VM 副本的名称和存储位置；MAC Address Policy（MAC 地址设定） 建议使用 &gt;&gt;&gt; 为所有网卡重新生成 MAC 地址。</p>
+<p>Next …</p>
+<p>设置克隆/复制方式（推荐默认 “完全复制” Or “链接复制” 受限），Clone 等待复制过程完成：</p>
+<p><img src="https://s2.loli.net/2024/03/02/NeJToBIj2vKfOXH.png"></p>
+<hr>
+<p><strong>[3] &gt;&gt;&gt; VBox Remove</strong></p>
+<p>如何删除完全无用的虚拟机，以释放资源？！！</p>
+<p>在想要删除的虚拟机上 &gt;&gt;&gt; 右键，点击【Remove（删除）】&gt;&gt;&gt; 选择 “Delete all files（从磁盘删除所有相关文件）” 或者 “Remove Only（仅从 VBox 管理列表移除）”。</p>
+<hr>
+<p><strong>[4] &gt;&gt;&gt; VBox Group</strong></p>
+<p>对于虚拟集群或分布式环境时，而你的 VBox 中安装有大量 VM 时，很容易造成虚拟机列表管理混乱。</p>
+<p>这时，你可以使用 VBox Group 来为某个集群或分布式环境拉一个组，以实现有序、清晰管理。</p>
+<p>在想要建组的虚拟机上 &gt;&gt;&gt; 右键，点击【Group（编组）】&gt;&gt;&gt; 为编组重命名即可。</p>
+<hr>
+<p><strong>[5] &gt;&gt;&gt; VBox Snapshots</strong></p>
+<p>我们发现，和 Tools 类似，VM 右侧也存在缩略标识，打开其下级菜单，菜单中显示 Snapshots（快照）功能项，点击打开。</p>
+<p>也就是说，VBox 支持虚拟机快照功能，可以很方便的使用【Take（生成）】按键，创建某个良好状态下的虚拟机快照，方便以后系统回退到某个快照建立时的状态。</p>
+<hr>
+<h4 id="VBox-GAs-Function"><a href="#VBox-GAs-Function" class="headerlink" title="VBox GAs Function"></a>VBox GAs Function</h4><p>VM 中安装 OS 时，VBox GAs Function（VBox 增强功能）可以极大的提升显示（分辨率）、鼠标移动、视频、文件自由复制等性能（个人桌面版强烈推荐安装）。</p>
+<p>这里，我们来看 VBox 增强功能安装详细步骤：</p>
+<p><strong>[Step 2.1] &gt;&gt;&gt;</strong> 启动某个虚拟机，在 VM 菜单栏里点击设备选项，找到【Insert Guest Additions CD Image】选项，点击。</p>
+<p><strong>[Step 2.2] &gt;&gt;&gt;</strong> 虚拟机中会自动弹出：<code>VBox_GAs intended to be automatically started</code>，询问你是否自动安装？&gt;&gt;&gt;【Run】。</p>
+<p><img src="https://s2.loli.net/2024/03/03/OkunCf4XBbcrGaL.png"></p>
+<p><strong>[Step 2.3] &gt;&gt;&gt;</strong> 用户授权，输入用户密码后，开始自动安装，等待安装结束：</p>
+<p><img src="https://s2.loli.net/2024/03/03/ERiBHJLd8lYpOAt.png"></p>
+<p>根据提示信息（<code>Press Return to close the windows...</code>），输入 <code>return</code> 推出当前 Terminal。</p>
+<p><strong>[Step 2.4] &gt;&gt;&gt;</strong> 弹出 VBox_GAs ISO 光盘文件，重启虚拟机即可。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<blockquote>
+<p>如果 Ubuntu 系统版本不支持自动安装，你可以通过打开检测到的 VBox_GAs 光盘目录，空白位置 <code>open in terminal</code>，然后执行如下命令即可：</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo chmod +x autorun.sh</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./autorun.sh</span></span><br></pre></td></tr></table></figure>
+
+<p>或者你可参照上文【VMWare Tools】章节中关于 VMWare Tools 的手动安装过程，完全类似。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>VBox 增强功能</strong> 👇👇👇</p>
+<ul>
+<li><font color="red">分辨率自适应</font>：VM &gt;&gt;&gt; [View（视图）] &gt;&gt;&gt; [Auto-resize Guest Display（自动调整显示尺寸）] &lt;&lt;&lt; VM Ubuntu 界面自动填充窗口；</li>
+<li><font color="red">粘贴版共享</font>：VM &gt;&gt;&gt; [Devices（设备）] &gt;&gt;&gt; [Shared Clipboard（共享粘贴版）] &gt;&gt;&gt; [Bidirectional（双向）] &lt;&lt;&lt; 跨系统复制粘贴；</li>
+<li><font color="red">文件夹共享</font>：VM &gt;&gt;&gt; [Devices（设备）] &gt;&gt;&gt; [Shared Folder（共享文件夹）] &gt;&gt;&gt; [Shared Folder Settings（共享文件夹设置）]，如下：</li>
+</ul>
+<p><img src="https://s2.loli.net/2024/03/03/gedjvDs1kNIclXu.png"></p>
+<p>重启后，通过如下命令可以在 VM 的文件管理器中看到共享文件夹：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> orange 为你的用户名：</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo usermod -aG vboxsf orange</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><font color="red">文件拖放</font>：VM &gt;&gt;&gt; [Devices（设备）] &gt;&gt;&gt; [Drag and Drop（拖放）] &gt;&gt;&gt; [Bidirectional（双向）] &lt;&lt;&lt; 跨系统文件拖放；</li>
+</ul>
+<hr>
+<h3 id="Win-Mac-Linux-OS-Setup"><a href="#Win-Mac-Linux-OS-Setup" class="headerlink" title="Win/Mac/Linux OS Setup"></a>Win/Mac/Linux OS Setup</h3><p>这一小节，我们来看如何基于 VMWare 已经创建好的 VM，来完成 Windows/Mac/Linux 等操作系统的安装以及配置。总共分为四个步骤：</p>
+<ol>
+<li>准备 Windows/Mac/Linux OS Image File（ISO）镜像文件；</li>
+<li>准备 Windows/Mac/Linux OS 相应的虚拟机（VM）；</li>
+<li>VM 中完成 Windows/Mac/Linux OS 等的安装；</li>
+<li>Windows/Mac/Linux OS 配置。</li>
+</ol>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>以 CentOS7 的安装和配置过程为例，进行详细讲解：</p>
+<h4 id="Linux-CentOS"><a href="#Linux-CentOS" class="headerlink" title="Linux CentOS"></a>Linux CentOS</h4><p>正式安装：</p>
+<p><strong>[Step 1] &gt;&gt;&gt; 准备 CentOS 7 Image File（ISO）</strong></p>
+<p>前往 <a target="_blank" rel="noopener" href="https://www.centos.org/">CentOS 官网</a> 下载 <code>CentOS-7</code> 镜像文件（ISO）：</p>
+<p><img src="https://s2.loli.net/2024/03/01/syOIfTiaRZnJgL3.png"></p>
+<p>选择 CentOS Linux &gt;&gt;&gt; x86_64，任意选择一个镜像站下载地址（<a target="_blank" rel="noopener" href="https://wiki.centos.org/Download.html">Other Version</a>）：</p>
+<p><img src="https://s2.loli.net/2024/03/01/XASN342vPrTsElg.png"></p>
+<p>进去后，选择期望版本的镜像文件进行下载：</p>
+<p><img src="https://s2.loli.net/2024/03/01/lt2cygmTRNkwXCF.png"></p>
+<p>👇👇👇 <strong>CentOS ISO 镜像文件</strong> 👇👇👇</p>
+<ol>
+<li>CentOS-7-DVD 版本：DVD 是标准安装盘，通常下载选择；</li>
+<li>CentOS-7-Everything 版本：对完整版安装盘的软件进行补充，集成了所有软件；</li>
+<li>CentOS-7-NetInstall 版本：网络安装镜像；</li>
+<li>CentOS-7-GnomeLive 版本：GNOME 桌面版；</li>
+<li>CentOS-7-KDELive 版本：KDE 桌面版；</li>
+<li>CentOS-7.0-LiveCD 版本：光盘上运行的系统，类拟于 WINpe；</li>
+<li>CentOS-7.x-x86_64-Minimal 版本：精简版，自带的软件最少，最小安装。</li>
+</ol>
+<p>一般，不会从 Centos 官网下载页面下载镜像文件（很慢），而是下载其 BT 种子文件（<code>CentOS-7.torrent</code>），然后使用 Thunder 等 BT 下载工具进行下载，速度飞起！！！</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[Step 2] &gt;&gt;&gt;  准备 CentOS VM</strong></p>
+<p>使用 VMWARE Workstation Pro 创建 CentOS 7 的虚拟机：</p>
+<p>具体过程见前文【New VM Container】&amp;&amp;【VM Container Config-Related】，这里不进行赘述。</p>
+<p><font color="red">↓↓↓↓↓↓ 需要注意的是 ↓↓↓↓↓↓</font></p>
+<p>你需要在 VM 的虚拟机光驱 CD/DVD (IDE) 中指定 CentOS 7 存储于本地的 “linux 安装光盘的 iso 镜像文件（如 <code>CentOS-7-x86_64-DVD-2003.iso</code>）” 路径：</p>
+<p><img src="https://s2.loli.net/2024/03/01/7hVvjWuCyItsA8b.png"></p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[Step 3] &gt;&gt;&gt; CentOS7 Setup In CentOS7-VM</strong></p>
+<p>注意：VM 中安装 OS 时，会在 VM 显示屏幕下方提示你安装 <code>VMWare Tools</code>，以提升鼠标移动、视频和性能（个人桌面版推荐安装）。</p>
+<p><strong>[3.1] &gt;&gt;&gt;</strong> 启动 CentOS 7 VM 虚拟机（此时，想要在虚拟机中进行操作，需要将是鼠标移入到虚拟机中 Left Click），选择【Install CentOS 7】，Enter：</p>
+<p><img src="https://s2.loli.net/2024/03/01/h6IxYvmwETWjS9f.png"></p>
+<blockquote>
+<p>如果启动报错：内部错误/Device Guard 不兼容，可以参考【Reff Issue】中 Problem 3/4 中描述。</p>
+</blockquote>
+<p>等待安装自检过程：</p>
+<p><img src="https://s2.loli.net/2024/03/01/WXpiMmkUC6jNzrh.png"></p>
+<p><strong>[3.2] &gt;&gt;&gt;</strong> 自检完成后，将自动加载 CentOS 图形化安装界面：</p>
+<p><img src="https://s2.loli.net/2024/03/01/AH7hdSNVjsJ4QMK.png"></p>
+<p>这里首先会让你选择图形化安装界面的语言（看不懂怎么进行后续的安装？），支持在搜索框中进行语言搜索。</p>
+<p>Continue…</p>
+<p><strong>[3.3] &gt;&gt;&gt;</strong> LOCALIZATION &amp;&amp; SOFTWARE</p>
+<p>接下来会让你配置本地化（Localization）&amp;&amp; 应用程序（Software）：</p>
+<p><img src="https://s2.loli.net/2024/03/01/qgHczlpnkPa2rjK.png"></p>
+<p>其中，本地化（Localization）中可配置内容包括：Data&amp;Time（时区） &amp;&amp; KeyBoard（键盘模式） &amp;&amp; Language Support（语言）。</p>
+<p>在应用程序（Software）配置中需要关注：Software Selection（默认 Minimal Install，最小化安装）：</p>
+<p><img src="https://s2.loli.net/2024/03/01/iHID5JdhV6zOscp.png"></p>
+<p>当然，你可以根据当前 CentOS 虚拟服务器的用途（计算节点/网络服务器/文件服务器/网页服务器）进行选择。如果是作为个人桌面，推荐 <code>GNOME Desktop</code> 或 <code>KDE Plasma Workspaces</code>。</p>
+<p><strong>[3.4] &gt;&gt;&gt;</strong> SYSTEM</p>
+<p>接下来会让你配置系统（System），提示选中自动分区：</p>
+<p><img src="https://s2.loli.net/2024/03/01/6cpkrCy8D9HbMZi.png"></p>
+<p>在系统（System）配置中，你须要关注（否则无法开启安装）：Installation Destination（安装目标位置，和分区相关）：</p>
+<p><img src="https://s2.loli.net/2024/03/01/pz7rOcQdm8VnvXu.png"></p>
+<p>可以看到，目前虚拟机中有一块 15 GB 的虚拟硬盘 <code>sda</code>，其默认的分区方式采用：自动分区（Automatically Configure partitioning）。如果想使用默认的磁盘分区，直接点击左上角的【完成（Done）】按钮即可。</p>
+<blockquote>
+<p>如果新手安装 Linux 系统，推荐使用磁盘分区默认设置（Recommended）。</p>
+</blockquote>
+<p>事实上，更多时候，我们想要对磁盘进行：自定义分区（I Will Configure partitioning）。</p>
+<p>你可以通过选中要分区磁盘，然后才可以修改其分区方式（partitioning），然后 Done，进入手动分区界面:</p>
+<p><img src="https://s2.loli.net/2024/03/01/1ukZObmQV94NJ8L.png"></p>
+<p>篇幅原因，关于磁盘的手动分区操作，请参见下文【Linux Disk Partition】中描述。</p>
+<p>分区结束后（Done），发现【开始安装（Begin Installation）】按钮已激活…</p>
+<p><strong>[3.4] &gt;&gt;&gt;</strong> USER SETTINGS</p>
+<p>接下来系统开始安装（下方进度条显示），此时提示未设置 ROOT 密码和未创建用户，你可以进行系统用户配置：User Settings</p>
+<p><img src="https://s2.loli.net/2024/03/01/df9jClEU8iLG5DB.png"></p>
+<p>单击 “ROOT 密码” 进行设置，两次输入后点击 “完成” 即可设置完毕 ROOT 密码。</p>
+<p>等待安装完成，提示 Reboot（重启）…</p>
+<p>重启 VM，进入选择系统界面：</p>
+<p><img src="https://s2.loli.net/2024/03/01/OHnN4jvXzCkrYtc.png"></p>
+<p>你可能需要将 VM 设置中【CD/DVD（SATA）】&gt;&gt;&gt;【连接】中的【使用 ISO 映像文件】修改为【使用物理驱动器（自动检测）】，否者 ISO 文件会一直被挂载在 CD-ROM 中。如果你安装的是 Desktop 版本，你会在桌面/任务栏上看到 IOS 光盘镜像文件图标。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[Step 4] &gt;&gt;&gt; Centos Quick Config</strong></p>
+<p>关于 Centos 的快速配置指南，可以参考 | &gt;&gt;&gt; <a href="https://www.orangeshare.cn/2015/04/01/centos-server-quick-configuration-guide/">CentOS Server: Quick Configuration Guide</a> &lt;&lt;&lt; | 中描述，以完成 Centos 的初步配置。</p>
+<p>至此，基于 VMWare Workstation Pro 虚拟机工具进行 CentOS7 虚拟机的安装和配置就完结了，你已经可以使用 CentOS 7 了~~~</p>
+<hr>
+<h4 id="Linux-Ubuntu"><a href="#Linux-Ubuntu" class="headerlink" title="Linux Ubuntu"></a>Linux Ubuntu</h4><p>以 Ubuntu 20.04 的安装和配置过程为例，进行详细讲解：</p>
+<p>正式安装：</p>
+<p><strong>[Step 1] &gt;&gt;&gt; 准备 Ubuntu2004 Image File（ISO）</strong></p>
+<p>不建议从 <a target="_blank" rel="noopener" href="https://ubuntu.com/">Ubuntu 官网</a> 下 <code>Ubuntu ISO</code>，下载速度实在太慢：</p>
+<p><img src="https://s2.loli.net/2024/03/02/X6C1qwnjIMt4h25.png"></p>
+<p>推荐使用国内镜像站下载 | &gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/">阿里云官方镜像站</a> 或者 <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/">清华大学开源软件镜像站</a> &lt;&lt;&lt; | 下载 Ubuntu 20.04 镜像文件（ISO）。可以在镜像站中搜索 &gt;&gt;&gt;【ubuntu-release】仓库 &gt;&gt;&gt; 从仓库中选择合适版本的 Ubuntu ISO 文件进行下载：</p>
+<p><img src="https://s2.loli.net/2024/03/02/lcM5XLCqD3sNp1v.png"></p>
+<p>你可以直接下载其 BT 种子文件（Ubuntu-20.04.6.torrent），然后使用 Thunder 等 BT 下载工具进行下载，速度飞起！！！</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[Step 2] &gt;&gt;&gt; 准备 Ubuntu2004 VM</strong></p>
+<p>使用 Virtual Box 创建 Ubuntu 20.04 的虚拟机：</p>
+<p>具体过程见前文【New VM Container】&amp;&amp;【VM Container Config-Related】，这里不进行赘述。</p>
+<p><font color="red">↓↓↓↓↓↓ 需要注意的是 ↓↓↓↓↓↓</font></p>
+<p>你需要在 VM Storage 下虚拟光盘 (Controller：IDE) 中指定 Ubuntu 20.04 存储于本地的 “linux 安装光盘的 iso 镜像文件（如 <code>Ubuntu-20.04.6-desktop-amd64.iso</code>）” 路径：</p>
+<p><img src="https://s2.loli.net/2024/03/02/4x5Ph9XVyvukJcR.png"></p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[Step 3] &gt;&gt;&gt; Ubuntu20.04 Setup In Ubuntu2004-VM</strong></p>
+<p>注意：VM 中安装 OS 时，会在 VM 显示屏幕下方提示你安装 VBox 增强功能，以提升鼠标移动、视频和性能（个人桌面版推荐安装）等。</p>
+<p>[3.1] &gt;&gt;&gt; 启动 Ubuntu2004 VM 虚拟机（此时，想要在虚拟机中进行操作，需要将是鼠标移入到虚拟机中 Left Click），等待安装自检过程：</p>
+<p><img src="https://s2.loli.net/2024/03/02/b5cMoAUfnKmXwky.png"></p>
+<p>进入 Ubuntu 图形化安装界面：</p>
+<p><img src="https://s2.loli.net/2024/03/02/ai6ArJb3USgcDLs.png"></p>
+<blockquote>
+<p>如果一直卡在黑屏无法，可以调大内存 Memory &amp;&amp; Video Memory &amp;&amp; 启用 3D 加速（Enable 3D Acceleration）。还有可能是 Win11 OS 对较老版本的 Virtual Box 支持不太好（我遇到过在 VMWare &amp;&amp; VBox 相同配置情况下安装 Ubuntu Desktop：VMWare 正常，而 VBox 卡的怀疑人生），可以选择更新 Virtual Box。</p>
+</blockquote>
+<p>Ubuntu Desktop &amp;&amp; Server 的具体的安装过程可参照官网给出：</p>
+<ul>
+<li>Ubuntu Desktop &gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://ubuntu.com/tutorials/install-ubuntu-desktop">Install Ubuntu Desktop</a></li>
+<li>Ubuntu Server &gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://ubuntu.com/tutorials/install-ubuntu-server">Install Ubuntu Server</a></li>
+</ul>
+<p>安装结束后 Reboot 可能重新进入系统安装界面，此时可能需要你关闭 VM，然后修改虚拟机配置【System（系统）】下的【Boot Order（引导顺序）】中【Hard Disk（虚拟硬盘）】为第一优先启动，否者重启 VM 后会一直重新安装。</p>
+<p>同时，你可以将 VM 配置中【存储（Storage）】&gt;&gt;&gt;【控制器：IDE（Controller：IDE）】中系统的 IOS 光盘镜像文件移除（Controller：IDE &gt;&gt;&gt; Empty），否者 ISO 文件会一直被挂载在 CD-ROM 中。如果你安装的是 Desktop 版本，你会在桌面/任务栏上看到 IOS 光盘镜像文件图标。</p>
+<p>教程非常详尽，但需要注意的是 &gt;&gt;&gt; 关于磁盘的手动分区操作，请参见下文【Linux Disk Partition】中描述。</p>
+<hr>
+<p><strong>[Step 4] &gt;&gt;&gt; Ubuntu Quick Config</strong></p>
+<p>关于 Ubuntu 的快速配置记录，请参考 | &gt;&gt;&gt; <a href="https://www.orangeshare.cn/2015/04/01/ubuntu-server-quick-configuration-guide/">Ubuntu Server: Quick Configuration Guide</a> &lt;&lt;&lt; | 中描述。</p>
+<p>至此，基于 Virtual Box 虚拟机工具进行 Ubuntu 20.04 虚拟机的安装和配置就完结了，你已经可以使用 Ubuntu 了~~~</p>
+<hr>
+<h4 id="Linux-Disk-Partition"><a href="#Linux-Disk-Partition" class="headerlink" title="Linux Disk Partition"></a>Linux Disk Partition</h4><p>手动分区前，我们先来看一下 Linux 系统 Recommended（推荐）使用的默认分区设置：</p>
+<p><font color="red">↓↓↓↓↓↓ 以 15G 磁盘空间为例 ↓↓↓↓↓↓</font></p>
+<p>默认情况下，Linux 磁盘空间被分两个区：</p>
+<ol>
+<li>BOOT 1024MiB；</li>
+<li>LVM(Logical Volume Manager，逻辑卷分区)卷组为其余的所有空间。LVM 卷组里则只有二个挂载点：A：为 SWAP 1536M（1.5*Memory），B：其他空间全划给了/（根分区）。</li>
+</ol>
+<p>而，实际使用中：</p>
+<ul>
+<li>如果硬盘空间较小的话，BOOT 分区不用分这么大，因为真正使用是 200M 左右，给 500M 已经很多了；</li>
+<li>由于当前的硬盘分区表是传统的 MBR，只要创建 /boot 挂载点即可；GPT 格式的硬盘还需要创建 biosboot 作为系统引导；</li>
+<li>对于 Swap 内存交换空间（早期，物理内存很小，需要外部磁盘充当虚拟内存以保证程序正常运行）。如果物理内存小于 2GB 则需要设置 1.5~2 倍物理内存的 swap 空间；大于 2GB 小于 4GB 物理内存的可以设置和物理内存等大的 swap 空间；大于 4GB 的可以考虑不设置 swap 空间。</li>
+<li>还可以根据实际需求进行相关挂载点的挂载，如：/home、/var、/data 等；</li>
+</ul>
+<p>👇👇👇 <strong>关于设备类型（Device Type）&amp;&amp; 文件系统（File System）</strong> 👇👇👇</p>
+<ol>
+<li>设备类型分为：标准分区（Standard Partition）、Btrfs、LVM、LVM 简单配置（LVM Thin Provisioning）</li>
+</ol>
+<ul>
+<li>Standard Partition：类似于 Windows 分区，针对真实的物理硬盘进行分区；</li>
+<li>LVM：Linux 特有的磁盘管理机制，可以忽视多磁盘和规格不同的问题，将其合为一个虚拟磁盘，以统一分区；</li>
+<li>LVM Thin Provisioning：使用默认的 LVM 配置方法；</li>
+<li>Btrfs：是 CentOS 7 的新功能，替换 ext2、ext3、ext4 文件系统；支持多物理卷、写时复制更新机制 CoW、数据校验、快照等特性。</li>
+</ul>
+<ol start="2">
+<li>文件系统格式有：ext4、ext3、ext2、swap、xfs、vfat、BIOS Boot</li>
+</ol>
+<ul>
+<li>ext4、ext3、ext2：是传统最通用的 Linux 文件系统格式；</li>
+<li>swap：是内存交换空间，辅助物理内存（将不常用的数据取出暂存到磁盘中，空出内存空间给其他程序使用）；</li>
+<li>xfs：CentOS7 默认，是一种高性能的日志文件系统；</li>
+<li>vfat：Linux 和 Windows 都支持的文件系统格式（双系统下，为了可以让文件在两个系统之间方便交换而使用）；</li>
+<li>BIOS Boot：为 GPT 格式分区表准备。</li>
+</ul>
+<p><font color="red">↓↓↓↓↓↓ 最终分区情况 ↓↓↓↓↓↓</font></p>
+<p><img src="https://s2.loli.net/2024/03/01/QmVCMZoYTHlIR2v.png"></p>
+<p>关于 Linux 系统磁盘分区更加深入的学习，可以参见系列博文【<a href="https://www.orangeshare.cn/2015/01/29/linux-disk-partitions-and-file-systems/">Linux Disk Partitions And File Systems</a>】。</p>
+<hr>
+<h3 id="Virtual-Machine-NETCONF"><a href="#Virtual-Machine-NETCONF" class="headerlink" title="Virtual Machine NETCONF"></a>Virtual Machine NETCONF</h3><p>虚拟网络模式</p>
+<h4 id="VMware-网络模式测试"><a href="#VMware-网络模式测试" class="headerlink" title="VMware 网络模式测试"></a>VMware 网络模式测试</h4><hr>
+<h2 id="Reff-Issue"><a href="#Reff-Issue" class="headerlink" title="Reff Issue"></a>Reff Issue</h2><p>问题以及其解决思路描述：</p>
+<p><strong>[1] &gt;&gt;&gt; VMWare 安装启动过程中异常</strong></p>
+<p><font color="red">Problem 1 &gt;&gt;&gt; 未开启虚拟开关</font>：有些机器在 Vmware 安装时会产生：<code>virtual XT</code> 的错误。<font color="red">1-Resolution</font> &gt;&gt;&gt; 这需要重启电脑 &lt;F2/F10/F12/DELET/…&gt; 进入 BIOS，开启虚拟开关。</p>
+<p><font color="red">Problem 2 &gt;&gt;&gt; 签名验证错误</font>：WINDOWS_8/10 系统有时会出现：<code>虚拟网卡安装失败</code> 的错误。<font color="red">2-Resolution</font> &gt;&gt;&gt; 需要关闭 Windows 的驱动程序安装签名验证，可百度查找相应关闭教程。</p>
+<p><font color="red">Problem 3 &gt;&gt;&gt; 权限不足或服务未启动</font>：虚拟机创建成功后无法启动，显示：<code>内部错误</code> 的异常。<font color="red">3-Resolution</font> &gt;&gt;&gt; 可以尝试：1）以系统管理员身份启动；2）启动 VMWARE Workstation Server 服务后，进行启动。</p>
+<p><font color="red">Problem 4 &gt;&gt;&gt; VMware Workstation &amp;&amp; Device/Credential Guard 不兼容</font>：Win11 环境下虚拟机创建成功后无法启动，显示：禁用 Device/Credential Guard 后，可以运行 VMware Workstation Pro。<font color="red">4-Resolution</font> &gt;&gt;&gt; 1）关闭 Hyper-V（不推荐），并关闭其自启动（<code>bcdedit /set hypervisorlaunchtype off</code>），应该会影响 WSL 使用；2）禁用 Device Guard（Win11 找不到），不推荐；3）究极解决方法，升级 VMWARE Workstation Pro 15.5.6 or above，支持 VMWARE &amp;&amp; Hyper-V 可共同存在。</p>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>Linux Installation tutorial</p><p><a href="https://www.orangeshare.cn/2015/01/27/linux-installation-tutorial/">https://www.orangeshare.cn/2015/01/27/linux-installation-tutorial/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2015-01-27</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-03-04</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Operate-System/">Operate System</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2015/01/29/linux-disk-partitions-and-file-systems/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Linux Disk Partitions And File Systems</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2015/01/25/a-quick-guide-to-linux-servers/"><span class="level-item">A Quick Guide To Linux Servers</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">113</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">13</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">43</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Virtual-Machine"><span class="level-left"><span class="level-item">1</span><span class="level-item">Virtual Machine</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Virtual-Technology"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">Virtual Technology</span></span></a></li><li><a class="level is-mobile" href="#VMware-Workstation"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">VMware Workstation</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#VMWare-Setup"><span class="level-left"><span class="level-item">1.2.1</span><span class="level-item">VMWare Setup</span></span></a></li><li><a class="level is-mobile" href="#VMWARE-Config-Related"><span class="level-left"><span class="level-item">1.2.2</span><span class="level-item">VMWARE Config-Related</span></span></a></li><li><a class="level is-mobile" href="#New-VM-Container"><span class="level-left"><span class="level-item">1.2.3</span><span class="level-item">New VM Container</span></span></a></li><li><a class="level is-mobile" href="#VM-Container-Config-Related"><span class="level-left"><span class="level-item">1.2.4</span><span class="level-item">VM Container Config-Related</span></span></a></li><li><a class="level is-mobile" href="#VMWare-Tools"><span class="level-left"><span class="level-item">1.2.5</span><span class="level-item">VMWare Tools</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Virtual-Box"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">Virtual Box</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#VBox-Setup"><span class="level-left"><span class="level-item">1.3.1</span><span class="level-item">VBox Setup</span></span></a></li><li><a class="level is-mobile" href="#VBox-Config-Related"><span class="level-left"><span class="level-item">1.3.2</span><span class="level-item">VBox Config-Related</span></span></a></li><li><a class="level is-mobile" href="#New-VM-Container-1"><span class="level-left"><span class="level-item">1.3.3</span><span class="level-item">New VM Container</span></span></a></li><li><a class="level is-mobile" href="#VM-Container-Config-Related-1"><span class="level-left"><span class="level-item">1.3.4</span><span class="level-item">VM Container Config-Related</span></span></a></li><li><a class="level is-mobile" href="#VBox-GAs-Function"><span class="level-left"><span class="level-item">1.3.5</span><span class="level-item">VBox GAs Function</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Win-Mac-Linux-OS-Setup"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">Win/Mac/Linux OS Setup</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Linux-CentOS"><span class="level-left"><span class="level-item">1.4.1</span><span class="level-item">Linux CentOS</span></span></a></li><li><a class="level is-mobile" href="#Linux-Ubuntu"><span class="level-left"><span class="level-item">1.4.2</span><span class="level-item">Linux Ubuntu</span></span></a></li><li><a class="level is-mobile" href="#Linux-Disk-Partition"><span class="level-left"><span class="level-item">1.4.3</span><span class="level-item">Linux Disk Partition</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Virtual-Machine-NETCONF"><span class="level-left"><span class="level-item">1.5</span><span class="level-item">Virtual Machine NETCONF</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#VMware-网络模式测试"><span class="level-left"><span class="level-item">1.5.1</span><span class="level-item">VMware 网络模式测试</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#Reff-Issue"><span class="level-left"><span class="level-item">2</span><span class="level-item">Reff Issue</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2024 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

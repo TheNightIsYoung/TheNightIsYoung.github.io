@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>一文解析局域网工作机制和网络地址配置 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="本篇博文将通过解析局域网的工作机制，以及如何进行局域网的网络地址配置，以掌握局域网组网方法，实现服务器集群&amp;#x2F;分布式集群环境的搭建。"><meta property="og:type" content="blog"><meta property="og:title" content="一文解析局域网工作机制和网络地址配置"><meta property="og:url" content="https://www.orangeshare.cn/2015/04/12/yi-wen-jie-xi-ju-yu-wang-gong-zuo-ji-zhi-he-wang-luo-di-zhi-pei-zhi/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="本篇博文将通过解析局域网的工作机制，以及如何进行局域网的网络地址配置，以掌握局域网组网方法，实现服务器集群&amp;#x2F;分布式集群环境的搭建。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://s2.loli.net/2024/03/04/opfTcWReSZy6wgq.png"><meta property="og:image" content="https://s2.loli.net/2024/03/04/NbSYFIcxGtpTmPA.png"><meta property="og:image" content="https://s2.loli.net/2024/03/04/NbSYFIcxGtpTmPA.png"><meta property="article:published_time" content="2015-04-12T02:40:29.000Z"><meta property="article:modified_time" content="2024-03-05T04:42:40.681Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Operate System"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://s2.loli.net/2024/03/04/opfTcWReSZy6wgq.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2015/04/12/yi-wen-jie-xi-ju-yu-wang-gong-zuo-ji-zhi-he-wang-luo-di-zhi-pei-zhi/"},"headline":"When Art Meets Tech","image":["https://s2.loli.net/2024/03/04/opfTcWReSZy6wgq.png","https://s2.loli.net/2024/03/04/NbSYFIcxGtpTmPA.png","https://s2.loli.net/2024/03/04/NbSYFIcxGtpTmPA.png"],"datePublished":"2015-04-12T02:40:29.000Z","dateModified":"2024-03-05T04:42:40.681Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"本篇博文将通过解析局域网的工作机制，以及如何进行局域网的网络地址配置，以掌握局域网组网方法，实现服务器集群&#x2F;分布式集群环境的搭建。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2015/04/12/yi-wen-jie-xi-ju-yu-wang-gong-zuo-ji-zhi-he-wang-luo-di-zhi-pei-zhi/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>一文解析局域网工作机制和网络地址配置</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2015-04-12</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2024-03-05</time></span><span class="level-item"><a class="link-muted" href="/categories/OS/">OS</a></span><span class="level-item">26 minutes read (About 3830 words)</span></div></div><div class="content"><p>本篇博文将通过解析局域网的工作机制，以及如何进行局域网的网络地址配置，以掌握局域网组网方法，实现服务器集群/分布式集群环境的搭建。</p>
+<a id="more"></a>
+
+<p>更多系列博文：</p>
+<p><a href="https://www.orangeshare.cn/2019/01/01/wang-zhan-ji-chu-zhi-url-jie-gou-jie-xi/">网站基础之 URL 结构解析</a></p>
+<p><a href="https://www.orangeshare.cn/2015/04/12/yi-wen-jie-xi-ju-yu-wang-gong-zuo-ji-zhi-he-wang-luo-di-zhi-pei-zhi/">一文解析局域网工作机制和网络地址配置</a></p>
+<p><a href="https://www.orangeshare.cn/2022/07/01/yi-wen-jie-xi-fu-wu-qi-yu-ming-wu-fa-jie-xi-lian-jie-chao-shi-fang-wen-shou-xian-wen-ti/">一文解析服务器域名无法解析 &amp;&amp; 连接超时 &amp;&amp; 访问受限问题</a></p>
+<p><a href="https://www.orangeshare.cn/2018/12/29/yi-wen-jie-xi-wang-luo-zhong-de-ip-wei-yi-xing/">一文解析网络中的 IP 唯一性</a></p>
+<p>如果文中有表述不正确的地方，望各位大佬不吝指正~~~</p>
+<hr>
+<h2 id="局域网工作机制"><a href="#局域网工作机制" class="headerlink" title="局域网工作机制"></a>局域网工作机制</h2><p><font color="red">↓↓↓↓↓↓ 实际场景描述 ↓↓↓↓↓↓</font></p>
+<p>工作中，通常会分配给你一台 PC 机器用于日常的开发工作，开发完成后你需要将代码上传至本地服务器（Servers）环境中进行运行测试和发布，PC 和这些 Servers 就共同组成一个局域网环境，共用公司网络部门分配的网段 IP 资源（内网 IP）。这个局域网环境通常是对外网隔离的，如果你的项目要求访问外网，可能还会给你分配一台代理服务器用于对外访问。</p>
+<p>家庭中上网常常是添加一个无线路由器，其它设备（PC/手机/其它移动设备）通过登录路由器来实现 Wifi 上网，所有登录到路由上的设备（动态获得 IP）同样组成了一个家庭局域网。</p>
+<p>那么，局域网的工作机制到底是什么样的？！！局域网内的终端设备是否支持互相访问？！！又是如何进行相互访问的？！！</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>思考家庭或公司局域网模式，以探究局域网工作模式。这里先给出本章节最终的局域网工作机制示意图：</p>
+<p><img src="https://s2.loli.net/2024/03/04/opfTcWReSZy6wgq.png"></p>
+<h3 id="关于硬件设备说明"><a href="#关于硬件设备说明" class="headerlink" title="关于硬件设备说明"></a>关于硬件设备说明</h3><p>假设目前我们有一台个人 PC，以及三台空闲服务器（Server 01 &amp; Server 02 &amp;&amp; Server 03），那么如何让其进行协作，并且具有上网功能呢？！！</p>
+<p>需要有一台路由器（交换机/网桥/网关），它提供有多个 LAN 口，以支持通过物理网线连接所有的终端设备。并且，所有的终端设备都至少有一块物理网卡以支持 TCP/IP 网络通信。</p>
+<p>如果你想要上网（访问 Internet），你还需要一条宽带以支持路由访问外部网路。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<h3 id="关于软件描述"><a href="#关于软件描述" class="headerlink" title="关于软件描述"></a>关于软件描述</h3><p>我们的个人 PC 上使用的是 Windows 操作系统，而三台 Server 上安装了 Linux CentOS7。</p>
+<p>想要连网以及支持相互访问操作，CentOS 操作系统需要进行一定的网络配置，也就是配置网卡（网络接口卡，NIC）的 TCI/IP 信息，其涉及到：</p>
+<ul>
+<li><font color="red">IP</font>：IP 地址；</li>
+<li><font color="red">NETMASK</font>：子网掩码；</li>
+<li><font color="red">GATEWAY</font>：网关；</li>
+<li><font color="red">DNS</font>：DNS 解析服务器地址；</li>
+<li>HWADDR：物理（Mac）地址 &lt;&lt;&lt; 物理自带，不需要配置</li>
+</ul>
+<p>PC 上的 Windows 默认采用 DHCP 动态上网的方式（CentOS 也可以采用 DHCP 的上网方式），当然你也可以采用 CentOS 配置网卡（网络接口卡，NIC）的 TCI/IP 信息的方法，为 Windows 的网络适配器进行配置，以获取固定 IP。</p>
+<hr>
+<h3 id="NIC-网络配置"><a href="#NIC-网络配置" class="headerlink" title="NIC 网络配置"></a>NIC 网络配置</h3><p>以 CentOS Server 01 的网络配置为例，讲解如何配置网卡的 IP &amp;&amp; NETMASK &amp;&amp; GATEWAY &amp;&amp; DNS。</p>
+<p>Begin</p>
+<p>……</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<h4 id="配置-IP-地址"><a href="#配置-IP-地址" class="headerlink" title="配置 IP 地址"></a>配置 IP 地址</h4><p>IP 地址如何配？！！</p>
+<p>随便定一个：<code>192.168.0.1 或者 192.168.0.2 或者 192.168.0.3/....</code> 可以么？！！</p>
+<p>不行的~~~</p>
+<p>事实上，<font color="green">IP 地址的配置不是由当前 Server 决定的，而是由其连接的网关决定的（路由/交换机，均是网关）！！！</font></p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><font color="red">↓↓↓↓↓↓ 网关 IP 地址 ↓↓↓↓↓↓</font></p>
+<p>网关自身有一个 IP 地址，例如路由器底部有一个默认地址（我这里是 <code>192.168.33.1</code>，通过在浏览器中输入该地址可以登入路由器进行路由的相关设置），这就是路由器默认网关 IP 地址。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>假设网关的 IP 地址是 <code>192.168.33.1</code>，那么 Server 01 中网卡的 IP 地址可以设置为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.33.2 ~ 192.168.33.254</span><br></pre></td></tr></table></figure>
+
+<p><font color="red">↓↓↓↓↓↓ 为什么是 <code>2~254</code> ？！！ ↓↓↓↓↓↓</font></p>
+<p>事实上，IP 地址本质是一个 32 bit 的二进制数，但通常会使用 “<strong>点式十进制</strong>” 来表示（每 8 bit 分隔一下，最大表示 255）。</p>
+<p><font color="red">↓↓↓↓↓↓ 关于网段和其广播地址 ↓↓↓↓↓↓</font></p>
+<p>你可能会疑惑 &gt;&gt;&gt; <code>192.168.33.0</code> 和 <code>192.168.33.255</code> 这两个地址不能用么？！！确实如此：</p>
+<ul>
+<li><code>192.168.33.0</code> 被用来标识 “网段” 了（<code>192.168.33.2 ~ 192.168.33.254</code>）；</li>
+<li><code>192.168.33.255</code> 被用来标识广播地址了（如果向该地址发送信息，则会向整个网段发送信息）。</li>
+</ul>
+<blockquote>
+<p>需要注意的是 &gt;&gt;&gt; 网关 IP 地址可以为网段中的任意 IP（如：<code>192.168.33.3</code>），只是约定俗成的采用第一个 IP（<code>192.168.33.1</code>）来作为网关 IP。网段中某个 IP 一旦被网关使用后，同一局域网中的其它设备只可以使用网段 IP 资源池中的其它 IP 了。</p>
+</blockquote>
+<p>关于 IP 地址更为深入的了解，可以参考系列博文【<a href="https://www.orangeshare.cn/2018/12/29/yi-wen-jie-xi-wang-luo-zhong-de-ip-wei-yi-xing/">一文解析网络中的 IP 唯一性</a>】。</p>
+<hr>
+<h4 id="配置-NETMASK"><a href="#配置-NETMASK" class="headerlink" title="配置 NETMASK"></a>配置 NETMASK</h4><p>NETMASK，是指子网掩码，常见的有 <code>255.255.255.0</code> &amp;&amp; <code>255.255.0.0</code>，也采用 “<strong>点式十进制</strong>” 表示。</p>
+<p>NETMASK 可以用来限制网段中 IP 资源数量的。</p>
+<p>你可以通过计算 NETMASK 和网关 IP 的与（&amp;）操作，来获取当前网关 IP 所支持的网段（IP 资源池）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IP 地址的二进制 &amp; NETMASK 的二进制 = 网段地址</span><br></pre></td></tr></table></figure>
+
+<p>以网关 IP：<code>192.168.33.1</code> 和 NETMASK：<code>255.255.255.0</code> 为例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.33.2 &amp; 255.255.255.0 = 192.168.33.0</span><br></pre></td></tr></table></figure>
+
+<p>任意设备的 IP 地址和其子网掩码的与（&amp;）操作，可以查看其所属的网段。如果两个 IP 地址的网段相同，我们就说这两台机器属于同一个网段。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><font color="red">↓↓↓↓↓↓ 限制网段中 IP 资源数量的？！！ ↓↓↓↓↓↓</font></p>
+<p>再看一下网关 IP：<code>192.168.33.1</code> 和 NETMASK：<code>255.255.0.0</code> 的与（&amp;）操作：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.33.2 &amp; 255.255.0.0 = 192.168.0.0</span><br></pre></td></tr></table></figure>
+
+<p>此时，网关 IP 所支持的网段：<code>192.168.0.0 ~ 192.168.255.255</code>，当前网段的 IP 资源池更大，可分配更多的 IP 给网络中的设备。</p>
+<hr>
+<h4 id="配置-GATEWAY"><a href="#配置-GATEWAY" class="headerlink" title="配置 GATEWAY"></a>配置 GATEWAY</h4><p>GATEWAY，是指网络的总入口/出口，就是指的网关！！！故：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GATEWAY=192.168.33.1</span><br></pre></td></tr></table></figure>
+
+<p>设置了网关（GATEWAY）和子网掩码（NETMASK），就确定了网段（IP 资源池），然后想要连网的设备就可以从网段中选择 IP 了。</p>
+<hr>
+<h4 id="配置-DNS"><a href="#配置-DNS" class="headerlink" title="配置 DNS"></a>配置 DNS</h4><p>DNS，是指域名解析服务器，配置 DNS 就是配置 域名解析服务器的地址。</p>
+<p>服务器好理解，何为域名解析呢？！！</p>
+<p>由于篇幅原因，关于域名解析的流程可以参见后文【域名解析和主机名映射】章节中，关于【域名解析工作流程】的描述。</p>
+<p>……</p>
+<p>阅读完后，你应该知道了：</p>
+<p>DNS 可以配置为当前网络服务商提供的 DNS 服务器地址。</p>
+<p>如果你不知道的话，可以配置为网关的地址（网关知道哪里去找 DNS 服务器）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DNS=192.168.33.1</span><br></pre></td></tr></table></figure>
+
+<p>除此之外，你还可以将其配置为第三方提供的 DNS 解析服务器地址：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Microsoft</span><br><span class="line">4.2.2.1</span><br><span class="line"></span><br><span class="line"># Google</span><br><span class="line">8.8.8.8</span><br><span class="line"></span><br><span class="line"># China</span><br><span class="line">114.114.114.114</span><br></pre></td></tr></table></figure>
+
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>最后，来看一下 Server 01 完整的网络配置：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IP=192.168.33.2</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.33.1</span><br><span class="line">DNS=192.168.33.1</span><br></pre></td></tr></table></figure>
+
+<p>同理，我们可以给出 Server 02 &amp;&amp; Server 03 的网络配置（只修改 IP 即可）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Server 02</span><br><span class="line">IP=192.168.33.3</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.33.1</span><br><span class="line">DNS=192.168.33.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># Server 03</span><br><span class="line">IP=192.168.33.4</span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line">GATEWAY=192.168.33.1</span><br><span class="line">DNS=192.168.33.1</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="域名解析和主机名映射"><a href="#域名解析和主机名映射" class="headerlink" title="域名解析和主机名映射"></a>域名解析和主机名映射</h2><p>这一小节来看何为域名？！！何为 DNS 服务器？！！何为域名解析？！！如何进行主机名映射，以支持 Server 间通过服务器名进行访问。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<h3 id="域名解析工作流程"><a href="#域名解析工作流程" class="headerlink" title="域名解析工作流程"></a>域名解析工作流程</h3><p>先给出域名解析工作流程示意图，对照该示意图完成这一小节内容的阅读：</p>
+<p><img src="https://s2.loli.net/2024/03/04/NbSYFIcxGtpTmPA.png"></p>
+<p><strong>[1] &gt;&gt;&gt; 关于域名</strong></p>
+<p>域名，即服务器 IP 地址的别名，而 IP 地址用来唯一标识互联网上的设备。</p>
+<p>关于域名的说明，可以参见【<a href="https://www.orangeshare.cn/2019/01/01/wang-zhan-ji-chu-zhi-url-jie-gou-jie-xi/">网站基础之 URL 结构解析</a>】&gt;&gt;&gt;【URL 标准语法】&gt;&gt;&gt;【Domain】中关于域名的描述。</p>
+<p><strong>[2] &gt;&gt;&gt; 关于域名解析</strong></p>
+<p>而，域名解析就是 &gt;&gt;&gt; 服务器通过域名（Domain）访问互联网上的某个 Web Server 时，必须拿到域名对应的 IP 地址（域名解析），然后再通过 IP 地址请求服务器上的文件。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[3] &gt;&gt;&gt; 关于 DNS 服务器</strong></p>
+<p>我们知道，域名解析就是获取域名对应的 IP 地址的过程。</p>
+<p>当路由/网关，检测到一个域名请求时（例如访问：<code>www.baidu.com</code>），会拿着域名去网络服务商（移动/电信/联通）或设置的第三方（Google、Baidu…）提供的 DNS 服务器（支持 <code>域名 --&gt; IP</code> 映射解析服务）上获取域名所对应的 IP。故，用于解析域名的 DNS 服务器，也被称为：域名解析服务器。</p>
+<blockquote>
+<p>网关是知道去哪里找域名服务器的！！！</p>
+</blockquote>
+<p><font color="red">↓↓↓↓↓↓ 关于域名注册 ↓↓↓↓↓↓</font></p>
+<p>如果你自己随便定义了一个域名（<code>server01.com</code>）是没卵用的，公网上是访问不了的，因为没有一个 DNS 服务器能解析你的域名。此时需要去注册你定义的域名，目的是为了将你的域名写入到公网上的 DNS 服务器上，你的域名在网络上就生效了。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[4] &gt;&gt;&gt; 关于域名/主机名映射文件</strong></p>
+<p>而根据 Windows/Linux 系统规定，在进行 DNS 请求以前，Windows/Linux 系统会先检查自己的 hosts 文件（域名/主机名映射文件）中是否有当前网络域名的映射关系（”域名 –&gt; IP” 的映射，例如：<code>140.82.113.3 github.com</code>）。</p>
+<p>如果有，则调用这个 IP 地址映射；如果没有，再向网络运营商或已设置的 DNS 服务器提出域名解析获取 IP 地址。</p>
+<p><img src="https://s2.loli.net/2024/03/04/NbSYFIcxGtpTmPA.png"></p>
+<p>也就是说，<font color="red"> hosts 的请求级别比 DNS 高！！！</font></p>
+<hr>
+<h3 id="域名-主机名映射文件"><a href="#域名-主机名映射文件" class="headerlink" title="域名/主机名映射文件"></a>域名/主机名映射文件</h3><p>hosts 文件，被称为：域名/主机名映射文件。</p>
+<p>hosts 文件采用 ascii 编码方式，没有后缀名的！！！你可以使用任意一款文本编辑器打开修改它。</p>
+<p>Windows 中 hosts 文件的位置: <code>C:\windows\system32\drivers\etc\hosts</code>，Linux 中 hosts 文件的位置: <code>/etc/hosts</code>。</p>
+<p>👇👇👇 <strong>关于域名映射</strong> 👇👇👇</p>
+<p>打开 Windows 中的 hosts 文件观察一下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"># Copyright (c) 1993-2009 Microsoft Corp.</span><br><span class="line">#</span><br><span class="line"># This is a sample HOSTS file used by Microsoft TCP/IP for Windows.</span><br><span class="line">#</span><br><span class="line"># This file contains the mappings of IP addresses to host names. Each</span><br><span class="line"># entry should be kept on an individual line. The IP address should</span><br><span class="line"># be placed in the first column followed by the corresponding host name.</span><br><span class="line"># The IP address and the host name should be separated by at least one</span><br><span class="line"># space.</span><br><span class="line">#</span><br><span class="line"># Additionally, comments (such as these) may be inserted on individual</span><br><span class="line"># lines or following the machine name denoted by a &#x27;#&#x27; symbol.</span><br><span class="line">#</span><br><span class="line"># For example:</span><br><span class="line">#</span><br><span class="line">#      102.54.94.97     rhino.acme.com          # source server</span><br><span class="line">#       38.25.63.10     x.acme.com              # x client host</span><br><span class="line"></span><br><span class="line"># localhost name resolution is handled within DNS itself.</span><br><span class="line">#   127.0.0.1       localhost</span><br><span class="line">#   ::1             localhost</span><br><span class="line"></span><br><span class="line"># GitHub Start</span><br><span class="line">140.82.113.3 Build software better, together</span><br><span class="line">140.82.113.4 gist.github.com</span><br><span class="line">185.199.108.133 assets-cdn.github.com</span><br><span class="line">185.199.108.133 raw.githubusercontent.com</span><br><span class="line">185.199.108.133 gist.githubusercontent.com</span><br><span class="line">185.199.108.133 cloud.githubusercontent.com</span><br><span class="line">185.199.108.133 camo.githubusercontent.com</span><br><span class="line">185.199.108.133 avatars0.githubusercontent.com</span><br><span class="line">185.199.108.133 avatars1.githubusercontent.com</span><br><span class="line">185.199.108.133 avatars2.githubusercontent.com</span><br><span class="line">185.199.108.133 avatars3.githubusercontent.com</span><br><span class="line">185.199.108.133 avatars4.githubusercontent.com</span><br><span class="line">185.199.108.133 avatars5.githubusercontent.com</span><br><span class="line">185.199.108.133 avatars6.githubusercontent.com</span><br><span class="line">185.199.108.133 avatars7.githubusercontent.com</span><br><span class="line">185.199.108.133 Build software better, together</span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
+
+<p>也就是说，当我们访问后面的域名时，网关会拿着域名前面的 IP 去访问 Web Server。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><font color="red">↓↓↓↓↓↓ hosts 文件的域名映射记录如何写 ↓↓↓↓↓↓</font></p>
+<ul>
+<li>IP 地址与域名间至少要有一空格；</li>
+<li>最后一行书写域名映射时，一定要加上回车再保存以避免最后一行不生效；</li>
+<li>注释：如果某条映射记录暂时不用，只需要在它前面加一个 <code>#</code> 号即可。</li>
+</ul>
+<p>以 Github 域名映射为例，其域名映射记录为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">140.82.113.3 github.com</span><br></pre></td></tr></table></figure>
+
+<p>表示访问 <code>https://github.com</code> 这个网址时，将解析到 <code>64.233.162.83</code> 这个 IP 上。</p>
+<p>关于域名所对应的 IP，你可以通过访问站点 |&gt;&gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://www.ipaddress.com/">Ipaddress</a> &lt;&lt;&lt;&lt;| 进行获取：</p>
+<blockquote>
+<p>找到【Domain 搜索框】 &gt;&gt;&gt; 输入待查询域名【github.com】&gt;&gt;&gt; 确认【Enter】&gt;&gt;&gt; 页面中 DNS Resource Records 中记录的就是域名对应的 IP（可能有多个）</p>
+</blockquote>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><font color="red">↓↓↓↓↓↓ 使用场景 ↓↓↓↓↓↓</font></p>
+<p>如果你的网络运营商 DNS 屏蔽/限制了对某个域名（如 <code>github.com</code>）的访问，你可以通过 Ipaddress 工具获取其 IP 地址，借此 IP 绕开网络运营商 DNS 限制，直接通过 IP 地址访问目标服务器。</p>
+<p>更多应用，可以参见【<a href="https://www.orangeshare.cn/2022/07/01/yi-wen-jie-xi-fu-wu-qi-yu-ming-wu-fa-jie-xi-lian-jie-chao-shi-fang-wen-shou-xian-wen-ti/">一文解析服务器域名无法解析 &amp;&amp; 连接超时 &amp;&amp; 访问受限问题</a>】这里。</p>
+<hr>
+<p>👇👇👇 <strong>关于主机名映射</strong> 👇👇👇</p>
+<p>当局域网中的 Server 较多时，通过 IP 访问极不方便，使用主机名（Hostname）更好记一些。</p>
+<p>既然域名和 IP 可以映射，那服务器主机名和 IP 是否也可以映射？！！</p>
+<p>也是可以的~~~</p>
+<p>类似于域名映射 &gt;&gt;&gt; 直接将域名替换为主机名，IP 地址修改为主机所设定的 IP 地址，即可建立起 <code>主机名 --&gt; IP</code> 的映射关系（一个 IP 地址可以指向多个主机名和域名）。</p>
+<p>以 Server 01 服务器配置为例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.33.2 server01</span><br><span class="line">192.168.33.2 server02</span><br><span class="line">192.168.33.3 server03</span><br></pre></td></tr></table></figure>
+
+<p>此时，在 Server 01 服务器上，通过主机名 <code>server02</code> 访问 Server 02 已经通了。</p>
+<p>并且，想要让所有服务器都能通过主机名访问局域网内的其它 Server，所有服务器都要配置。否则产生错误：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Unknown host</span><br></pre></td></tr></table></figure>
+
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>一文解析局域网工作机制和网络地址配置</p><p><a href="https://www.orangeshare.cn/2015/04/12/yi-wen-jie-xi-ju-yu-wang-gong-zuo-ji-zhi-he-wang-luo-di-zhi-pei-zhi/">https://www.orangeshare.cn/2015/04/12/yi-wen-jie-xi-ju-yu-wang-gong-zuo-ji-zhi-he-wang-luo-di-zhi-pei-zhi/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2015-04-12</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-03-05</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Operate-System/">Operate System</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2015/06/05/linux-installs-and-configures-the-ssh-service-for-remote-login/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Linux Installs and Configures the SSH Service For Remote Login</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2015/04/01/centos-server-quick-configuration-guide/"><span class="level-item">CentOS Server: Quick Configuration Guide</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">113</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">13</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">43</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#局域网工作机制"><span class="level-left"><span class="level-item">1</span><span class="level-item">局域网工作机制</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#关于硬件设备说明"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">关于硬件设备说明</span></span></a></li><li><a class="level is-mobile" href="#关于软件描述"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">关于软件描述</span></span></a></li><li><a class="level is-mobile" href="#NIC-网络配置"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">NIC 网络配置</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#配置-IP-地址"><span class="level-left"><span class="level-item">1.3.1</span><span class="level-item">配置 IP 地址</span></span></a></li><li><a class="level is-mobile" href="#配置-NETMASK"><span class="level-left"><span class="level-item">1.3.2</span><span class="level-item">配置 NETMASK</span></span></a></li><li><a class="level is-mobile" href="#配置-GATEWAY"><span class="level-left"><span class="level-item">1.3.3</span><span class="level-item">配置 GATEWAY</span></span></a></li><li><a class="level is-mobile" href="#配置-DNS"><span class="level-left"><span class="level-item">1.3.4</span><span class="level-item">配置 DNS</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#域名解析和主机名映射"><span class="level-left"><span class="level-item">2</span><span class="level-item">域名解析和主机名映射</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#域名解析工作流程"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">域名解析工作流程</span></span></a></li><li><a class="level is-mobile" href="#域名-主机名映射文件"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">域名/主机名映射文件</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2024 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/js/lightgallery.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
