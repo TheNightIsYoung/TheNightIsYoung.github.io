@@ -1,14 +1,275 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>一文解析网络中的 IP 唯一性 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="家庭或公司服务器局域网组网过程中，一个绕不开的话题，就是配置服务器（Server）的网络接口卡（Network Interface Card，网卡）或网络适配器（Network Adapter）的 TCI&amp;#x2F;IP 信息，也就是我们常说的服务器网络配置。 了解互联网中 IP 地址的格式、公有、私有，以及 IP 属地等相关概念是必要的。 更多系列博文请参考： 网站基础之 URL 结构解析 一文解析网络中"><meta property="og:type" content="blog"><meta property="og:title" content="一文解析网络中的 IP 唯一性"><meta property="og:url" content="https://www.orangeshare.cn/2018/12/29/yi-wen-jie-xi-wang-luo-zhong-de-ip-wei-yi-xing/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="家庭或公司服务器局域网组网过程中，一个绕不开的话题，就是配置服务器（Server）的网络接口卡（Network Interface Card，网卡）或网络适配器（Network Adapter）的 TCI&amp;#x2F;IP 信息，也就是我们常说的服务器网络配置。 了解互联网中 IP 地址的格式、公有、私有，以及 IP 属地等相关概念是必要的。 更多系列博文请参考： 网站基础之 URL 结构解析 一文解析网络中"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://www.orangeshare.cn/img/og_image.png"><meta property="article:published_time" content="2018-12-28T17:54:51.000Z"><meta property="article:modified_time" content="2024-03-05T07:31:56.491Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Front-End Devp"><meta property="article:tag" content="Back-End Devp"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2018/12/29/yi-wen-jie-xi-wang-luo-zhong-de-ip-wei-yi-xing/"},"headline":"When Art Meets Tech","image":["https://www.orangeshare.cn/img/og_image.png"],"datePublished":"2018-12-28T17:54:51.000Z","dateModified":"2024-03-05T07:31:56.491Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"家庭或公司服务器局域网组网过程中，一个绕不开的话题，就是配置服务器（Server）的网络接口卡（Network Interface Card，网卡）或网络适配器（Network Adapter）的 TCI&#x2F;IP 信息，也就是我们常说的服务器网络配置。 了解互联网中 IP 地址的格式、公有、私有，以及 IP 属地等相关概念是必要的。 更多系列博文请参考： 网站基础之 URL 结构解析 一文解析网络中"}</script><link rel="canonical" href="https://www.orangeshare.cn/2018/12/29/yi-wen-jie-xi-wang-luo-zhong-de-ip-wei-yi-xing/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Oxanium:wght@300;400;600&amp;family=Roboto+Mono"><link rel="stylesheet" href="/css/cyberpunk.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>一文解析网络中的 IP 唯一性</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2018-12-29</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2024-03-05</time></span><span class="level-item"><a class="link-muted" href="/categories/Web-Site/">Web Site</a></span><span class="level-item">a minute read (About 202 words)</span></div></div><div class="content"><p>家庭或公司服务器局域网组网过程中，一个绕不开的话题，就是配置服务器（Server）的网络接口卡（Network Interface Card，网卡）或网络适配器（Network Adapter）的 TCI/IP 信息，也就是我们常说的服务器网络配置。</p>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>一文解析网络中的 IP 唯一性 - When Art Meets Tech</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="When Art Meets Tech"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="When Art Meets Tech"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="家庭或公司服务器局域网组网过程中，一个绕不开的话题，就是配置服务器（Server）的网络接口卡（Network Interface Card，网卡）或网络适配器（Network Adapter）的 TCI&amp;#x2F;IP 信息，也就是我们常说的服务器网络配置。 了解互联网中 IP 地址的格式、公有、私有，以及 IP 属地等相关概念是必要的。"><meta property="og:type" content="blog"><meta property="og:title" content="一文解析网络中的 IP 唯一性"><meta property="og:url" content="https://www.orangeshare.cn/2018/12/29/yi-wen-jie-xi-wang-luo-zhong-de-ip-wei-yi-xing/"><meta property="og:site_name" content="When Art Meets Tech"><meta property="og:description" content="家庭或公司服务器局域网组网过程中，一个绕不开的话题，就是配置服务器（Server）的网络接口卡（Network Interface Card，网卡）或网络适配器（Network Adapter）的 TCI&amp;#x2F;IP 信息，也就是我们常说的服务器网络配置。 了解互联网中 IP 地址的格式、公有、私有，以及 IP 属地等相关概念是必要的。"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://s2.loli.net/2024/03/05/oNRsuzJCPhgecDA.png"><meta property="og:image" content="https://s2.loli.net/2024/03/05/XmVh7DaJQNEdwgR.png"><meta property="og:image" content="https://s2.loli.net/2024/03/05/aJBjMPvnXUfq7A6.png"><meta property="og:image" content="https://s2.loli.net/2024/03/06/8My5Oud4l97KACN.png"><meta property="og:image" content="https://s2.loli.net/2024/03/06/uSIqM8AKpvhJs2f.png"><meta property="og:image" content="https://s2.loli.net/2024/03/06/hvbKtx9Ju4ondaq.png"><meta property="og:image" content="https://s2.loli.net/2024/03/06/SJ9MeT3gPRrVk6W.png"><meta property="article:published_time" content="2018-12-28T17:54:51.000Z"><meta property="article:modified_time" content="2024-03-11T02:04:42.623Z"><meta property="article:author" content="Waldeinsamkeit"><meta property="article:tag" content="Front-End Devp"><meta property="article:tag" content="Back-End Devp"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://s2.loli.net/2024/03/05/oNRsuzJCPhgecDA.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.orangeshare.cn/2018/12/29/yi-wen-jie-xi-wang-luo-zhong-de-ip-wei-yi-xing/"},"headline":"When Art Meets Tech","image":["https://s2.loli.net/2024/03/05/oNRsuzJCPhgecDA.png","https://s2.loli.net/2024/03/05/XmVh7DaJQNEdwgR.png","https://s2.loli.net/2024/03/05/aJBjMPvnXUfq7A6.png","https://s2.loli.net/2024/03/06/8My5Oud4l97KACN.png","https://s2.loli.net/2024/03/06/uSIqM8AKpvhJs2f.png","https://s2.loli.net/2024/03/06/hvbKtx9Ju4ondaq.png","https://s2.loli.net/2024/03/06/SJ9MeT3gPRrVk6W.png"],"datePublished":"2018-12-28T17:54:51.000Z","dateModified":"2024-03-11T02:04:42.623Z","author":{"@type":"Person","name":"Waldeinsamkeit"},"description":"家庭或公司服务器局域网组网过程中，一个绕不开的话题，就是配置服务器（Server）的网络接口卡（Network Interface Card，网卡）或网络适配器（Network Adapter）的 TCI&#x2F;IP 信息，也就是我们常说的服务器网络配置。 了解互联网中 IP 地址的格式、公有、私有，以及 IP 属地等相关概念是必要的。"}</script><link rel="canonical" href="https://www.orangeshare.cn/2018/12/29/yi-wen-jie-xi-wang-luo-zhong-de-ip-wei-yi-xing/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/5.12.0/css/all.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"><link rel="stylesheet"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/cookieconsent/3.1.1/cookieconsent.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.6.8/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.7.0/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/pace/1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head>    <body class="is-3-column">    <nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Hexo Search" href="https://hexo.io/zh-cn/"><i class="fab fa-hotjar"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal"><i class="fas fa-angle-double-right"></i>一文解析网络中的 IP 唯一性</h1><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><i class="far fa-calendar-alt"> </i><time dateTime="${date_xml(page.date)}" title="${date_xml(page.date)}">2018-12-29</time></span><span class="level-item is-hidden-mobile"><i class="far fa-calendar-check"> </i><time dateTime="${date_xml(page.updated)}" title="${date_xml(page.updated)}">2024-03-11</time></span><span class="level-item"><a class="link-muted" href="/categories/Web-Site/">Web Site</a></span><span class="level-item">an hour read (About 6778 words)</span></div></div><div class="content"><p>家庭或公司服务器局域网组网过程中，一个绕不开的话题，就是配置服务器（Server）的网络接口卡（Network Interface Card，网卡）或网络适配器（Network Adapter）的 TCI/IP 信息，也就是我们常说的服务器网络配置。</p>
 <p>了解互联网中 IP 地址的格式、公有、私有，以及 IP 属地等相关概念是必要的。</p>
+<a id="more"></a>
+
 <p>更多系列博文请参考：</p>
 <p><a href="https://www.orangeshare.cn/2019/01/01/wang-zhan-ji-chu-zhi-url-jie-gou-jie-xi/">网站基础之 URL 结构解析</a></p>
 <p><a href="https://www.orangeshare.cn/2018/12/29/yi-wen-jie-xi-wang-luo-zhong-de-ip-wei-yi-xing/">一文解析网络中的 IP 唯一性</a></p>
 <p>如果文中有表述不正确的地方，望各位大佬不吝指正~~~</p>
-<a id="more"></a>
+<hr>
+<h2 id="初始-IP-地址"><a href="#初始-IP-地址" class="headerlink" title="初始 IP 地址"></a>初始 IP 地址</h2><p>IP 地址（Internet Protocol Address，网际协议地址)，用于在 TCP/IP 通讯协议中标记每台网络设备（计算机/服务器）的地址。</p>
+<p>为互联网上的每一个网络和每一台主机分配一个逻辑地址，以此来屏蔽物理地址的差异，从而实现进一步互联。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<h3 id="IP-地址格式"><a href="#IP-地址格式" class="headerlink" title="IP 地址格式"></a>IP 地址格式</h3><p>IP 地址（IPV4），本质上是 32 位（bit）的二进制数值。为了便于记忆和使用，通常使用 “<strong>点式十进制</strong>” 来表示，如 192.168.1.2 等。</p>
+<p>也就是说，<font color="red">↓↓↓↓↓↓ IP 地址有两种表示形式 ↓↓↓↓↓↓</font></p>
+<ul>
+<li>二进制</li>
+<li>点式十进制</li>
+</ul>
+<p><strong>[1] &gt;&gt;&gt; 二进制</strong></p>
+<p>32 bit IP 地址的二进制，被分为 4 个 8 位域：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">11000000 10101000 00000001 00000010</span><br></pre></td></tr></table></figure>
 
+<p><strong>[2] &gt;&gt;&gt; 点式十进制</strong></p>
+<p>点式十进制，是将二进制中的 4 个位域分别转换为十进制（故每个位域可取的最大整数为 <code>255</code>）。</p>
+<p>故，理论上，IPV4 的 IP 资源池容量为：<code>255×255×255×255 ≈ 42 亿</code></p>
+<p>上面二进制 IP 地址所对应的，点式十进制为：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.2</span><br></pre></td></tr></table></figure>
 
-</div><div class="article-licensing box"><div class="licensing-title"><p>一文解析网络中的 IP 唯一性</p><p><a href="https://www.orangeshare.cn/2018/12/29/yi-wen-jie-xi-wang-luo-zhong-de-ip-wei-yi-xing/">https://www.orangeshare.cn/2018/12/29/yi-wen-jie-xi-wang-luo-zhong-de-ip-wei-yi-xing/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-12-29</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-03-05</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Front-End-Devp/">Front-End Devp</a><a class="link-muted mr-2" rel="tag" href="/tags/Back-End-Devp/">Back-End Devp</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/01/01/wang-zhan-ji-chu-zhi-url-jie-gou-jie-xi/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">网站基础之 URL 结构解析</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/04/05/tensorflow-ru-men-zhi-mnist-shou-xie-ti-shu-zi-shi-bie-wen-ti/"><span class="level-item">TensorFlow 入门之 MNIST 手写体数字识别问题</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">113</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">13</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">43</p></a></div></div></nav></div></div><!--!--></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2024 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+<hr>
+<h3 id="IP-地址分类"><a href="#IP-地址分类" class="headerlink" title="IP 地址分类"></a>IP 地址分类</h3><p>事实上，每个 每个 IP 地址又分为两部分：</p>
+<ul>
+<li><font color="red">网络 ID（网络号部分）</font>：用来标识主机所属的网段；</li>
+<li><font color="red">主机 ID（主机号部分）</font>：用来标识该网段中主机的地址。</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IP-address ::=  &#123; &lt;Network-number&gt;, &lt;Host-number&gt; &#125;</span><br></pre></td></tr></table></figure>
+
+<p><font color="green"> 同一个物理网络上（同一网段）的所有主机，都使用同一个网络 ID（网络号部分相同）！！！</font></p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>为了适应不同规模（容量）大小的网络，IP 地址被分为：<strong>A</strong> | <strong>B</strong> | <strong>C</strong> | <strong>D</strong> | <strong>E</strong> 5 类。</p>
+<p>其中，A、B、C（单播地址（unicast)，用于一对一通信）由 InternetNIC（Internet Network Information Center，因特网信息中心）在全球范围内统一分配，D、E 类被划为特殊地址。</p>
+<p><img src="https://s2.loli.net/2024/03/05/oNRsuzJCPhgecDA.png"></p>
+<h4 id="A-类-IP-地址"><a href="#A-类-IP-地址" class="headerlink" title="A 类 IP 地址"></a>A 类 IP 地址</h4><p>一个 A 类 IP 地址，由 1 字节（8 bit）的网络地址和 3 字节（24 bit）主机地址组成。</p>
+<p>其中，网络地址的最高位必须是 “0”，这就 “可能” 意味着 A 类 IP 地址的范围（<code>2^7-1=127</code>）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0.0.0.0 ~ 127.255.255.255</span><br></pre></td></tr></table></figure>
+
+<p>前面说 “可能”，是因为其中某些网络（网段）被用作特殊用途。例如：<code>0.0.0.0</code> &amp;&amp; <code>127</code> 网段。具体释义见后文【0.0.0.0/127.0.0.0】中描述。</p>
+<p>也就是说，A 类网络有 126 个（<code>1~126</code>），表示的 IP 地址范围为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.0.0.0 ~ 126.255.255.255</span><br></pre></td></tr></table></figure>
+
+<p>A 类 IP 地址的子网掩码为 <code>255.0.0.0</code>，支持 126 个网络，每个网络支持的最大主机数为 <code>256^3 - 2 = 16777214</code> 台（千万）。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<h4 id="B-类-IP-地址"><a href="#B-类-IP-地址" class="headerlink" title="B 类 IP 地址"></a>B 类 IP 地址</h4><p>一个 B 类 IP 地址，由 2 字节（16 bit）的网络地址和 2 字节（16 bit）主机地址组成。</p>
+<p>其中，网络地址的最高位必须是 “10”，这就意味着 B 类 IP 地址的范围（<code>2^6-1=63</code>）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 191 = 128 + 63</span><br><span class="line">128.0.0.0 ~ 191.255.255.255</span><br></pre></td></tr></table></figure>
+
+<p>B 类 IP 地址的子网掩码为 <code>255.255.0.0</code>，这里由于网络 ID 占两个字节，B 类网络有 16384 个（<code>(63+1)×256</code>），每个网络支持的最大主机数为 <code>256^2 - 2 = 65534</code> 台（万）。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<h4 id="C-类-IP-地址"><a href="#C-类-IP-地址" class="headerlink" title="C 类 IP 地址"></a>C 类 IP 地址</h4><p>一个 C 类 IP 地址，由 3 字节（24 bit）的网络地址和 1 字节（8 bit）主机地址组成。</p>
+<p>其中，网络地址的最高位必须是 “110”，这就意味着 C 类 IP 地址的范围（<code>2^5-1=31</code>）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 233 = 192 + 31</span><br><span class="line">192.0.0.0 ~ 223.255.255.255</span><br></pre></td></tr></table></figure>
+
+<p>C 类 IP 地址的子网掩码为 <code>255.255.255.0</code>，这里由于网络 ID 占三个字节，C 类网络有 2,097,152（<code>(31+1)×256×256</code>）个（百万），每个网络支持的最大主机数为 <code>256 - 2 = 254</code> 台。</p>
+<p>C 类网络，适用于小规模的局域网络~~~</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>D、E 类被划为特殊地址：</p>
+<h4 id="D-类-IP-地址"><a href="#D-类-IP-地址" class="headerlink" title="D 类 IP 地址"></a>D 类 IP 地址</h4><p>相较于 A、B、C（单播地址（unicast)，用于一对一通信），D 类 IP 地址用于多点广播（Multicast），用来一次寻址一组计算机，它标识共享同一协议的一组计算机。</p>
+<p>D 类 IP 地址，最高位必须是 “1110”，其 IP 地址的范围（<code>2^4-1=15</code>）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 239 = 224 + 15</span><br><span class="line">224.0.0.0 ~ 239.255.255.255</span><br></pre></td></tr></table></figure>
+
+<h4 id="E-类-IP-地址"><a href="#E-类-IP-地址" class="headerlink" title="E 类 IP 地址"></a>E 类 IP 地址</h4><p>E 类 IP 地址是以 “1111” 开始，为将来使用保留。</p>
+<p>E 类 IP 地址的范围（<code>2^3-1=7</code>）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 247 = 240 + 7</span><br><span class="line">240.0.0.0 ~ 2347.255.255.255</span><br></pre></td></tr></table></figure>
+
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>上面介绍了 IPV4 的 IP 地址格式，你可以发现其地址对于全球来说是短缺的。而新一代的 IPv6 采用 128 位（bit）地址长度，明显地扩大了地址空间。</p>
+<hr>
+<h4 id="0-0-0-0-127-0-0-0"><a href="#0-0-0-0-127-0-0-0" class="headerlink" title="0.0.0.0/127.0.0.0"></a>0.0.0.0/127.0.0.0</h4><p>上面我们知道，IP 地址根据网络规模大小分为 5 类（Network-ID 所占的字节长度 &amp;&amp; 其前几位）：</p>
+<ul>
+<li>A 类 IP 地址：第一位数字以 1-126 开头</li>
+<li>B 类 IP 地址：第一位数字以 128-191 开头</li>
+<li>C 类 IP 地址：第一位数字以 192-223 开头，适用于小型局域网</li>
+<li>D 类 IP 地址：第一位数字以 224-239 开头，只用于组播</li>
+<li>E 类 IP 地址：第一位数字以 240-254 开头，保留用于实验和开发</li>
+</ul>
+<p>其中，A、B、C 三类地址为单播地址（unicast)，用于一对一通信，是最常用的。</p>
+<p>我们提到过，这些网络中的某些网络（网段）被用作特殊用途。例如：<code>0.0.0.0</code> &amp;&amp; <code>127</code> 网段。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>下面分别来看其说明和用途：</p>
+<p><strong>[1] &gt;&gt;&gt; 0.0.0.0</strong></p>
+<p>IPV4 中，<code>0.0.0.0</code> 地址被用于表示一个无效的，或者未知的目标。</p>
+<p><font color="red">↓↓↓↓↓↓ 用途总结 ↓↓↓↓↓↓</font></p>
+<ul>
+<li>在服务器中，0.0.0.0 指的是本机上的所有 IPV4 地址。如果一个主机有两个IP地址，192.168.1.1 &amp;&amp; 10.1.2.1，并且该主机上的一个服务监听的地址是 0.0.0.0，那么通过两个 IP 地址都能够访问该服务。</li>
+<li>当一台主机还没有被分配一个 IP 地址的时候（DHCP 分配 IP 地址的时候），用于表示主机本身。</li>
+<li>在路由中，用作默认路由，表示 ”任意 IPV4 主机”。</li>
+</ul>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[2] &gt;&gt;&gt; 127.0.0.1</strong></p>
+<p><code>127.0.0.1</code> 属于 <code>&#123;127,&#125;</code> 网段集合中的一个，而所有网络号为 127 的地址都被称之为回环地址，留用作回路及诊断功能。</p>
+<p>回环地址：所有发往该类地址的数据包都应该被 loop back。</p>
+<p><font color="red">↓↓↓↓↓↓ 用途总结 ↓↓↓↓↓↓</font></p>
+<ul>
+<li>回环测试：通过使用 <code>ping 127.0.0.1</code> 测试某台机器上的网络设备，操作系统或者 TCP/IP 实现是否工作正常。</li>
+<li>大部分 Web 容器测试的时候绑定的本机地址。</li>
+</ul>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p><strong>[3] &gt;&gt;&gt; localhost</strong></p>
+<p>相比 127.0.0.1，<code>localhost</code> 具有更多的意义（域名，非 IP）。</p>
+<p><font color="red">↓↓↓↓↓↓ localhost == 127.0.0.1？！！ ↓↓↓↓↓↓</font></p>
+<p>这是由于，大多数系统上都将 localhost 域名指向了 127.0.0.1 这个地址（域名/主机名映射）。</p>
+<p>事实上，localhost 域名，用于指代 this computer 或者 this host，可以用它来获取运行在本机上的网络服务。</p>
+<p>在大多数系统中，localhost 被指向了 &gt;&gt;&gt; IPV4 的 127.0.0.1；以及 IPV6 的 ::1</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1    localhost</span><br><span class="line"></span><br><span class="line">::1          localhost</span><br></pre></td></tr></table></figure>
+
+<p>所以，在使用的时候要注意确认 IPV4 还是 IPV6。</p>
+<hr>
+<h3 id="IP-地址信息"><a href="#IP-地址信息" class="headerlink" title="IP 地址信息"></a>IP 地址信息</h3><p>通常来说，一个完整的 IP 地址信息应该包括：</p>
+<ul>
+<li>IP Address：IP 地址</li>
+<li>NETMASK：子网页码</li>
+<li>GATEWAY：默认网关</li>
+<li>DNS：DNS 解析服务器</li>
+</ul>
+<p>只有当它们各司其职、协同工作时，我们才可以访问 Internet，并被 Internet 中的其它计算机所访问。需要注意的是，采用静态 IP 地址（真 IP）接入 Internet 时，ISP 应当为用户提供全部 IP 地址信息。</p>
+<h4 id="IP-Address"><a href="#IP-Address" class="headerlink" title="IP Address"></a>IP Address</h4><p>企业网络使用的合法公有 IP 地址由提供网络服务供应商（ISP）分配，私有 IP 地址则可以由网络管理员自由分配。</p>
+<p>需要注意的是，网络内部所有计算机的 IP 地址都不能相同，否则会发生 IP 地址冲突，导致网络通讯失败。</p>
+<hr>
+<h4 id="NETMASK"><a href="#NETMASK" class="headerlink" title="NETMASK"></a>NETMASK</h4><p>子网掩码（NETMASK），是与 IP 地址结合使用的一种技术。</p>
+<p>NETMASK 主要作用有两个：</p>
+<ul>
+<li>确定 IP 地址中的网络号和主机号；</li>
+<li>用于将一个大的 IP 网络划分为若干小的子网络（限制某网段的 IP 资源池）。</li>
+</ul>
+<p>子网掩码中为 <code>1</code> 的部分定位网络号（Network ID）；为 <code>0</code> 的部分定位主机号（Host ID）。<code>NETMASK &amp; IP</code>，与 &amp; 操作之后变为 0 的是主机号。</p>
+<p>👇👇👇 <strong>NETMASK 用途</strong> 👇👇👇</p>
+<p>既然 NETMASK 可以决定 IP 地址的哪一部分是网络号，而其又可以进行人工设定，故可以通过修改子网掩码（NETMASK）的方式来改变原有地址分类中规定的网络号和主机号。</p>
+<p>你可以根据实际需要：</p>
+<p><font color="red">↓↓↓↓↓↓ 增加网络数量，减少每个网络中的主机容量 ↓↓↓↓↓↓</font></p>
+<ul>
+<li>使用 B/C IP 类地址的子网掩码（255.255.0.0/255.255.255.0），将原有的 A 类 IP 地址的网络号由一个字节改变为二个或三个字节；</li>
+<li>使用 C 类 IP 地址的子网掩码（255.255.255.0），将原有 B 类 IP 地址的网络号由二个字节改变为三个字节。</li>
+</ul>
+<p><font color="red">↓↓↓↓↓↓ 减少网络数量，增加每个网络中的主机容量 ↓↓↓↓↓↓</font></p>
+<p>使用 B 类 IP 地址的子网掩码（255.255.0.0），将 C 类 IP 地址的网络号由三个字节改变为二个字节。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>变长子网掩码</strong> 👇👇👇</p>
+<p>NETMASK 中为 1 的部分可以定义为网络号，那么就可以通过加长子网掩码的方式，将掩码中原本为 0 的最高位部分修改为 1，从而使得本来应当属于主机号的部分改变成为网络号，以达到划分子网的目的。</p>
+<p>由此可见，子网掩码的位数越多，所取得子网的数量也就越多，但每个子网中所容纳的主机数也就越少，同时损失的IP资源也就越多。</p>
+<p><font color="red">↓↓↓↓↓↓ 192.168.1.10/27 ↓↓↓↓↓↓</font></p>
+<p>有时你会看到这样的 IP：<code>192.168.1.10/27</code> 形式。</p>
+<p>这就是变长子网掩码的应用，192.168.1.10/27 换一种写法：<code>192.168.1.10/255.255.255.224</code>。</p>
+<p>也就是说，斜杠后边表示子网掩码（NETMASK），<code>27</code> 表示 NETMASK 中连续为 1 的位数（不可间隔）。</p>
+<p>你可以通过在线工具 | &gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://ipv4calc.bmcx.com/">IP 地址计算器</a> &lt;&lt;&lt; | 来获取 IP（<code>192.168.1.10/27</code>）的 网段 &amp;&amp; NETMASK &amp;&amp; BROADCAST 等信息：</p>
+<p><img src="https://s2.loli.net/2024/03/05/XmVh7DaJQNEdwgR.png"></p>
+<hr>
+<h4 id="GATEWAY"><a href="#GATEWAY" class="headerlink" title="GATEWAY"></a>GATEWAY</h4><p>默认网关（GATEWAY），是指一台主机如果找不到可用的网关，就把数据包发送给默认指定的网关，由这个网关来处理数据包。</p>
+<p>从一个网络向另一个网络发送信息，也必须经过一道“关口”，这道关口就是网关。只有设置好网关默认 IP 地址，TCP/IP 协议才能实现不同网络之间的相互通信。</p>
+<p>对于企业网络而言，网关 IP 地址是什么呢？如果采用合法厂地址，该网关由 ISP 提供；如果采用私有 IP 地址，该网关就是代理服务器或路由器内部端口的 IP 地址。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><p>DNS 服务，用于将用户的域名请求转换为 IP 地址。</p>
+<p>企业网络没有提供 DNS 服务，DNS 服务器的 IP 地址应当是 ISP 的 DNS 服务器。如果企业网络自己提供 DNS 服务，那么 DNS 服务器的 IP 地址就是内部 DNS 服务器的IP地址。</p>
+<hr>
+<h2 id="公有-私有地址"><a href="#公有-私有地址" class="headerlink" title="公有/私有地址"></a>公有/私有地址</h2><p>企业中网络，通常会被分为：外网 和 内网（隔离于外网，以实现网络安全，防止信息泄露）。内网中有 <font color="green"> 内网 IP 地址</font>，而外网则有 <font color="green">外网公共 IP 地址</font>。</p>
+<p>更专业的说法是 &gt;&gt;&gt; 外网公共 IP 地址 = <font color="green">公有地址</font>；内网 IP 地址 = <font color="green">私有地址</font>。</p>
+<ul>
+<li><font color="red">公有地址（Public address）</font>：由 Inter NIC（Internet Network Information Center，因特网信息中心）负责分配给提出申请的组织机构，通过它直接访问因特网。</li>
+<li><font color="red">私有地址（Private address）</font>：属于非注册地址，专门为组织机构内部使用，由网络管理员分配。</li>
+</ul>
+<hr>
+<h3 id="如何理解-IP-地址唯一性"><a href="#如何理解-IP-地址唯一性" class="headerlink" title="如何理解 IP 地址唯一性"></a>如何理解 IP 地址唯一性</h3><p><font color="red">公有地址（外网公共 IP 地址）</font>，是一个相对较大的概念，或者可以说它对地址的描述并没有精确到某个具体位置的设备。</p>
+<p>以咱们国家为例，比如三大网络运营商申请到的公有 IP 地址只具体到亚洲的中国，然后这个公有地址经过三大运营商的层层分发（CN –&gt; 省 –&gt; 市），最终具体到我们每户所在的小区（街道、镇，乡等）。</p>
+<p>对于每户人家向运营商购买的宽带服务所建立的一个小型的局域网（通过路由器将家里的所有设备连接到这个局域网上面）来说，从相对性来说，这个局域网内的 IP 地址可以称为 ”<font color="red">私有地址（内网 IP 地址）</font>“，而这个局域网外的网络可以称为外网。每户人家的局域网内部的设备通过局域网向外部网络发送的数据经由路由器转发的同时，内网 IP 地址会经路由器层层 IP 映射再转发，最终到达本地运营商的端口映射成为外网公共 IP 地址（这个公有地址你可其它人共享使用，非独有）。</p>
+<p>可以看出，<font color="red">私有地址（内网 IP 地址）</font>是给局域网内部的设备标识身份的身份码，在局域网内部是唯一的，但放在整个国家的互联网上来说，其不唯一。有可能 A 户人家的局域网内的某台设备的内网 IP 地址就与 B 户人家的局域网内的某台设备的内网 IP 地址相同。对于 <font color="red">公有地址（外网公共 IP 地址）</font>，其放在整个国家的互联网上来说是唯一的。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>结合 IP 地址分类进行理解</strong> 👇👇👇</p>
+<p>前面我们给出了 A、B、C 三类网络地址的网段：</p>
+<ul>
+<li>A 类 IP 地址：第一位数字以 1-126 开头</li>
+<li>B 类 IP 地址：第一位数字以 128-191 开头</li>
+<li>C 类 IP 地址：第一位数字以 192-223 开头，适用于小型局域网。</li>
+</ul>
+<p>事实上，网络中并不是所有的网络地址都可用于公有地址：</p>
+<p>私有 IP 地址段：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A 类：10.0.0.0 ~ 10.255.255.255</span><br><span class="line">B 类：172.16.0.0 ~ 172.31.255.255</span><br><span class="line">C 类：192.168.0.0 ~ 192.168.255.255</span><br></pre></td></tr></table></figure>
+
+<p>公网 IP 地址段：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># A 类：1 ~ 126</span><br><span class="line">A 类：1.0.0.0 ~ 9.255.255.255    # 被 10 网段分割（熟悉不？！！）</span><br><span class="line">11.0.0.0 ~ 126.255.255.255</span><br><span class="line"></span><br><span class="line"># B 类：128 ~ 191</span><br><span class="line">B 类：128.0.0.0 ~ 172.15.255.255    # 被 172.16 ~ 172.31 分割</span><br><span class="line">172.32.0.0 ~ 191.255.255.255</span><br><span class="line"></span><br><span class="line"># C 类：192 ~ 223</span><br><span class="line">C 类：192.0.0.0 ~ 192.167.255.255    # 被 192.168 分割（熟悉不？！！）</span><br><span class="line">192.169.0.0 ~ 223.255.255.255</span><br></pre></td></tr></table></figure>
+
+<p>理论上，IPV4 中有 <code>255×255×255×255</code> 约 42 亿多个公有 IP，但除去私有网段、网络地址、广播地址、保留网段、本地环回 127 网段、组播 224 网段、实际可用约 25.68 亿。</p>
+<p>私有 IP 地址段是为了不至于每个 个人 PC或 手机都占有一个公网 IP 专门预留的，可以被每个家庭每个企业重复使用的，不可以被路由出去的。事实上，全国人民大多数办公电脑和个人手机的 IP 地址都集中在 <code>192.168.1.0</code> 网段的 254 个 IP 地址上。</p>
+<p>有许多小、微型企业安装的是没有固定 IP 的宽带，家用宽带几乎全部是没有固定 IP 的，也就是说外网的固定 IP 是从运营商动态获取的，而且多个宽带只能共用 1 个公网 IP 地址。大、中型企业可能有许多开通专线和带公网 IP 的宽带（真 IP）。</p>
+<p>究其根本原因是 &gt;&gt;&gt; IPV4 支持的 IP 资源池太小，不能人手一个公有 IP 地址。于是有了新一代的 IPV6，支持 128 bit IP 地址格式，IP 总数为：<code>2^128</code>。</p>
+<hr>
+<h3 id="IP-地址更换"><a href="#IP-地址更换" class="headerlink" title="IP 地址更换"></a>IP 地址更换</h3><p>公有/私有地址是否可以更换？！！如何更换？！！</p>
+<p>👇👇👇 <strong>对于公有地址</strong> 👇👇👇</p>
+<p>你可以通过一些在线的 IP 地址工具：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.ipaddress.com/">IPAddress</a></li>
+<li><a target="_blank" rel="noopener" href="https://ipleak.net/">IPLeak</a></li>
+</ul>
+<p>来查询本机对应的外网公共 IP 地址。</p>
+<p>外网公有 IP 地址你自己不能修改，由 ISP 提供支持。即使你有，而且外网公共 IP 也没必要修改，尤其是 IPV4 分发的 IP 地址都快要枯竭了，谁没事干改外网公共 IP 地址。如果没有特殊需求，建议使用系统默认的 “自动获取 IP 地址（DHCP）” 方法。</p>
+<p>👇👇👇 <strong>对于私有地址</strong> 👇👇👇</p>
+<p>私有地址是支持修改的，修改方法如下：</p>
+<p><font color="red">↓↓↓↓↓↓ For Windows ↓↓↓↓↓↓</font></p>
+<p>启动【Windows 开始菜单】&gt;&gt;&gt; 搜索 “查看网络连接” 关键字，找到程序后确认 &gt;&gt;&gt; 右键你要修改 IP 地址的网络适配器（WLAN/以太网…），选择【属性】&gt;&gt;&gt; 双击【Internet协议版本 4(TCP/IP)】&gt;&gt;&gt;勾选 “使用下面的 IP 地址” 和 ”使用下面的 DNS 服务器地址“，手动配置其中的相关内容即可。</p>
+<p>Windows 网络连接中常见适配器说明：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">以太网 &gt;&gt;&gt; 描述信息：Realtek PCIe GbE Family Controller &gt;&gt;&gt; 有线物理网卡（NIC）</span><br><span class="line">以太网 &gt;&gt;&gt; 描述信息：Hyper-V Virtual Ethernet/VMware Virtual Ethernet/VirtualBox Host-Only Ethernet &gt;&gt;&gt; 虚拟网卡（NIC）</span><br><span class="line"></span><br><span class="line">WLAN &gt;&gt;&gt; 描述信息：Intel(R) Wi-Fi 6 AX200 160MHz &gt;&gt;&gt; 无线网卡（NIC）</span><br><span class="line"></span><br><span class="line">蓝牙网络连接 &gt;&gt;&gt; 描述信息：Bluetooth Device (Personal Area Network) &gt;&gt;&gt; 以支持蓝牙连接</span><br><span class="line"></span><br><span class="line">本地连接 &gt;&gt;&gt; 描述信息：Microsoft Wi-Fi Direct Virtual Adapter #X &gt;&gt;&gt; 支持无线投屏、热点</span><br><span class="line">本地连接 &gt;&gt;&gt; 描述信息：Tap-Windows Adapter V9 &gt;&gt;&gt; VPN NIC</span><br></pre></td></tr></table></figure>
+
+<p><font color="red">↓↓↓↓↓↓ For Linux ↓↓↓↓↓↓</font></p>
+<p>关于 Centos 中私有地址的配置方法，可以参考【<a href="https://www.orangeshare.cn/2015/04/01/centos-server-quick-configuration-guide/">CentOS Server: Quick Configuration Guide</a>】；如果是 Ubuntu，请参考【<a href="https://www.orangeshare.cn/2015/04/01/ubuntu-server-quick-configuration-guide/">Ubuntu Server: Quick Configuration Guide</a>】。</p>
+<p>需要注意的是，<font color="green"> IP 地址的配置不是由当前 PC/Server 决定的，而是由其连接的网关决定的（路由/交换机，均是网关）！！！</font></p>
+<hr>
+<h2 id="IP-地址定位"><a href="#IP-地址定位" class="headerlink" title="IP 地址定位"></a>IP 地址定位</h2><p>微信、抖音、微博、公众号等平台，统统都支持用户 IP 属地功能。也就是，就是在互联网发文时，都会带上自己的地址信息。</p>
+<p>我们知道，要想接入 Internet，需要有公网 IP 地址。，而我们的公有地址是由移动/联通/电信等网络提供商（ISP，Internet Service Provider）提供的。事实上，ISP 只是二道贩子，全球 IP 地址是一级一级分配下来的。</p>
+<p>👇👇👇 <strong>IANA &gt;&gt;&gt; RIR</strong> 👇👇👇</p>
+<p>IANA（Internet Assigned Numbers Authority，互联网地址编号分配机构）管理所有的 IP 地址，它大手一挥，把 <font color="green">所有可用的网段地址进行了全球划分（5 个区域），分配给了五个 RIR</font>（Region Internet Registries，区域互联网地址注册机构）：</p>
+<ul>
+<li>ARIN：负责北美地区业务</li>
+<li>RIPE NCC：负责欧洲地区业务</li>
+<li>APNIC：负责亚太地区业务</li>
+<li>LACNIC：负责拉丁美洲地区业务</li>
+<li>AfriNIC：负责非洲地区业务</li>
+</ul>
+<p>IPv4 地址一共 256 个 8 位网段（Network ID）。</p>
+<p>然而排除私有地址、Loopback 地址、保留地址等。IPv4 可用的 8 位网段只有两百个左右，供 RIR 进行分配。全球 IP 地址分配详情，由 <a target="_blank" rel="noopener" href="https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.xhtml">IANA 官网</a> 维护，如下：</p>
+<p><img src="https://s2.loli.net/2024/03/05/aJBjMPvnXUfq7A6.png"></p>
+<p>从 IANA 地址分配表来看，我们可以通过 IP 地址的前八位，判断出 IP 地址属于哪个 RIR，也就知道 IP 地址的位置范围。但是这个范围实在太大了，相当于全球范围的五分之一。</p>
+<p>全球 &gt;&gt;&gt; 区域</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>这五个 RIR 分别管理不同区域，它们也不直接给用户分配 IP 地址，否则得累死~~~</p>
+<p>👇👇👇 <strong>RIR &gt;&gt;&gt; NIR</strong> 👇👇👇</p>
+<p>RIR 会将所有可用网段分配给 NIR（National Internet Registries，国家级互联网注册机构），想要更精确的位置，可以往下看 RIR 地址分配表，就能确定 IP 地址属于哪个国家或地区。</p>
+<p>以 APNIC 举例，其地址分配详情如下（<a target="_blank" rel="noopener" href="https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest">APNIC 地址分配页</a>）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">apnic|ID|ipv4|103.110.100.0|512|20230311|allocated</span><br><span class="line">apnic|IN|ipv4|103.110.102.0|512|20230313|allocated</span><br><span class="line">apnic|IN|ipv4|103.110.104.0|1024|20180302|allocated</span><br><span class="line">apnic|AU|ipv4|103.110.108.0|256|20180305|assigned</span><br><span class="line">apnic|MV|ipv4|103.110.109.0|256|20180305|allocated</span><br><span class="line">apnic|MV|ipv4|103.110.110.0|512|20180305|allocated</span><br><span class="line">apnic|BD|ipv4|103.110.112.0|1024|20180305|allocated</span><br><span class="line">apnic|CN|ipv4|103.110.116.0|1024|20180305|allocated</span><br><span class="line">apnic|ID|ipv4|103.110.120.0|1024|20180305|allocated</span><br><span class="line">apnic|BD|ipv4|103.110.124.0|512|20180305|allocated</span><br><span class="line">apnic|BD|ipv4|103.110.126.0|256|20180305|allocated</span><br><span class="line">apnic|IN|ipv4|103.110.127.0|256|20230531|allocated</span><br><span class="line">apnic|VN|ipv4|103.110.128.0|512|20230531|allocated</span><br><span class="line">apnic|PG|ipv4|103.110.130.0|256|20180305|allocated</span><br></pre></td></tr></table></figure>
+
+<p>详细记录了 APNIC 所有地址的分配情况，表格格式为：<code>注册机构 | 国家/地区代码 | 类型 | 起始地址 | 数量 | 分配日期 | 状态</code>。</p>
+<p>区域 &gt;&gt;&gt; 国家</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>尽管可确定 IP 地址的国家了，但 IP 属地功能，显示的可是省份或直辖市。</p>
+<p>👇👇👇 <strong>NIR &gt;&gt;&gt; LIR/ISP/EU</strong> 👇👇👇</p>
+<p>CNNIC 是中国唯一的 NIR。</p>
+<p>NIR 会再分配给 LIR（Local Internet Registries，本地互联网注册机构），由它负责分配给 ISP 或最终用户。</p>
+<p>有些机构 IDC / ICP / 企事业单位，可以直接向 CNNIC 申请 IP 地址。普通用户更多的是由 ISP 进行分配。</p>
+<p><img src="https://s2.loli.net/2024/03/06/8My5Oud4l97KACN.png"></p>
+<p><a href="https://link.zhihu.com/?target=http://www.cnnic.net.cn/">CNNIC 官网</a> 可以查到 IP 地址的位置信息，但是位置信息不一定都能精确到省份或直辖市级。以我自己的 IP 地址（<code>120.207.60.245</code>）为例：</p>
+<p><img src="https://s2.loli.net/2024/03/06/uSIqM8AKpvhJs2f.png"></p>
+<p>查询结果：</p>
+<p><img src="https://s2.loli.net/2024/03/06/hvbKtx9Ju4ondaq.png"></p>
+<p>查询结果显示：属于中国移动，位置范围是China（不是省份或直辖市级），并且当前 IP 地址属于（120.192.0.0 - 120.255.255.255）范围中，也就是 <code>120.192.0.0/10</code> 网段。显示的就是这个网段的信息（<code>255×255× (255-192+1)=4194304</code>）：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apnic|CN|ipv4|120.192.0.0|4194304|20080414|allocated</span><br></pre></td></tr></table></figure>
+
+<p>再来看一下 IP：<code>58.60.110.20</code>，发现可以查到具体的省份信息：广东省。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">inetnum:	58.60.0.0 - 58.63.255.255 </span><br><span class="line">netname:	CHINANET-GD </span><br><span class="line">descr:	CHINANET Guangdong province network </span><br><span class="line">descr:	China Telecom </span><br><span class="line">descr:	No.31,jingrong street </span><br><span class="line">descr:	Beijing 100032 </span><br><span class="line">country or economy:	CN </span><br></pre></td></tr></table></figure>
+
+<p>根本原因 &gt;&gt;&gt; 向 CNNIC 中心申请 IP 网段时，有些已经确定了使用的省份/直辖市；还有些只确定了使用的国家/地区，后面根据需求，ISP 会再对 IP 网段进行划分（借助 ASN）。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>关于 IP 的 ASN</strong> 👇👇👇</p>
+<p>互联网是一个巨大的网络，它由数十万个叫做 AS（自治系统）的网络组成。而每个 AS 都是由 ISP 或区域网络等管理的大型网络（一个大型路由器池），还包含若干子网，包含位置信息。每个 AS 都有自己的 ASN（自治系统编号），是一个 16 bit 的 AS Numbers（ASN），方便识别和区分。</p>
+<p>以我自己的 IP 地址（<code>120.207.60.245</code>）为例，<a href="">查询 ASN</a>：</p>
+<p><img src="https://s2.loli.net/2024/03/06/SJ9MeT3gPRrVk6W.png"></p>
+<p>查询到一个 ASN：<code>AS56042</code>（如果查询到多个，想更精准的定位，需要按照最长匹配原则（最长匹配的网段））。</p>
+<p>如果想获取当前 ASN 更详细的信息，可通过 | &gt;&gt;&gt; <a target="_blank" rel="noopener" href="https://dnschecker.org/asn-whois-lookup.php">ASN Whois Lookup</a> &lt;&lt;&lt; | 获取。</p>
+<p>拿到网络的 ASN 值后，你可以通过 <a target="_blank" rel="noopener" href="https://iplark.com/search">Iplark</a> 等工具获取更进一步的市级或区级的位置信息。</p>
+<p>| ================================================== <strong>Split Line</strong> =============================================== |</p>
+<p>👇👇👇 <strong>关于位置定位</strong> 👇👇👇</p>
+<p>如果要具体的位置信息，精确到街道的那种，就要找 ISP 提供，ISP 有完整的 IP 地址位置信息的，通过 IP 地址可以定位到家庭住址、工作单位、行动轨迹等。</p>
+<p>当然，这些信息是属于个人隐私，ISP 不会对外公布，泄露隐私可是违法行为。不过，我们还可以通过网上公开的 IP 地址库，定位到市级或区级的位置信息。</p>
+<p>这里，我们可以发现，不借助 ISP 的信息，IP 地址只能准确的定位到城市位置。其实，除了 IP 地址外，还有许多其它定位的技术，比如 GPS 定位、WiFi 定位、蓝牙定位、大数据定位等，精度更准、准确率更高！所以，即使屏蔽了 IP 地址，也还是能找到精确位置~~~</p>
+<hr>
+</div><div class="article-licensing box"><div class="licensing-title"><p>一文解析网络中的 IP 唯一性</p><p><a href="https://www.orangeshare.cn/2018/12/29/yi-wen-jie-xi-wang-luo-zhong-de-ip-wei-yi-xing/">https://www.orangeshare.cn/2018/12/29/yi-wen-jie-xi-wang-luo-zhong-de-ip-wei-yi-xing/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>Author</h6><p>Waldeinsamkeit</p></div></div><div class="level-item is-narrow"><div><h6>Posted on</h6><p>2018-12-29</p></div></div><div class="level-item is-narrow"><div><h6>Updated on</h6><p>2024-03-11</p></div></div><div class="level-item is-narrow"><div><h6>Licensed under</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Front-End-Devp/">Front-End Devp</a><a class="link-muted mr-2" rel="tag" href="/tags/Back-End-Devp/">Back-End Devp</a></div><div class="notification is-danger">You need to set <code>install_url</code> to use ShareThis. Please set it in <code>_config.yml</code>.</div></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">Like this article? Support the author with</h3><div class="buttons is-centered"><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>Alipay</span><span class="qrcode"><img src="/" alt="Alipay"></span></a><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>Wechat</span><span class="qrcode"><img src="/" alt="Wechat"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/01/01/wang-zhan-ji-chu-zhi-url-jie-gou-jie-xi/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">网站基础之 URL 结构解析</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2018/04/05/tensorflow-ru-men-zhi-mnist-shou-xie-ti-shu-zi-shi-bie-wen-ti/"><span class="level-item">TensorFlow 入门之 MNIST 手写体数字识别问题</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">Comments</h3><div class="notification is-danger">You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.</div></div></div></div><!--!--><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen  order-3 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Waldeinsamkeit"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Waldeinsamkeit</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">118</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">13</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">43</p></a></div></div></nav></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#初始-IP-地址"><span class="level-left"><span class="level-item">1</span><span class="level-item">初始 IP 地址</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#IP-地址格式"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">IP 地址格式</span></span></a></li><li><a class="level is-mobile" href="#IP-地址分类"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">IP 地址分类</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#A-类-IP-地址"><span class="level-left"><span class="level-item">1.2.1</span><span class="level-item">A 类 IP 地址</span></span></a></li><li><a class="level is-mobile" href="#B-类-IP-地址"><span class="level-left"><span class="level-item">1.2.2</span><span class="level-item">B 类 IP 地址</span></span></a></li><li><a class="level is-mobile" href="#C-类-IP-地址"><span class="level-left"><span class="level-item">1.2.3</span><span class="level-item">C 类 IP 地址</span></span></a></li><li><a class="level is-mobile" href="#D-类-IP-地址"><span class="level-left"><span class="level-item">1.2.4</span><span class="level-item">D 类 IP 地址</span></span></a></li><li><a class="level is-mobile" href="#E-类-IP-地址"><span class="level-left"><span class="level-item">1.2.5</span><span class="level-item">E 类 IP 地址</span></span></a></li><li><a class="level is-mobile" href="#0-0-0-0-127-0-0-0"><span class="level-left"><span class="level-item">1.2.6</span><span class="level-item">0.0.0.0/127.0.0.0</span></span></a></li></ul></li><li><a class="level is-mobile" href="#IP-地址信息"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">IP 地址信息</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#IP-Address"><span class="level-left"><span class="level-item">1.3.1</span><span class="level-item">IP Address</span></span></a></li><li><a class="level is-mobile" href="#NETMASK"><span class="level-left"><span class="level-item">1.3.2</span><span class="level-item">NETMASK</span></span></a></li><li><a class="level is-mobile" href="#GATEWAY"><span class="level-left"><span class="level-item">1.3.3</span><span class="level-item">GATEWAY</span></span></a></li><li><a class="level is-mobile" href="#DNS"><span class="level-left"><span class="level-item">1.3.4</span><span class="level-item">DNS</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#公有-私有地址"><span class="level-left"><span class="level-item">2</span><span class="level-item">公有/私有地址</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#如何理解-IP-地址唯一性"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">如何理解 IP 地址唯一性</span></span></a></li><li><a class="level is-mobile" href="#IP-地址更换"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">IP 地址更换</span></span></a></li></ul></li><li><a class="level is-mobile" href="#IP-地址定位"><span class="level-left"><span class="level-item">3</span><span class="level-item">IP 地址定位</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="When Art Meets Tech" height="28"></a><p class="is-size-7"><span>&copy; 2024 Waldeinsamkeit</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" async></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
             article: {
                 highlight: {
                     clipboard: true,
